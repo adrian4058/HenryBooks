@@ -11,7 +11,7 @@ module.exports= sequelize=>{
             type:DataTypes.DATEONLY,
             allownull:false
         },
-        lugar_nacimiento:{
+        lugarNacimiento:{
             type:DataTypes.STRING,
             allownull:false
         },
