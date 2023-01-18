@@ -21,8 +21,8 @@ root.render(
       >
         <App />
       </Auth0Provider>
-    </React.StrictMode>
-  </Provider>
+    
+    </Provider>
   </React.StrictMode>
 );
 

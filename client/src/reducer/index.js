@@ -18,6 +18,15 @@ function rootReducer (state = initialState, action) {
                 books: action.payload,
                 allBooks: action.payload
             }
+
+        case GET_BOOK_DETAIL:
+            return{
+                ...state,
+                detail: action.payload
+            }
+
+        default:
+            return state;
     }
 
 
