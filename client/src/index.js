@@ -10,7 +10,7 @@ import { store } from "./store/index";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-console.log(window.location.origin); // redireccionar al Home
+console.log(window.location); // redireccionar al Home
 root.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -21,7 +21,8 @@ root.render(
       >
         <App />
       </Auth0Provider>
-    </Provider>
+    </React.StrictMode>
+  </Provider>
   </React.StrictMode>
 );
 
