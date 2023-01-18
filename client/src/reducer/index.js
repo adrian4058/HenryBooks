@@ -18,6 +18,9 @@ function rootReducer (state = initialState, action) {
                 books: action.payload,
                 allBooks: action.payload
             }
+
+        default:
+            return state;
     }
 
 
