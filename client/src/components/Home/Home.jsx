@@ -3,7 +3,6 @@ function Home (props){
     return(<div>
         <h1>Bienvenidos a HenryBooks!</h1>
         <h3>Aqui podras encontrar tus libros preferidos</h3>
-        <h3>Puedes buscar por nombre o autor:</h3>
         {/* *aqui iria la searchbar* */}
      
 
@@ -20,6 +19,7 @@ function Home (props){
           <option value="PD">Precio(mayor-menor)</option>
           <option value="PA">Precio(menor-mayor</option>
       </select>
+
     
 
     </div>)
