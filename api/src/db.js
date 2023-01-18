@@ -43,8 +43,8 @@ const {Usuario,Libro,Autor} = sequelize.models;
 //relaciones 
 Usuario.belongsToMany(Libro,{through:"Usuarios_libros"})
 Libro.belongsToMany(Usuario,{through:"Usuarios_libros"})
-Autor.hasMany(Libro);
-Libro.belongsTo(Autor);
+// Autor.hasMany(Libro);
+// Libro.belongsTo(Autor);
 
 
 module.exports = {

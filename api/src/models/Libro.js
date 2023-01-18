@@ -13,10 +13,6 @@ module.exports = (sequelize) => {
       unique: true,
       allownull: false,
     },
-    autor: {
-      type: DataTypes.STRING,
-      allownull: false,
-    },
     editorial: {
       type: DataTypes.STRING,
       defaultValue: "No disponible",
