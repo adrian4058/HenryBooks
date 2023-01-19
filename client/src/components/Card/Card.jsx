@@ -1,21 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Card({ name, image, precio, autor }) {
+function Card({ name, image, price, autor, genero }) {
   return (
     <div>
       <div>
         <img src={image} alt={name} />
       </div>
-      <h2>{name}</h2>
+      <Link to="/details">
+        <h4>{`Book: ${name}`}</h4>
+      </Link>
       <div>
-        <p>{precio}</p>
+        <p>{`Author: ${autor}`}</p>
+        <p>{`Genero: ${genero}`}</p>
       </div>
       <div>
-        <p>{autor}</p>
+        <p>{`$ ${price}`}</p>
       </div>
-      <div>
-        <button onClick={"algo"}>Add to car</button>
-      </div>
+      <button onClick={() => alert("agregado al carrito")}>Add to car</button>
     </div>
   );
 }
