@@ -1,0 +1,14 @@
+.container {
+    margin-bottom: 16rem;
+    padding: 2rem;
+
+
+}
+
+.titleContainer {
+    padding: 3rem;
+    background-image: url('./book-wall-1151405.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
