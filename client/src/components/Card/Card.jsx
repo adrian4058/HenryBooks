@@ -12,12 +12,12 @@ function Card({ name, image, price, autor, genero }) {
       </Link>
       <div>
         <p>{`Author: ${autor}`}</p>
-        <p>{`Genero: ${genero}`}</p>
+        <p>{`Genre: ${genero}`}</p>
       </div>
       <div>
         <p>{`$ ${price}`}</p>
       </div>
-      <button onClick={() => alert("agregado al carrito")}>Add to car</button>
+      <button onClick={() => alert("agregado al carrito")}>Add to cart</button>
     </div>
   );
 }
