@@ -16,6 +16,9 @@ function About() {
                         We have many books, both classic and modern and a wide variety of genres and authors.<br />
                     </h3>
 
+                    <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br />
+                        Earum nihil culpa incidunt laboriosam fuga harum expedita ab deleniti dicta ducimus.
+                    </h4>
 
                 </div>
 
