@@ -5,7 +5,7 @@ import {getBookDetail, cleanDetail }from '../../actions/index'
 
 function Details (props){
     const {id} = useParams()
-    const details = useSelector(state=> state.Details)
+    const details = useSelector(state=> state.detail)
     const dispatch = useDispatch()
     useEffect(()=>{
      dispatch(getBookDetail(id))
