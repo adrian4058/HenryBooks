@@ -1,0 +1,41 @@
+.mainContainer {
+    border-top: solid 1px rgb(0, 0, 0);
+}
+
+.footerContainer {
+    display: flex;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    justify-content: center;
+}
+
+.contactContainer {
+    font-size: 1rem;
+    width: 18rem;
+    height: 12rem;
+    margin: .9rem;
+    margin-left: 1.5rem;
+    text-align: start;
+}
+
+.socialLinks {
+    font-size: 1rem;
+    width: 18rem;
+    height: 12rem;
+    margin: .9rem;
+    margin-left: 9rem;
+    text-align: start;
+}
+
+.navegation {
+    font-size: 1rem;
+    width: 18rem;
+    height: 12rem;
+    margin: .9rem;
+    margin-left: 8rem;
+    text-align: start;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(15, 15, 15);
+}
