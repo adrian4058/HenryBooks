@@ -19,6 +19,10 @@ module.exports= sequelize=>{
         rol:{
             type:DataTypes.ENUM('user','admin'),
             allownull:false
+        },
+        estado:{
+            type:DataTypes.ENUM('activo','desactivado'),
+            allownull:false
         }
     })
 }

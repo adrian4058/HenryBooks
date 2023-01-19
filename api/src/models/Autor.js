@@ -1,25 +1,23 @@
-const { DataTypes, UUIDV4 } = require("sequelize");
+const { DataTypes }=require ("sequelize"); 
 
-module.exports = (sequelize) => {
-  sequelize.define("Autor", {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
-      allowNull: false,
-      primaryKey: true,
-    },
-    nombre: {
-      type: DataTypes.STRING,
-      unique: true,
-      allownull: false,
-    },
-    fechaNacimiento: {
-      type: DataTypes.DATEONLY,
-      allownull: false,
-    },
-    lugar_nacimiento: {
-      type: DataTypes.STRING,
-      allownull: false,
-    },
-  });
-};
+module.exports= sequelize=>{
+    sequelize.define('Autor',{
+        nombre:{
+            type:DataTypes.STRING,
+            unique:true,
+            allownull:false
+        },
+        fechaNacimiento:{
+            type:DataTypes.DATEONLY,
+            allownull:false
+        },
+        lugarNacimiento:{
+            type:DataTypes.STRING,
+            allownull:false
+        },
+        estado:{
+            type:DataTypes.ENUM('activo','desactivado'),
+            allownull:false
+        }
+    })
+}

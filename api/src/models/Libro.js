@@ -2,19 +2,9 @@ const { DataTypes, UUIDV4 } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define("Libro", {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: UUIDV4,
-      allownull: false,
-    },
     name: {
       type: DataTypes.STRING,
       unique: true,
-      allownull: false,
-    },
-    autor: {
-      type: DataTypes.STRING,
       allownull: false,
     },
     editorial: {
@@ -44,5 +34,9 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allownull: false,
     },
+    estado:{
+      type:DataTypes.ENUM('activo','desactivado'),
+      allownull:false
+    }
   });
 };
