@@ -1,0 +1,22 @@
+.main_container {
+  border: 2px solid black;
+}
+
+.title {
+  text-decoration: underline;
+}
+
+.paragram {
+  border: 2px solid blue;
+}
+
+.btnLogin {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  color: aqua;
+}
+
+.btnHome {
+  color: brown;
+}
