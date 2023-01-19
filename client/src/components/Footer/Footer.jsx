@@ -10,7 +10,7 @@ function Footer() {
                     <div className={Style.contactContainer}>
                         <h4>Contact</h4>
 
-                        <p>+54 911 4946-8034 </p>
+                        <p>+54 911 4946-8036 </p>
                         <p>henrybooks.info@gmail.com</p>
                     </div>
 
