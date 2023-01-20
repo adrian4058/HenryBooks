@@ -1,0 +1,27 @@
+.navBar_container {
+  border-bottom: 1px solid black;
+  height: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+}
+
+.btn_navBar {
+  border: none;
+  background: none;
+}
+
+.btnLogin {
+  border: 1px solid #00dcffa3;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px black;
+}
+
+.user {
+  position: absolute;
+  display: flex;
+  right: 10%;
+  top: 0%;
+}
