@@ -10,7 +10,7 @@ function Home(props) {
       {/* *aqui iria la searchbar* */}
       <ul className={Style.filter_container}>
         <li>
-          Filter
+          Filter : 
           <select>
             <option disabled>select gender</option>
             <option value="terror">Horror</option>
@@ -18,7 +18,7 @@ function Home(props) {
         </li>
 
         <li>
-          Order:
+          Order :
           <select>
             <option disabled>select order</option>
             <option value="AZ">A-Z</option>

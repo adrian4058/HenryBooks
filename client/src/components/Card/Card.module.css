@@ -1,0 +1,42 @@
+.card {
+    border-radius: 5%;
+    border: width 20px;
+    border-color: black;
+    background-color: rgba(54, 207, 207, 0.254);
+    height: 250px;
+    width: 270px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin: 25px;
+}
+
+
+.content {
+    color: black;
+    font-weight:lighter;
+    font-size: large;
+    text-align: center;
+    margin: 10px 0px -15px 0px ;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.boton {
+    border-radius: 5px;
+    border-color: aliceblue;
+    cursor: pointer;
+    align-self: center;
+    width: 85px;
+
+}
+
+
+.boton:hover {
+    color: rgb(67, 143, 71);
+    background-color: #d8d5d268;
+    border-color: #1d1004;
+    width: 85px;
+}
