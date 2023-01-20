@@ -2,17 +2,17 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import Card from "../Card/Card";
 import Style from "./Home.module.css";
-import {sortOfList, filterByCategory} from '../../actions/index'
+import { sortOfList, filterByCategory } from '../../actions/index'
 
 function Home(props) {
-const dispatch = useDispatch()
-const [order, setOrder]= React.useState("")
-  function handlerByCategory(e){
-  dispatch(filterByCategory(e.target.value))
+  const dispatch = useDispatch()
+  const [order, setOrder] = React.useState("")
+  function handlerByCategory(e) {
+    dispatch(filterByCategory(e.target.value))
   }
-  function handlerOrder(e){
-  dispatch(sortOfList(e.target.value))
-  setOrder(`Order ${e.target.value}`)
+  function handlerOrder(e) {
+    dispatch(sortOfList(e.target.value))
+    setOrder(`Order ${e.target.value}`)
   }
   return (
     <div className={Style.home_container}>
@@ -21,7 +21,7 @@ const [order, setOrder]= React.useState("")
       {/* *aqui iria la searchbar* */}
       <ul className={Style.filter_container}>
         <li>
-          Filter : 
+          Filter :
           <select onChange={handlerByCategory}>
             <option disabled>select gender</option>
             <option value="terror">Horror</option>
