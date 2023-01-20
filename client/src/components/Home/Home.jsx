@@ -1,8 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import Card from "../Card/Card";
 import Style from "./Home.module.css";
+import {sortOfList, filterByCategory} from '../../actions/index'
 
 function Home(props) {
+const dispatch = useDispatch()
+const [order, setOrder]= React.useState("")
+  function handlerByCategory(e){
+  dispatch(filterByCategory(e.target.value))
+  }
+  function handlerOrder(e){
+  dispatch(sortOfList(e.target.value))
+  setOrder(`Order ${e.target.value}`)
+  }
   return (
     <div className={Style.home_container}>
       <h1>Welcome to HenryBooks!</h1>
@@ -11,7 +22,7 @@ function Home(props) {
       <ul className={Style.filter_container}>
         <li>
           Filter : 
-          <select>
+          <select onChange={handlerByCategory}>
             <option disabled>select gender</option>
             <option value="terror">Horror</option>
           </select>
@@ -19,7 +30,7 @@ function Home(props) {
 
         <li>
           Order :
-          <select>
+          <select onChange={handlerOrder}>
             <option disabled>select order</option>
             <option value="AZ">A-Z</option>
             <option value="ZA">Z-A</option>

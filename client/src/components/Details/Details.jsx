@@ -17,11 +17,12 @@ function Details(props) {
     <div>
       {details.name ? <h1>{details.name}</h1> : <h1>Loading</h1>}
       {details.image && <img src={details.image} alt="imagen-libro" />}
+      {details.autor && <h4>Author:</h4> }
       {details.autor && <h4>{details.autor}</h4>}
       {details.editorial && <h4>Editorial: </h4>}
       {details.editorial && <p>{details.editorial}</p>}
-      {details.genero && <h4>Genero: {details.genero}</h4>}
-      {details.price && <h4>Precio: {details.price}</h4>}
+      {details.genero && <h4>Genre: {details.genero}</h4>}
+      {details.price && <h4>Price: {details.price}</h4>}
     </div>
   );
 }
