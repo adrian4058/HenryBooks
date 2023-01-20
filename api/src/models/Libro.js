@@ -36,7 +36,8 @@ module.exports = (sequelize) => {
     },
     estado:{
       type:DataTypes.ENUM('activo','desactivado'),
-      allownull:false
+      allownull:false,
+      defaultValue:'activo'
     }
   });
 };

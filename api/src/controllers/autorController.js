@@ -14,12 +14,12 @@ async function autores (req,res){
 
 //crear un autor
 async function crearAutor (req,res){
-    let {nombre,fechaNacimiento,lugarNacimiento}=req.body;
+    let {nombre}=req.body;
     try{
-        if(!nombre || !fechaNacimiento || !lugarNacimiento){
+        if(!nombre){
             res.status(404).send("datos incompletos")
         }else{
-            let nuevo = await Autor.create({nombre,fechaNacimiento,lugarNacimiento})
+            let nuevo = await Autor.create({nombre})
             console.log(nuevo)
             res.send(`el autor con nombre ${nombre} fue creado correctamente`)
         }
@@ -67,6 +67,8 @@ async function autorId(req,res){
         res.status(404).send(e)
     }
 }
+
+
 
 
 module.exports={autorId,editarAutor,eliminarAutor,crearAutor,autores}

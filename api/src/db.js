@@ -12,6 +12,14 @@ const sequelize = new Sequelize(
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   }
 );
+
+// const sequelize = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ozbihfwj`,
+//   {
+//     logging: false, // set to console.log to see the raw SQL queries
+//     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+//   }
+// );
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -43,8 +51,8 @@ const {Usuario,Libro,Autor} = sequelize.models;
 //relaciones 
 Usuario.belongsToMany(Libro,{through:"Usuarios_libros"})
 Libro.belongsToMany(Usuario,{through:"Usuarios_libros"})
-// Autor.hasMany(Libro);
-// Libro.belongsTo(Autor);
+Autor.hasMany(Libro);
+Libro.belongsTo(Autor);
 
 
 module.exports = {
