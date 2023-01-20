@@ -14,7 +14,7 @@ module.exports= sequelize=>{
         },
         clave:{
             type:DataTypes.STRING,
-            allownull:false
+            allownull:false 
         },
         rol:{
             type:DataTypes.ENUM('user','admin'),
@@ -22,7 +22,8 @@ module.exports= sequelize=>{
         },
         estado:{
             type:DataTypes.ENUM('activo','desactivado'),
-            allownull:false
+            allownull:false,
+            defaultValue:'activo'
         }
     })
 }

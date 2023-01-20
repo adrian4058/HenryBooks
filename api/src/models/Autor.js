@@ -7,17 +7,10 @@ module.exports= sequelize=>{
             unique:true,
             allownull:false
         },
-        fechaNacimiento:{
-            type:DataTypes.DATEONLY,
-            allownull:false
-        },
-        lugarNacimiento:{
-            type:DataTypes.STRING,
-            allownull:false
-        },
         estado:{
             type:DataTypes.ENUM('activo','desactivado'),
-            allownull:false
+            allownull:false,
+            defaultValue:'activo'
         }
     })
 }
