@@ -1,6 +1,7 @@
 .container {
-    margin-bottom: 16rem;
-    padding: 2rem;
+    margin-bottom: 7rem;
+    padding-top: 1rem;
+
 }
 
 .titleContainer {
@@ -9,4 +10,55 @@
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+}
+
+.text {
+    margin: 5rem;
+}
+
+.title2 {
+    margin-bottom: 2rem;
+}
+
+
+
+
+
+.membersContainer {
+    border-top: solid 1px rgb(16, 16, 16);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 1px;
+    margin-top: 4rem;
+}
+
+
+.data {
+    display: flex;
+    /* border: solid 4px rgb(151, 8, 32);
+    background-color: brown; */
+    text-align: start;
+    padding: 3rem;
+    flex-direction: column;
+    padding-top: 1px;
+}
+
+.nameContainer {
+    text-align: center;
+    padding-bottom: 1px;
+}
+
+.name {
+    font-size: 1rem;
+}
+
+.linksContainer {
+    text-align: center;
+}
+
+ion-icon {
+    font-size: 1.6rem;
+    padding-right: 1rem;
+    color: rgb(7, 7, 23);
 }
