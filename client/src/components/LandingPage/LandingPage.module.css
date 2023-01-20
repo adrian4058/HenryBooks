@@ -1,22 +1,28 @@
 .main_container {
-  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+  align-items: center;
+}
+
+.main_container h3 {
+  margin-top: inherit;
 }
 
 .title {
   text-decoration: underline;
+  margin-top: inherit;
 }
 
 .paragram {
-  border: 2px solid blue;
-}
-
-.btnLogin {
-  position: absolute;
-  right: 0%;
-  top: 0%;
-  color: aqua;
+  font-style: italic;
+  margin-bottom: 12px;
 }
 
 .btnHome {
-  color: brown;
+  margin-bottom: 25px;
+  font-size: 18px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px black;
 }
