@@ -1,5 +1,3 @@
-import { type } from 'os';
-
 const axios = require('axios')
 export const GET_ALL_BOOKS = 'GET_ALL_BOOKS';
 export const GET_BOOK_DETAIL = 'GET_BOOK_DETAIL'
