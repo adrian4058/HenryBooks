@@ -1,0 +1,81 @@
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #dad2bc;
+  padding: 1rem;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+}
+
+.navbar-logo {
+  display: flex;
+}
+
+.navbar-logo__title {
+  font-family: 'Maven Pro', sans-serif;
+  text-decoration: underline;
+}
+
+.navbar-options {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-btn__option {
+  position: relative;
+  font-size: 1em;
+  padding: .5rem 1.2rem;
+  background-color: #70798c;
+  text-decoration: none;
+  border: none;
+  border-radius: 0.5em;
+  color: #DEDEDE;
+  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-btn__option:hover {
+  cursor: pointer;
+}
+
+.navbar-btn__option::before {
+  position: absolute;
+  content: '';
+  height: 0;
+  width: 0;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, #dad2bc 0%, #dad2bc 50%, rgba(112, 121, 140, 1) 50%, rgba(112, 121, 140, 1) 60%);
+  border-radius: 0 0 0.5em 0;
+  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+
+.navbar-btn__option:hover::before {
+  width: 1.6em;
+  height: 1.6em;
+}
+
+.navbar-btn__option:active {
+  box-shadow: 0.2em 0.2em 0.3em #dad2bc;
+  transform: translate(0.1em, 0.1em);
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-left: 1rem;
+  border-left: 1px dotted black;
+}
+
+.user-img {
+  border-radius: 50%;
+  width: 50px;
+}

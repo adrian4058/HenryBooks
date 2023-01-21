@@ -1,0 +1,41 @@
+h4,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.footer {
+  background-color: #dad2bc;
+  width: 100%;
+  bottom: 0;
+}
+
+.footer-container {
+  border-top: solid 1px rgb(0, 0, 0);
+}
+
+.footer-content {
+  display: flex;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  justify-content: space-evenly;
+  padding: 2rem 0;
+}
+
+.footer-column {
+  display: flex;
+  width: 300px;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-copy {
+  padding: .5rem 0;
+  text-align: center;
+}
+
+
+a {
+  text-decoration: none;
+  color: rgb(15, 15, 15);
+}
