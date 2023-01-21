@@ -5,6 +5,8 @@ import books from "../../utils/books.js";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookDetail, cleanDetail } from "../../actions/index";
+import NavBar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 import "./Details.css";
 
