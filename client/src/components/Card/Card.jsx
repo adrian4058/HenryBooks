@@ -12,12 +12,12 @@ function Card({ name, image, price, autor, genero, id }) {
         </div>
         <div className="card-info">
           <div className="card-info__title">
-            <h4>Como ser guapo</h4>
+            <h4>{name}</h4>
           </div>
           <div className="card-info__description">
-            <p><span>By: </span>Cristiano Ronaldo</p>
-            <p><span>Genre: </span>Love</p>
-            <p><span>Price: </span>$100.000</p>
+            <p><span>By: </span>{autor}</p>
+            <p><span>Genre: </span>{genero}</p>
+            <p><span>Price: </span>{price}</p>
           </div>
           <button className="card-add" onClick={() => alert("agregado al carrito")}>Add to cart<i className="fa-solid fa-cart-shopping"></i></button>
         </div>

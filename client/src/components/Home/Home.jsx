@@ -2,20 +2,35 @@ import React from "react";
 import Card from "../Card/Card";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import { useDispatch } from "react-redux";
-import { sortOfList, filterByCategory } from '../../actions/index'
+import Paginate from "../Paginate/Paginate"
+import { useDispatch, useSelector } from "react-redux";
+import {getAllBooks, sortOfList, filterByCategory } from '../../actions/index'
 import "./Home.css";
 
 function Home(props) {
   const dispatch = useDispatch()
   const [order, setOrder] = React.useState("")
+  const allBooks = useSelector(state=> state.books)
+  const [booksPerPage, setBooksPerPage] = React.useState(6)
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const indexLast = currentPage*booksPerPage
+  const indexFirst = indexLast - booksPerPage
+  const books= allBooks.slice(indexFirst,indexLast)
+  
+  React.useEffect(()=>{
+    dispatch(getAllBooks())
+  },[dispatch])
+
   function handlerByCategory(e) {
     dispatch(filterByCategory(e.target.value))
+    setCurrentPage(1)
   }
   function handlerOrder(e) {
     dispatch(sortOfList(e.target.value))
+    setCurrentPage(1)
     setOrder(`Order ${e.target.value}`)
   }
+  const paginado = (pageNumber)=>{ setCurrentPage(pageNumber)}
   return (
     <div className="home">
       <Navbar />
@@ -51,17 +66,10 @@ function Home(props) {
       </div>
 
       <div className="book-card">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+      {!books.length && <h2>Loading...</h2>}
+      {!!books.length && books.map(elem=> <Card key={elem.id} genero={elem.genero} autor={elem.autor} image={elem.image} name={elem.name} id={elem.id} price={elem.price} /> )}
       </div>
-
+      <Paginate booksPerPage={booksPerPage} allBooks={allBooks.length} paginado={paginado}/>
       <Footer />
     </div>
   );
