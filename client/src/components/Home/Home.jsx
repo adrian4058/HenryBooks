@@ -4,6 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { useDispatch } from "react-redux";
 import { sortOfList, filterByCategory } from '../../actions/index'
+import books from "../../utils/books.js";
 import "./Home.css";
 
 function Home(props) {
@@ -16,6 +17,7 @@ function Home(props) {
     dispatch(sortOfList(e.target.value))
     setOrder(`Order ${e.target.value}`)
   }
+
   return (
     <div className="home">
       <Navbar />
@@ -51,19 +53,27 @@ function Home(props) {
       </div>
 
       <div className="book-card">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {
+          books.map((book) => {
+            return (
+              <div key={book.id}>
+                <Card
+                  id={book.id}
+                  name={book.name}
+                  image={book.image}
+                  price={book.price}
+                  author={book.author}
+                  genre={book.genre}
+                />
+              </div>
+            )
+          })
+        }
       </div>
 
+
       <Footer />
-    </div>
+    </div >
   );
 }
 

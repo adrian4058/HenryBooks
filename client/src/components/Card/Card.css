@@ -1,9 +1,10 @@
 .card {
   display: flex;
+  align-items: center;
   gap: 1.5rem;
   background-color: #a99985;
-  height: max-content;
-  width: 450px;
+  height: 150px;
+  width: 330px;
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
@@ -16,8 +17,8 @@
 }
 
 .card-img {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
 }
 
@@ -41,7 +42,7 @@
   font-weight: bold;
 }
 
-.card-add {
+/* .card-add {
   position: relative;
   font-size: 1em;
   padding: .5rem 1.2rem;
@@ -78,4 +79,4 @@
 .card-add:active {
   box-shadow: 0.2em 0.2em 0.3em #dad2bc;
   transform: translate(0.1em, 0.1em);
-}
+} */
