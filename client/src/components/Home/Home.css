@@ -101,7 +101,7 @@ select::-ms-expand {
 .book-card {
   width: max-content;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin: 2rem;
 }

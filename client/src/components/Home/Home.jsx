@@ -2,6 +2,7 @@ import React from "react";
 import Card from "../Card/Card";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import books from "../../utils/books.js";
 import Paginate from "../Paginate/Paginate"
 import { useDispatch, useSelector } from "react-redux";
 import {getAllBooks, sortOfList, filterByCategory } from '../../actions/index'
@@ -30,7 +31,9 @@ function Home(props) {
     setCurrentPage(1)
     setOrder(`Order ${e.target.value}`)
   }
+
   const paginado = (pageNumber)=>{ setCurrentPage(pageNumber)}
+
   return (
     <div className="home">
       <Navbar />
@@ -66,12 +69,32 @@ function Home(props) {
       </div>
 
       <div className="book-card">
+      {/*
+        {
+          books.map((book) => {
+            return (
+              <div key={book.id}>
+                <Card
+                  id={book.id}
+                  name={book.name}
+                  image={book.image}
+                  price={book.price}
+                  author={book.author}
+                  genre={book.genre}
+                />
+              </div>
+            )
+          })
+        }
+      </div>
+      */}
+
       {!books.length && <h2>Loading...</h2>}
       {!!books.length && books.map(elem=> <Card key={elem.id} genero={elem.genero} autor={elem.autor} image={elem.image} name={elem.name} id={elem.id} price={elem.price} /> )}
       </div>
       <Paginate booksPerPage={booksPerPage} allBooks={allBooks.length} paginado={paginado}/>
       <Footer />
-    </div>
+    </div >
   );
 }
 
