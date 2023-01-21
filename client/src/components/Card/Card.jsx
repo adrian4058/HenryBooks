@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Style from "../Card/Card.module.css"
 
-function Card({ name, image, price, autor, genero }) {
+function Card({ name, image, price, autor, genero, id }) {
   return (
     <div className={Style.card}>
       <div className={Style.img}>
         <img src={image} alt={name} />
       </div>
-      <Link to="/books/:id">
+      <Link to={`/books/${id}`}>
         <h4>{`Book: ${name}`}</h4>
       </Link>
       <div className={Style.content}>
