@@ -8,7 +8,7 @@ function Card({ name, image, price, autor, genero }) {
       <div className={Style.img}>
         <img src={image} alt={name} />
       </div>
-      <Link to="/details">
+      <Link to="/books/:id">
         <h4>{`Book: ${name}`}</h4>
       </Link>
       <div className={Style.content}>
