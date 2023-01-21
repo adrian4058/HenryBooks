@@ -1,5 +1,6 @@
 import Footer from '../Footer/Footer'
 import Navbar from "../Navbar/Navbar";
+import { members } from './members';
 import './About.css';
 
 function About() {
@@ -28,6 +29,37 @@ function About() {
         </div>
       </div>
 
+      <div>
+        {members.map((data) => {
+          return (
+            <div>
+              <div>
+                <h5>{data.name}</h5>
+              </div>
+
+              <div>
+
+                <a href={data.linkedin}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <ion-icon name='logo-linkedin' />
+                </a>
+
+                <a href={data.github}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <ion-icon name='logo-github' />
+                </a>
+              </div>
+            </div>
+
+          )
+
+        })}
+
+      </div>
 
       <Footer />
     </div >
