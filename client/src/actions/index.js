@@ -5,7 +5,6 @@ export const CLEAN_DETAIL = 'CLEAN_DETAIL'
 export const SORT_OF_LIST = 'SORT_OF_LIST'
 export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY'
 export const SEARCH_BY_AUTHOR = 'SEARCH_BY_AUTHOR'
-export const SEARCH_BY_PRICE = 'SEARCH_BY_PRICE'
 export const SEARCH_BY_NAME = 'SEARCH_BY_NAME'
 export const ADD_SHOPPING_CART = 'ADD_SHOPPING_CART'
 export const REMOVE_SHOPPING_CART = 'REMOVE_SHOPPING_CART'
@@ -38,4 +37,8 @@ export const sortOfList = (typeOfOrder) => {
 
 export const filterByCategory = (category)=>{
     return {type: FILTER_BY_CATEGORY, payload: category}
+}
+
+export const findBook = (name)=> {
+    return {type: SEARCH_BY_NAME, payload: name}
 }

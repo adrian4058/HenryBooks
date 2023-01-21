@@ -59,6 +59,23 @@ function rootReducer (state = initialState, action) {
                 books: sort
             }
 
+        case FILTER_BY_CATEGORY:
+            const allBooks = state.allBooks
+            
+            const filterBooks = action.payload === "all" ? allBooks : allBooks.filter(e => e.genero === action.payload)
+            return {
+                ...state,
+                books: filterBooks
+            }
+
+
+        case SEARCH_BY_NAME:
+            const nombre = action.payload === "" ? state.allBooks :
+            state.books.filter((e) => e.name.toLowerCase().includes(action.payload.toLowerCase()))
+            return {
+                ...state,
+                books: nombre
+            }
 
         default:
             return state;
