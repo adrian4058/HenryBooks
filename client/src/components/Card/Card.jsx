@@ -1,25 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Style from "../Card/Card.module.css"
+import imagenPrueba from "../img/wallpaper.jpg";
+import "../Card/Card.css"
 
 function Card({ name, image, price, autor, genero, id }) {
   return (
-    <div className={Style.card}>
-      <div className={Style.img}>
-        <img src={image} alt={name} />
+    <Link to={`/details/${id}`}>
+      <div className="card">
+        <div className="card-img__container">
+          <img className="card-img" src={imagenPrueba} alt="ImgPRUEBA" />
+        </div>
+        <div className="card-info">
+          <div className="card-info__title">
+            <h4>Como ser guapo</h4>
+          </div>
+          <div className="card-info__description">
+            <p><span>By: </span>Cristiano Ronaldo</p>
+            <p><span>Genre: </span>Love</p>
+            <p><span>Price: </span>$100.000</p>
+          </div>
+          <button className="card-add" onClick={() => alert("agregado al carrito")}>Add to cart<i className="fa-solid fa-cart-shopping"></i></button>
+        </div>
       </div>
-      <Link to={`/books/${id}`}>
-        <h4>{`Book: ${name}`}</h4>
-      </Link>
-      <div className={Style.content}>
-        <p>{`Author: ${autor}`}</p>
-        <p>{`Genre: ${genero}`}</p>
-      </div>
-      <div className={Style.content}>
-        <p>{`$ ${price}`}</p>
-      </div>
-      <button className={Style.boton} onClick={() => alert("agregado al carrito")}>Add to cart</button>
-    </div>
+    </Link>
   );
 }
 
