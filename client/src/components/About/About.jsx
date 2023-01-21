@@ -1,32 +1,37 @@
 import Footer from '../Footer/Footer'
-import Style from './About.module.css'
+import Navbar from "../Navbar/Navbar";
+import './About.css';
 
 function About() {
-    return (
-        <>
-            <div className={Style.container}>
-                <div className={Style.titleContainer}>
-                    <h1 className={Style.title}>¿About us?</h1>
-                </div>
+  return (
+    <div className='about'>
+      <Navbar />
+      <div class="content-container">
+        <div class="content">
 
-                <div className={Style.info}>
+          <h1 className='content-h1'>ABOUT US</h1>
 
-                    <h3 className={Style.text}>At Henry Books we specialize in selling books online.<br />
-                        Looking for a good experience for the user when buying.<br />
-                        We have many books, both classic and modern and a wide variety of genres and authors.<br />
-                    </h3>
+          <h2 className='content-h2'>Chapter 01</h2>
 
-                    <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br />
-                        Earum nihil culpa incidunt laboriosam fuga harum expedita ab deleniti dicta ducimus.
-                    </h4>
+          <h3 className='content-h3'>By: Team 03</h3>
 
-                </div>
+          <p className='content-p'><span className='content-span'>S</span>omos Henry Books.
 
-            </div>
+            Una librería independiente con una gran variedad de títulos en nuestras estanterías. Ofrecemos una selección cuidadosamente curada de libros de todos los géneros, desde bestsellers hasta tesoros escondidos.</p> <br />
 
-            <Footer />
-        </>
-    )
+          <p className='content-p'>Nuestros clientes aprecian nuestro ambiente acogedor y nuestra atención personalizada. Ofrecemos un servicio de reserva de libros y también organizamos eventos regulares, como charlas de autores y sesiones de lectura para niños.</p><br />
+
+          <p className='content-p'>Además de libros de papel, también ofrecemos una selección de libros electrónicos para aquellos que prefieren leer en dispositivos digitales.</p>
+
+          <p className='content-p'>Nuestra librería es el lugar perfecto para encontrar tu próxima lectura, ya sea para relajarte en casa o para inspirarte en tu camino hacia el éxito. Te esperamos en Henry Books, donde siempre encontrarás una historia para enamorarte...</p>
+
+        </div>
+      </div>
+
+
+      <Footer />
+    </div >
+  )
 }
 
 export default About
