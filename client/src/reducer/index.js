@@ -27,7 +27,9 @@ function rootReducer (state = initialState, action) {
             }
 
         case CLEAN_DETAIL:
-            return state
+            return {
+                ...state,
+            }
 
         case ADD_NEW_BOOK:  
             return {
@@ -35,34 +37,55 @@ function rootReducer (state = initialState, action) {
             }
         
         case SORT_OF_LIST:
-            let sort = action.payload === "AZ" ?
-            state.books.sort(function (a,b) {
-                if(a.name > b.name) {
-                    return 1
-                }
-                if(b.name > a.name) {
-                    return -1
-                }
-                return 0
-            }) :
-            state.books.sort(function (a,b) {
-                if(a.name > b.name) {
-                    return -1
-                }
-                if(b.name > a.name) {
-                    return 1
-                }
-                return 0
-            })
-            return {
-                ...state,
-                books: sort
+            switch(action.payload){
+                case "ASC":
+                   let sortASC = state.books.sort((a,b) => {
+                      if(a.name < b.name) {
+                           return -1
+                      }
+                      if(a.name > b.name) {
+                           return 1
+                      }
+                      return 0
+                   });
+                   return {
+                      ...state,
+                      books: sortASC
+                   }
+                case "DESC":
+                   let sortDESC = state.books.sort((a,b) => {
+                      if(a.name < b.name) {
+                           return 1
+                      }
+                      if(a.name > b.name) {
+                           return -1
+                      }
+                      return 0
+                   });
+                   return {
+                      ...state,
+                      books: sortDESC
+                   }
+                case "ASC_PRICE":
+                   let sortASC_PRICE = state.books.sort((a,b) => a.price - b.price);
+                   return {
+                      ...state,
+                      books: sortASC_PRICE
+                   }
+                case "DESC_PRICE":
+                   let sortDESC_PRICE = state.books.sort((a,b) => b.price - a.price);
+                   return {
+                      ...state,
+                      books: sortDESC_PRICE
+                   }
+                default:
+                   return state;
             }
+
 
         case FILTER_BY_CATEGORY:
             const allBooks = state.allBooks
-            
-            const filterBooks = action.payload === "all" ? allBooks : allBooks.filter(e => e.genero === action.payload)
+            const filterBooks = action.payload === "All" ? allBooks : allBooks.filter(e => e.genero === action.payload)
             return {
                 ...state,
                 books: filterBooks
@@ -71,7 +94,7 @@ function rootReducer (state = initialState, action) {
 
         case SEARCH_BY_NAME:
             const nombre = action.payload === "" ? state.allBooks :
-            state.books.filter((e) => e.name.toLowerCase().includes(action.payload.toLowerCase()))
+            state.allBooks.filter((e) => e.name.toLowerCase().includes(action.payload.toLowerCase()))
             return {
                 ...state,
                 books: nombre
@@ -80,8 +103,6 @@ function rootReducer (state = initialState, action) {
         default:
             return state;
     }
-
-
 }
 
 

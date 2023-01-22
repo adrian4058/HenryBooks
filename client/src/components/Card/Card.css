@@ -7,13 +7,37 @@
   width: 330px;
   padding: 1rem;
   border-radius: 1rem;
-  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   transition: .6s;
 }
 
+@media (max-width: 768px) {
+  .card {
+    width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 500px;
+  }
+}
+
+@media (max-width: 500px) {
+  .card {
+    width: 400px;
+  }
+}
+
+@media (max-width: 400px) {
+  .card {
+    width: 300px;
+  }
+}
+
 .card:hover {
-  background-color: rgb(169, 153, 133, 80%);
-  box-shadow: 8px 8px 8px rgb(135, 139, 255);
+  background-color: rgba(205, 191, 173, 0.8);
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
 .card-img {

@@ -1,27 +1,32 @@
-import React from "react"
+import React, { useState } from "react"
+import './Paginate.css'
 
-import s from '../Paginate/Paginate.module.css'
 
+export default function Paginado({ booksPerPage, allBooks, paginado }) {
+  const pageNumbers = []
+  const [activePage, setActivePage] = useState(1);
 
-export default function Paginado ({booksPerPage, allBooks, paginado}){
-    const pageNumbers = []
+  for (let i = 1; i <= Math.ceil(allBooks / booksPerPage); i++) {
+    pageNumbers.push(i)
+  }
 
-    for (let i = 1; i <= Math.ceil(allBooks/booksPerPage); i++) {
-        pageNumbers.push(i)
-    }
+  return (
+    <nav className="pagination">
+      {
+        pageNumbers &&
+        pageNumbers.map(number => (
 
-    return(
-        <nav className={s.contenido}>
-            <ul>
-                {
-                    pageNumbers &&
-                    pageNumbers.map(number => (
-                        
-                        <button className={s.botonpgn} key={number} onClick={() => paginado(number)}>{number}</button>
-                        
-                    ))
-                }
-            </ul>
-        </nav>
-    )
+          <button
+            className={`pagination-btn ${activePage === number ? 'active' : ''}`}
+            key={number}
+            onClick={() => {
+              paginado(number)
+              setActivePage(number)
+            }}>{number}
+          </button>
+
+        ))
+      }
+    </nav >
+  )
 }

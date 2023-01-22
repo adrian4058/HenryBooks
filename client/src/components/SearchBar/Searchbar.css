@@ -1,6 +1,19 @@
 .searchbar {
-  display: flex;
+  width: 100%;
   gap: 1rem;
+}
+
+.searchbar-input {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .searchbar-input {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .group {
@@ -8,7 +21,6 @@
   line-height: 28px;
   align-items: center;
   position: relative;
-  max-width: 190px;
 }
 
 .input {
@@ -17,7 +29,7 @@
   line-height: 28px;
   padding: 0 1rem;
   padding-left: 2.5rem;
-  border: 2px solid transparent;
+  border: 2px solid #70798c;
   border-radius: 8px;
   outline: none;
   background-color: #f3f3f4;
