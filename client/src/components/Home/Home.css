@@ -1,0 +1,107 @@
+.home {
+  background-color: #F5F1ED;
+  height: max-content;
+}
+
+.home p,
+h4 {
+  font-family: 'Maven Pro', sans-serif;
+}
+
+.home-welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 5px dotted black;
+}
+
+.home-welcome__h1 {
+  font-size: 30pt;
+  font-weight: 300;
+  color: #000000;
+  text-shadow: 0.3px 0.3px 2px Sienna;
+}
+
+.home-welcome__h3 {
+  text-decoration: 1px dashed underline #888;
+  letter-spacing: 2px;
+  font-size: 20pt;
+  font-weight: 300;
+  font-style: italic;
+  color: #35312b;
+  margin-bottom: 20px;
+  text-shadow: 0.6px 0.6px 1px Sienna;
+}
+
+.home-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  padding: 0 2rem;
+  gap: 1rem;
+}
+
+.filter-title {
+  width: max-content;
+  background-color: #dad2bc;
+  padding: 0 .2rem;
+  margin-top: 1rem;
+  border-radius: .25em .25em 0 0;
+}
+
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #000;
+  background-color: #dad2bc;
+  background-image: none;
+  cursor: pointer;
+}
+
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+
+/* Custom Select wrapper */
+.home-filter {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  border-radius: .0 .25em .25em .25em;
+  overflow: hidden;
+}
+
+/* Arrow */
+.home-filter::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+
+/* Transition */
+.home-filter:hover::after {
+  color: #dad2bc;
+}
+
+.book-card {
+  width: max-content;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 2rem;
+}
