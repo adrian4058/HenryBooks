@@ -5,7 +5,6 @@ import books from "../../utils/books.js";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookDetail, cleanDetail } from "../../actions/index";
-
 import "./Details.css";
 
 function Details(props) {
@@ -13,33 +12,35 @@ function Details(props) {
   const details = useSelector((state) => state.detail);
   const dispatch = useDispatch();
 
-  const bookFiltered = books.filter(book => book.id === parseInt(id));
+  useEffect(() => {
+    dispatch(getBookDetail(id));
+    return () => dispatch(cleanDetail());
+  }, [dispatch, id]);
 
-  // useEffect(() => {
-  //   dispatch(getBookDetail(id));
-  //   return () => dispatch(cleanDetail());
-  // }, [dispatch, id]);
+  <i className="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>
 
   return (
     <div className="Details">
       <Navbar />
       <div className="book-container">
-        {/* {details.name ? <h1>{details.name}</h1> : <h1> <i className="fa-solid fa-spinner fa-spin-pulse fa-2x"></i></h1>} */}
-        {bookFiltered[0].image && <img className="book-img" src={bookFiltered[0].image} alt="imagen-libro" />}
+        {details.image && <img className="book-img" src={details.image} alt="imagen-libro" />}
         <div className="book-info">
           <div className="book-info__info">
-            {bookFiltered[0].author && <h4>Author:</h4>}
-            {bookFiltered[0].author && <h4>{bookFiltered[0].author}</h4>}
+            {details.name && <h4>{details.name}</h4>}
+          </div>
+          {/* <div className="book-info__info">
+            {details.author && <h4>Author:</h4>}
+            {details.author && <h4>{details.author}</h4>}
+          </div> */}
+          <div className="book-info__info">
+            {details.editorial && <h4>Editorial: </h4>}
+            {details.editorial && <p>{details.editorial}</p>}
           </div>
           <div className="book-info__info">
-            {bookFiltered[0].editorial && <h4>Editorial: </h4>}
-            {bookFiltered[0].editorial && <p>{bookFiltered[0].editorial}</p>}
+            {details.genero && <h4>Genre: {details.genero}</h4>}
           </div>
           <div className="book-info__info">
-            {bookFiltered[0].genre && <h4>Genre: {bookFiltered[0].genre}</h4>}
-          </div>
-          <div className="book-info__info">
-            {bookFiltered[0].price && <h4>Price: {bookFiltered[0].price}</h4>}
+            {details.price && <h4>Price: {details.price}</h4>}
           </div>
           <div className="">
             <button className="book-btn__buy">Add To Cart <i className="fa-solid fa-cart-shopping"></i></button>
@@ -52,3 +53,6 @@ function Details(props) {
 }
 
 export default Details;
+
+
+

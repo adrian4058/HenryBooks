@@ -1,14 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { findBook } from "../../actions";
 import "./Searchbar.css";
 
 function SearchBar() {
   const [searchBook, setSearchBook] = useState("");
+  const dispatch = useDispatch();
   console.log(searchBook);
 
   const handleInput = (e) => {
     e.preventDefault();
     setSearchBook(e.target.value);
   };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (searchBook.length === 0) return alert('Nothing in searchbar');
+    dispatch(findBook(searchBook))
+    setSearchBook('')
+  }
 
   return (
     <div className="searchbar">
@@ -20,7 +30,7 @@ function SearchBar() {
           type="text"
           className="input" />
       </div>
-      <button className="searchbar-submit" type="submit">
+      <button className="searchbar-submit" type="submit" onClick={onSubmit}>
         Submit
       </button>
     </div>

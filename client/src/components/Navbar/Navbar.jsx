@@ -28,9 +28,6 @@ function NavBar() {
           </Link>
         </div>
       </div>
-      <div className="searchBar">
-        <SearchBar />
-      </div>
 
       <div className="login">
         <div>
@@ -48,7 +45,7 @@ function NavBar() {
         {isAuthenticated && (
           <div className="user">
             <img className="user-img" src={user.picture} alt="Imagen-user" />
-            <h4 className="user-name">{user.name}</h4>
+            <h4 className="user-name">{user.nickname}</h4>
           </div>
         )}
       </div>
