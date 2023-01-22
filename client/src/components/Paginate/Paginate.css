@@ -1,0 +1,27 @@
+.pagination {
+  display: flex;
+  gap: .3rem;
+  margin: 0 2rem;
+  margin-bottom: 1rem;
+}
+
+.pagination-btn {
+  font-size: 1em;
+  padding: .4em .5rem;
+  background-color: #a99985;
+  text-decoration: none;
+  border: none;
+  border-radius: 0.5em;
+  color: #252323;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  transition: .3s;
+}
+
+.pagination-btn:hover {
+  cursor: pointer;
+  background-color: #70798c;
+}
+
+.active {
+  background-color: #70798c;
+}

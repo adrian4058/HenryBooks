@@ -9,23 +9,34 @@ function NavBar() {
 
   return (
     <div className="navbar">
-      <div className="navbar-logo">
-        <h1 className="navbar-logo__title">HENRYBOOKS</h1>
-      </div>
-      <div className="navbar-options">
-        <div className="navbar-options__link">
+      <div className="navbar-logo-options">
+        <div className="navbar-logo">
           <Link to="/home">
-            <button className="navbar-btn__option">
-              <b>Home</b>
-            </button>
+            <h1 className="navbar-logo__title">HENRYBOOKS</h1>
           </Link>
         </div>
-        <div className="navbar-options__link">
-          <Link to="/about-us">
-            <button className="navbar-btn__option">
-              <b>About</b>
-            </button>
-          </Link>
+        <div className="navbar-options">
+          <div className="navbar-options__link">
+            <Link to="/home">
+              <button className="navbar-btn__option">
+                <b>Home</b>
+              </button>
+            </Link>
+          </div>
+          <div className="navbar-options__link">
+            <Link to="/about-us">
+              <button className="navbar-btn__option">
+                <b>About</b>
+              </button>
+            </Link>
+          </div>
+          <div className="navbar-options__link">
+            <Link to="/team">
+              <button className="navbar-btn__option">
+                <b>Team</b>
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
 

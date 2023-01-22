@@ -17,7 +17,7 @@ function Home(props) {
   const allBooks = useSelector(state => state.books)
 
   //Paginado
-  const [booksPerPage, setBooksPerPage] = React.useState(3)
+  const [booksPerPage, setBooksPerPage] = React.useState(6)
   const [currentPage, setCurrentPage] = React.useState(1)
   const indexLast = currentPage * booksPerPage
   const indexFirst = indexLast - booksPerPage
@@ -33,9 +33,15 @@ function Home(props) {
   }
 
   function handlerOrder(e) {
+    e.preventDefault();
     dispatch(sortOfList(e.target.value))
     setCurrentPage(1)
     setOrder(`Order ${e.target.value}`)
+  }
+
+  function handleReset(e) {
+    dispatch(getAllBooks());
+    setCurrentPage(1);
   }
 
   const paginado = (pageNumber) => { setCurrentPage(pageNumber) }
@@ -47,14 +53,17 @@ function Home(props) {
         <h1 className="home-welcome__h1">Welcome to HenryBooks!</h1>
         <h3 className="home-welcome__h3">Here you can find your favorite books</h3>
       </div>
-      {/* *aqui iria la searchbar* */}
+
+      <div className="home-searchbar">
+        <SearchBar />
+      </div>
 
       <div className="home-filters">
         <div className="home-filter__content">
           <div className="filter-title">Order by Gender</div>
           <div className="home-filter">
             <select onChange={(e) => handlerByCategory(e)}>
-              <option disabled>select gender</option>
+              <option defaultValue="All" value="All">All</option>
               <option value="adventure">Adventure</option>
               <option value="Romance">Romance</option>
               <option value="Bélico">Bélico</option>
@@ -67,16 +76,16 @@ function Home(props) {
           <div className="home-filter">
             <select onChange={(e) => handlerOrder(e)}>
               <option disabled>select order</option>
-              <option value="AZ">A-Z</option>
-              <option value="ZA">Z-A</option>
-              {/* <option value="PRICE_HIGH">Price (higher-smaller)</option>
-              <option value="PRICE_LOW">Price (smaller-higher)</option> */}
+              <option value="ASC">A-Z</option>
+              <option value="DESC">Z-A</option>
+              <option value="ASC_PRICE">Price (smaller-higher)</option>
+              <option value="DESC_PRICE">Price (higher-smaller)</option>
             </select>
           </div>
         </div>
 
-        <div>
-          <SearchBar />
+        <div className="home-filter__content">
+          <button className="filter-reset__btn" onClick={() => handleReset()}>Reset Filter</button>
         </div>
 
       </div>

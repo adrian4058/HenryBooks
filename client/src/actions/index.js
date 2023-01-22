@@ -40,7 +40,7 @@ export const updateBook = (id,input)=>dispatch =>{
 
 
 export const sortOfList = (typeOfOrder) => {
-    return {type: SORT_OF_LIST, typeOfOrder}
+    return {type: SORT_OF_LIST, payload: typeOfOrder}
 }
 
 
