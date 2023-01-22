@@ -12,13 +12,13 @@ export const ADD_NEW_BOOK = 'ADD_NEW_BOOK'
 export const DELETE_BOOK =  'DELETE_BOOK'
 export const UPDATE_BOOK = 'UPDATE_BOOK'
 
-const url ='http://localhost:3000'
+const url ='http://localhost:3001'
 
 export const getAllBooks = ()=> dispatch => fetch(url+'/book').then(data=> data.json())
 .then(data=> dispatch({type: GET_ALL_BOOKS, payload: data.book}))
 
 
-export const getBookDetail = (id)=> dispatch => fetch(url+`/${id}`).then(data=> data.json())
+export const getBookDetail = (id)=> dispatch => fetch(url+`/book/orden/${id}`).then(data=> data.json())
 .then(data=> dispatch({type: GET_BOOK_DETAIL, payload: data}))
 
 
