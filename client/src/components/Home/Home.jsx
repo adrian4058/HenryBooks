@@ -8,6 +8,8 @@ import Paginate from "../Paginate/Paginate"
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBooks, sortOfList, filterByCategory } from '../../actions/index'
 import "./Home.css";
+import Slider from '../Slider/Slider'
+
 
 function Home(props) {
   const dispatch = useDispatch()
@@ -48,6 +50,11 @@ function Home(props) {
         <h3 className="home-welcome__h3">Here you can find your favorite books</h3>
       </div>
       {/* *aqui iria la searchbar* */}
+
+
+      <Slider />
+
+
 
       <div className="home-filters">
         <div className="home-filter__content">

@@ -1,0 +1,12 @@
+.container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.img {
+  height: 21rem;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
