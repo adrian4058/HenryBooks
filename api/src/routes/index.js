@@ -1,11 +1,9 @@
-
 const express = require("express");
 const router = express.Router();
+const autores = require("./autorroutes");
+const books = require("./librosRoutes");
 
-// /* GET home page. */
-// router.get("/", function (req, res, next) {
-//   res.render("index", { title: "Express" });
-// });
-
+router.use("/book", books);
+router.use("/autores", autores);
 
 module.exports = router;
