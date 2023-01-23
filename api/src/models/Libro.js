@@ -7,6 +7,7 @@ module.exports = (sequelize) => {
       unique: true,
       allownull: false,
     },
+
     editorial: {
       type: DataTypes.STRING,
       defaultValue: "No disponible",
@@ -34,10 +35,10 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allownull: false,
     },
-    estado:{
-      type:DataTypes.ENUM('activo','desactivado'),
-      allownull:false,
-      defaultValue:'activo'
-    }
+    estado: {
+      type: DataTypes.ENUM("activo", "desactivado"),
+      allownull: false,
+      defaultValue: "activo",
+    },
   });
 };

@@ -43,7 +43,12 @@ function NavBar() {
       <div className="login">
         <div>
           {isAuthenticated ? (
-            <button className="navbar-btn__option" onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
+            <button
+              className="navbar-btn__option"
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
+              Logout
+            </button>
           ) : (
             <button
               className="navbar-btn__option"

@@ -1,7 +1,6 @@
 // const express = require("express");
 const { Libro, Autor } = require("../db");
 
-
 async function allBooks(req, res) {
   try {
     const bookInDb = await Libro.findAll();
@@ -27,29 +26,30 @@ async function findBook(req, res) {
 }
 
 async function createBook(req, res) {
-  let { name, autor, editorial, reviews, image, genero, stock, price } = req.body;
-  let idAutor
-  let existe=await Autor.findAll({
-    where :{
-      nombre:autor
-    }
+  let { name, autor, editorial, reviews, image, genero, stock, price } =
+    req.body;
+  let idAutor;
+  let existe = await Autor.findAll({
+    where: {
+      nombre: autor,
+    },
   });
-  console.log("existe ",existe)
-  if(existe.length>0){
-    idAutor=existe[0].id
-  }else{
-    try{
-      let nuevoa=await Autor.create({nombre:autor})
-      idAutor=nuevoa.id
-    }catch(e){
-      res.status(404).send(e)
+  console.log("existe ", existe);
+  if (existe.length > 0) {
+    idAutor = existe[0].id;
+  } else {
+    try {
+      let nuevoa = await Autor.create({ nombre: autor });
+      idAutor = nuevoa.id;
+    } catch (e) {
+      res.status(404).send(e);
     }
   }
   try {
-    console.log(`id de autor ${idAutor}`)
+    console.log(`id de autor ${idAutor}`);
     const newBook = await Libro.create({
       name,
-      "AutorId":idAutor,
+      AutorId: idAutor,
       editorial,
       reviews,
       image,
@@ -96,14 +96,14 @@ async function ordenAlfabetico(req, res) {
   try {
     const bookInDb = await Libro.findAll();
 
-    if (bookInDb.length > 0){
+    if (bookInDb.length > 0) {
       orden = bookInDb.sort((a, b) => {
-        if (a.name < b.name) return -1
-        if (a.name > b.name) return 1
-        return 0
-    })
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
       return res.status(201).json({ status: "success", book: orden });
-    }else{
+    } else {
       return res.status(404).json({ status: "error", msg: "No data found!" });
     }
   } catch (error) {
@@ -111,5 +111,10 @@ async function ordenAlfabetico(req, res) {
   }
 }
 
-
-module.exports = { createBook, allBooks, updateBook, findBook, ordenAlfabetico };
+module.exports = {
+  createBook,
+  allBooks,
+  updateBook,
+  findBook,
+  ordenAlfabetico,
+};

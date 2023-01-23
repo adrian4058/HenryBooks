@@ -17,13 +17,15 @@ function Details(props) {
     return () => dispatch(cleanDetail());
   }, [dispatch, id]);
 
-  <i className="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>
+  <i className="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>;
 
   return (
     <div className="Details">
       <Navbar />
       <div className="book-container">
-        {details.image && <img className="book-img" src={details.image} alt="imagen-libro" />}
+        {details.image && (
+          <img className="book-img" src={details.image} alt="imagen-libro" />
+        )}
         <div className="book-info">
           <div className="book-info__info">
             {details.name && <h4>{details.name}</h4>}
@@ -43,7 +45,9 @@ function Details(props) {
             {details.price && <h4>Price: {details.price}</h4>}
           </div>
           <div className="">
-            <button className="book-btn__buy">Add To Cart <i className="fa-solid fa-cart-shopping"></i></button>
+            <button className="book-btn__buy">
+              Add To Cart <i className="fa-solid fa-cart-shopping"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -53,6 +57,3 @@ function Details(props) {
 }
 
 export default Details;
-
-
-

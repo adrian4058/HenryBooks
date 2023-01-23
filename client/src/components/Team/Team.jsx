@@ -1,26 +1,26 @@
-import Footer from '../Footer/Footer'
+import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-import { members } from '../../utils/members';
+import { members } from "../../utils/members";
 import "./Team.css";
 
 console.log(members);
 
 const Team = () => {
   return (
-    <div className='team'>
+    <div className="team">
       <Navbar />
-      <div className='team-title'>
+      <div className="team-title">
         <h1>Team Members</h1>
       </div>
-      <div className='team-cards'>
+      <div className="team-cards">
         {members.map((data) => {
           return (
             <div className="member-card" key={data.id}>
-              <div className='member-fullname'>
-                <div className='member-name'>{data.name}</div>
+              <div className="member-fullname">
+                <div className="member-name">{data.name}</div>
                 <div>{data.lastname}</div>
               </div>
-              <div className='member-contact'>
+              <div className="member-contact">
                 <a href={data.github} target="_blank">
                   <i className="fa-brands fa-github fa-2x contact"></i>
                 </a>
@@ -28,14 +28,13 @@ const Team = () => {
                   <i className="fa-brands fa-linkedin fa-2x contact"></i>
                 </a>
               </div>
-
             </div>
-          )
+          );
         })}
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 export default Team;
