@@ -59,7 +59,6 @@ async function createBook(req, res) {
       name,
       AutorId: idAutor,
       editorial,
-      reviews,
       image,
       genero,
       stock,
