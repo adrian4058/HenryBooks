@@ -1,10 +1,13 @@
 // const express = require("express");
-const { Libro, Autor } = require("../db");
+const { Libro, Autor, Resena } = require("../db");
 
 
 async function allBooks(req, res) {
   try {
-    const bookInDb = await Libro.findAll();
+    const bookInDb = await Libro.findAll({
+      include:Autor,
+      include:Resena
+    });
 
     if (bookInDb.length > 0)
       return res.status(201).json({ status: "success", book: bookInDb });
@@ -18,7 +21,13 @@ async function allBooks(req, res) {
 async function findBook(req, res) {
   const { id } = req.params;
   try {
-    let bookSearch = await Libro.findByPk(id);
+    let bookSearch = await Libro.findAll({
+      where:{
+        id
+      },
+      include:Autor,
+      include:Resena
+    });
     //aca va lo del autor
     return res.status(201).json(bookSearch);
   } catch (error) {
