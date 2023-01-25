@@ -2,7 +2,12 @@ const { DataTypes }=require("sequelize");
 
 module.exports= sequelize=>{
     sequelize.define('Usuario',{
-        nombre:{
+        name:{
+            type:DataTypes.STRING,
+            unique:true,
+            allownull:false
+        },
+        lastname:{
             type:DataTypes.STRING,
             unique:true,
             allownull:false
@@ -12,7 +17,7 @@ module.exports= sequelize=>{
             unique:true,
             allownull:false
         },
-        clave:{
+        password:{
             type:DataTypes.STRING,
             allownull:false 
         },

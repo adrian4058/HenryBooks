@@ -1,10 +1,10 @@
-import useFormik from 'formik'
+import  { useFormik } from 'formik'
 import * as Yup from 'yup'
 
-const Formulario = () => {
-    const {values, handleChange, touched, handleSubmit, errors} = useFormik({
+const Register = () => {
+    const {handleSubmit, touched, getFieldProps, errors, handleChange} = useFormik({
         initialValues: {
-            firstname:'',
+            name:'',
             lastname: '',
             email: '',
             password: '',
@@ -13,7 +13,8 @@ const Formulario = () => {
          
          validationSchema: Yup.object({
             name: Yup.string()
-            .min(3, 'Must have more than 3 characters')
+            .min(3, 'Must have more than 3 characters!')
+            .max(15, 'Less than 15 characters!')
             .matches(/^[aA-zZ\s]+$/, 'Only valid characaters')
             .required('Required'),
             lastname: Yup.string()
@@ -45,35 +46,35 @@ const Formulario = () => {
 
     return (
         <form noValidate onSubmit={handleSubmit}>
+            <label htmlFor="name">Name:</label>
             <input type="text"
                 placeholder='Name'
-                label="Name"
-                onChange={handleChange}
-                value={values.name}
+                {...getFieldProps('name')}
+
                 className={`${(touched.name && errors.name) && 'error_input'}`}
             />
             {(touched.name && errors.name) && <span className='error'>{errors.name}</span>}
+            <label htmlFor="lastname">Lastname:</label>
             <input type='text'
                 placeholder='Lastname'
-                label='Lastname'
-                onChange={handleChange}
-                value={values.lastname}
+                {...getFieldProps('lastname')}
+                
                 className={`${(touched.lastname && errors.lastname) && 'error_input'}`}
             />
             {(touched.lastname && errors.lastname) && <span className='error'>{errors.lastname}</span>}
+            <label htmlFor="email">E-mail:</label>
             <input type='email'
                 placeholder='E-mail'
-                label='E-mail'
-                onChange={handleChange}
-                value={values.email}
+                {...getFieldProps('email')}
+    
                 className={`${(touched.email && errors.email) && 'error_input'}`}
             />
             {(touched.email && errors.email) && <span className='error'>{errors.email}</span>}
+            <label htmlFor="password">Password:</label>
             <input type="password"
                 placeholder='Password'
-                label='Password'
-                onChange={handleChange}
-                value={values.password}
+                {...getFieldProps('password')}
+                
                 className={`${(touched.password && errors.password) && 'error_input'}`}
             />
             {(touched.password && errors.password) && <span className='error'>{errors.password}</span>}
@@ -99,4 +100,4 @@ const Formulario = () => {
 }
 
 
-export default Formulario;
+export default Register;
