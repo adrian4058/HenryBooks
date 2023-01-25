@@ -4,14 +4,17 @@ const { Libro, Autor, Resena } = require("../db");
 
 async function allBooks(req, res) {
   try {
-    const bookInDb = await Libro.findAll({
-      include:Autor,
-      include:Resena
+    let bookInDb = await Libro.findAll({
+      include:[{
+        model:Autor
+      },
+    {
+      model:Resena
+    }]
     });
-
-    if (bookInDb.length > 0)
-      return res.status(201).json({ status: "success", book: bookInDb });
-    else
+    if (bookInDb.length > 0){
+      return res.status(201).json({ status: "success", book:bookInDb });
+    }else
       return res.status(404).json({ status: "error", msg: "No data found!" });
   } catch (error) {
     res.status(404).json(error);
