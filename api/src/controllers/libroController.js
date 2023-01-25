@@ -6,11 +6,12 @@ async function allBooks(req, res) {
   try {
     let bookInDb = await Libro.findAll({
       include:[{
-        model:Autor
+        model:Autor,
+        attributes: ["nombre"]
       },
-    {
-      model:Resena
-    }]
+      {
+        model:Resena
+      }]
     });
     if (bookInDb.length > 0){
       return res.status(201).json({ status: "success", book:bookInDb });
