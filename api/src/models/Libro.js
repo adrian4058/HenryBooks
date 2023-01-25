@@ -11,9 +11,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       defaultValue: "No disponible",
     },
-    reviews: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
-    },
     image: {
       type: DataTypes.STRING,
       allownull: false,
