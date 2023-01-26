@@ -79,6 +79,13 @@ export const findBook = (name) => {
 }
 
 export const addReview = objeto => (dispatch) => {
-    axios.post(url + '/resena', objeto).then(results => results.data)
-        .then(data => dispatch({ type: ADD_REVIEW }))
+    fetch(url + '/resena',
+{
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(objeto)
+}).then(data => dispatch({ type: ADD_REVIEW }))
 }
