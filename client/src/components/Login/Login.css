@@ -59,13 +59,6 @@ input:hover {
   margin: 1rem;
 }
 
-p {
-  text-align: center;
-  font-style: italic;
-  font-size: 1.2rem;
-  padding: 1rem 1rem;
-}
-
 .link {
   background-color: rgb(255, 255, 1);
   text-decoration: underline;
