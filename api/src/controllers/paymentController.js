@@ -5,11 +5,11 @@ const createPayment = async (item) => {
     const url = "https://api.mercadopago.com/checkout/preferences";
     const body = {
       items: item,
-   
+
       back_urls: {
         failure: "",
         pending: "",
-        success: "", 
+        success: "",
       },
     };
     const payment = await axios.post(url, body, {
@@ -27,7 +27,7 @@ const createPayment = async (item) => {
     ];
     return result;
   } catch (error) {
-    next(error);
+    error;
   }
 };
 
@@ -36,7 +36,7 @@ const linkPayment = async (req, res, next) => {
     const resultado = await createPayment(req.body.item);
     res.send(resultado);
   } catch (error) {
-    next(error);
+    error;
   }
 };
 
