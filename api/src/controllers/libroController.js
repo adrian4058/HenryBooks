@@ -1,14 +1,21 @@
 // const express = require("express");
-const { Libro, Autor } = require("../db");
-
+const { Libro, Autor, Resena } = require("../db");
 
 async function allBooks(req, res) {
   try {
-    const bookInDb = await Libro.findAll();
+    let bookInDb = await Libro.findAll({
+      include:[{
+        model:Autor,
+        attributes: ["nombre"]
+      },
+      {
+        model:Resena
+      }]
 
-    if (bookInDb.length > 0)
-      return res.status(201).json({ status: "success", book: bookInDb });
-    else
+    });
+    if (bookInDb.length > 0){
+      return res.status(201).json({ status: "success", book:bookInDb });
+    }else
       return res.status(404).json({ status: "error", msg: "No data found!" });
   } catch (error) {
     res.status(404).json(error);
@@ -18,8 +25,13 @@ async function allBooks(req, res) {
 async function findBook(req, res) {
   const { id } = req.params;
   try {
-    let bookSearch = await Libro.findByPk(id);
-    //aca va lo del autor
+    let bookSearch = await Libro.findAll({
+      where: {
+        id,
+      },
+      include: Autor,
+      include: Resena,
+    });
     return res.status(201).json(bookSearch);
   } catch (error) {
     res.status(404).json("Libro no encontrado");
@@ -27,31 +39,31 @@ async function findBook(req, res) {
 }
 
 async function createBook(req, res) {
-  let { name, autor, editorial, reviews, image, genero, stock, price } = req.body;
-  let idAutor
+  let { name, autor, editorial, image, genero, stock, price } =
+    req.body;
+  let idAutor;
   let existe = await Autor.findAll({
     where: {
-      nombre: autor
-    }
+      nombre: autor,
+    },
   });
-  console.log("existe ", existe)
+  console.log("existe ", existe);
   if (existe.length > 0) {
-    idAutor = existe[0].id
+    idAutor = existe[0].id;
   } else {
     try {
-      let nuevoa = await Autor.create({ nombre: autor })
-      idAutor = nuevoa.id
+      let nuevoa = await Autor.create({ nombre: autor });
+      idAutor = nuevoa.id;
     } catch (e) {
-      res.status(404).send(e)
+      res.status(404).send(e);
     }
   }
   try {
-    console.log(`id de autor ${idAutor}`)
+    console.log(`id de autor ${idAutor}`);
     const newBook = await Libro.create({
       name,
-      "AutorId": idAutor,
+      AutorId: idAutor,
       editorial,
-      reviews,
       image,
       genero,
       stock,
@@ -98,10 +110,10 @@ async function ordenAlfabetico(req, res) {
 
     if (bookInDb.length > 0) {
       orden = bookInDb.sort((a, b) => {
-        if (a.name < b.name) return -1
-        if (a.name > b.name) return 1
-        return 0
-      })
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
       return res.status(201).json({ status: "success", book: orden });
     } else {
       return res.status(404).json({ status: "error", msg: "No data found!" });
@@ -111,5 +123,10 @@ async function ordenAlfabetico(req, res) {
   }
 }
 
-
-module.exports = { createBook, allBooks, updateBook, findBook, ordenAlfabetico };
+module.exports = {
+  createBook,
+  allBooks,
+  updateBook,
+  findBook,
+  ordenAlfabetico,
+};

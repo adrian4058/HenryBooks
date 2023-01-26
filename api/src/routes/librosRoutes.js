@@ -10,7 +10,10 @@ const {
 
 router.post("/", createBook);
 router.get("/", allBooks);
-router.get("/orden/:id", findBook); //ruta no testeada
+router.get("/:id", findBook); //ruta no testeada
 router.put("/:id", updateBook); //ruta no testeada
-router.get("/orden",ordenAlfabetico)
+
+router.get("/orden/az",ordenAlfabetico)
+
+
 module.exports = router;

@@ -15,6 +15,7 @@ export const REMOVE_SHOPPING_CART = 'REMOVE_SHOPPING_CART'
 export const ADD_NEW_BOOK = 'ADD_NEW_BOOK'
 export const DELETE_BOOK = 'DELETE_BOOK'
 export const UPDATE_BOOK = 'UPDATE_BOOK'
+export const ADD_REVIEW = 'ADD_REVIEW'
 
 const url = 'http://localhost:3001'
 
@@ -68,7 +69,11 @@ export const filterByAuthor = (author) => ({
     type: FILTER_BY_AUTHOR, payload: author,
 });
 
-
 export const findBook = (name) => {
-    return { type: SEARCH_BY_NAME, payload: name }
+    return {type: SEARCH_BY_NAME, payload: name}
+}
+
+export const addReview = objeto =>  (dispatch) =>{
+    axios.post(url+'/resena', objeto).then(results=> results.data)
+    .then(data=> dispatch({type: ADD_REVIEW}))
 }
