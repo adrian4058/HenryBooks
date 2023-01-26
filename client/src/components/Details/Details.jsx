@@ -40,7 +40,7 @@ function Details(props) {
             {details.genero && <h4>Genre: {details.genero}</h4>}
           </div>
           <div className="book-info__info">
-            {details.price && <h4>Price: {details.price}</h4>}
+            {details.price && <h4 className="book-info__price">${details.price}</h4>}
           </div>
           <div className="">
             <button className="book-btn__buy">Add To Cart <i className="fa-solid fa-cart-shopping"></i></button>

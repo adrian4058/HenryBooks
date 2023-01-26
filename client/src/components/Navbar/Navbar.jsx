@@ -37,6 +37,17 @@ function NavBar() {
               </button>
             </Link>
           </div>
+          {
+            isAuthenticated ? (
+              <div className="navbar-options__link">
+                <Link to="/dashboard">
+                  <button className="navbar-btn__option">
+                    <b>Dashboard</b>
+                  </button>
+                </Link>
+              </div>
+            ) : null
+          }
         </div>
       </div>
 

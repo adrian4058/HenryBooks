@@ -1,8 +1,11 @@
 import React from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
+import { useDispatch } from "react-redux";
+import { addReview } from '../../actions/index'
 
 function Reviews (props){
+           const dispatch = useDispatch()
            const formik = useFormik({
                 initialValues: {
                   titulo: '',
@@ -20,16 +23,16 @@ function Reviews (props){
                     .required('Required'),
                     calificacion: Yup.number('must be a number')
                     .required('Number between 1 and 5')
-                    .positive("must be qualified")
+                    .positive("Must be qualified")
                     .integer(),
                 }),
                 onSubmit: values => {
-                 console.log(values)
+                  dispatch(addReview({...values, UsuarioId: 1, LibroId: 1}))
                 },
               });
               return (
                 <form onSubmit={formik.handleSubmit}>
-                  <label htmlFor="titulo">titulo</label>
+                  <label htmlFor="titulo">Title</label>
                   <input
                     id="titulo"
                     type="text"
@@ -39,13 +42,13 @@ function Reviews (props){
                     <div>{formik.errors.titulo}</div>
                   ) : null}
             
-                  <label htmlFor="descripcion">descripcion</label>
+                  <label htmlFor="descripcion">Description</label>
                   <input id="descripcion" type="text" {...formik.getFieldProps("descripcion")} />
                   {formik.touched.descripcion && formik.errors.descripcion ? (
                     <div>{formik.errors.descripcion}</div>
                   ) : null}
             
-                  <label htmlFor="calificacion">calificacion</label>
+                  <label htmlFor="calificacion">Qualification</label>
                   <input id="calificacion" type="range" min="0" max="5" step="1" {...formik.getFieldProps('calificacion')} />
                   {formik.touched.calificacion && formik.errors.calificacion ? (
                     <div>{formik.errors.calificacion}</div>
