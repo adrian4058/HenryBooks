@@ -20,52 +20,41 @@ function Details(props) {
     // setAllDetails(details)
   }, [dispatch, id]);
 
-  console.log(details);
-
-  <i className="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>;
-
   return (
     <div key={id} className="Details">
       <Navbar />
       <div className="book-container">
-        {details ? (
-          <img
-            className="book-img"
-            src={details[0]?.image}
-            alt="imagen-libro"
-          />
-        ) : (
-          <i className="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>
-        )}
-        <div className="book-info">
-          <div className="book-info__info">
-            {details[0]?.name && <h4>{details[0]?.name}</h4>}
-          </div>
-          <div className="book-info__info">
-          {details[0]?.Autor && <h4>{details[0]?.Autor}</h4>}
-          </div>
-          {/* <div className="book-info__info">
-            {details.author && <h4>Author:</h4>}
-            {details.author && <h4>{details.author}</h4>}
-          </div> */}
-          <div className="book-info__info">
-            {details[0]?.editorial && <h4>Editorial: </h4>}
-            {details[0]?.editorial && <p>{details[0]?.editorial}</p>}
-          </div>
-          <div className="book-info__info">
-            {details[0]?.genero && <h4>Genre: {details[0]?.genero}</h4>}
-          </div>
-          <div className="book-info__info">
-            {details[0]?.price && (
-              <h4 className="book-info__price">${details[0]?.price}</h4>
-            )}
-          </div>
-          <div className="">
-            <button className="book-btn__buy">
-              Add To Cart <i className="fa-solid fa-cart-shopping"></i>
-            </button>
-          </div>
-        </div>
+        {details[0]?.image ? <img className="book-img" src={details[0]?.image} alt="imagen-libro" /> :
+          <svg viewBox="25 25 50 50">
+            <circle r="20" cy="50" cx="50"></circle>
+          </svg>}
+        {details ?
+          <div className="book-info">
+            <div className="book-info__info">
+              {details[0]?.name && <h4>{details[0]?.name}</h4>}
+            </div>
+            {/* <div className="book-info__info">
+          {details.author && <h4>Author:</h4>}
+          {details.author && <h4>{details.author}</h4>}
+        </div> */}
+            <div className="book-info__info">
+              {details[0]?.editorial && <h4>Editorial: </h4>}
+              {details[0]?.editorial && <p>{details[0]?.editorial}</p>}
+            </div>
+            <div className="book-info__info">
+              {details[0]?.genero && <h4>Genre: {details[0]?.genero}</h4>}
+            </div>
+            <div className="book-info__info">
+              {details[0]?.price && <h4 className="book-info__price">${details[0]?.price}</h4>}
+            </div>
+            <div className="">
+              <button className="book-btn__buy">Add To Cart <i className="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div> :
+          <svg viewBox="25 25 50 50">
+            <circle r="20" cy="50" cx="50"></circle>
+          </svg>
+        }
       </div>
       <Footer />
     </div>

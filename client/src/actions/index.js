@@ -19,9 +19,17 @@ export const ADD_REVIEW = 'ADD_REVIEW'
 
 const url = 'http://localhost:7415'
 
-export const getAllBooks = () => dispatch => fetch(url + '/book').then(data => data.json())
-    .then(data => dispatch({ type: GET_ALL_BOOKS, payload: data.book }))
-
+export const getAllBooks = () => {
+    return async function (dispatch) {
+        try {
+            fetch(url + '/book')
+                .then(data => data.json())
+                .then(data => dispatch({ type: GET_ALL_BOOKS, payload: data.book }))
+        } catch {
+            console.log("error");
+        }
+    }
+}
 
 export const getBookDetail = (id) => dispatch => fetch(url + `/book/${id}`).then(data => data.json())
     .then(data => dispatch({ type: GET_BOOK_DETAIL, payload: data }))
