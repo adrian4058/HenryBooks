@@ -6,6 +6,8 @@ import Home from "./components/Home/Home";
 import Details from "./components/Details/Details";
 import Team from "./components/Team/Team";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Register from "./components/Register/Register";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
@@ -18,6 +20,9 @@ function App() {
             <Route exact path="/about-us" component={About} />
             <Route exact path="/team" component={Team} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+
             <Route path="/books/:id" component={Details} />
           </Route>
         </Switch>
