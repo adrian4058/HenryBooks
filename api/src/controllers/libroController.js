@@ -4,18 +4,19 @@ const { Libro, Autor, Resena } = require("../db");
 async function allBooks(req, res) {
   try {
     let bookInDb = await Libro.findAll({
-      include:[{
-        model:Autor,
-        attributes: ["nombre"]
-      },
-      {
-        model:Resena
-      }]
-
+      include: [
+        {
+          model: Autor,
+          attributes: ["nombre"],
+        },
+        {
+          model: Resena,
+        },
+      ],
     });
-    if (bookInDb.length > 0){
-      return res.status(201).json({ status: "success", book:bookInDb });
-    }else
+    if (bookInDb.length > 0) {
+      return res.status(201).json({ status: "success", book: bookInDb });
+    } else
       return res.status(404).json({ status: "error", msg: "No data found!" });
   } catch (error) {
     res.status(404).json(error);
@@ -25,12 +26,16 @@ async function allBooks(req, res) {
 async function findBook(req, res) {
   const { id } = req.params;
   try {
-    let bookSearch = await Libro.findAll({
-      where: {
-        id,
-      },
-      include: Autor,
-      include: Resena,
+    let bookSearch = await Libro.findByPk(id, {
+      include: [
+        {
+          model: Autor,
+          attributes: ["nombre"],
+        },
+        {
+          model: Resena,
+        },
+      ],
     });
     return res.status(201).json(bookSearch);
   } catch (error) {
@@ -39,8 +44,7 @@ async function findBook(req, res) {
 }
 
 async function createBook(req, res) {
-  let { name, autor, editorial, image, genero, stock, price } =
-    req.body;
+  let { name, autor, editorial, image, genero, stock, price } = req.body;
   let idAutor;
   let existe = await Autor.findAll({
     where: {

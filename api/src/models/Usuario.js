@@ -2,12 +2,7 @@ const { DataTypes }=require("sequelize");
 
 module.exports= sequelize=>{
     sequelize.define('Usuario',{
-        name:{
-            type:DataTypes.STRING,
-            unique:true,
-            allownull:false
-        },
-        lastname:{
+        nombre:{
             type:DataTypes.STRING,
             unique:true,
             allownull:false
@@ -23,7 +18,8 @@ module.exports= sequelize=>{
         },
         rol:{
             type:DataTypes.ENUM('user','admin'),
-            allownull:false
+            allownull:false,
+            defaultValue:"user"
         },
         estado:{
             type:DataTypes.ENUM('activo','desactivado'),
