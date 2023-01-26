@@ -30,7 +30,7 @@ function Home(props) {
 
   const uniqueBooks = [...new Set(allBooks.map(book => book.genero))];
 
-  console.log(uniqueBooks);
+  console.log(allBooks);
 
   //Paginado
   const [booksPerPage, setBooksPerPage] = React.useState(6)
@@ -42,8 +42,6 @@ function Home(props) {
   React.useEffect(() => {
     dispatch(getAllBooks())
     dispatch(getAllAuthors())
-    console.log(allAuthors);
-    console.log(books);
   }, [dispatch])
 
   function handlerByCategory(e) {
@@ -123,10 +121,10 @@ function Home(props) {
           <div className="home-filter__content">
             <div className="filter-title">Order by Author</div>
             <div className="home-filter">
-              <select ref={authorsSelect} value={selectedAuthor} onChange={(e) => handlerByAuthor(e)}>
+              <select ref={authorsSelect} onChange={(e) => handlerByAuthor(e)}>
                 <option defaultValue="All" value="All">All</option>
-                {allAuthors.map((author) => (
-                  <option key={author.id} value={author.nombre}>{author.nombre}</option>
+                {allBooks.map((book) => (
+                  <option key={book.id} value={book.Autor.nombre}>{book.Autor.nombre}</option>
                 ))}
               </select>
             </div>
@@ -137,8 +135,9 @@ function Home(props) {
             <div className="home-filter">
               <select ref={editorialSelect} onChange={(e) => handlerByEditorial(e)}>
                 <option value="All">All</option>
-                <option value="Indiana">Indiana</option>
-                <option value="Brasil RD">Brasil RD</option>
+                {allBooks.map((book) => (
+                  <option key={book.id} value={book.editorial}>{book.editorial}</option>
+                ))}
               </select>
             </div>
           </div>
@@ -172,7 +171,7 @@ function Home(props) {
             <Card
               key={elem.id}
               genre={elem.genero}
-              author={elem.autor}
+              author={elem.Autor.nombre}
               image={elem.image}
               name={elem.name}
               id={elem.id}
