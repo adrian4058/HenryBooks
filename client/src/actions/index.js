@@ -17,13 +17,13 @@ export const DELETE_BOOK = 'DELETE_BOOK'
 export const UPDATE_BOOK = 'UPDATE_BOOK'
 export const ADD_REVIEW = 'ADD_REVIEW'
 
-const url = 'http://localhost:3001'
+const url = 'http://localhost:7415'
 
 export const getAllBooks = () => dispatch => fetch(url + '/book').then(data => data.json())
     .then(data => dispatch({ type: GET_ALL_BOOKS, payload: data.book }))
 
 
-export const getBookDetail = (id) => dispatch => fetch(url + `/book/orden/${id}`).then(data => data.json())
+export const getBookDetail = (id) => dispatch => fetch(url + `/book/${id}`).then(data => data.json())
     .then(data => dispatch({ type: GET_BOOK_DETAIL, payload: data }))
 
 
@@ -31,7 +31,13 @@ export const getAllAuthors = () => dispatch => fetch(url + `/autores`).then(data
     .then(data => dispatch({ type: GET_ALL_AUTHORS, payload: data }))
 
 
-export const cleanDetail = () => { return { type: CLEAN_DETAIL } }
+export const cleanDetail = () => {
+    return (dispatch) => {
+        dispatch({
+            type: CLEAN_DETAIL,
+        });
+    }
+};
 
 
 export const addNewBook = (input) => (dispatch) => {
@@ -56,7 +62,6 @@ export const filterByPrice = (typePrice) => {
     return { type: FILTER_BY_PRICE, payload: typePrice }
 }
 
-
 export const filterByCategory = (category) => {
     return { type: FILTER_BY_CATEGORY, payload: category }
 }
@@ -70,10 +75,10 @@ export const filterByAuthor = (author) => ({
 });
 
 export const findBook = (name) => {
-    return {type: SEARCH_BY_NAME, payload: name}
+    return { type: SEARCH_BY_NAME, payload: name }
 }
 
-export const addReview = objeto =>  (dispatch) =>{
-    axios.post(url+'/resena', objeto).then(results=> results.data)
-    .then(data=> dispatch({type: ADD_REVIEW}))
+export const addReview = objeto => (dispatch) => {
+    axios.post(url + '/resena', objeto).then(results => results.data)
+        .then(data => dispatch({ type: ADD_REVIEW }))
 }

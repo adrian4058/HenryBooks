@@ -9,7 +9,7 @@ const initialState = {
     allBooks: [],
     allAuthors: [],
     author: [],
-    detail: {}
+    detail: []
 };
 
 
@@ -37,6 +37,7 @@ function rootReducer(state = initialState, action) {
         case CLEAN_DETAIL:
             return {
                 ...state,
+                detail: []
             }
 
         case ADD_NEW_BOOK:
@@ -115,9 +116,7 @@ function rootReducer(state = initialState, action) {
 
         case FILTER_BY_AUTHOR:
             const allBooksAuthor = state.allBooks
-            const allAuthors = state.allAuthors
-            let authorId = allAuthors.find(author => author.nombre === action.payload).id;
-            const filterBooksByAuthor = action.payload === "All" ? allBooksAuthor : allBooksAuthor.filter(e => e.AutorId === authorId)
+            const filterBooksByAuthor = action.payload === "All" ? allBooksAuthor : allBooksAuthor.filter(e => e.Autor.nombre === action.payload)
             return {
                 ...state,
                 books: filterBooksByAuthor
