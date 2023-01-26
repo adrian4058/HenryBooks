@@ -11,11 +11,8 @@ import "./Home.css";
 import Slider from '../Slider/Slider'
 import { useRef } from "react";
 
-
-
 function Home(props) {
   const dispatch = useDispatch();
-
   const categorySelect = useRef();
   const editorialSelect = useRef();
   const alphabetSelect = useRef();
@@ -26,23 +23,20 @@ function Home(props) {
   const [selectedAuthor, setSelectedAuthor] = React.useState("All");
   const allBooks = useSelector(state => state.allBooks)
   const allBooksF = useSelector(state => state.books)
-  const allAuthors = useSelector(state => state.allAuthors)
 
-  const uniqueBooks = [...new Set(allBooks.map(book => book.genero))];
-
-  console.log(allBooks);
+  const uniqueBooks = allBooks !== undefined ? [...new Set(allBooks.map(book => book.genero))] : null
 
   //Paginado
   const [booksPerPage, setBooksPerPage] = React.useState(6)
   const [currentPage, setCurrentPage] = React.useState(1)
   const indexLast = currentPage * booksPerPage
   const indexFirst = indexLast - booksPerPage
-  const books = allBooksF.slice(indexFirst, indexLast)
+  const books = allBooksF !== undefined ? allBooksF.slice(indexFirst, indexLast) : null
 
   React.useEffect(() => {
     dispatch(getAllBooks())
-    dispatch(getAllAuthors())
   }, [dispatch])
+
 
   function handlerByCategory(e) {
     dispatch(filterByCategory(e.target.value))
@@ -83,7 +77,6 @@ function Home(props) {
     setCurrentPage(1);
   }
 
-
   const paginado = (pageNumber) => { setCurrentPage(pageNumber) }
 
   return (
@@ -95,89 +88,95 @@ function Home(props) {
       </div>
 
       <Slider />
+      {
+        !allBooks?.length ?
+          <svg viewBox="25 25 50 50">
+            <circle r="20" cy="50" cx="50"></circle>
+          </svg> :
+          <div className="home-books">
+            <div className="home-filters">
+              <div className="home-filter__content">
+                <button className="filter-reset__btn" onClick={() => handleReset()}>Reset Filter</button>
+              </div>
 
-      <div className="home-books">
-        <div className="home-filters">
-          <div className="home-filter__content">
-            <button className="filter-reset__btn" onClick={() => handleReset()}>Reset Filter</button>
-          </div>
+              <div className="home-searchbar">
+                <SearchBar />
+              </div>
 
-          <div className="home-searchbar">
-            <SearchBar />
-          </div>
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Gender</div>
+                <div className="home-filter">
+                  <select ref={categorySelect} onChange={(e) => handlerByCategory(e)}>
+                    <option defaultValue="All" value="All">All</option>
+                    {uniqueBooks?.map((book) => (
+                      <option key={book} value={book}>{book}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
 
-          <div className="home-filter__content">
-            <div className="filter-title">Order by Gender</div>
-            <div className="home-filter">
-              <select ref={categorySelect} onChange={(e) => handlerByCategory(e)}>
-                <option defaultValue="All" value="All">All</option>
-                {uniqueBooks.map((book) => (
-                  <option key={book} value={book}>{book}</option>
-                ))}
-              </select>
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Author</div>
+                <div className="home-filter">
+                  <select ref={authorsSelect} onChange={(e) => handlerByAuthor(e)}>
+                    <option defaultValue="All" value="All">All</option>
+                    {allBooks?.map((book) => (
+                      <option key={book.id} value={book.Autor.nombre}>{book.Autor.nombre}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Editorial</div>
+                <div className="home-filter">
+                  <select ref={editorialSelect} onChange={(e) => handlerByEditorial(e)}>
+                    <option value="All">All</option>
+                    {allBooks?.map((book) => (
+                      <option key={book.id} value={book.editorial}>{book.editorial}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Alphabet</div>
+                <div className="home-filter">
+                  <select ref={alphabetSelect} onChange={(e) => handlerOrderAlphabet(e)}>
+                    <option value="All">All</option>
+                    <option value="ASC">A-Z</option>
+                    <option value="DESC">Z-A</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Price</div>
+                <div className="home-filter">
+                  <select ref={priceSelect} onChange={(e) => handlerOrderPrice(e)}>
+                    <option value="All">All</option>
+                    <option value="ASC_PRICE">Price (smaller-higher)</option>
+                    <option value="DESC_PRICE">Price (higher-smaller)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className="book-card">
+              {
+                books.map(elem =>
+                  <Card
+                    key={elem.id}
+                    genre={elem.genero}
+                    author={elem.author}
+                    image={elem.image}
+                    name={elem.name}
+                    id={elem.id}
+                    price={elem.price} />)}
             </div>
           </div>
+      }
 
-          <div className="home-filter__content">
-            <div className="filter-title">Order by Author</div>
-            <div className="home-filter">
-              <select ref={authorsSelect} onChange={(e) => handlerByAuthor(e)}>
-                <option defaultValue="All" value="All">All</option>
-                {allBooks.map((book) => (
-                  <option key={book.id} value={book.Autor.nombre}>{book.Autor.nombre}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="home-filter__content">
-            <div className="filter-title">Order by Editorial</div>
-            <div className="home-filter">
-              <select ref={editorialSelect} onChange={(e) => handlerByEditorial(e)}>
-                <option value="All">All</option>
-                {allBooks.map((book) => (
-                  <option key={book.id} value={book.editorial}>{book.editorial}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="home-filter__content">
-            <div className="filter-title">Order by Alphabet</div>
-            <div className="home-filter">
-              <select ref={alphabetSelect} onChange={(e) => handlerOrderAlphabet(e)}>
-                <option value="All">All</option>
-                <option value="ASC">A-Z</option>
-                <option value="DESC">Z-A</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="home-filter__content">
-            <div className="filter-title">Order by Price</div>
-            <div className="home-filter">
-              <select ref={priceSelect} onChange={(e) => handlerOrderPrice(e)}>
-                <option value="All">All</option>
-                <option value="ASC_PRICE">Price (smaller-higher)</option>
-                <option value="DESC_PRICE">Price (higher-smaller)</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div className="book-card">
-          {!books.length && <h2>Loading...</h2>}
-          {!!books.length && books.map(elem =>
-            <Card
-              key={elem.id}
-              genre={elem.genero}
-              author={elem.Autor.nombre}
-              image={elem.image}
-              name={elem.name}
-              id={elem.id}
-              price={elem.price} />)}
-        </div>
-      </div>
       <Paginate booksPerPage={booksPerPage} allBooks={allBooksF.length} paginado={paginado} />
       <Footer />
     </div >
