@@ -17,7 +17,7 @@ function Card({ name, image, price, author, genre, id }) {
             </div>
             <p><span>By: </span>{author}</p>
             <p><span>Genre: </span>{genre}</p>
-            <p><span>Price: </span>${price}</p>
+            <p><span className="card-info__price">${price}</span></p>
           </div>
           {/* <button className="card-add" onClick={() => alert("agregado al carrito")}>Add to cart<i className="fa-solid fa-cart-shopping"></i></button> */}
         </div>
