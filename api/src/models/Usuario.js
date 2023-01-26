@@ -12,13 +12,14 @@ module.exports= sequelize=>{
             unique:true,
             allownull:false
         },
-        clave:{
+        password:{
             type:DataTypes.STRING,
             allownull:false 
         },
         rol:{
             type:DataTypes.ENUM('user','admin'),
-            allownull:false
+            allownull:false,
+            defaultValue:"user"
         },
         estado:{
             type:DataTypes.ENUM('activo','desactivado'),

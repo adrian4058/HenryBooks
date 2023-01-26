@@ -7,6 +7,8 @@ const {
   findBook,
   ordenAlfabetico,
 } = require("../controllers/libroController");
+const {verifyToken} =require('../middleware')
+
 
 router.post("/", createBook);
 router.get("/", allBooks);

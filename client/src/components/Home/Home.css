@@ -1,3 +1,5 @@
+/* HOME */
+
 .home {
   background-color: #F5F1ED;
   height: max-content;
@@ -8,6 +10,72 @@ h4,
 option {
   font-family: 'Maven Pro', sans-serif;
 }
+
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #000;
+  background-color: #dad2bc;
+  background-image: none;
+  cursor: pointer;
+}
+
+option {
+  font-weight: 700;
+}
+
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+
+/* Loading */
+
+svg {
+  width: 3.25em;
+  transform-origin: center;
+  animation: rotate4 2s linear infinite;
+}
+
+circle {
+  fill: none;
+  stroke: hsl(214, 97%, 59%);
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash4 {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+
+  100% {
+    stroke-dashoffset: -125px;
+  }
+}
+
+/* HOME WELCOME */
 
 .home-welcome {
   display: flex;
@@ -38,18 +106,41 @@ option {
   text-shadow: 0.6px 0.6px 1px Sienna;
 }
 
-.home-searchbar {
-  margin: 1rem 2rem;
+/* FILTERS & BOOKS */
+
+.home-books-problems {
+  text-align: center;
+  padding: 1rem 0;
 }
+
+.home-books {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+/* FILTERS */
 
 .home-filters {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #a99985;
   justify-content: left;
-  padding: 0 2rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
   gap: 1rem;
+  height: max-content;
+  border-radius: 1rem;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
+
+.home-filter__content {
+  width: 100%;
+}
+
 
 .filter-title {
   width: max-content;
@@ -59,35 +150,11 @@ option {
   border-radius: .25em .25em 0 0;
 }
 
-select {
-  /* Reset Select */
-  appearance: none;
-  outline: 0;
-  border: 0;
-  box-shadow: none;
-  /* Personalize */
-  flex: 1;
-  padding: 0 1em;
-  color: #000;
-  background-color: #dad2bc;
-  background-image: none;
-  cursor: pointer;
-}
-
-option {
-  font-weight: 700;
-}
-
-/* Remove IE arrow */
-select::-ms-expand {
-  display: none;
-}
 
 /* Custom Select wrapper */
 .home-filter {
   position: relative;
   display: flex;
-  width: 20em;
   height: 3em;
   border-radius: .0 .25em .25em .25em;
   overflow: hidden;
@@ -110,21 +177,10 @@ select::-ms-expand {
   color: #dad2bc;
 }
 
-.book-card {
-  width: max-content;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin: 2rem;
-}
-
-@media (max-width: 768px) {
-  .book-card {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
+/* BUTTON RESET */
 
 .filter-reset__btn {
+  width: 100%;
   position: relative;
   font-size: 1em;
   padding: .5rem 1.2rem;
@@ -147,7 +203,7 @@ select::-ms-expand {
   width: 0;
   top: 0;
   left: 0;
-  background: linear-gradient(135deg, #f5f1ed 0%, #f5f1ed 50%, rgba(112, 121, 140, 1) 50%, rgba(112, 121, 140, 1) 60%);
+  background: linear-gradient(135deg, #a99985 0%, #a99985 50%, rgba(112, 121, 140, 1) 50%, rgba(112, 121, 140, 1) 60%);
   border-radius: 0 0 0.5em 0;
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
   transition: 0.3s;
@@ -161,4 +217,14 @@ select::-ms-expand {
 .filter-reset__btn:active {
   box-shadow: 0.2em 0.2em 0.3em #dad2bc;
   transform: translate(0.1em, 0.1em);
+}
+
+/* BOOKS */
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
 }

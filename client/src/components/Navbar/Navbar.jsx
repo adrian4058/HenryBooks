@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-import SearchBar from "../SearchBar/SearchBar";
+//import { useAuth0 } from "@auth0/auth0-react";
 import "./Navbar.css";
 
 function NavBar() {
-  const { loginWithPopup, logout, isAuthenticated, user } = useAuth0();
+  //const { loginWithPopup, logout, isAuthenticated, user } = useAuth0();
 
   return (
     <div className="navbar">
@@ -37,13 +36,50 @@ function NavBar() {
               </button>
             </Link>
           </div>
+
+          <div className="navbar-options__link">
+            <Link to="/register">
+              <button className="navbar-btn__option">
+                <b>Register</b>
+              </button>
+            </Link>
+          </div>
+          <div className="navbar-options__link">
+            <Link to="/login">
+              <button className="navbar-btn__option">
+                <b>Login</b>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default NavBar;
+
+/* {isAuthenticated ? (
+            <div className="navbar-options__link">
+              <Link to="/dashboard">
+                <button className="navbar-btn__option">
+                  <b>Dashboard</b>
+                </button>
+              </Link>
+            </div>
+          ) : null}
         </div>
       </div>
 
       <div className="login">
         <div>
           {isAuthenticated ? (
-            <button className="navbar-btn__option" onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
+            <button
+              className="navbar-btn__option"
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
+              Logout
+            </button>
           ) : (
             <button
               className="navbar-btn__option"
@@ -58,10 +94,5 @@ function NavBar() {
             <img className="user-img" src={user.picture} alt="Imagen-user" />
             <h4 className="user-name">{user.nickname}</h4>
           </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-export default NavBar;
+        )} 
+      </div>*/

@@ -9,43 +9,50 @@ import "./Details.css";
 
 function Details(props) {
   const { id } = useParams();
-  const details = useSelector((state) => state.detail);
   const dispatch = useDispatch();
 
+  const details = useSelector((state) => state.detail);
+
   useEffect(() => {
+    dispatch(cleanDetail());
     dispatch(getBookDetail(id));
-    return () => dispatch(cleanDetail());
   }, [dispatch, id]);
 
-  <i className="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>
-
   return (
-    <div className="Details">
+    <div key={id} className="Details">
       <Navbar />
       <div className="book-container">
-        {details.image && <img className="book-img" src={details.image} alt="imagen-libro" />}
-        <div className="book-info">
-          <div className="book-info__info">
-            {details.name && <h4>{details.name}</h4>}
-          </div>
-          {/* <div className="book-info__info">
-            {details.author && <h4>Author:</h4>}
-            {details.author && <h4>{details.author}</h4>}
-          </div> */}
-          <div className="book-info__info">
-            {details.editorial && <h4>Editorial: </h4>}
-            {details.editorial && <p>{details.editorial}</p>}
-          </div>
-          <div className="book-info__info">
-            {details.genero && <h4>Genre: {details.genero}</h4>}
-          </div>
-          <div className="book-info__info">
-            {details.price && <h4>Price: {details.price}</h4>}
-          </div>
-          <div className="">
-            <button className="book-btn__buy">Add To Cart <i className="fa-solid fa-cart-shopping"></i></button>
-          </div>
-        </div>
+        {details.image ? <img className="book-img" src={details.image} alt="imagen-libro" /> :
+          <svg viewBox="25 25 50 50">
+            <circle r="20" cy="50" cx="50"></circle>
+          </svg>}
+        {details ?
+          <div className="book-info">
+            <div className="book-info__info">
+              {details.name && <h4>{details.name}</h4>}
+            </div>
+            <div className="book-info__info">
+              {<h4>Author:</h4>}
+              {<h4>{details.Autor?.nombre}</h4>}
+            </div>
+            <div className="book-info__info">
+              {details.editorial && <h4>Editorial: </h4>}
+              {details.editorial && <p>{details.editorial}</p>}
+            </div>
+            <div className="book-info__info">
+              {details.genero && <h4>Genre: {details.genero}</h4>}
+            </div>
+            <div className="book-info__info">
+              {details.price && <h4 className="book-info__price">${details.price}</h4>}
+            </div>
+            <div className="">
+              <button className="book-btn__buy">Add To Cart <i className="fa-solid fa-cart-shopping"></i></button>
+            </div>
+          </div> :
+          <svg viewBox="25 25 50 50">
+            <circle r="20" cy="50" cx="50"></circle>
+          </svg>
+        }
       </div>
       <Footer />
     </div>
@@ -53,6 +60,3 @@ function Details(props) {
 }
 
 export default Details;
-
-
-
