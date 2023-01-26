@@ -33,6 +33,8 @@ function Home(props) {
   const indexFirst = indexLast - booksPerPage
   const books = allBooksF !== undefined ? allBooksF.slice(indexFirst, indexLast) : null
 
+  console.log(books);
+
   React.useEffect(() => {
     dispatch(getAllBooks())
   }, [dispatch])
@@ -168,7 +170,7 @@ function Home(props) {
                   <Card
                     key={elem.id}
                     genre={elem.genero}
-                    author={elem.author}
+                    author={elem.Autor.nombre}
                     image={elem.image}
                     name={elem.name}
                     id={elem.id}
