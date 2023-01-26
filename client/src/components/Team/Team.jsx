@@ -3,8 +3,6 @@ import Navbar from "../Navbar/Navbar";
 import { members } from '../../utils/members';
 import "./Team.css";
 
-console.log(members);
-
 const Team = () => {
   return (
     <div className='team'>

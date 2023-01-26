@@ -24,7 +24,7 @@
 }
 
 .input {
-  width: 100%;
+  width: max-content;
   height: 40px;
   line-height: 28px;
   padding: 0 1rem;
