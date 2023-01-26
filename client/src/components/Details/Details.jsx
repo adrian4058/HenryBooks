@@ -22,16 +22,27 @@ function Details(props) {
 
   console.log(details);
 
-  <i className="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>
+  <i className="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>;
 
   return (
     <div key={id} className="Details">
       <Navbar />
       <div className="book-container">
-        {details ? <img className="book-img" src={details[0]?.image} alt="imagen-libro" /> : <i className="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>}
+        {details ? (
+          <img
+            className="book-img"
+            src={details[0]?.image}
+            alt="imagen-libro"
+          />
+        ) : (
+          <i className="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>
+        )}
         <div className="book-info">
           <div className="book-info__info">
             {details[0]?.name && <h4>{details[0]?.name}</h4>}
+          </div>
+          <div className="book-info__info">
+          {details[0]?.Autor && <h4>{details[0]?.Autor}</h4>}
           </div>
           {/* <div className="book-info__info">
             {details.author && <h4>Author:</h4>}
@@ -45,10 +56,14 @@ function Details(props) {
             {details[0]?.genero && <h4>Genre: {details[0]?.genero}</h4>}
           </div>
           <div className="book-info__info">
-            {details[0]?.price && <h4 className="book-info__price">${details[0]?.price}</h4>}
+            {details[0]?.price && (
+              <h4 className="book-info__price">${details[0]?.price}</h4>
+            )}
           </div>
           <div className="">
-            <button className="book-btn__buy">Add To Cart <i className="fa-solid fa-cart-shopping"></i></button>
+            <button className="book-btn__buy">
+              Add To Cart <i className="fa-solid fa-cart-shopping"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -58,6 +73,3 @@ function Details(props) {
 }
 
 export default Details;
-
-
-
