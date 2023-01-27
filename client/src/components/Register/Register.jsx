@@ -9,10 +9,10 @@ const Register = () => {
     const {handleSubmit, touched, getFieldProps, errors, handleChange} = useFormik({
         initialValues: {
             name:'',
-            lastname: '',
+            // lastname: '',
             email: '',
             password: '',
-            rol: '',
+            // rol: '',
          },
          
          validationSchema: Yup.object({
@@ -21,10 +21,10 @@ const Register = () => {
             .max(15, 'Less than 15 characters')
             .matches(/^[aA-zZ\s]+$/, 'Only valid characaters')
             .required('Invalid field'),
-            lastname: Yup.string()
-            .min(3, 'Must have more than 3 characters')
-            .matches(/^[aA-zZ\s]+$/, 'Only valid characaters')
-            .required('Required'),
+            // lastname: Yup.string()
+            // .min(3, 'Must have more than 3 characters')
+            // .matches(/^[aA-zZ\s]+$/, 'Only valid characaters')
+            // .required('Required'),
             email: Yup.string()
             .email('Should be a valid email')
             .required('Required'),
@@ -39,7 +39,7 @@ const Register = () => {
          onSubmit: values => {
             const data = {
                 name: values.firstname,
-                lastname: values.lastname,
+                // lastname: values.lastname,
                 email: values.email,
                 password: values.password
             }
@@ -95,7 +95,7 @@ const Register = () => {
             <div className='adv'>
             {(touched.password && errors.password) && <span className='error'>{errors.password}</span>}
             </div>
-            <div>
+            {/* <div>
                     <label htmlFor="rol">Select an option:</label>
 
                     <select id="rol" onChange={handleChange} >
@@ -104,7 +104,7 @@ const Register = () => {
                         <option value="user">User</option>
                         
                     </select>
-           </div>
+           </div> */}
            {/* </div>
         </div> */}
         
