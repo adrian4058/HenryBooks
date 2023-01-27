@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { useDispatch } from "react-redux";
 import { addReview } from '../../actions/index'
+import './Reviews.css'
 
 function Reviews (props){
            const dispatch = useDispatch()
@@ -27,35 +28,42 @@ function Reviews (props){
                     .integer(),
                 }),
                 onSubmit: values => {
-                  dispatch(addReview({...values, UsuarioId: 1, LibroId: 1}))
+                  dispatch(addReview({...values, UsuarioId: 1, LibroId: 2}))
                 },
               });
               return (
-                <form onSubmit={formik.handleSubmit}>
-                  <label htmlFor="titulo">Title</label>
-                  <input
+           <form onSubmit={formik.handleSubmit}>
+               <div className="review-container">
+                  <div className="div-review">
+                   <label htmlFor="titulo">Title</label>
+                   <input
                     id="titulo"
                     type="text"
                     {...formik.getFieldProps("titulo")}
-                  />
-                  {formik.touched.titulo && formik.errors.titulo ? (
-                    <div>{formik.errors.titulo}</div>
+                   />
+                  
+                   {formik.touched.titulo && formik.errors.titulo ? (
+                    <div className="error-message">{formik.errors.titulo}</div>
                   ) : null}
-            
-                  <label htmlFor="descripcion">Description</label>
-                  <input id="descripcion" type="text" {...formik.getFieldProps("descripcion")} />
-                  {formik.touched.descripcion && formik.errors.descripcion ? (
-                    <div>{formik.errors.descripcion}</div>
-                  ) : null}
-            
-                  <label htmlFor="calificacion">Qualification</label>
-                  <input id="calificacion" type="range" min="0" max="5" step="1" {...formik.getFieldProps('calificacion')} />
-                  {formik.touched.calificacion && formik.errors.calificacion ? (
-                    <div>{formik.errors.calificacion}</div>
-                  ) : null}
+                 </div> 
+                 <div className="div-review">
+                    <label htmlFor="descripcion">Description</label>
+                   <input id="descripcion" type="text" {...formik.getFieldProps("descripcion")} />
+                   {formik.touched.descripcion && formik.errors.descripcion ? (
+                    <div className="error-message">{formik.errors.descripcion}</div>
+                    ) : null}
+                 </div>
+                 <div className="div-review">
+                   <label htmlFor="calificacion">Qualification</label>
+                   <input className="input-range" id="calificacion" type="range" min="0" max="5" step="1" {...formik.getFieldProps('calificacion')} />
+                   {formik.touched.calificacion && formik.errors.calificacion ? (
+                    <div className="error-message">{formik.errors.calificacion}</div>
+                    ) : null}
+                 </div> 
         
-                  <button type="submit">Submit</button>
-                </form>
+                  <button className="sendReview" type="submit">Send</button>
+             </div>
+           </form>
               );
         
  };
