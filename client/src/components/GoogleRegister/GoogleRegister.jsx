@@ -16,9 +16,24 @@ export default function GoogleRegister() {
     gapi.load("client:auth2", initClient);
   });
 
-  const onSuccess = (res) => {
-    setUser(res.profileObj);
-    //history.push("/home");
+  const onSuccess = async (res) => {
+    console.log(res);
+    const body = {
+      nombre: res.profileObj.givenName,
+      // lastName: res.profileObj.familyName,
+      email: res.profileObj.email,
+      password: "password",
+      // image: res.profileObj.imageUrl,
+    };
+    const response = await fetch("http://localhost:7415/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
+    const parseRes = await response.json();
+
+    localStorage.setItem("token", parseRes.token);
   };
 
   const onFailure = () => {
