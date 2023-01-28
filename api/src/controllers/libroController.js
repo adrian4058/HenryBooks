@@ -84,7 +84,7 @@ async function createBook(req, res) {
 
 async function updateBook(req, res) {
   const { id } = req.params;
-  const { name, autor, editorial, reviews, image, genero, stock, price } =
+  const { name, autor, editorial, reviews, image, genero, stock, price, estado } =
     req.body;
   try {
     let book = await Libro.findByPk(id);
@@ -98,6 +98,7 @@ async function updateBook(req, res) {
       genero: genero,
       stock: stock,
       price: price,
+      estado: estado,
     });
     res.status(200).json({ message: "Libro Actualizado", updated });
   } catch (error) {
