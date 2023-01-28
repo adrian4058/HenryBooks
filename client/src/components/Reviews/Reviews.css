@@ -1,3 +1,27 @@
 .error-message {
   color: red;
 }
+.sendReview {
+  background-color: black;
+  color: yellow;
+  width: 7%;
+  font-size: 1.1rem;
+  border-radius: 15%;
+}
+.sendReview:hover {
+  background-color: yellow;
+  color: black;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.div-review {
+  width: 30%;
+}
+.review-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.input-range {
+  color: yellow;
+}

@@ -15,6 +15,23 @@ const Login = () => {
       email: Yup.string().email("Should be a valid email").required("Required"),
       password: Yup.string().min(6, "Min. 6 characters").required("Required"),
     }),
+
+    // onSubmit: async (values) => {
+    //   const data = {
+    //     email: values.email,
+    //     password: values.password,
+    //   };
+    //   console.log(values);
+    //   console.log(data);
+    //   const response = await fetch("http://localhost:7415/auth/signin", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(data),
+    //   });
+    //   const parseRes = await response.json();
+    //   localStorage.setItem("token", parseRes.token);
+    //   console.log(parseRes);
+    // },
   });
 
   return (
