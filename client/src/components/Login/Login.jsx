@@ -16,26 +16,27 @@ const Login = () => {
       password: Yup.string().min(6, "Min. 6 characters").required("Required"),
     }),
 
-    // onSubmit: async (values) => {
-    //   const data = {
-    //     email: values.email,
-    //     password: values.password,
-    //   };
-    //   console.log(values);
-    //   console.log(data);
-    //   const response = await fetch("http://localhost:7415/auth/signin", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(data),
-    //   });
-    //   const parseRes = await response.json();
-    //   localStorage.setItem("token", parseRes.token);
-    //   console.log(parseRes);
-    // },
+    onSubmit: async (values) => {
+      
+      const data = {
+        email: values.email,  
+        password: values.password,
+      };
+      console.log(values);
+      console.log(data);
+      const response = await fetch("http://localhost:7415/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const parseRes = await response.json();
+      localStorage.setItem("token", parseRes.token);
+      console.log(parseRes);
+    },
   });
 
   return (
-    <form className="formulario">
+    <form className="formulario" noValidate onSubmit={handleSubmit}>
       <div className="form-container">
         <label htmlFor="email" className="form-label">
           E-mail:
@@ -64,7 +65,7 @@ const Login = () => {
         )}
 
         <div>
-          <button type="submit" onSubmit={handleSubmit} className="form-btn">
+          <button type="submit" className="form-btn">
             Log In
           </button>
         </div>
