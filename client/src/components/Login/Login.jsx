@@ -22,7 +22,7 @@ const Login = () => {
         email: values.email,  
         password: values.password,
       };
-      // console.log(e);
+      console.log(values);
       console.log(data);
       const response = await fetch("http://localhost:7415/auth/signin", {
         method: "POST",
