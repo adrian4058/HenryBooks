@@ -10,6 +10,8 @@ import { getAllBooks, filterByAlphabet, filterByPrice, filterByEditorial, filter
 import "./Home.css";
 import Slider from '../Slider/Slider'
 import { useRef } from "react";
+import SliderProducts from "../SliderProducts/SliderProducts";
+import ChatBot from "../ChatBot/Chat";
 
 function Home(props) {
   const dispatch = useDispatch();
@@ -102,6 +104,9 @@ function Home(props) {
       </div>
 
       <Slider />
+
+      <SliderProducts />
+
       {
         !allBooks?.length ?
           <svg viewBox="25 25 50 50">
@@ -194,6 +199,7 @@ function Home(props) {
 
       <Paginate booksPerPage={booksPerPage} allBooks={allBooksF.length} paginado={paginado} />
       <Footer />
+      <ChatBot />
     </div >
   );
 }
