@@ -1,0 +1,41 @@
+.BookCards {
+  width: 100%;
+}
+
+.Dash-BookCards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: scroll;
+  height: 800px;
+}
+
+.Dash-BookCards-Container {
+  display: flex;
+
+}
+
+.BookCards-btn {
+  margin: 1rem 0 0 0;
+}
+
+.BC-CreateBooks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: .5rem;
+}
+
+.BC-CreateBooks-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 500px;
+}
+
+.BC-CreateBooks-input>input {
+  height: 2rem;
+  width: 300px;
+  padding: 0 1rem;
+}
