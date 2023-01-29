@@ -29,6 +29,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
     "swiper": "^8.4.6",
+    "react-simple-chatbot": "^0.6.1",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
