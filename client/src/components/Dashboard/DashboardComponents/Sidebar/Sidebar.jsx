@@ -54,11 +54,6 @@ const Sidebar = () => {
               </div>
             )
           })}
-          <div className="menuItem">
-            <Link to="/home">
-              Home
-            </Link>
-          </div>
         </div>
       </motion.div>
     </>

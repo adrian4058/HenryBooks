@@ -58,6 +58,8 @@ function Home(props) {
   const books =
     allBooksF !== undefined ? allBooksF.slice(indexFirst, indexLast) : null;
 
+  console.log(books);
+
   // Llámado de libros
   React.useEffect(() => {
     dispatch(getAllBooks());
@@ -124,22 +126,89 @@ function Home(props) {
       </div>
 
       <Slider />
-      {!allBooks?.length ? (
-        <svg viewBox="25 25 50 50">
-          <circle r="20" cy="50" cx="50"></circle>
-        </svg>
-      ) : (
-        <div className="home-books">
-          <div className="home-filters">
-            <div className="home-filter__content">
-              <button
-                className="filter-reset__btn"
-                onClick={() => handleReset()}
-              >
-                Reset Filter
-              </button>
-            </div>
+      {
+        !books?.length ?
+          // <svg className="svg-home" viewBox="25 25 50 50">
+          //   <circle className="circle-home" r="20" cy="50" cx="50"></circle>
+          // </svg> :
+          <div className="home-books">
+            <div className="home-filters">
+              <div className="home-filter__content">
+                <button className="filter-reset__btn" onClick={() => handleReset()}>Reset Filter</button>
+              </div>
 
+              <div className="home-searchbar">
+                <SearchBar />
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Gender</div>
+                <div className="home-filter">
+                  <select ref={categorySelect} onChange={(e) => handlerByCategory(e)}>
+                    <option defaultValue="All" value="All">All</option>
+                    {uniqueGender?.map((book) => (
+                      <option key={book} value={book}>{book}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Author</div>
+                <div className="home-filter">
+                  <select ref={authorsSelect} onChange={(e) => handlerByAuthor(e)}>
+                    <option defaultValue="All" value="All">All</option>
+                    {uniqueAuthor?.map((book) => (
+                      <option key={book} value={book}>{book}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Editorial</div>
+                <div className="home-filter">
+                  <select ref={editorialSelect} onChange={(e) => handlerByEditorial(e)}>
+                    <option value="All">All</option>
+                    {uniqueEditorial?.map((book) => (
+
+                      <option key={book} value={book}>{book}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Alphabet</div>
+                <div className="home-filter">
+                  <select ref={alphabetSelect} onChange={(e) => handlerOrderAlphabet(e)}>
+                    <option value="All">All</option>
+                    <option value="ASC">A-Z</option>
+                    <option value="DESC">Z-A</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Price</div>
+                <div className="home-filter">
+                  <select ref={priceSelect} onChange={(e) => handlerOrderPrice(e)}>
+                    <option value="All">All</option>
+                    <option value="ASC_PRICE">Price (smaller-higher)</option>
+                    <option value="DESC_PRICE">Price (higher-smaller)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="NoBooks">
+              <h1>No hay libros para mostrar con los filtros seleccionados</h1>
+            </div>
+          </div> :
+          <div className="home-books">
+            <div className="home-filters">
+              <div className="home-filter__content">
+                <button className="filter-reset__btn" onClick={() => handleReset()}>Reset Filter</button>
+              </div>
             <div className="home-searchbar">
               <SearchBar />
             </div>

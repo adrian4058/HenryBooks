@@ -1,6 +1,7 @@
 // Sidebar imports
 import { linkClasses } from "@mui/material";
 import { BsPiggyBank, BsFillHouseDoorFill, BsCashCoin, BsCurrencyDollar, BsFillPeopleFill, BsFileText, BsFileBarGraph, BsMinecartLoaded } from "react-icons/bs";
+import { BiHomeAlt } from "react-icons/bi";
 
 // Recent Card Imports
 import img1 from "../DashboardImages/img1.png";
@@ -33,6 +34,11 @@ export const SidebarData = [
     icon: BsFileBarGraph,
     heading: "Analytics",
     link: "/dashboard"
+  },
+  {
+    icon: BiHomeAlt,
+    heading: "Back To Home",
+    link: "/home"
   }
 ]
 

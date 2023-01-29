@@ -1,5 +1,5 @@
 import BookCard from "../BookCard/BookCard";
-import { getAllBooks } from "../../../../../actions";
+import { getAllBooksDashboard } from "../../../../../actions";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewBook, emptyMessage } from "../../../../../actions";
@@ -9,10 +9,10 @@ import "./BookCards.css";
 const BookCards = () => {
 
   const dispatch = useDispatch();
-  const allBooks = useSelector(state => state.allBooks)
+  const allBooks = useSelector(state => state.allBooksDashboard)
 
   useEffect(() => {
-    dispatch(getAllBooks())
+    dispatch(getAllBooksDashboard())
   }, [dispatch])
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -31,7 +31,7 @@ const BookCards = () => {
 
     <div className="BookCards">
       <div>
-        <button onClick={openModal}>Crear Nuevo Libro</button>
+        <button className="create-btn" onClick={openModal}>Create New Book</button>
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}

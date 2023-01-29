@@ -17,6 +17,7 @@ export const DELETE_BOOK = 'DELETE_BOOK'
 export const UPDATE_BOOK = 'UPDATE_BOOK'
 export const ADD_REVIEW = 'ADD_REVIEW'
 export const EMPTY_MESSAGE = 'EMPTY_MESSAGE'
+export const GET_ALL_BOOKS_DASHBOARD = 'GET_ALL_BOOKS_DASHBOARD'
 
 const url = 'http://localhost:7415'
 
@@ -26,6 +27,18 @@ export const getAllBooks = () => {
             fetch(url + '/book')
                 .then(data => data.json())
                 .then(data => dispatch({ type: GET_ALL_BOOKS, payload: data.book }))
+        } catch {
+            console.log("error");
+        }
+    }
+}
+
+export const getAllBooksDashboard = () => {
+    return async function (dispatch) {
+        try {
+            fetch(url + '/book')
+                .then(data => data.json())
+                .then(data => dispatch({ type: GET_ALL_BOOKS_DASHBOARD, payload: data.book }))
         } catch {
             console.log("error");
         }

@@ -22,7 +22,7 @@ const BookCard = (props) => {
 
   const [updateBook, setUpdatedBook] = useState({
     name: props.name,
-    autor: props.name,
+    autor: props.author,
     editorial: props.editorial,
     reviews: [],
     image: props.image,
@@ -73,7 +73,7 @@ const BookCard = (props) => {
       </div>
       <div className="Dash-BookCard-Options">
         <div>
-          <button onClick={openEditModal}>Edit Properties</button>
+          <button className="edit-btn" onClick={openEditModal}>Edit Properties</button>
           <Modal
             isOpen={modalIsOpen}
             onRequestClose={closeEditModal}
@@ -159,7 +159,7 @@ const BookCard = (props) => {
             </form>
           </Modal>
         </div>
-        <button onClick={handleChangeStatus}>{updateBook.estado === "activo" ? "Desactivar" : "Activar"}</button>
+        <button className="status-btn" onClick={handleChangeStatus}>{updateBook.estado === "activo" ? "Desactive" : "Active"}</button>
       </div>
     </div>
   )
