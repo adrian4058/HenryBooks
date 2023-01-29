@@ -1,0 +1,38 @@
+.BookCards {
+  margin: 0 2rem;
+}
+
+.Dash-BookCard {
+  display: flex;
+  width: 100%;
+  border-bottom: 1pt solid black !important;
+  padding: 2rem;
+  padding-bottom: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Dash-BookCard:last-child {
+  border-bottom: none;
+}
+
+.Dash-BookCard-Content {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.Dash-BookCard__img {
+  width: 100px;
+}
+
+.Dash-BC-Info>span {
+  font-weight: bold;
+}
+
+.Dash-BookCard-Options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

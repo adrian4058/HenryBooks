@@ -1,6 +1,6 @@
 import {
     GET_ALL_BOOKS, GET_BOOK_DETAIL, CLEAN_DETAIL, FILTER_BY_PRICE, FILTER_BY_ALPHABET, FILTER_BY_CATEGORY, SEARCH_BY_AUTHOR, SEARCH_BY_NAME, ADD_SHOPPING_CART,
-    REMOVE_SHOPPING_CART, ADD_NEW_BOOK, DELETE_BOOK, UPDATE_BOOK, FILTER_BY_EDITORIAL, GET_ALL_AUTHORS, FILTER_BY_AUTHOR
+    REMOVE_SHOPPING_CART, ADD_NEW_BOOK, DELETE_BOOK, UPDATE_BOOK, FILTER_BY_EDITORIAL, GET_ALL_AUTHORS, FILTER_BY_AUTHOR, EMPTY_MESSAGE
 } from "../actions"
 
 
@@ -9,7 +9,8 @@ const initialState = {
     allBooks: [],
     allAuthors: [],
     author: [],
-    detail: []
+    detail: [],
+    message: ""
 };
 
 
@@ -43,7 +44,23 @@ function rootReducer(state = initialState, action) {
         case ADD_NEW_BOOK:
             return {
                 ...state,
+                message: action.payload.message
             }
+
+        case UPDATE_BOOK: {
+            return {
+                ...state,
+                message: action.payload.message,
+                allBooks: state.allBooks.map(book => (book.id === action.payload.id ? action.payload : book)),
+            }
+        }
+
+        case EMPTY_MESSAGE: {
+            return {
+                ...state,
+                message: ""
+            }
+        }
 
         case FILTER_BY_ALPHABET:
             switch (action.payload) {

@@ -1,4 +1,5 @@
 // Sidebar imports
+import { linkClasses } from "@mui/material";
 import { BsPiggyBank, BsFillHouseDoorFill, BsCashCoin, BsCurrencyDollar, BsFillPeopleFill, BsFileText, BsFileBarGraph, BsMinecartLoaded } from "react-icons/bs";
 
 // Recent Card Imports
@@ -10,23 +11,28 @@ import img3 from "../DashboardImages/img3.png";
 export const SidebarData = [
   {
     icon: BsFillHouseDoorFill,
-    heading: "Dashboard"
+    heading: "Dashboard",
+    link: "/dashboard"
   },
   {
     icon: BsFileText,
-    heading: "Orders"
+    heading: "Orders",
+    link: "/dashboard"
   },
   {
     icon: BsFillPeopleFill,
-    heading: "Customers"
+    heading: "Customers",
+    link: "/dashboard"
   },
   {
     icon: BsMinecartLoaded,
-    heading: "Products"
+    heading: "Books",
+    link: "/dashboard-books"
   },
   {
     icon: BsFileBarGraph,
-    heading: "Analytics"
+    heading: "Analytics",
+    link: "/dashboard"
   }
 ]
 

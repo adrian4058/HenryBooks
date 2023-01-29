@@ -1,0 +1,24 @@
+.DashboardBooksGlass {
+  display: grid;
+  height: 97%;
+  width: 97%;
+  background: var(--glass);
+  border-radius: 2rem;
+  gap: 1rem;
+  grid-template-columns: 15% auto 5%;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+  .DashboardBooksGlass {
+    grid-template-columns: 15% auto 5%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .DashboardBooksGlass {
+    grid-template-columns: 1fr;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+}

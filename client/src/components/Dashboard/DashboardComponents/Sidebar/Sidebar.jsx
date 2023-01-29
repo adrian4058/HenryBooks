@@ -45,10 +45,12 @@ const Sidebar = () => {
                 key={index}
                 onClick={() => setSelected(index)}
               >
-                <div>
-                  <item.icon />
-                </div>
-                <span>{item.heading}</span>
+                <Link to={item.link}>
+                  <div>
+                    <item.icon />
+                  </div>
+                  <span>{item.heading}</span>
+                </Link>
               </div>
             )
           })}
