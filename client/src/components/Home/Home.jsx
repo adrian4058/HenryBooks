@@ -192,6 +192,7 @@ function Home(props) {
           </div>
       }
 
+
       <Paginate booksPerPage={booksPerPage} allBooks={allBooksF.length} paginado={paginado} />
       <Footer />
     </div >
