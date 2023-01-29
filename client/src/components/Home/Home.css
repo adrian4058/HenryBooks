@@ -1,14 +1,14 @@
 /* HOME */
 
 .home {
-  background-color: #F5F1ED;
+  background-color: #f5f1ed;
   height: max-content;
 }
 
 .home p,
 h4,
 option {
-  font-family: 'Maven Pro', sans-serif;
+  font-family: "Maven Pro", sans-serif;
 }
 
 select {
@@ -134,46 +134,46 @@ select::-ms-expand {
   align-items: flex-start;
   background-color: #a99985;
   justify-content: left;
-  padding: 1rem;
+  padding: 1.55rem 1rem;
   margin-bottom: 2rem;
   gap: 1rem;
   height: max-content;
   border-radius: 1rem;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
 .home-filter__content {
   width: 100%;
 }
 
-
 .filter-title {
   width: max-content;
   background-color: #dad2bc;
-  padding: 0 .2rem;
+  padding: 0 0.2rem;
   margin-top: 1rem;
-  border-radius: .25em .25em 0 0;
+  border-radius: 0.25em 0.25em 0 0;
 }
-
 
 /* Custom Select wrapper */
 .home-filter {
   position: relative;
   display: flex;
   height: 3em;
-  border-radius: .0 .25em .25em .25em;
+  border-radius: 0 0.25em 0.25em 0.25em;
   overflow: hidden;
 }
 
 /* Arrow */
 .home-filter::after {
-  content: '\25BC';
+  content: "\25BC";
   position: absolute;
   top: 0;
   right: 0;
   padding: 1em;
   background-color: #34495e;
-  transition: .25s all ease;
+  transition: 0.25s all ease;
   pointer-events: none;
 }
 
@@ -188,13 +188,15 @@ select::-ms-expand {
   width: 100%;
   position: relative;
   font-size: 1em;
-  padding: .5rem 1.2rem;
+  padding: 0.5rem 1.2rem;
   background-color: #70798c;
   text-decoration: none;
   border: none;
   border-radius: 0.5em;
-  color: #DEDEDE;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  color: #dedede;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
 .filter-reset__btn:hover {
@@ -203,12 +205,18 @@ select::-ms-expand {
 
 .filter-reset__btn::before {
   position: absolute;
-  content: '';
+  content: "";
   height: 0;
   width: 0;
   top: 0;
   left: 0;
-  background: linear-gradient(135deg, #a99985 0%, #a99985 50%, rgba(112, 121, 140, 1) 50%, rgba(112, 121, 140, 1) 60%);
+  background: linear-gradient(
+    135deg,
+    #a99985 0%,
+    #a99985 50%,
+    rgba(112, 121, 140, 1) 50%,
+    rgba(112, 121, 140, 1) 60%
+  );
   border-radius: 0 0 0.5em 0;
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
   transition: 0.3s;
