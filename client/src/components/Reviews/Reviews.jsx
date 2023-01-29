@@ -15,11 +15,11 @@ function Reviews (props){
                 },
                 validationSchema: Yup.object({
                   titulo: Yup.string()
-                    .max(25, 'Must be 25 characters or less')
+                    .max(28, 'Must be 28 characters or less')
                     .min(10, 'Must be bigger than 10 characters')
                     .required('Required'),
                   descripcion: Yup.string()
-                    .max(40, 'Must be 40 characters or less')
+                    .max(45, 'Must be 45 characters or less')
                     .min(15, 'Must be bigger than 15 characters')
                     .required('Required'),
                     calificacion: Yup.number('must be a number')
@@ -28,14 +28,17 @@ function Reviews (props){
                     .integer(),
                 }),
                 onSubmit: values => {
-                  dispatch(addReview({...values, UsuarioId: 1, LibroId: 2}))
+                  dispatch(addReview({...values, UsuarioId: 1, LibroId: props.LibroId}))
                 },
               });
               return (
            <form onSubmit={formik.handleSubmit}>
+               
                <div className="review-container">
+                 <h3>Did you read it?you can qualify it!</h3>
                   <div className="div-review">
-                   <label htmlFor="titulo">Title</label>
+                    
+                   <label htmlFor="titulo">Title of review</label>
                    <input
                     id="titulo"
                     type="text"

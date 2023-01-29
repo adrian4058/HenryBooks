@@ -1,10 +1,13 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import GoogleRegister from "../GoogleRegister/GoogleRegister";
+//import GoogleRegister from "../GoogleRegister/GoogleRegister";
 import "./Register.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Register = () => {
+  const { loginWithPopup, logout, isAuthenticated, user } = useAuth0();
+
   const { handleSubmit, touched, getFieldProps, errors, handleChange } =
     useFormik({
       initialValues: {
@@ -80,7 +83,7 @@ const Register = () => {
                   <span className="error">{errors.nombre}</span>
                 )}
               </div>
-              <label htmlFor="lastname">Lastname:</label>
+              {/* <label htmlFor="lastname">Lastname:</label>
               <input
                 type="text"
                 placeholder="Lastname"
@@ -93,7 +96,7 @@ const Register = () => {
                 {touched.lastname && errors.lastname && (
                   <span className="error">{errors.lastname}</span>
                 )}
-              </div>
+              </div> */}
               <label htmlFor="email">Email:</label>
               <input
                 type="email"
@@ -133,25 +136,40 @@ const Register = () => {
               {touched.rol && errors.rol && (
                 <span className="error">{errors.rol}</span>
               )}
-
+              <br />
               <div>
                 <button className="botsub" type="submit">
                   Create User
                 </button>
               </div>
+              <p>Or</p>
+              {/* <GoogleRegister /> */}
+              <div className="login">
+                {isAuthenticated ? (
+                  <button
+                    className="navbar-btn__option"
+                    onClick={() => logout({ returnTo: window.location.origin })}
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <button
+                    className="navbar-btn__option"
+                    onClick={() => loginWithPopup()}
+                  >
+                    <i class="fa-brands fa-google"></i>
+                  </button>
+                )}
+              </div>
+              <br />
+              <div className="navbar-options__link">
+                <Link to="/home">
+                  <button className="form-btn">
+                    <b>Home</b>
+                  </button>
+                </Link>
+              </div>
             </div>
-          </div>
-
-          <div>
-            <p>Or</p>
-            <GoogleRegister />
-          </div>
-          <div className="navbar-options__link">
-            <Link to="/home">
-              <button className="form-btn">
-                <b>Home</b>
-              </button>
-            </Link>
           </div>
         </div>
       </div>
