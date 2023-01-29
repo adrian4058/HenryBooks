@@ -30,6 +30,29 @@ function Chat() {
                             {
                                 id: 'respuesta-nombre',
                                 message: 'Hola {previousValue}, un gusto conocerte',
+                                trigger: 'opciones',
+                            },
+                            {
+                                id: 'opciones',
+                                message: '¿En qué puedo ayudarte hoy?',
+                                trigger: 'opciones-ayuda',
+
+                            },
+                            {
+                                id: 'opciones-ayuda',
+                                options: [
+                                    { value: 'libros', label: 'Libros', trigger: 'libros' },
+                                    { value: 'compra', label: 'Compra', trigger: 'compra' },
+                                ],
+                            },
+                            {
+                                id: 'libros',
+                                message: '¿Qué tipo de libros estás buscando?',
+                                end: true,
+                            },
+                            {
+                                id: 'compra',
+                                message: '¿Qué deseas comprar hoy?',
                                 end: true,
                             },
                         ]} />
