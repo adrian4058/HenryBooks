@@ -39,3 +39,17 @@
   width: 300px;
   padding: 0 1rem;
 }
+
+.create-btn {
+  border-radius: 0 0 1em 1em;
+  border: none;
+  background: var(--yellow);
+  padding: 1em;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.create-btn:hover {
+  cursor: pointer;
+  background: var(--activeItem);
+}
