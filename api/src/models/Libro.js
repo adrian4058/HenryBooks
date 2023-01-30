@@ -1,4 +1,4 @@
-const { DataTypes, UUIDV4 } = require("sequelize");
+const { DataTypes, UUIDV4, UUID } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define("Libro", {
@@ -11,9 +11,6 @@ module.exports = (sequelize) => {
     editorial: {
       type: DataTypes.STRING,
       defaultValue: "No disponible",
-    },
-    reviews: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
     },
     image: {
       type: DataTypes.STRING,

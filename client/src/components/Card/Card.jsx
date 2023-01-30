@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import imagenPrueba from "../img/wallpaper.jpg";
 import "../Card/Card.css"
 
-function Card({ name, image, price, author, genre, id }) {
+function Card({ name, image, price, author, genre, id, inSlider }) {
   return (
     <Link to={`/books/${id}`}>
-      <div className="card">
+      <div className={`card ${inSlider ? 'slider-card' : ''}`}>
         <div className="card-img__container">
           <img className="card-img" src={image} alt="ImgPRUEBA" />
         </div>
@@ -17,7 +17,7 @@ function Card({ name, image, price, author, genre, id }) {
             </div>
             <p><span>By: </span>{author}</p>
             <p><span>Genre: </span>{genre}</p>
-            <p><span>Price: </span>${price}</p>
+            <p><span className="card-info__price">${price}</span></p>
           </div>
           {/* <button className="card-add" onClick={() => alert("agregado al carrito")}>Add to cart<i className="fa-solid fa-cart-shopping"></i></button> */}
         </div>

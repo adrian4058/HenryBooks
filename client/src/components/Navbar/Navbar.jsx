@@ -1,7 +1,7 @@
-import React from "react";
+iimport React from "react";
 import { Link } from "react-router-dom";
+
 import { useAuth0 } from "@auth0/auth0-react";
-import SearchBar from "../SearchBar/SearchBar";
 import "./Navbar.css";
 
 function NavBar() {
@@ -37,7 +37,32 @@ function NavBar() {
               </button>
             </Link>
           </div>
+          {/* <div className="navbar-options__link">
+            <Link to="/register">
+              <button className="navbar-btn__option">
+                <b>Register</b>
+              </button>
+            </Link>
+          </div> */}
+          {/* <div className="navbar-options__link">
+            <Link to="/login">
+              <button className="navbar-btn__option">
+                <b>Login</b>
+              </button>
+            </Link>
+          </div> */}
         </div>
+      </div>
+      <div>
+        {isAuthenticated ? (
+          <div className="navbar-options__link">
+            <Link to="/dashboard">
+              <button className="navbar-btn__option">
+                <b>Dashboard</b>
+              </button>
+            </Link>
+          </div>
+        ) : null}
       </div>
 
       <div className="login">
@@ -50,12 +75,22 @@ function NavBar() {
               Logout
             </button>
           ) : (
-            <button
-              className="navbar-btn__option"
-              onClick={() => loginWithPopup()}
-            >
-              Login
-            </button>
+            <div className="login">
+              <div className="navbar-options__link">
+                <Link to="/register">
+                  <button className="navbar-btn__option">
+                    <b>Register</b>
+                  </button>
+                </Link>
+              </div>
+              <div className="navbar-options__link">
+                <Link to="/login">
+                  <button className="navbar-btn__option">
+                    <b>Login</b>
+                  </button>
+                </Link>
+              </div>
+            </div>
           )}
         </div>
         {isAuthenticated && (
@@ -70,3 +105,4 @@ function NavBar() {
 }
 
 export default NavBar;
+
