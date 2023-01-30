@@ -46,7 +46,6 @@ function Details(props) {
         })
 
         .catch((error) => console.log(error));
-      console.log(respuesta);
       window.location.href = respuesta;
       return respuesta;
     } catch (error) {
@@ -58,13 +57,14 @@ function Details(props) {
     <div key={id} className="Details">
       <Navbar />
       <div className="book-container">
-
-        {details.image ? <img className="book-img" src={details.image} alt="imagen-libro" /> :
+        {details.image ? (
+          <img className="book-img" src={details.image} alt="imagen-libro" />
+        ) : (
           <svg className="loading-svg" viewBox="25 25 50 50">
             <circle className="loading-circle" r="20" cy="50" cx="50"></circle>
-          </svg>}
-        {details ?
-
+          </svg>
+        )}
+        {details ? (
           <div className="book-info">
             <div className="book-info__info">
               {details.name && <h4>{details.name}</h4>}
