@@ -37,7 +37,7 @@ function Home(props) {
   const uniqueAuthor = allBooks !== undefined ? [...new Set(allBooks.map(book => book.Autor?.nombre))] : null
 
   //Paginado
-  const [booksPerPage, setBooksPerPage] = React.useState(6)
+  const [booksPerPage, setBooksPerPage] = React.useState(4)
   const [currentPage, setCurrentPage] = React.useState(1)
   const indexLast = currentPage * booksPerPage
   const indexFirst = indexLast - booksPerPage
