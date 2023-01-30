@@ -1,17 +1,17 @@
-.container {
+.chatContainer {
     position: fixed;
     bottom: 32.5rem;
     right: 0;
     width: 22rem;
     height: 2.5rem;
     margin-right: .4rem;
+
 }
 
 
 
 .hide {
     display: none;
-
 }
 
 .btn {
