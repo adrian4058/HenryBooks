@@ -14,8 +14,12 @@ const Login = () => {
     },
 
     validationSchema: Yup.object({
-      email: Yup.string().email("Should be a valid email").required("Required"),
-      password: Yup.string().min(6, "Min. 6 characters").required("Required"),
+      email: Yup.string()
+        .email("Should be a valid email")
+        .required("Required"),
+      password: Yup.string()
+        .min(6, "Min. 6 characters")
+        .required("Required"),
     }),
 
     onSubmit: async (values) => {
@@ -60,9 +64,9 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 {...getFieldProps("password")}
-                className={`${
-                  touched.password && errors.password && "error_input"
-                }`}
+                className={`${touched.password &&
+                  errors.password &&
+                  "error_input"}`}
               />
               <div className="adv">
                 {touched.password && errors.password && (
