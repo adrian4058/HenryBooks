@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBookDetail, cleanDetail } from "../../actions/index";
 import "./Details.css";
 import axios from "axios";
-import Reviews from "../Reviews/Reviews"
+import Reviews from "../Reviews/Reviews";
 
 function Details(props) {
   const { id } = useParams();
@@ -59,13 +59,14 @@ function Details(props) {
     <div key={id} className="Details">
       <Navbar />
       <div className="book-container">
-
-        {details.image ? <img className="book-img" src={details.image} alt="imagen-libro" /> :
+        {details.image ? (
+          <img className="book-img" src={details.image} alt="imagen-libro" />
+        ) : (
           <svg className="loading-svg" viewBox="25 25 50 50">
             <circle className="loading-circle" r="20" cy="50" cx="50"></circle>
-          </svg>}
-        {details ?
-
+          </svg>
+        )}
+        {details ? (
           <div className="book-info">
             <div className="book-info__info">
               {details.name && <h4>{details.name}</h4>}
@@ -86,19 +87,20 @@ function Details(props) {
                 <h4 className="book-info__price">${details.price}</h4>
               )}
             </div>
-            <div className="">
+            <div className="btn-pay">
               <button onClick={() => sendMp()}>
                 Pay <i className="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
           </div>
-        : (   //cambio
+        ) : (
+          //cambio
           <svg viewBox="25 25 50 50">
             <circle r="20" cy="50" cx="50"></circle>
           </svg>
         )}
       </div>
-      <Reviews LibroId={id}/>
+      <Reviews LibroId={id} />
       <Footer />
     </div>
   );
