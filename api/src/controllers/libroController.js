@@ -1,5 +1,7 @@
 // const express = require("express");
+
 const { Libro, Autor, Resena } = require("../db");
+
 
 async function allBooks(req, res) {
   try {
@@ -44,7 +46,9 @@ async function findBook(req, res) {
 }
 
 async function createBook(req, res) {
+
   let { name, autor, editorial, image, genero, stock, price } = req.body;
+
   let idAutor;
   let existe = await Autor.findAll({
     where: {

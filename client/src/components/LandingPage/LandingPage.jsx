@@ -19,8 +19,7 @@ function LandingPage() {
               <br /> Register and start selling or acquiring the best books.
             </p>
           </div>
-          <div>
-          </div>
+          <div></div>
           <Link to="/home">
             <button className="landing-btn">
               <span className="landing-btn__span">Continuar</span>
@@ -29,7 +28,7 @@ function LandingPage() {
           </Link>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 

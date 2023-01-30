@@ -139,3 +139,4 @@ export const addReview = objeto => (dispatch) => {
             body: JSON.stringify(objeto)
         }).then(data => dispatch({ type: ADD_REVIEW }))
 }
+
