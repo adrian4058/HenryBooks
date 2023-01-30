@@ -100,7 +100,7 @@ function Details(props) {
           </svg>
         )}
       </div>
-      <Reviews LibroId={id} />
+      <Reviews LibroId={id} commentsReview={details.Resenas} />
       <Footer />
     </div>
   );

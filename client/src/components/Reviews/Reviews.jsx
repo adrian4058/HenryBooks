@@ -4,8 +4,9 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addReview } from "../../actions/index";
 import "./Reviews.css";
+import Comments from "./Review Components/Comments";
 
-function Reviews(props) {
+function Reviews({ LibroId, commentsReview}) {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -28,10 +29,11 @@ function Reviews(props) {
         .integer(),
     }),
     onSubmit: (values) => {
-      dispatch(addReview({ ...values, UsuarioId: 1, LibroId: props.LibroId }));
+      dispatch(addReview({ ...values, UsuarioId: 1, LibroId: LibroId }));
     },
   });
   return (
+   <div> 
     <form onSubmit={formik.handleSubmit} className="form">
       <div className="review-container">
         <h3>Did you read it?you can qualify it!</h3>
@@ -74,7 +76,9 @@ function Reviews(props) {
           Send
         </button>
       </div>
-    </form>
+     </form>
+     <Comments commentsReview={commentsReview}/>
+    </div>   
   );
 }
 
