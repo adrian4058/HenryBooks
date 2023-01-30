@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 //import LoginGoogle from "../GoogleLogin/GoogleLogin";
 import "./Login.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import Cookies from "universal-cookie";
 
 const Login = () => {
-  const { loginWithPopup, logout, isAuthenticated, user } = useAuth0();
+  const cookie = new Cookies();
+  const { loginWithPopup, logout, isAuthenticated } = useAuth0();
   const { handleSubmit, getFieldProps, errors, touched } = useFormik({
     initialValues: {
       email: "",
@@ -14,8 +16,12 @@ const Login = () => {
     },
 
     validationSchema: Yup.object({
-      email: Yup.string().email("Should be a valid email").required("Required"),
-      password: Yup.string().min(6, "Min. 6 characters").required("Required"),
+      email: Yup.string()
+        .email("Should be a valid email")
+        .required("Required"),
+      password: Yup.string()
+        .min(6, "Min. 6 characters")
+        .required("Required"),
     }),
 
     onSubmit: async (values) => {
@@ -33,6 +39,9 @@ const Login = () => {
       const parseRes = await response.json();
       localStorage.setItem("token", parseRes.token);
       console.log(parseRes);
+      cookie.set("email", data.email, { path: "/" });
+      alert(`welcome ${data.email.split("@")[0]}`);
+      window.location.href = "./home";
     },
   });
 
@@ -60,9 +69,9 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 {...getFieldProps("password")}
-                className={`${
-                  touched.password && errors.password && "error_input"
-                }`}
+                className={`${touched.password &&
+                  errors.password &&
+                  "error_input"}`}
               />
               <div className="adv">
                 {touched.password && errors.password && (

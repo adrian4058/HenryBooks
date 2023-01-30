@@ -4,63 +4,76 @@ import { Link } from "react-router-dom";
 //import GoogleRegister from "../GoogleRegister/GoogleRegister";
 import "./Register.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import Cookies from "universal-cookie";
 
 const Register = () => {
-  const { loginWithPopup, logout, isAuthenticated, user } = useAuth0();
+  const cookie = new Cookies();
+  const { loginWithPopup, logout, isAuthenticated } = useAuth0();
 
-  const { handleSubmit, touched, getFieldProps, errors, handleChange } =
-    useFormik({
-      initialValues: {
-        nombre: "",
-        //lastname: "",
-        email: "",
-        password: "",
-        rol: "",
-      },
+  const {
+    handleSubmit,
+    touched,
+    getFieldProps,
+    errors,
+    handleChange,
+  } = useFormik({
+    initialValues: {
+      nombre: "",
+      //lastname: "",
+      email: "",
+      password: "",
+      rol: "",
+    },
 
-      validationSchema: Yup.object({
-        nombre: Yup.string()
-          .min(3, "Must have more than 3 characters")
-          .max(15, "Less than 15 characters")
-          .matches(/^[aA-zZ\s]+$/, "Only valid characaters")
-          .required("Invalid field"),
-        // lastname: Yup.string()
-        //   .min(3, "Must have more than 3 characters")
-        //   .matches(/^[aA-zZ\s]+$/, "Only valid characaters")
-        //   .required("Required"),
-        email: Yup.string()
-          .email("Should be a valid email")
-          .required("Required"),
-        password: Yup.string().min(6, "Min. 6 characters").required("Required"),
-        // rol: Yup.string()
-        // .required('Required')
-      }),
+    validationSchema: Yup.object({
+      nombre: Yup.string()
+        .min(3, "Must have more than 3 characters")
+        .max(15, "Less than 15 characters")
+        .matches(/^[aA-zZ\s]+$/, "Only valid characaters")
+        .required("Invalid field"),
+      // lastname: Yup.string()
+      //   .min(3, "Must have more than 3 characters")
+      //   .matches(/^[aA-zZ\s]+$/, "Only valid characaters")
+      //   .required("Required"),
+      email: Yup.string()
+        .email("Should be a valid email")
+        .required("Required"),
+      password: Yup.string()
+        .min(6, "Min. 6 characters")
+        .required("Required"),
+      // rol: Yup.string()
+      // .required('Required')
+    }),
 
-      onSubmit: async (values) => {
-        const data = {
-          nombre: values.nombre,
-          //lastname: values.lastname,
-          email: values.email,
-          password: values.password,
-        };
-        console.log(values);
-        console.log(data);
-        try {
-          const response = await fetch("http://localhost:7415/auth/signup", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-          });
-          const parseRes = await response.json();
+    onSubmit: async (values) => {
+      const data = {
+        nombre: values.nombre,
+        //lastname: values.lastname,
+        email: values.email,
+        password: values.password,
+      };
+      console.log(values);
+      console.log(data);
+      try {
+        const response = await fetch("http://localhost:7415/auth/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        const parseRes = await response.json();
 
-          localStorage.setItem("token", parseRes.token);
-          //console.log(response.json());
-          console.log(parseRes);
-        } catch (error) {
-          console.log(error.message);
-        }
-      },
-    });
+        localStorage.setItem("token", parseRes.token);
+        console.log(data.nombre);
+        cookie.set("nombre", data.nombre, { path: "/" });
+        cookie.set("email", data.email, { path: "/" });
+        window.location.href = "./login";
+        alert("se envio email con 'data'");
+        //return parseRes;
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+  });
 
   return (
     <form noValidate onSubmit={handleSubmit}>
@@ -74,9 +87,9 @@ const Register = () => {
                 type="text"
                 placeholder="Nombre"
                 {...getFieldProps("nombre")}
-                className={`${
-                  touched.nombre && errors.nombre && "error_input"
-                }`}
+                className={`${touched.nombre &&
+                  errors.nombre &&
+                  "error_input"}`}
               />
               <div className="adv">
                 {touched.nombre && errors.nombre && (
@@ -114,9 +127,9 @@ const Register = () => {
                 type="password"
                 placeholder="Password"
                 {...getFieldProps("password")}
-                className={`${
-                  touched.password && errors.password && "error_input"
-                }`}
+                className={`${touched.password &&
+                  errors.password &&
+                  "error_input"}`}
               />
               <div className="adv">
                 {touched.password && errors.password && (
