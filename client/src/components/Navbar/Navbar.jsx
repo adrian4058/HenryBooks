@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import Cookies from "universal-cookie";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./Navbar.css";
 
 function NavBar() {
-  const { loginWithPopup, logout, isAuthenticated, user } = useAuth0();
+  const { logout, isAuthenticated, user } = useAuth0();
+  const cookies = new Cookies();
 
   return (
     <div className="navbar">
@@ -54,7 +55,7 @@ function NavBar() {
         </div>
       </div>
       <div>
-        {isAuthenticated ? (
+        {isAuthenticated || cookies.get("email") ? (
           <div className="navbar-options__link">
             <Link to="/dashboard">
               <button className="navbar-btn__option">
@@ -67,13 +68,27 @@ function NavBar() {
 
       <div className="login">
         <div>
-          {isAuthenticated ? (
-            <button
-              className="navbar-btn__option"
-              onClick={() => logout({ returnTo: window.location.origin })}
-            >
-              Logout
-            </button>
+          {isAuthenticated || cookies.get("email") ? (
+            <div>
+              <button
+                className="navbar-btn__option"
+                onClick={() => {
+                  if (isAuthenticated)
+                    logout({ returnTo: window.location.origin });
+                  else {
+                    cookies.remove("email", { path: "/" });
+                    window.location.href = "./home";
+                  }
+                }}
+              >
+                Logout
+              </button>
+              {cookies.get("email") ? (
+                <label href="" className="user-name">
+                  {"email: " + cookies.get("email")}
+                </label>
+              ) : null}
+            </div>
           ) : (
             <div className="login">
               <div className="navbar-options__link">
@@ -105,5 +120,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
-/* */
