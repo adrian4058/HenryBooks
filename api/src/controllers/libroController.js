@@ -73,11 +73,11 @@ async function createBook(req, res) {
       stock,
       price,
     });
-    return res.status(201).send(newBook);
+    return res.status(201).send({ message: "Libro Creado", newBook });
   } catch (error) {
     res.status(500).json({
-      status: "error, no se ha podido crear el libro",
-      messagge: error,
+      message: "error, no se ha podido crear el libro",
+      error,
     });
   }
 }

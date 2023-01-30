@@ -1,0 +1,74 @@
+.BookCards {
+  margin: 0 2rem;
+}
+
+.Dash-BookCard {
+  display: flex;
+  width: 100%;
+  border-bottom: 1pt solid black !important;
+  padding: 2rem;
+  padding-bottom: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 648px) {
+  .Dash-BookCard {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.Dash-BookCard:last-child {
+  border-bottom: none;
+}
+
+.Dash-BookCard-Content {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.Dash-BookCard__img {
+  width: 100px;
+}
+
+.Dash-BC-Info>span {
+  font-weight: bold;
+}
+
+.Dash-BookCard-Options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.edit-btn {
+  border-radius: 1em 1em 0 0;
+  border: none;
+  background: var(--yellow);
+  padding: 1em;
+  border-bottom: 1px solid black;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.status-btn {
+  border-radius: 0 0 1em 1em;
+  border: none;
+  background: var(--yellow);
+  padding: 1em;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.edit-btn:hover {
+  cursor: pointer;
+  background: var(--activeItem);
+}
+
+.status-btn:hover {
+  cursor: pointer;
+  background: var(--activeItem);
+}

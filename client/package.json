@@ -21,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-google-login": "^5.2.2",
     "react-icons": "^4.7.1",
+    "react-modal": "^3.16.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
@@ -28,6 +29,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
     "swiper": "^8.4.6",
+    "react-simple-chatbot": "^0.6.1",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
