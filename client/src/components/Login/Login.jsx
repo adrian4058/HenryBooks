@@ -49,6 +49,7 @@ const Login = () => {
       cookie.set("email", data.email, { path: "/" });
       alert(`welcome ${data.email.split("@")[0]}`);
       // window.location.href = "./home";
+
       
     },
   });
@@ -86,8 +87,10 @@ const Login = () => {
                   <span className="error">{errors.password}</span>
                 )}
               </div>
+              <Link to='/home'>
               <button type="submit" className="botsub">Log In
               </button>
+              </Link>
               <p>Don't have any account?</p>
               <Link to="/register" className="link">
                 {" "}
