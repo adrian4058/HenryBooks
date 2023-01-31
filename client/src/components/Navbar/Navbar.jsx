@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-//import { useAuth0 } from "@auth0/auth0-react";
+import Cookies from "universal-cookie";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./Navbar.css";
 
 function NavBar() {
-  //const { loginWithPopup, logout, isAuthenticated, user } = useAuth0();
+  const { logout, isAuthenticated, user } = useAuth0();
+  const cookies = new Cookies();
 
   return (
     <div className="navbar">
@@ -36,57 +38,74 @@ function NavBar() {
               </button>
             </Link>
           </div>
-
-          <div className="navbar-options__link">
+          {/* <div className="navbar-options__link">
             <Link to="/register">
               <button className="navbar-btn__option">
                 <b>Register</b>
               </button>
             </Link>
-          </div>
-          <div className="navbar-options__link">
+          </div> */}
+          {/* <div className="navbar-options__link">
             <Link to="/login">
               <button className="navbar-btn__option">
                 <b>Login</b>
               </button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
-    </div>
-  );
-}
-
-export default NavBar;
-
-/* {isAuthenticated ? (
-            <div className="navbar-options__link">
-              <Link to="/dashboard">
-                <button className="navbar-btn__option">
-                  <b>Dashboard</b>
-                </button>
-              </Link>
-            </div>
-          ) : null}
-        </div>
+      <div>
+        {isAuthenticated || cookies.get("email") ? (
+          <div className="navbar-options__link">
+            <Link to="/dashboard">
+              <button className="navbar-btn__option">
+                <b>Dashboard</b>
+              </button>
+            </Link>
+          </div>
+        ) : null}
       </div>
 
       <div className="login">
         <div>
-          {isAuthenticated ? (
-            <button
-              className="navbar-btn__option"
-              onClick={() => logout({ returnTo: window.location.origin })}
-            >
-              Logout
-            </button>
+          {isAuthenticated || cookies.get("email") ? (
+            <div>
+              <button
+                className="navbar-btn__option"
+                onClick={() => {
+                  if (isAuthenticated)
+                    logout({ returnTo: window.location.origin });
+                  else {
+                    cookies.remove("email", { path: "/" });
+                    window.location.href = "./home";
+                  }
+                }}
+              >
+                Logout
+              </button>
+              {cookies.get("email") ? (
+                <label href="" className="user-name">
+                  {"email: " + cookies.get("email")}
+                </label>
+              ) : null}
+            </div>
           ) : (
-            <button
-              className="navbar-btn__option"
-              onClick={() => loginWithPopup()}
-            >
-              Login
-            </button>
+            <div className="login">
+              <div className="navbar-options__link">
+                <Link to="/register">
+                  <button className="navbar-btn__option">
+                    <b>Register</b>
+                  </button>
+                </Link>
+              </div>
+              <div className="navbar-options__link">
+                <Link to="/login">
+                  <button className="navbar-btn__option">
+                    <b>Login</b>
+                  </button>
+                </Link>
+              </div>
+            </div>
           )}
         </div>
         {isAuthenticated && (
@@ -94,5 +113,10 @@ export default NavBar;
             <img className="user-img" src={user.picture} alt="Imagen-user" />
             <h4 className="user-name">{user.nickname}</h4>
           </div>
-        )} 
-      </div>*/
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default NavBar;

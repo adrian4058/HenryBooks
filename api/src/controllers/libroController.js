@@ -73,18 +73,18 @@ async function createBook(req, res) {
       stock,
       price,
     });
-    return res.status(201).send(newBook);
+    return res.status(201).send({ message: "Libro Creado", newBook });
   } catch (error) {
     res.status(500).json({
-      status: "error, no se ha podido crear el libro",
-      messagge: error,
+      message: "error, no se ha podido crear el libro",
+      error,
     });
   }
 }
 
 async function updateBook(req, res) {
   const { id } = req.params;
-  const { name, autor, editorial, reviews, image, genero, stock, price } =
+  const { name, autor, editorial, reviews, image, genero, stock, price, estado } =
     req.body;
   try {
     let book = await Libro.findByPk(id);
@@ -98,6 +98,7 @@ async function updateBook(req, res) {
       genero: genero,
       stock: stock,
       price: price,
+      estado: estado,
     });
     res.status(200).json({ message: "Libro Actualizado", updated });
   } catch (error) {

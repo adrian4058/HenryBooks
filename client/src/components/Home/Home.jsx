@@ -10,6 +10,9 @@ import { getAllBooks, filterByAlphabet, filterByPrice, filterByEditorial, filter
 import "./Home.css";
 import Slider from '../Slider/Slider'
 import { useRef } from "react";
+import Chat from "../ChatBot/Chat";
+import SliderProducts from '../SliderProducts/SliderProducts'
+
 
 function Home(props) {
   const dispatch = useDispatch();
@@ -34,7 +37,7 @@ function Home(props) {
   const uniqueAuthor = allBooks !== undefined ? [...new Set(allBooks.map(book => book.Autor?.nombre))] : null
 
   //Paginado
-  const [booksPerPage, setBooksPerPage] = React.useState(6)
+  const [booksPerPage, setBooksPerPage] = React.useState(4)
   const [currentPage, setCurrentPage] = React.useState(1)
   const indexLast = currentPage * booksPerPage
   const indexFirst = indexLast - booksPerPage
@@ -102,6 +105,10 @@ function Home(props) {
       </div>
 
       <Slider />
+
+      <SliderProducts />
+
+
       {
         !allBooks?.length ?
           <svg viewBox="25 25 50 50">
@@ -192,6 +199,7 @@ function Home(props) {
           </div>
       }
 
+      <Chat />
       <Paginate booksPerPage={booksPerPage} allBooks={allBooksF.length} paginado={paginado} />
       <Footer />
     </div >

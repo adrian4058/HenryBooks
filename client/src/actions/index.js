@@ -1,4 +1,4 @@
-const axios = require('axios')
+import axios from 'axios';
 export const GET_ALL_BOOKS = 'GET_ALL_BOOKS'
 export const GET_ALL_AUTHORS = 'GET_ALL_AUTHORS'
 export const GET_BOOK_DETAIL = 'GET_BOOK_DETAIL'
@@ -16,6 +16,9 @@ export const ADD_NEW_BOOK = 'ADD_NEW_BOOK'
 export const DELETE_BOOK = 'DELETE_BOOK'
 export const UPDATE_BOOK = 'UPDATE_BOOK'
 export const ADD_REVIEW = 'ADD_REVIEW'
+export const EMPTY_MESSAGE = 'EMPTY_MESSAGE'
+export const GET_ALL_BOOKS_DASHBOARD = 'GET_ALL_BOOKS_DASHBOARD'
+export const PUT_TOKEN ='PUT_TOKEN'
 
 const url = 'http://localhost:7415'
 
@@ -25,6 +28,18 @@ export const getAllBooks = () => {
             fetch(url + '/book')
                 .then(data => data.json())
                 .then(data => dispatch({ type: GET_ALL_BOOKS, payload: data.book }))
+        } catch {
+            console.log("error");
+        }
+    }
+}
+
+export const getAllBooksDashboard = () => {
+    return async function (dispatch) {
+        try {
+            fetch(url + '/book')
+                .then(data => data.json())
+                .then(data => dispatch({ type: GET_ALL_BOOKS_DASHBOARD, payload: data.book }))
         } catch {
             console.log("error");
         }
@@ -48,17 +63,45 @@ export const cleanDetail = () => {
 };
 
 
-export const addNewBook = (input) => (dispatch) => {
-    axios.post(url + '/book', input).then(results => results.data)
-        .then(data => dispatch({ type: ADD_NEW_BOOK, payload: data }))
-        .catch(e => dispatch({ type: ADD_NEW_BOOK, payload: e.response.data }))
+export const addNewBook = (payload) => {
+    return async function (dispatch) {
+        try {
+            const response = await fetch(url + '/book', {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message);
+            }
+            return dispatch({
+                type: ADD_NEW_BOOK, payload: data
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
 }
 
+export const editBook = (id, input) => async (dispatch) => {
+    try {
+        const response = await fetch(url + `/book/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(input),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        const data = await response.json();
+        dispatch({ type: UPDATE_BOOK, payload: data });
+    } catch (error) {
+        dispatch({ type: UPDATE_BOOK, payload: error });
+    }
+};
 
-export const updateBook = (id, input) => dispatch => {
-    axios.put(url + `/${id}`, input).then(results => results.data)
-        .then(data => dispatch({ type: UPDATE_BOOK, payload: data }))
-        .catch(data => dispatch({ type: UPDATE_BOOK, payload: data }))
+export const emptyMessage = () => {
+    return { type: EMPTY_MESSAGE }
 }
 
 
@@ -88,12 +131,16 @@ export const findBook = (name) => {
 
 export const addReview = objeto => (dispatch) => {
     fetch(url + '/resena',
-{
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify(objeto)
-}).then(data => dispatch({ type: ADD_REVIEW }))
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(objeto)
+        }).then(data => dispatch({ type: ADD_REVIEW }))
+}
+
+export const putToken= (token)=>{
+    return {type:PUT_TOKEN,payload:token}
 }
