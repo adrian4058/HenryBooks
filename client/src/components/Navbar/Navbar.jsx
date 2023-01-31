@@ -90,11 +90,11 @@ function NavBar() {
                 Logout
               </button>
               {cookies.get("email") ? (
-                <Link to ='/profile'>
-                <label href="" className="user-name">
+                <a  href="/profile/edit">
+                <label className="user-name">
                   {"User: " + cookies.get("email")}
                 </label>
-                </Link>
+                </a>
               ) : null}
             </div>
           ) : (
