@@ -3,11 +3,9 @@ export const GET_ALL_BOOKS = 'GET_ALL_BOOKS'
 export const GET_ALL_AUTHORS = 'GET_ALL_AUTHORS'
 export const GET_BOOK_DETAIL = 'GET_BOOK_DETAIL'
 export const CLEAN_DETAIL = 'CLEAN_DETAIL'
-export const FILTER_BY_AUTHOR = 'FILTER_BY_AUTHOR'
 export const FILTER_BY_ALPHABET = 'FILTER_BY_ALPHABET'
 export const FILTER_BY_PRICE = 'FILTER_BY_PRICE'
-export const FILTER_BY_EDITORIAL = 'FILTER_BY_EDITORIAL'
-export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY'
+export const FILTER_ALL = 'FILTER_ALL'
 export const SEARCH_BY_AUTHOR = 'SEARCH_BY_AUTHOR'
 export const SEARCH_BY_NAME = 'SEARCH_BY_NAME'
 export const ADD_SHOPPING_CART = 'ADD_SHOPPING_CART'
@@ -18,8 +16,11 @@ export const UPDATE_BOOK = 'UPDATE_BOOK'
 export const ADD_REVIEW = 'ADD_REVIEW'
 export const EMPTY_MESSAGE = 'EMPTY_MESSAGE'
 export const GET_ALL_BOOKS_DASHBOARD = 'GET_ALL_BOOKS_DASHBOARD'
+
 export const PUT_TOKEN ='PUT_TOKEN'
 export const DELETE_TOKEN='DELETE_TOKEN'
+export const RESET_FILTERS = 'RESET_FILTERS'
+
 
 const url = 'http://localhost:7415'
 
@@ -54,11 +55,18 @@ export const getBookDetail = (id) => dispatch => fetch(url + `/book/${id}`).then
 export const getAllAuthors = () => dispatch => fetch(url + `/autores`).then(data => data.json())
     .then(data => dispatch({ type: GET_ALL_AUTHORS, payload: data }))
 
-
 export const cleanDetail = () => {
     return (dispatch) => {
         dispatch({
             type: CLEAN_DETAIL,
+        });
+    }
+};
+
+export const resetFilters = () => {
+    return (dispatch) => {
+        dispatch({
+            type: RESET_FILTERS,
         });
     }
 };
@@ -114,17 +122,16 @@ export const filterByPrice = (typePrice) => {
     return { type: FILTER_BY_PRICE, payload: typePrice }
 }
 
-export const filterByCategory = (category) => {
-    return { type: FILTER_BY_CATEGORY, payload: category }
-}
-
-export const filterByEditorial = (editorial) => {
-    return { type: FILTER_BY_EDITORIAL, payload: editorial }
-}
-
-export const filterByAuthor = (author) => ({
-    type: FILTER_BY_AUTHOR, payload: author,
-});
+export const filterAll = (category, editorial, author) => {
+    return {
+        type: FILTER_ALL,
+        payload: {
+            category,
+            editorial,
+            author
+        }
+    };
+};
 
 export const findBook = (name) => {
     return { type: SEARCH_BY_NAME, payload: name }
