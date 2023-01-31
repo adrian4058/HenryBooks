@@ -20,7 +20,7 @@ function Reviews({ LibroId, commentsReview}) {
         .min(10, "Must be bigger than 10 characters")
         .required("Required"),
       descripcion: Yup.string()
-        .max(45, "Must be 45 characters or less")
+        .max(90, "Must be 90 characters or less")
         .min(15, "Must be bigger than 15 characters")
         .required("Required"),
       calificacion: Yup.number("must be a number")
