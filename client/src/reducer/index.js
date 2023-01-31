@@ -1,6 +1,6 @@
 import {
-    GET_ALL_BOOKS, GET_BOOK_DETAIL, CLEAN_DETAIL, FILTER_BY_PRICE, FILTER_BY_ALPHABET, FILTER_BY_CATEGORY, SEARCH_BY_AUTHOR, SEARCH_BY_NAME, ADD_SHOPPING_CART,
-    REMOVE_SHOPPING_CART, ADD_NEW_BOOK, DELETE_BOOK, UPDATE_BOOK, FILTER_BY_EDITORIAL, GET_ALL_AUTHORS, FILTER_BY_AUTHOR, EMPTY_MESSAGE, GET_ALL_BOOKS_DASHBOARD
+    GET_ALL_BOOKS, GET_BOOK_DETAIL, CLEAN_DETAIL, FILTER_BY_PRICE, FILTER_BY_ALPHABET, SEARCH_BY_AUTHOR, SEARCH_BY_NAME, ADD_SHOPPING_CART,
+    REMOVE_SHOPPING_CART, ADD_NEW_BOOK, DELETE_BOOK, UPDATE_BOOK, GET_ALL_AUTHORS, EMPTY_MESSAGE, GET_ALL_BOOKS_DASHBOARD, FILTER_ALL, RESET_FILTERS
 } from "../actions"
 
 
@@ -125,30 +125,27 @@ function rootReducer(state = initialState, action) {
                     return state;
             }
 
-
-        case FILTER_BY_CATEGORY:
-            const allBooksCategory = state.books
-            const filterBooksByCategory = action.payload === "All" ? allBooksCategory : allBooksCategory.filter(e => e.genero === action.payload)
+        case FILTER_ALL:
+            let filteredBooks = state.allBooks;
+            if (action.payload.category !== "All") {
+                filteredBooks = filteredBooks.filter(e => e.genero === action.payload.category);
+            }
+            if (action.payload.editorial !== "All") {
+                filteredBooks = filteredBooks.filter(e => e.editorial === action.payload.editorial);
+            }
+            if (action.payload.author !== "All") {
+                filteredBooks = filteredBooks.filter(e => e.Autor.nombre === action.payload.author);
+            }
             return {
                 ...state,
-                books: filterBooksByCategory
+                books: filteredBooks
             }
 
-        case FILTER_BY_EDITORIAL:
-            const allBooksEditorial = state.books
-            const filterBooksByEditorial = action.payload === "All" ? allBooksEditorial : allBooksEditorial.filter(e => e.editorial === action.payload)
+        case RESET_FILTERS:
             return {
                 ...state,
-                books: filterBooksByEditorial
-            }
-
-        case FILTER_BY_AUTHOR:
-            const allBooksAuthor = state.books
-            const filterBooksByAuthor = action.payload === "All" ? allBooksAuthor : allBooksAuthor.filter(e => e.Autor.nombre === action.payload)
-            return {
-                ...state,
-                books: filterBooksByAuthor
-            }
+                books: state.allBooks
+            };
 
         case SEARCH_BY_NAME:
             const nombre = action.payload === "" ? state.allBooks :
