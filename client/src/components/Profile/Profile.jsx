@@ -7,7 +7,7 @@
 
 
 
-// const Edit = () => {
+ const Edit = () => {
 
 //         // FALTA ACTION QUE TRAIGA LOS USUARIOS
 //     // useEffect(() => {
@@ -42,39 +42,39 @@
 
 
 
-//     return (  
+    return (  
     
-//     <div>
-//     <form className='editForm' onSubmit={handleUpdate}>
-//                     <h3>Editar información personal</h3>
-//                     <div>
-//                         <label> Nombre: </label>
-//                         <input type="text" name="name" placeholder="Name" value={updateAccount.name} onChange={handleSubmit} />
-//                     </div>
+    <div>
+    <form className='editForm' >
+                    <h3>Editar información personal</h3>
+                    <div>
+                        <label> Nombre: </label>
+                        <input type="text" name="name" placeholder="Name"   />
+                    </div>
 
-//                     {/* <div>
-//                         <label> Apellido: </label>
-//                         <input type="text" name="lastName" placeholder="Lastname" value={updateAccount.lastName} onChange={handleSubmit} />
-//                     </div> */}
+                    <div>
+                        <label> Apellido: </label>
+                        <input type="text" name="lastName" placeholder="Lastname"  />
+                    </div>
 
-//                     <div>
-//                         <label> Mail: </label>
-//                         <input type='email' name="email" placeholder="New Email" value={updateAccount.email} onChange={handleSubmit} />
-//                     </div>
+                    <div>
+                        <label> Mail: </label>
+                        <input type='email' name="email" placeholder="New Email"  />
+                    </div>
 
-//                     <div>
-//                         <label> Contraseña: </label>
-//                         <input type='password' name="password" placeholder="New password" value={updateAccount.password} onChange={handleSubmit} />
-//                     </div>
+                    <div>
+                        <label> Contraseña: </label>
+                        <input type='password' name="password" placeholder="New password"  />
+                    </div>
                     
 
-//                     <button className="guardarBtn" onClick={handleUpdate}> Guardar Cambios </button>
-//                 </form>
+                    <button className="guardarBtn" > Guardar Cambios </button>
+                </form>
 
-//             </div>
+            </div>
         
-//     )
-// }
+    )
+}
 
 
-// export default Edit
+export default Edit
