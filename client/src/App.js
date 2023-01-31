@@ -9,7 +9,8 @@ import DashboardRoutes from "./components/Dashboard/DashboardRoutes/DashboardRou
 import DashboardBooks from "./components/Dashboard/DashboardComponents/DashboardBooks/DashboardBooks";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
-import Profile from "./components/Profile/Profile"
+import ProfileEdit from "./components/ProfileEdit/ProfileEdit"
+import userProfile from "./components/userProfile/userProfile";
 
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route path="/books/:id" component={Details} />
-            <Route path="/profile" component={Profile} />
+            <Route exact path="/profile/edit" component={ProfileEdit} />
+            <Route exact path="/profile" component={userProfile} />
           </Route>
         </Switch>
       </div>
