@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBookDetail, cleanDetail } from "../../actions/index";
 import "./Details.css";
 import axios from "axios";
+import Reviews from "../Reviews/Reviews";
 
 function Details(props) {
   const { id } = useParams();
@@ -85,18 +86,20 @@ function Details(props) {
                 <h4 className="book-info__price">${details.price}</h4>
               )}
             </div>
-            <div className="">
+            <div className="btn-pay">
               <button onClick={() => sendMp()}>
                 Pay <i className="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
           </div>
         ) : (
+          //cambio
           <svg viewBox="25 25 50 50">
             <circle r="20" cy="50" cx="50"></circle>
           </svg>
         )}
       </div>
+      <Reviews LibroId={id} commentsReview={details.Resenas} />
       <Footer />
     </div>
   );

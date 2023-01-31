@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import imagenPrueba from "../img/wallpaper.jpg";
 import "../Card/Card.css"
 
-function Card({ name, image, price, author, genre, id }) {
+function Card({ name, image, price, author, genre, id, inSlider }) {
   return (
     <Link to={`/books/${id}`}>
-      <div className="card">
+      <div className={`card ${inSlider ? 'slider-card' : ''}`}>
         <div className="card-img__container">
           <img className="card-img" src={image} alt="ImgPRUEBA" />
         </div>

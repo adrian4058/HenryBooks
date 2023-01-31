@@ -28,7 +28,7 @@ function SearchBar() {
             onChange={handleInput}
             placeholder="Search"
             type="text"
-            className="input"
+            className="input-searchbar"
             value={searchBook}
           />
         </div>

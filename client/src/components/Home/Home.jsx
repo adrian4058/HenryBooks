@@ -6,10 +6,13 @@ import SearchBar from "../SearchBar/SearchBar";
 import books from "../../utils/books.js";
 import Paginate from "../Paginate/Paginate"
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks, filterByAlphabet, filterByPrice, filterByEditorial, filterByCategory, filterByAuthor, getAllAuthors } from '../../actions/index'
+import { getAllBooks, filterByAlphabet, filterByPrice, filterAll } from '../../actions/index'
 import "./Home.css";
 import Slider from '../Slider/Slider'
 import { useRef } from "react";
+import Chat from "../ChatBot/Chat";
+import SliderProducts from '../SliderProducts/SliderProducts'
+
 
 function Home(props) {
   const dispatch = useDispatch();
@@ -34,28 +37,29 @@ function Home(props) {
   const uniqueAuthor = allBooks !== undefined ? [...new Set(allBooks.map(book => book.Autor?.nombre))] : null
 
   //Paginado
-  const [booksPerPage, setBooksPerPage] = React.useState(6)
+  const [booksPerPage, setBooksPerPage] = React.useState(4)
   const [currentPage, setCurrentPage] = React.useState(1)
   const indexLast = currentPage * booksPerPage
   const indexFirst = indexLast - booksPerPage
   const books = allBooksF !== undefined ? allBooksF.slice(indexFirst, indexLast) : null
+
+  //
+  const [categoryValue, setCategoryValue] = React.useState("All");
+  const [editorialValue, setEditorialValue] = React.useState("All");
+  const [authorValue, setAuthorValue] = React.useState("All");
 
   // Llámado de libros
   React.useEffect(() => {
     dispatch(getAllBooks())
   }, [dispatch])
 
-  // handler para filtro de categoría de libro
-  function handlerByCategory(e) {
-    dispatch(filterByCategory(e.target.value))
-    setCurrentPage(1)
-  }
-
-  // handler para filtro de editorial de libro
-  function handlerByEditorial(e) {
-    dispatch(filterByEditorial(e.target.value))
-    setCurrentPage(1)
-  }
+  // Despachar Filtros Combinados
+  const handleFilterChange = (category, editorial, author) => {
+    setCategoryValue(category);
+    setEditorialValue(editorial);
+    setAuthorValue(author);
+    dispatch(filterAll(category, editorial, author));
+  };
 
   // handler para filtrar alfabeticamente
   function handlerOrderAlphabet(e) {
@@ -73,20 +77,17 @@ function Home(props) {
     setOrder(`Order ${e.target.value}`)
   }
 
-  // handler para filtrar por autores
-  function handlerByAuthor(e) {
-    dispatch(filterByAuthor(e.target.value));
-    setCurrentPage(1)
-  }
-
-  // Handler para reiniciar filtros y establecer los valores a 0
+  // Handler para reiniciar filtros y establecer los valores a "All"
   function handleReset(e) {
-    dispatch(getAllBooks());
+    setCategoryValue("All")
+    setAuthorValue("All")
+    setEditorialValue("All")
     categorySelect.current.value = "All";
     editorialSelect.current.value = "All";
     alphabetSelect.current.value = "All";
     priceSelect.current.value = "All";
     authorsSelect.current.value = "All";
+    handleFilterChange("All", "All", "All");
     setCurrentPage(1);
   }
 
@@ -102,6 +103,9 @@ function Home(props) {
       </div>
 
       <Slider />
+
+      <SliderProducts />
+
       {
         !allBooks?.length ?
           <svg viewBox="25 25 50 50">
@@ -120,7 +124,7 @@ function Home(props) {
               <div className="home-filter__content">
                 <div className="filter-title">Order by Gender</div>
                 <div className="home-filter">
-                  <select ref={categorySelect} onChange={(e) => handlerByCategory(e)}>
+                  <select ref={categorySelect} onChange={(e) => setCategoryValue(e.target.value) & handleFilterChange(e.target.value, editorialValue, authorValue)}>
                     <option defaultValue="All" value="All">All</option>
                     {uniqueGender?.map((book) => (
                       <option key={book} value={book}>{book}</option>
@@ -132,7 +136,7 @@ function Home(props) {
               <div className="home-filter__content">
                 <div className="filter-title">Order by Author</div>
                 <div className="home-filter">
-                  <select ref={authorsSelect} onChange={(e) => handlerByAuthor(e)}>
+                  <select ref={authorsSelect} onChange={(e) => setAuthorValue(e.target.value) & handleFilterChange(categoryValue, editorialValue, e.target.value)}>
                     <option defaultValue="All" value="All">All</option>
                     {uniqueAuthor?.map((book) => (
                       <option key={book} value={book}>{book}</option>
@@ -144,10 +148,9 @@ function Home(props) {
               <div className="home-filter__content">
                 <div className="filter-title">Order by Editorial</div>
                 <div className="home-filter">
-                  <select ref={editorialSelect} onChange={(e) => handlerByEditorial(e)}>
-                    <option value="All">All</option>
+                  <select ref={editorialSelect} onChange={(e) => setEditorialValue(e.target.value) & handleFilterChange(categoryValue, e.target.value, authorValue)}>
+                    <option defaultValue="All" value="All">All</option>
                     {uniqueEditorial?.map((book) => (
-
                       <option key={book} value={book}>{book}</option>
                     ))}
                   </select>
@@ -192,6 +195,7 @@ function Home(props) {
           </div>
       }
 
+      <Chat />
       <Paginate booksPerPage={booksPerPage} allBooks={allBooksF.length} paginado={paginado} />
       <Footer />
     </div >

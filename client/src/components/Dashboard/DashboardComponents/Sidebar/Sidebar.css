@@ -68,11 +68,11 @@
   margin-right: calc(1rem - 8px);
 }
 
-.menu .menuItem:last-child {
+/* .menu .menuItem:last-child {
   position: absolute;
   bottom: 2.3rem;
   width: 100%;
-}
+} */
 
 /* Tablets */
 @media screen and (max-width: 1200px) {
@@ -103,10 +103,10 @@
     display: flex;
   }
 
-  .menu .menuItem:last-child {
+  /* .menu .menuItem:last-child {
     position: relative;
     margin-top: 6rem;
-  }
+  } */
 
   .bars {
     display: flex;
