@@ -10,7 +10,7 @@ const {
 const {verifyToken,isAdmin} =require('../middleware')
 
 
-router.post("/",[verifyToken,isAdmin], createBook);
+router.post("/", createBook);
 router.get("/", allBooks);
 router.get("/:id", findBook); //ruta no testeada
 router.put("/:id", updateBook); //ruta no testeada
