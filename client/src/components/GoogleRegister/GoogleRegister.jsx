@@ -1,6 +1,7 @@
 import { gapi } from "gapi-script";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { useEffect, useState } from "react";
+import Api from "../../Global";
 
 export default function GoogleRegister() {
   const clientID = process.env.REACT_APP_CLIENT_ID;
@@ -25,7 +26,7 @@ export default function GoogleRegister() {
       password: "password",
       // image: res.profileObj.imageUrl,
     };
-    const response = await fetch("http://localhost:7415/auth/signup", {
+    const response = await fetch(Api.Url + "/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),

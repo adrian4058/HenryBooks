@@ -5,14 +5,15 @@ import { Link } from "react-router-dom";
 import "./Register.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Cookies from "universal-cookie";
-import { useState } from 'react'
-import { useDispatch,useSelector } from 'react-redux'
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Api from "../../Global";
 
 const Register = () => {
   const cookie = new Cookies();
   const { loginWithPopup, logout, isAuthenticated } = useAuth0();
-  let dispatch=useDispatch();
-  let token=useSelector(state=>state.token)
+  let dispatch = useDispatch();
+  let token = useSelector((state) => state.token);
   const {
     handleSubmit,
     touched,
@@ -58,7 +59,7 @@ const Register = () => {
       console.log(values);
       console.log(data);
       try {
-        const response = await fetch("http://localhost:7415/auth/signup", {
+        const response = await fetch(Api.Url + "/auth/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
