@@ -5,8 +5,13 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Cookies from "universal-cookie";
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
 
 const Login = () => {
+  let dispatch=useDispatch();
+  let token=useSelector(state=>state.token)
   const cookie = new Cookies();
   const { loginWithPopup, logout, isAuthenticated } = useAuth0();
   const { handleSubmit, getFieldProps, errors, touched } = useFormik({

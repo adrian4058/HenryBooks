@@ -19,6 +19,7 @@ export const ADD_REVIEW = 'ADD_REVIEW'
 export const EMPTY_MESSAGE = 'EMPTY_MESSAGE'
 export const GET_ALL_BOOKS_DASHBOARD = 'GET_ALL_BOOKS_DASHBOARD'
 export const PUT_TOKEN ='PUT_TOKEN'
+export const DELETE_TOKEN='DELETE_TOKEN'
 
 const url = 'http://localhost:7415'
 
@@ -143,4 +144,8 @@ export const addReview = objeto => (dispatch) => {
 
 export const putToken= (token)=>{
     return {type:PUT_TOKEN,payload:token}
+}
+
+export const deletToken=()=>{
+    return {type:DELETE_TOKEN}
 }

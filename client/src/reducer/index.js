@@ -1,5 +1,5 @@
 import {
-    PUT_TOKEN,GET_ALL_BOOKS, GET_BOOK_DETAIL, CLEAN_DETAIL, FILTER_BY_PRICE, FILTER_BY_ALPHABET, FILTER_BY_CATEGORY, SEARCH_BY_AUTHOR, SEARCH_BY_NAME, ADD_SHOPPING_CART,
+    DELETE_TOKEN,PUT_TOKEN,GET_ALL_BOOKS, GET_BOOK_DETAIL, CLEAN_DETAIL, FILTER_BY_PRICE, FILTER_BY_ALPHABET, FILTER_BY_CATEGORY, SEARCH_BY_AUTHOR, SEARCH_BY_NAME, ADD_SHOPPING_CART,
     REMOVE_SHOPPING_CART, ADD_NEW_BOOK, DELETE_BOOK, UPDATE_BOOK, FILTER_BY_EDITORIAL, GET_ALL_AUTHORS, FILTER_BY_AUTHOR, EMPTY_MESSAGE, GET_ALL_BOOKS_DASHBOARD, putToken
 } from "../actions"
 
@@ -160,6 +160,15 @@ function rootReducer(state = initialState, action) {
             }
             
         case PUT_TOKEN:
+            return{
+                ...state,
+                token:action.payload
+            }
+        case DELETE_TOKEN:
+            return{
+                ...state,
+                token:''
+            }
             
         default:
             return state;

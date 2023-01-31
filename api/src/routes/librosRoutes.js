@@ -7,10 +7,10 @@ const {
   findBook,
   ordenAlfabetico,
 } = require("../controllers/libroController");
-const {verifyToken} =require('../middleware')
+const {verifyToken,isAdmin} =require('../middleware')
 
 
-router.post("/",verifyToken, createBook);
+router.post("/",[verifyToken,isAdmin], createBook);
 router.get("/", allBooks);
 router.get("/:id", findBook); //ruta no testeada
 router.put("/:id", updateBook); //ruta no testeada
