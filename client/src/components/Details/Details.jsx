@@ -86,8 +86,13 @@ function Details(props) {
                 <h4 className="book-info__price">${details.price}</h4>
               )}
             </div>
+<<<<<<< HEAD
             <div className="book-btn__buy">
               <button className="book-btn__buy"onClick={() => sendMp()}>
+=======
+            <div className="btn-pay">
+              <button onClick={() => sendMp()}>
+>>>>>>> a79373c0f38368d6d72eeadf3fdae33ea0fde03c
                 Pay <i className="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
@@ -99,7 +104,11 @@ function Details(props) {
           </svg>
         )}
       </div>
+<<<<<<< HEAD
       <Reviews LibroId={id} />
+=======
+      <Reviews LibroId={id} commentsReview={details.Resenas} />
+>>>>>>> a79373c0f38368d6d72eeadf3fdae33ea0fde03c
       <Footer />
     </div>
   );
