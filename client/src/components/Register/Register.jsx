@@ -6,7 +6,7 @@ import "./Register.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Cookies from "universal-cookie";
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 
 const Register = () => {
   const cookie = new Cookies();
