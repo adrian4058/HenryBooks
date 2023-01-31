@@ -81,7 +81,17 @@ async function createBook(req, res) {
     });
   }
 }
-
+async function deleteBook(req,res){
+  const { id } = req.body;
+  try{
+    let cambiado=await Libro.update({estado:'desactivado'},{
+        where:{id}
+    })
+    res.send(`el libro con id ${id} fue eliminado con exito`)
+}catch(e){
+    res.status(404).send(e)
+}    
+}
 async function updateBook(req, res) {
   const { id } = req.params;
   const { name, autor, editorial, reviews, image, genero, stock, price, estado } =
@@ -134,4 +144,5 @@ module.exports = {
   updateBook,
   findBook,
   ordenAlfabetico,
+  deleteBook
 };

@@ -32,15 +32,13 @@ async function crearAutor (req,res){
 async function eliminarAutor (req,res){
     let {id}=req.body
     try{
-        let borrar=await Autor.destroy({
-            where:{
-                id
-            }
+        let cambiado=await Autor.update({estado:'desactivado'},{
+            where:{id}
         })
-        res.send(`el autor con id ${id} fue borrado correctamente`);
+        res.send(`el autor con id ${id} fue modificado con exito`)
     }catch(e){
         res.status(404).send(e)
-    }
+    }    
 }
 
 //EDITAR AUTOR POR ID

@@ -14,6 +14,11 @@ module.exports= sequelize=>{
         calificacion:{
             type:DataTypes.INTEGER,
             allownull:false,
+        },
+        estado:{
+            type:DataTypes.ENUM('activo','desactivado'),
+            allownull:false,
+            defaultValue:'activo'
         }
     })
 }

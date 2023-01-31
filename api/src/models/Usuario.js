@@ -25,6 +25,18 @@ module.exports= sequelize=>{
             type:DataTypes.ENUM('activo','desactivado'),
             allownull:false,
             defaultValue:'activo'
+        },
+        direccion:{
+            type:DataTypes.STRING,
+        },
+        pais:{
+            type:DataTypes.STRING,
+        },
+        ciudad:{
+            type:DataTypes.STRING
+        },
+        img:{
+            type:DataTypes.STRING
         }
     })
 }

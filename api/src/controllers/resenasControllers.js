@@ -51,5 +51,6 @@ async function resenasPorIDl(req, res) {
     res.status(404).send("falta de parametros");
   }
 }
+//eliminar una reseña
 
 module.exports = { crearResena, resenasPorIDl };
