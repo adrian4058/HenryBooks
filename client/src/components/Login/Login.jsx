@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Cookies from "universal-cookie";
-import { useState } from 'react'
-import { useDispatch,useSelector } from 'react-redux'
-
-
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Api from "../../Global";
+import * as actions from '../../actions/index'
 
 const Login = () => {
-  let dispatch=useDispatch();
-  let token=useSelector(state=>state.token)
+  let dispatch = useDispatch();
+  let token = useSelector((state) => state.token);
   const cookie = new Cookies();
   const { loginWithPopup, logout, isAuthenticated } = useAuth0();
   const { handleSubmit, getFieldProps, errors, touched } = useFormik({
@@ -37,17 +37,19 @@ const Login = () => {
       };
       console.log(values);
       console.log(data);
-      const response = await fetch("http://localhost:7415/auth/signin", {
+      const response = await fetch(Api.Url + "/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       const parseRes = await response.json();
       localStorage.setItem("token", parseRes.token);
-      console.log(parseRes);
+      console.log("trae respuesta",parseRes);
+      dispatch(actions.putToken(parseRes.token))
       cookie.set("email", data.email, { path: "/" });
       alert(`welcome ${data.email.split("@")[0]}`);
-      window.location.href = "./home";
+      // window.location.href = "./home";
+      
     },
   });
 
@@ -84,8 +86,7 @@ const Login = () => {
                   <span className="error">{errors.password}</span>
                 )}
               </div>
-              <button type="submit" className="botsub">
-                Log In
+              <button type="submit" className="botsub">Log In
               </button>
               <p>Don't have any account?</p>
               <Link to="/register" className="link">

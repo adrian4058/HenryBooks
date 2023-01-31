@@ -47,7 +47,6 @@ function Details(props) {
         })
 
         .catch((error) => console.log(error));
-      console.log(respuesta);
       window.location.href = respuesta;
       return respuesta;
     } catch (error) {

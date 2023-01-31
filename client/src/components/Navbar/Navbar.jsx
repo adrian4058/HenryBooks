@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./Navbar.css";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from '../../actions/index'
 
 function NavBar() {
+  let dispatch = useDispatch();
+  let token = useSelector((state) => state.token);
   const { logout, isAuthenticated, user } = useAuth0();
   const cookies = new Cookies();
 
@@ -73,9 +78,10 @@ function NavBar() {
               <button
                 className="navbar-btn__option"
                 onClick={() => {
-                  if (isAuthenticated)
+                  if (isAuthenticated){
+                    dispatch(actions.deletToken)
                     logout({ returnTo: window.location.origin });
-                  else {
+                  }else {
                     cookies.remove("email", { path: "/" });
                     window.location.href = "./home";
                   }
@@ -84,9 +90,11 @@ function NavBar() {
                 Logout
               </button>
               {cookies.get("email") ? (
+                <Link to ='/profile'>
                 <label href="" className="user-name">
-                  {"email: " + cookies.get("email")}
+                  {"User: " + cookies.get("email")}
                 </label>
+                </Link>
               ) : null}
             </div>
           ) : (
