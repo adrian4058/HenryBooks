@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "./Navbar.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from '../../actions/index'
+import * as actions from "../../actions/index";
 
 function NavBar() {
   let dispatch = useDispatch();
@@ -78,10 +78,10 @@ function NavBar() {
               <button
                 className="navbar-btn__option"
                 onClick={() => {
-                  if (isAuthenticated){
-                    dispatch(actions.deletToken)
+                  if (isAuthenticated) {
+                    dispatch(actions.deletToken);
                     logout({ returnTo: window.location.origin });
-                  }else {
+                  } else {
                     cookies.remove("email", { path: "/" });
                     window.location.href = "./home";
                   }
@@ -90,10 +90,10 @@ function NavBar() {
                 Logout
               </button>
               {cookies.get("email") ? (
-                <a  href="/profile/edit">
-                <label className="user-name">
-                  {"User: " + cookies.get("email")}
-                </label>
+                <a href="/profile/edit">
+                  <label className="user-name">
+                    {"User: " + cookies.get("email")}
+                  </label>
                 </a>
               ) : null}
             </div>

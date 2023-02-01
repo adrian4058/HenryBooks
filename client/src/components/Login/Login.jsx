@@ -8,7 +8,8 @@ import Cookies from "universal-cookie";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Api from "../../Global";
-import * as actions from '../../actions/index'
+import * as actions from "../../actions/index";
+import Auth0 from "../Auth0/Auth0";
 
 const Login = () => {
   let dispatch = useDispatch();
@@ -44,13 +45,11 @@ const Login = () => {
       });
       const parseRes = await response.json();
       localStorage.setItem("token", parseRes.token);
-      console.log("trae respuesta",parseRes);
-      dispatch(actions.putToken(parseRes.token))
+      console.log("trae respuesta", parseRes);
+      dispatch(actions.putToken(parseRes.token));
       cookie.set("email", data.email, { path: "/" });
       alert(`welcome ${data.email.split("@")[0]}`);
       // window.location.href = "./home";
-
-      
     },
   });
 
@@ -87,9 +86,10 @@ const Login = () => {
                   <span className="error">{errors.password}</span>
                 )}
               </div>
-              <Link to='/home'>
-              <button type="submit" className="botsub">Log In
-              </button>
+              <Link to="/home">
+                <button type="submit" className="botsub">
+                  Log In
+                </button>
               </Link>
               <p>Don't have any account?</p>
               <Link to="/register" className="link">
@@ -97,6 +97,7 @@ const Login = () => {
                 Register here!{" "}
               </Link>
               <br />
+              <Auth0 />
               <p>Or</p>
               {/* <LoginGoogle /> */}
               <br />

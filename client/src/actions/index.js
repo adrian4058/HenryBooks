@@ -27,6 +27,9 @@ export const REMOVE_SHOPPING_CART = "REMOVE_SHOPPING_CART";
 export const ADD_REVIEW = "ADD_REVIEW";
 export const PUT_TOKEN = "PUT_TOKEN";
 export const DELETE_TOKEN = "DELETE_TOKEN";
+// AUTH
+export const ASYNC_REGISTER_AUTH0 = "ASYNC_REGISTER_AUTH0";
+export const ASYNC_LOGIN_AUTH0 = "ASYNC_LOGIN_AUTH0";
 
 const url = Api.Url;
 
@@ -34,7 +37,7 @@ const url = Api.Url;
 // HOME
 // Obtener Libros HOME
 export const getAllBooks = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       fetch(url + "/book")
         .then((data) => data.json())
@@ -76,7 +79,7 @@ export const filterAll = (category, editorial, author) => {
 // DASHBOARD
 // Obtener Libros DASHBOARD
 export const getAllBooksDashboard = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       fetch(url + "/book")
         .then((data) => data.json())
@@ -91,7 +94,7 @@ export const getAllBooksDashboard = () => {
 
 // Crear nuevo libro
 export const addNewBook = (payload) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       const response = await fetch(url + "/book", {
         method: "POST",
@@ -157,7 +160,7 @@ export const filterAllDash = (category, editorial, author, status) => {
       category,
       editorial,
       author,
-      status
+      status,
     },
   };
 };
@@ -170,7 +173,7 @@ export const getBookDetail = (id) => (dispatch) =>
     .then((data) => data.json())
     .then((data) => dispatch({ type: GET_BOOK_DETAIL, payload: data }));
 
-// Limpiar detalle de libros    
+// Limpiar detalle de libros
 export const cleanDetail = () => {
   return (dispatch) => {
     dispatch({
@@ -207,4 +210,60 @@ export const putToken = (token) => {
 
 export const deletToken = () => {
   return { type: DELETE_TOKEN };
+};
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+// AUTH0
+// Postear usuario desde Auth0
+
+export const asyncRegisterAuth0 = (body) => async (dispatch) => {
+  console.log(body);
+  try {
+    const respuesta = await axios
+      .post(url + "/auth/signin", body)
+      .then(localStorage.setItem("token", respuesta.body.token))
+
+      .then((response) =>
+        dispatch({ type: ASYNC_REGISTER_AUTH0, payload: response.data.token })
+      );
+    // const respuesta = await fetch(
+    //   (url + "/auth/signin",
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify(body),
+    //     headers: { "Content-Type": "application/json" },
+    //   })
+    // )
+    // .then(
+    //   response.body
+    //     ? localStorage.setItem("token", response.body.token)
+    //     : dispatch(asyncLoginAuth0(body))
+    // )
+    // .then((response) =>
+    //   dispatch({ type: ASYNC_REGISTER_AUTH0, payload: response.data.token })
+    // );
+    // .then(console.log(respuesta));
+    console.log("success");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const asyncLoginAuth0 = (body) => async (dispatch) => {
+  try {
+    const response = await fetch(
+      (url + "/auth/signin",
+      {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" },
+      })
+    )
+      .then(localStorage.setItem("token", response.data.token))
+      .then((body) =>
+        dispatch({ type: ASYNC_LOGIN_AUTH0, payload: body.data.token })
+      );
+  } catch (error) {
+    console.log(error);
+  }
 };
