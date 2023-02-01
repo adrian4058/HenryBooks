@@ -99,17 +99,7 @@ async function updateBook(req, res) {
   try {
     let book = await Libro.findByPk(id);
     //aca va lo de los autores
-    let updated = await book.update({
-      name: name,
-      autor: autor,
-      editorial: editorial,
-      reviews: reviews,
-      image: image,
-      genero: genero,
-      stock: stock,
-      price: price,
-      estado: estado,
-    });
+    let updated = await book.update(req.body,{where:{id}});
     res.status(200).json({ message: "Libro Actualizado", updated });
   } catch (error) {
     res
