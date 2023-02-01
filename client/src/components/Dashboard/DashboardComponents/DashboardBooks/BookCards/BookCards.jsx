@@ -3,13 +3,14 @@ import { getAllBooksDashboard } from "../../../../../actions";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewBook, emptyMessage } from "../../../../../actions";
+import React from "react";
 import Modal from "react-modal";
 import "./BookCards.css";
 
 const BookCards = () => {
 
   const dispatch = useDispatch();
-  const allBooks = useSelector(state => state.allBooksDashboard)
+  const allBooks = useSelector(state => state.booksDashboard)
 
   useEffect(() => {
     dispatch(getAllBooksDashboard())
@@ -36,6 +37,7 @@ const BookCards = () => {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           ariaHideApp={false}
+          className="modal-form"
         >
           <FormCreateBook />
         </Modal>
@@ -173,7 +175,7 @@ const FormCreateBook = () => {
           onChange={handleForm}
         />
       </div>
-      <input type="submit" value="Crear Nuevo Libro" />
+      <input className="input-btn-dash-form" type="submit" value="Crear Nuevo Libro" />
       {
         message.length ? <div>Book Created Succesfully</div> : null
       }

@@ -3,7 +3,6 @@ import Card from "../Card/Card";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import SearchBar from "../SearchBar/SearchBar";
-import books from "../../utils/books.js";
 import Paginate from "../Paginate/Paginate"
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBooks, filterByAlphabet, filterByPrice, filterAll } from '../../actions/index'
@@ -107,10 +106,79 @@ function Home(props) {
       <SliderProducts />
 
       {
-        !allBooks?.length ?
-          <svg viewBox="25 25 50 50">
-            <circle r="20" cy="50" cx="50"></circle>
-          </svg> :
+        !books?.length ?
+          <div className="home-books">
+            <div className="home-filters">
+              <div className="home-filter__content">
+                <button className="filter-reset__btn" onClick={() => handleReset()}>Reset Filter</button>
+              </div>
+
+              <div className="home-searchbar">
+                <SearchBar />
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Gender</div>
+                <div className="home-filter">
+                  <select ref={categorySelect} onChange={(e) => setCategoryValue(e.target.value) & handleFilterChange(e.target.value, editorialValue, authorValue)}>
+                    <option defaultValue="All" value="All">All</option>
+                    {uniqueGender?.map((book) => (
+                      <option key={book} value={book}>{book}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Author</div>
+                <div className="home-filter">
+                  <select ref={authorsSelect} onChange={(e) => setAuthorValue(e.target.value) & handleFilterChange(categoryValue, editorialValue, e.target.value)}>
+                    <option defaultValue="All" value="All">All</option>
+                    {uniqueAuthor?.map((book) => (
+                      <option key={book} value={book}>{book}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Editorial</div>
+                <div className="home-filter">
+                  <select ref={editorialSelect} onChange={(e) => setEditorialValue(e.target.value) & handleFilterChange(categoryValue, e.target.value, authorValue)}>
+                    <option defaultValue="All" value="All">All</option>
+                    {uniqueEditorial?.map((book) => (
+                      <option key={book} value={book}>{book}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Alphabet</div>
+                <div className="home-filter">
+                  <select ref={alphabetSelect} onChange={(e) => handlerOrderAlphabet(e)}>
+                    <option value="All">All</option>
+                    <option value="ASC">A-Z</option>
+                    <option value="DESC">Z-A</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Price</div>
+                <div className="home-filter">
+                  <select ref={priceSelect} onChange={(e) => handlerOrderPrice(e)}>
+                    <option value="All">All</option>
+                    <option value="ASC_PRICE">Price (smaller-higher)</option>
+                    <option value="DESC_PRICE">Price (higher-smaller)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <h1>No hay libros con estos filtros</h1>
+          </div>
+          :
           <div className="home-books">
             <div className="home-filters">
               <div className="home-filter__content">

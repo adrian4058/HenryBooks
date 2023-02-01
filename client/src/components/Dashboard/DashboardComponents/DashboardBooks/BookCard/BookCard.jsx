@@ -78,6 +78,7 @@ const BookCard = (props) => {
             isOpen={modalIsOpen}
             onRequestClose={closeEditModal}
             ariaHideApp={false}
+            className="modal-form"
           >
             <form className="BC-CreateBooks" onSubmit={handleSubmitUpdate}>
               <div className="BC-CreateBooks-input">
@@ -152,7 +153,7 @@ const BookCard = (props) => {
                   onChange={handleUpdateForm}
                 />
               </div>
-              <input type="submit" value="Edit Book" />
+              <input className="input-btn-dash-form" type="submit" value="Edit Book" />
               {
                 message.length ? <div>Book Edited Succesfully</div> : null
               }
