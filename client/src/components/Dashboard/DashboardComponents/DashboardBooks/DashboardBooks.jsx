@@ -1,7 +1,7 @@
 import "./DashboardBooks.css";
 import Sidebar from "../Sidebar/Sidebar";
 import BookCard from "./BookCards/BookCards";
-import DashboardFilters from "./DashboardFilters/DashboardFilters";
+import DashboardFilters from "./DashboardFilters/DashboardFilters.jsx";
 
 const DashboardBooks = () => {
   return (
