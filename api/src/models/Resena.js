@@ -19,6 +19,11 @@ module.exports= sequelize=>{
             type:DataTypes.ENUM('activo','desactivado'),
             allownull:false,
             defaultValue:'activo'
+        },
+        denuncias:{
+            type:DataTypes.INTEGER,
+            allownull:false,
+            defaultValue:0
         }
-    })
+    });
 }

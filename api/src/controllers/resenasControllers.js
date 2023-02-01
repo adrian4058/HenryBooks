@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Resena } = require("../db");
 
 // crear una reseña
@@ -51,6 +52,46 @@ async function resenasPorIDl(req, res) {
     res.status(404).send("falta de parametros");
   }
 }
-//eliminar una reseña
 
-module.exports = { crearResena, resenasPorIDl };
+// trae cuantas denuncias tiene por id
+async function denunciasId(req, res, next) {
+  let { id } = req.body;
+  try {
+    let resena = await Resena.findByPk(id);
+    if(!resena)return res.status(404).send('el id no existe')
+    res.json({denuncias:resena.denuncias});
+  } catch (e) {
+    res.status(404).send(e);
+  }
+}
+
+//aumenta las denuncias por id de resena
+async function aumentoPorId(req, res, next) {
+  let { id } = req.body;
+  try {
+    let resena = await Resena.findByPk(id);
+    if(!resena)return res.status(404).send('el id no existe')
+    let suma=resena.denuncias+1
+    await Resena.update({denuncias:suma},{where:{id}})
+    res.json({msj:`las denuncias aumentaron ahora el nuevo valor es ${suma}`})
+  } catch (e) {
+    res.status(404).send(e);
+  }
+}
+
+//trae las reseñas que tienen denuncias 
+async function resenasDenuncias(req,res,next){
+  try{
+    let resenas=await Resena.findAll({
+        where:{
+          denuncias:{
+            [Op.gt]: 0
+          }
+        }
+      })
+    res.send(resenas)
+  }catch(e){
+    res.status(404).send(e)
+  }
+}
+module.exports = { crearResena, resenasPorIDl,denunciasId,aumentoPorId,resenasDenuncias };
