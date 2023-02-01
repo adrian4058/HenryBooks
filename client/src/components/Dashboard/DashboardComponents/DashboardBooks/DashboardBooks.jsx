@@ -1,6 +1,7 @@
 import "./DashboardBooks.css";
 import Sidebar from "../Sidebar/Sidebar";
 import BookCard from "./BookCards/BookCards";
+import DashboardFilters from "./DashboardFilters/DashboardFilters";
 
 const DashboardBooks = () => {
   return (
@@ -8,6 +9,7 @@ const DashboardBooks = () => {
       <div className="DashboardBooksGlass">
         <Sidebar />
         <BookCard />
+        <DashboardFilters />
       </div>
     </div>
   )

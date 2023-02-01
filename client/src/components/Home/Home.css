@@ -42,6 +42,11 @@ select::-ms-expand {
   width: 300px;
 }
 
+.center-loading {
+  display: flex;
+  justify-content: center;
+}
+
 .svg-home {
   width: 3.25em;
   transform-origin: center;
@@ -210,13 +215,11 @@ select::-ms-expand {
   width: 0;
   top: 0;
   left: 0;
-  background: linear-gradient(
-    135deg,
-    #a99985 0%,
-    #a99985 50%,
-    rgba(112, 121, 140, 1) 50%,
-    rgba(112, 121, 140, 1) 60%
-  );
+  background: linear-gradient(135deg,
+      #a99985 0%,
+      #a99985 50%,
+      rgba(112, 121, 140, 1) 50%,
+      rgba(112, 121, 140, 1) 60%);
   border-radius: 0 0 0.5em 0;
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
   transition: 0.3s;

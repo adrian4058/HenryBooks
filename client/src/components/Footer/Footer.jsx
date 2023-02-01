@@ -38,8 +38,8 @@ function Footer() {
             <Link to='/home'>
               <p className="navegationText">Home</p>
             </Link>
-            <Link to='/assistant'>
-              <p className="navegationText">FAQs</p>
+            <Link to='/team'>
+              <p className="navegationText">Team</p>
             </Link>
             <Link to='/about-us'>
               <p className="navegationText">About us</p>

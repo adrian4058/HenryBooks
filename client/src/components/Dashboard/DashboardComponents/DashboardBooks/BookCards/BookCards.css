@@ -5,14 +5,9 @@
 .Dash-BookCards {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  width: 100%;
+  height: 80vh;
   overflow-y: scroll;
-  height: 800px;
-}
-
-.Dash-BookCards-Container {
-  display: flex;
-
 }
 
 .BookCards-btn {
@@ -41,6 +36,7 @@
 }
 
 .create-btn {
+  color: black;
   border-radius: 0 0 1em 1em;
   border: none;
   background: var(--yellow);
@@ -52,4 +48,40 @@
 .create-btn:hover {
   cursor: pointer;
   background: var(--activeItem);
+}
+
+.modal-form {
+  font-family: 'Courier New', Courier, monospace;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: max-content;
+  width: max-content;
+  background: linear-gradient(106.37deg,
+      #ffe1bc 29.63%,
+      #ffcfd1 51.55%,
+      #f3c6f1 90.85%);
+  padding: 1rem;
+  border-radius: .5em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.Input-CreateBooks {
+  outline: none;
+}
+
+.input-btn-dash-form {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  border-radius: .5em;
+  border: none;
+  padding: .5rem;
+}
+
+.input-btn-dash-form:hover {
+  cursor: pointer;
+  background: var(--purple);
 }
