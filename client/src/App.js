@@ -9,7 +9,7 @@ import DashboardRoutes from "./components/Dashboard/DashboardRoutes/DashboardRou
 import DashboardBooks from "./components/Dashboard/DashboardComponents/DashboardBooks/DashboardBooks";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
-import ProfileEdit from "./components/ProfileEdit/ProfileEdit"
+import ProfileEdit from "./components/ProfileEdit/ProfileEdit";
 import userProfile from "./components/userProfile/userProfile";
 import DefaultPage from "./components/DefaultPage/DefaultPage";
 
