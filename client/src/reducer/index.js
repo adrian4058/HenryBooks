@@ -1,5 +1,5 @@
 import {
-    PUT_TOKEN, DELETE_TOKEN, GET_ALL_BOOKS, GET_BOOK_DETAIL, CLEAN_DETAIL, FILTER_BY_PRICE, FILTER_BY_ALPHABET, SEARCH_BY_NAME, ADD_SHOPPING_CART, REMOVE_SHOPPING_CART, ADD_NEW_BOOK, UPDATE_BOOK, GET_ALL_AUTHORS, EMPTY_MESSAGE, GET_ALL_BOOKS_DASHBOARD, FILTER_ALL, FILTER_BY_ALPHABET_DASH, FILTER_BY_PRICE_DASH, SEARCH_BY_NAME_DASH, FILTER_ALL_DASH
+    PUT_TOKEN, DELETE_TOKEN, GET_ALL_BOOKS, GET_BOOK_DETAIL, CLEAN_DETAIL, FILTER_BY_PRICE, FILTER_BY_ALPHABET, SEARCH_BY_NAME, ADD_SHOPPING_CART, REMOVE_SHOPPING_CART, ADD_NEW_BOOK, UPDATE_BOOK, GET_ALL_AUTHORS, EMPTY_MESSAGE, GET_ALL_BOOKS_DASHBOARD, FILTER_ALL, FILTER_BY_ALPHABET_DASH, FILTER_BY_PRICE_DASH, SEARCH_BY_NAME_DASH, FILTER_ALL_DASH, GET_ALL_USERS,GET_USER_BY_ID,EDIT_USER
 } from "../actions"
 
 
@@ -11,6 +11,8 @@ const initialState = {
     allAuthors: [],
     author: [],
     detail: [],
+    user: [],
+    allUsers: [],
     message: "",
     token: ''
 };
@@ -107,6 +109,27 @@ function rootReducer(state = initialState, action) {
                 default:
                     return state;
             }
+
+
+        // Traer todos los usuarios
+        case GET_ALL_USERS: 
+            return {
+                ...state,
+                allUsers: action.payload.data //fijar si anda sin data
+            }
+        
+        case GET_USER_BY_ID:
+            return {
+                ...state,
+                user: action.payload
+            }
+
+        case EDIT_USER:
+            return {
+                ...state,
+                user: action.payload
+            }
+        
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // BOOKS DETAILS
