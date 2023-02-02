@@ -1,0 +1,9 @@
+.DefaultPage {
+  position: relative;
+  background-color: #f5f1ed;
+  min-height: 100vh;
+}
+
+.DefaultPage .Default-msg {
+  padding: 2rem;
+}
