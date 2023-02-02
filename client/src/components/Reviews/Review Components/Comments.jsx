@@ -6,7 +6,7 @@ function Comments({commentsReview}){
     return(
     <div className="comments">
         {commentsReview? <h2>Comments:</h2>: null}
-        {!!commentsReview && commentsReview.map(elem=> <Comment calificacion={elem.calificacion} titulo={elem.titulo} descripcion={elem.descripcion}/>)}
+        {!!commentsReview && commentsReview.map(elem=> <Comment key={elem.id} id={elem.id} calificacion={elem.calificacion} titulo={elem.titulo} descripcion={elem.descripcion}/>)}
         {!commentsReview && <h3>No comments</h3>}
         
        

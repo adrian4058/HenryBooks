@@ -27,6 +27,7 @@ export const REMOVE_SHOPPING_CART = "REMOVE_SHOPPING_CART";
 export const ADD_REVIEW = "ADD_REVIEW";
 export const PUT_TOKEN = "PUT_TOKEN";
 export const DELETE_TOKEN = "DELETE_TOKEN";
+export const REPORT_REVIEW = "REPORT_REVIEW";
 // AUTH
 export const ASYNC_REGISTER_AUTH0 = "ASYNC_REGISTER_AUTH0";
 export const ASYNC_LOGIN_AUTH0 = "ASYNC_LOGIN_AUTH0";
@@ -194,6 +195,18 @@ export const addReview = (objeto) => (dispatch) => {
     method: "POST",
     body: JSON.stringify(objeto),
   }).then((data) => dispatch({ type: ADD_REVIEW }));
+};
+//
+// Agregar denuncia Review
+export const reportReview = (id) => (dispatch) => {
+  fetch(url + "/resena" + "/denuncias", {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    method: "PUT",
+    body: JSON.stringify(id),
+  }).then((data) => dispatch({ type: REPORT_REVIEW }));
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
