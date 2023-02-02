@@ -11,7 +11,7 @@ function Auth0() {
     if (user) {
       dispatch(
         asyncRegisterAuth0({
-          //nombre: user.given_name,
+          nombre: user.given_name,
           email: user.email,
           password: "12345asd",
           //image: user.picture,

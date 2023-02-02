@@ -106,12 +106,12 @@ const Login = () => {
             </div>
           </div>
 
-          <Link to="/home">
-            <button type="submit" className="Login-login__btn">
-              <AiOutlineLogin />
-              Log In
-            </button>
-          </Link>
+          {/* <Link to="/home"> */}
+          <button type="submit" className="Login-login__btn">
+            <AiOutlineLogin />
+            Log In
+          </button>
+          {/* </Link> */}
         </div>
 
         <p className="Login-noaccount">
@@ -121,7 +121,7 @@ const Login = () => {
           </Link>
         </p>
         <p>Or</p>
-
+        <Auth0 />
         {/* <LoginGoogle /> */}
 
         <div className="Login-google">

@@ -1,5 +1,6 @@
 import axios from "axios";
 import Api from "../Global";
+import loginUser from "../reducer/index";
 // HOME
 export const GET_ALL_BOOKS = "GET_ALL_BOOKS";
 export const FILTER_BY_ALPHABET = "FILTER_BY_ALPHABET";
@@ -231,52 +232,55 @@ export const deletToken = () => {
 
 export const asyncRegisterAuth0 = (body) => async (dispatch) => {
   console.log(body);
-  try {
-    const respuesta = await axios
-      .post(url + "/auth/signin", body)
-      .then(localStorage.setItem("token", respuesta.body.token))
+  const respuesta = await axios.post(url + "/auth/signin", body).data;
+  console.log(respuesta.token);
 
-      .then((response) =>
-        dispatch({ type: ASYNC_REGISTER_AUTH0, payload: response.data.token })
-      );
-    // const respuesta = await fetch(
-    //   (url + "/auth/signin",
-    //   {
-    //     method: "POST",
-    //     body: JSON.stringify(body),
-    //     headers: { "Content-Type": "application/json" },
-    //   })
-    // )
-    // .then(
-    //   response.body
-    //     ? localStorage.setItem("token", response.body.token)
-    //     : dispatch(asyncLoginAuth0(body))
-    // )
-    // .then((response) =>
-    //   dispatch({ type: ASYNC_REGISTER_AUTH0, payload: response.data.token })
-    // );
-    // .then(console.log(respuesta));
-    console.log("success");
-  } catch (error) {
-    console.log(error.message);
-  }
+  localStorage.setItem("token", respuesta.token);
+  dispatch(loginUser(respuesta.data));
+
+  dispatch({ type: ASYNC_REGISTER_AUTH0, payload: respuesta.token });
+  // .then(
+  //   respuesta.data
+  //     ? localStorage.setItem("token", respuesta.data.token)
+  //     : dispatch(asyncLoginAuth0(body)).then(
+  //         respuesta.data
+  //           ? dispatch(loginUser(respuesta.data))
+  //           : dispatch(asyncLoginAuth0(body))
+  //       )
+  //console.log(respuesta)
+  //)
+  // .then((response) =>
+  //   dispatch({ type: ASYNC_REGISTER_AUTH0, payload: response.data.token })
+  // );
+  // const respuesta = await fetch(
+  //   (url + "/auth/signin",
+  //   {
+  //     method: "POST",
+  //     body: JSON.stringify(body),
+  //     headers: { "Content-Type": "application/json" },
+  //   })
+  // )
+  // .then(
+  //   response.body
+  //     ? localStorage.setItem("token", response.body.token)
+  //     : dispatch(asyncLoginAuth0(body))
+  // )
+  // .then((response) =>
+  //   dispatch({ type: ASYNC_REGISTER_AUTH0, payload: response.data.token })
+  // );
+  // .then(console.log(respuesta));
 };
 
-export const asyncLoginAuth0 = (body) => async (dispatch) => {
-  try {
-    const response = await fetch(
-      (url + "/auth/signin",
-      {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers: { "Content-Type": "application/json" },
-      })
-    )
-      .then(localStorage.setItem("token", response.data.token))
-      .then((body) =>
-        dispatch({ type: ASYNC_LOGIN_AUTH0, payload: body.data.token })
-      );
-  } catch (error) {
-    console.log(error);
-  }
-};
+//export const asyncLoginAuth0 = (body) => async (dispatch) => {
+// try {
+//   const respuesta = await axios
+//     .post((url + "/auth/signin", body.email))
+//     .then(localStorage.setItem("token", respuesta.data.token))
+//     .then((response) =>
+//       dispatch({ type: ASYNC_LOGIN_AUTH0, payload: response.data.token })
+//     );
+// } catch (error) {
+//   console.log(error);
+// }
+//console.log("llegue");
+//};
