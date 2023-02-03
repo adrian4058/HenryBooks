@@ -353,10 +353,10 @@ function rootReducer(state = initialState, action) {
     case GET_ALL_USERS: 
         return {
             ...state,
-            allUsers: action.payload.data //fijar si anda sin data
+            allUsers: action.payload.data //fijar 
         }
     
-    case GET_USER_BY_ID:
+    case GET_USER:
         return {
             ...state,
             user: action.payload
