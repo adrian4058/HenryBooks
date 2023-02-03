@@ -15,11 +15,12 @@ const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);
 
   const addToCart = (id) => {
-    
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
   const delFromCart = () => {};
-  const clearCart = () => {};
+  const clearCart = () => {
+    dispatch({ type: TYPES.CLEAR_CART });
+  };
 
   return (
     <div>

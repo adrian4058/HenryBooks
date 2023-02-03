@@ -62,7 +62,7 @@ function rootReducer(state = initialState, action) {
       break;
 
     case TYPES.CLEAR_CART:
-      break;
+      return initialState
 
     // HOME
     // Obtener Libros HOME
