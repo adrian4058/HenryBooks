@@ -24,6 +24,7 @@ import {
 
 const initialState = {
   books: [],
+  cart: [],
   allBooks: [],
   booksDashboard: [],
   allBooksDashboard: [],
