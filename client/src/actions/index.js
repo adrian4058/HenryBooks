@@ -241,7 +241,7 @@ export const deletToken = () => {
 //USUARIOS 
   export const getAllUsers = () => (dispatch) => {
     fetch(url + "/users")
-      .then((data) => data.json())
+      // .then((data) => data.json())
       .then((data) => dispatch({
         type: GET_ALL_USERS,
         payload: data
@@ -249,19 +249,14 @@ export const deletToken = () => {
   }
 
   export const getUser = (id) => async (dispatch) => {
-    try {
-      const usuarios = await axios.get(url + `/users/${id}`, {
-        headers: { token: localStorage.token },
-      });
-  
+    const usuario = await axios.get(url + `/users/${id}`)
       return dispatch({
         type: GET_USER,
-        payload: usuarios.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+        payload: usuario.data
+      })
+  }
+   
+      
 
   export const updateUser = (id, data) => async (dispatch) => {
     try {
