@@ -36,7 +36,8 @@ module.exports= sequelize=>{
             type:DataTypes.STRING
         },
         img:{
-            type:DataTypes.STRING
+            type:DataTypes.STRING,
+            defaultValue:"https://thumbs.dreamstime.com/z/icono-del-usuario-en-estilo-plano-de-moda-aislado-fondo-gris-s%C3%ADmbolo-123663211.jpg"
         }
     })
 }

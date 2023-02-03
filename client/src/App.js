@@ -12,6 +12,7 @@ import Login from "./components/Login/Login";
 import ProfileEdit from "./components/ProfileEdit/ProfileEdit";
 import userProfile from "./components/userProfile/userProfile";
 import DefaultPage from "./components/DefaultPage/DefaultPage";
+import { RegisterDos } from "./components/Register2/RegisterDos";
 
 function App() {
   return (
@@ -29,7 +30,9 @@ function App() {
           <Route path="/books/:id" component={Details} />
           <Route exact path="/profile/edit" component={ProfileEdit} />
           <Route exact path="/profile" component={userProfile} />
+          <Route exact path="/registerdos" component={RegisterDos} />
           <Route component={DefaultPage} />
+          
         </Switch>
       </div>
     </BrowserRouter>

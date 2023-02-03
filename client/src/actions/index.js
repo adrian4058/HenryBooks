@@ -30,6 +30,8 @@ export const PUT_TOKEN = "PUT_TOKEN";
 export const DELETE_TOKEN = "DELETE_TOKEN";
 export const REPORT_REVIEW = "REPORT_REVIEW";
 // AUTH
+export const LLENAR_DATOS="LLENAR_DATOS"
+export const VACIAR_DATOS="VACIAR_DATOS"
 export const ASYNC_REGISTER_AUTH0 = "ASYNC_REGISTER_AUTH0";
 export const ASYNC_LOGIN_AUTH0 = "ASYNC_LOGIN_AUTH0";
 
@@ -49,6 +51,16 @@ export const getAllBooks = () => {
     }
   };
 };
+//////////////////////////////////////////////////////////////////////
+//Dtos usuario
+//llenar datos usuario
+export const llenarUsuario = (usuario) => {
+  return { type: LLENAR_DATOS, payload: usuario };
+};
+//vaciar datos usuario
+export const vaciarUsuario = () => {
+  return {type: VACIAR_DATOS}
+}
 
 // Filtrar por nombre
 export const findBook = (name) => {
