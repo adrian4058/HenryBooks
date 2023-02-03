@@ -7,8 +7,6 @@ import {
   FILTER_BY_PRICE,
   FILTER_BY_ALPHABET,
   SEARCH_BY_NAME,
-  ADD_SHOPPING_CART,
-  REMOVE_SHOPPING_CART,
   ADD_NEW_BOOK,
   UPDATE_BOOK,
   GET_ALL_AUTHORS,
@@ -19,6 +17,7 @@ import {
   FILTER_BY_PRICE_DASH,
   SEARCH_BY_NAME_DASH,
   FILTER_ALL_DASH,
+  TYPES,
   ASYNC_REGISTER_AUTH0,
   ASYNC_LOGIN_AUTH0,
   GET_ALL_USERS,
@@ -28,6 +27,7 @@ import {
 
 const initialState = {
   books: [],
+  cart: [],
   allBooks: [],
   booksDashboard: [],
   allBooksDashboard: [],
@@ -44,6 +44,32 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+    //CART
+    case TYPES.ADD_TO_CART: {
+      let newItem = state.books.find((book) => book.id === action.payload); //por payload mando el id del libro
+      let itemInCart = state.cart.find((item) => item.id === newItem.id);
+
+      return itemInCart
+        ? {
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === newItem.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            ),
+          }
+        : { ...state, cart: [...state.cart, { ...newItem, quantity: 1 }] };
+    }
+
+    case TYPES.REMOVE_ONE_FROM_CART:
+      break;
+
+    case TYPES.REMOVE_ALL_FROM_CART:
+      break;
+
+    case TYPES.CLEAR_CART:
+      break;
+
     // HOME
     // Obtener Libros HOME
     case GET_ALL_BOOKS:
