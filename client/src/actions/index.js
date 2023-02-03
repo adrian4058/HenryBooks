@@ -7,6 +7,10 @@ export const FILTER_BY_ALPHABET = "FILTER_BY_ALPHABET";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const SEARCH_BY_NAME = "SEARCH_BY_NAME";
 export const FILTER_ALL = "FILTER_ALL";
+// USUARIOS
+export const GET_ALL_USERS = "GET_ALL_USERS"
+export const GET_USER = "GET_USER"
+export const EDIT_USER = "EDIT_USER"
 // DETAILS
 export const GET_BOOK_DETAIL = "GET_BOOK_DETAIL";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
@@ -225,6 +229,55 @@ export const putToken = (token) => {
 export const deletToken = () => {
   return { type: DELETE_TOKEN };
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//USUARIOS 
+  export const getAllUsers = () => (dispatch) => {
+    fetch(url + "/users")
+      .then((data) => data.json())
+      .then((data) => dispatch({
+        type: GET_ALL_USERS,
+        payload: data
+      }))
+  }
+
+  export const getUser = (id) => async (dispatch) => {
+    try {
+      const usuarios = await axios.get(url + `/users/${id}`, {
+        headers: { token: localStorage.token },
+      });
+  
+      return dispatch({
+        type: GET_USER,
+        payload: usuarios.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  export const updateUser = (id, data) => async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          token: localStorage.token,
+        },
+      };
+  
+      const usuarios = await axios.put(
+        url + `/users/${id}`,
+        data,
+        config
+      );
+  
+      return dispatch({
+        type: EDIT_USER,
+        payload: usuarios.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AUTH0
