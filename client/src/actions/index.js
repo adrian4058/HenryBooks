@@ -1,5 +1,14 @@
 import axios from "axios";
 import Api from "../Global";
+
+// CART
+export const TYPES = {
+  ADD_TO_CART: "ADD_TO_CART",
+  REMOVE_ONE_FROM_CART: "REMOVE_ONE_FROM_CART",
+  REMOVE_ALL_FROM_CART: "REMOVE_ALL_FROM_CART",
+  CLEAR_CART: "CLEAR_CART",
+};
+
 // HOME
 export const GET_ALL_BOOKS = "GET_ALL_BOOKS";
 export const FILTER_BY_ALPHABET = "FILTER_BY_ALPHABET";
@@ -22,8 +31,6 @@ export const FILTER_ALL_DASH = "FILTER_ALL_DASH";
 // OTHERS
 export const GET_ALL_AUTHORS = "GET_ALL_AUTHORS";
 export const SEARCH_BY_AUTHOR = "SEARCH_BY_AUTHOR";
-export const ADD_SHOPPING_CART = "ADD_SHOPPING_CART";
-export const REMOVE_SHOPPING_CART = "REMOVE_SHOPPING_CART";
 export const ADD_REVIEW = "ADD_REVIEW";
 export const PUT_TOKEN = "PUT_TOKEN";
 export const DELETE_TOKEN = "DELETE_TOKEN";
@@ -35,7 +42,7 @@ const url = Api.Url;
 // HOME
 // Obtener Libros HOME
 export const getAllBooks = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       fetch(url + "/book")
         .then((data) => data.json())
@@ -77,7 +84,7 @@ export const filterAll = (category, editorial, author) => {
 // DASHBOARD
 // Obtener Libros DASHBOARD
 export const getAllBooksDashboard = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       fetch(url + "/book")
         .then((data) => data.json())
@@ -92,7 +99,7 @@ export const getAllBooksDashboard = () => {
 
 // Crear nuevo libro
 export const addNewBook = (payload) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       const response = await fetch(url + "/book", {
         method: "POST",
@@ -158,7 +165,7 @@ export const filterAllDash = (category, editorial, author, status) => {
       category,
       editorial,
       author,
-      status
+      status,
     },
   };
 };
@@ -171,7 +178,7 @@ export const getBookDetail = (id) => (dispatch) =>
     .then((data) => data.json())
     .then((data) => dispatch({ type: GET_BOOK_DETAIL, payload: data }));
 
-// Limpiar detalle de libros    
+// Limpiar detalle de libros
 export const cleanDetail = () => {
   return (dispatch) => {
     dispatch({
@@ -205,7 +212,6 @@ export const reportReview = (id) => (dispatch) => {
     body: JSON.stringify(id),
   }).then((data) => dispatch({ type: REPORT_REVIEW }));
 };
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // OTHERS

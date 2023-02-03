@@ -9,8 +9,9 @@ import DashboardRoutes from "./components/Dashboard/DashboardRoutes/DashboardRou
 import DashboardBooks from "./components/Dashboard/DashboardComponents/DashboardBooks/DashboardBooks";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
-import ProfileEdit from "./components/ProfileEdit/ProfileEdit"
+import ProfileEdit from "./components/ProfileEdit/ProfileEdit";
 import userProfile from "./components/userProfile/userProfile";
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route path="/books/:id" component={Details} />
+            <Route exact path="/cart" component={ShoppingCart} />
             <Route exact path="/profile/edit" component={ProfileEdit} />
             <Route exact path="/profile" component={userProfile} />
           </Route>
