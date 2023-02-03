@@ -1,72 +1,128 @@
+.Reviews {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-content: center;
+  background-color: #a99985;
+  padding: 2rem 0;
+  margin-bottom: 1rem;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+@media (max-width: 768px) {
+  .Reviews {
+    grid-template-columns: 1fr;
+  }
+}
+
+.Reviews-form {
+  border-radius: .5em;
+  background-color: rgba(245, 241, 237, 90%);
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  padding: 2rem;
+  margin: 1rem auto;
+  width: max-content;
+  height: max-content;
+}
+
+.Review-container {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.Review-container>h3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.div-review {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: .5rem 0;
+}
+
+.Review__input {
+  border: none;
+  padding: .5em;
+  border-radius: .5em;
+  outline: none;
+  font-family: 'Maven Pro', sans-serif;
+}
+
+.Review__input::placeholder {
+  font-family: 'Maven Pro', sans-serif;
+}
+
+.Review__input:focus {
+  font-family: 'Maven Pro', sans-serif;
+}
+
 .error-message {
   color: red;
   font-size: 14px;
+  padding: .5em 0;
+  grid-column: 1/3;
 }
 
-.form {
-  height: 50vh;
+.Review-send__btn {
+  background-color: #a99985;
+  color: #252323;
+  width: 100%;
+  padding: .5em;
+  border-radius: .5em;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-family: "Maven Pro", sans-serif;
-}
-.sendReview {
-  background: rgb(20, 20, 20);
-  color: rgb(255, 255, 1);
-  border: none;
-  margin: 4px;
-  padding: 0.5rem 1rem;
-  display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 15px;
-  font-weight: 600;
-  width: max-content;
-  text-transform: uppercase;
+  gap: .5rem;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  transition: .2s;
+  border: none;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.Review-send__btn:hover {
   cursor: pointer;
-  transform: skew(-21deg);
-  font-family: "Maven Pro", sans-serif;
+  color: #f5f1ed;
+  background-color: rgba(37, 35, 35);
 }
-.sendReview:hover {
-  color: #000;
+
+.Review-input__range {
+  -webkit-appearance: none;
+  width: 100%;
+  background: #ddd;
+  height: 5px;
+  border-radius: 5px;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
 }
-.sendReview::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 100%;
-  left: 0;
-  background: rgb(255, 255, 1);
-  opacity: 0;
-  z-index: -1;
-  transition: all 0.5s;
-}
-.sendReview:hover::before {
-  left: 0;
-  right: 0;
+
+.Review-input__range:hover {
   opacity: 1;
 }
-.div-review {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-style: italic;
-  font-size: 1.2rem;
+
+.Review-input__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #252323;
+  cursor: pointer;
 }
-.review-container {
-  background-color: rgb(255, 243, 221, 80%);
-  border-radius: 1.5rem;
-  margin-top: 2rem;
-  padding: 3rem 1;
-  position: static;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+.Review-input__range::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #252323;
+  cursor: pointer;
 }
-.input-range {
-  color: yellow;
+
+
+.Range-value {
+  grid-column: 2/3;
 }

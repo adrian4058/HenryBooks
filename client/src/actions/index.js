@@ -1,6 +1,15 @@
 import axios from "axios";
 import Api from "../Global";
 import loginUser from "../reducer/index";
+
+// CART
+export const TYPES = {
+  ADD_TO_CART: "ADD_TO_CART",
+  REMOVE_ONE_FROM_CART: "REMOVE_ONE_FROM_CART",
+  REMOVE_ALL_FROM_CART: "REMOVE_ALL_FROM_CART",
+  CLEAR_CART: "CLEAR_CART",
+};
+
 // HOME
 export const GET_ALL_BOOKS = "GET_ALL_BOOKS";
 export const FILTER_BY_ALPHABET = "FILTER_BY_ALPHABET";
@@ -23,8 +32,6 @@ export const FILTER_ALL_DASH = "FILTER_ALL_DASH";
 // OTHERS
 export const GET_ALL_AUTHORS = "GET_ALL_AUTHORS";
 export const SEARCH_BY_AUTHOR = "SEARCH_BY_AUTHOR";
-export const ADD_SHOPPING_CART = "ADD_SHOPPING_CART";
-export const REMOVE_SHOPPING_CART = "REMOVE_SHOPPING_CART";
 export const ADD_REVIEW = "ADD_REVIEW";
 export const PUT_TOKEN = "PUT_TOKEN";
 export const DELETE_TOKEN = "DELETE_TOKEN";

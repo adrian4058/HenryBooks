@@ -7,16 +7,13 @@ const {
   findBook,
   ordenAlfabetico,
 } = require("../controllers/libroController");
-const {verifyToken,isAdmin} =require('../middleware')
-
-
+const { verifyToken, isAdmin } = require("../middleware");
 
 router.post("/", createBook);
 router.get("/", allBooks);
-router.get("/:id", findBook); 
-router.put("/:id", updateBook); 
+router.get("/:id", findBook);
+router.put("/:id", updateBook);
 
-router.get("/orden/az",ordenAlfabetico)
-
+router.get("/orden/az", ordenAlfabetico);
 
 module.exports = router;

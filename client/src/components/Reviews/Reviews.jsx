@@ -5,8 +5,9 @@ import { useDispatch } from "react-redux";
 import { addReview } from "../../actions/index";
 import "./Reviews.css";
 import Comments from "./Review Components/Comments";
+import { useState } from "react";
 
-function Reviews({ LibroId, commentsReview}) {
+function Reviews({ LibroId, commentsReview }) {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -32,53 +33,67 @@ function Reviews({ LibroId, commentsReview}) {
       dispatch(addReview({ ...values, UsuarioId: 1, LibroId: LibroId }));
     },
   });
+
   return (
-   <div> 
-    <form onSubmit={formik.handleSubmit} className="form">
-      <div className="review-container">
-        <h3>Did you read it?you can qualify it!</h3>
-        <div className="div-review">
-          <label htmlFor="titulo">Title of review</label>
-          <input id="titulo" type="text" {...formik.getFieldProps("titulo")} />
+    <div className="Reviews">
+      <form onSubmit={formik.handleSubmit} className="Reviews-form">
+        <div className="Review-container">
+          <h3>
+            <span>Did you read it?</span>
+            <span>You can qualify it!</span>
+          </h3>
 
-          {formik.touched.titulo && formik.errors.titulo ? (
-            <div className="error-message">{formik.errors.titulo}</div>
-          ) : null}
-        </div>
-        <div className="div-review">
-          <label htmlFor="descripcion">Description</label>
-          <input
-            id="descripcion"
-            type="text"
-            {...formik.getFieldProps("descripcion")}
-          />
-          {formik.touched.descripcion && formik.errors.descripcion ? (
-            <div className="error-message">{formik.errors.descripcion}</div>
-          ) : null}
-        </div>
-        <div className="div-review">
-          <label htmlFor="calificacion">Qualification</label>
-          <input
-            className="input-range"
-            id="calificacion"
-            type="range"
-            min="0"
-            max="5"
-            step="1"
-            {...formik.getFieldProps("calificacion")}
-          />
-          {formik.touched.calificacion && formik.errors.calificacion ? (
-            <div className="error-message">{formik.errors.calificacion}</div>
-          ) : null}
-        </div>
+          <div className="div-review">
+            <label htmlFor="titulo">Title of review</label>
+            <input
+              id="titulo"
+              type="text"
+              className="Review__input"
+              {...formik.getFieldProps("titulo")} />
 
-        <button className="sendReview" type="submit">
-          Send
-        </button>
-      </div>
-     </form>
-     <Comments commentsReview={commentsReview}/>
-    </div>   
+            {formik.touched.titulo && formik.errors.titulo ? (
+              <div className="error-message">{formik.errors.titulo}</div>
+            ) : null}
+          </div>
+
+          <div className="div-review">
+            <label htmlFor="descripcion">Description</label>
+            <input
+              id="descripcion"
+              type="text"
+              className="Review__input input-desc"
+              {...formik.getFieldProps("descripcion")}
+            />
+            {formik.touched.descripcion && formik.errors.descripcion ? (
+              <div className="error-message">{formik.errors.descripcion}</div>
+            ) : null}
+          </div>
+
+          <div className="div-review">
+            <label htmlFor="calificacion">Qualification</label>
+            <input
+              className="Review-input__range"
+              id="calificacion"
+              type="range"
+              min="0"
+              max="5"
+              step="1"
+              {...formik.getFieldProps("calificacion")}
+            />
+            <div className="Range-value">Rating: {formik.values.calificacion}</div>
+            {formik.touched.calificacion && formik.errors.calificacion ? (
+              <div className="error-message">{formik.errors.calificacion}</div>
+            ) : null}
+          </div>
+
+          <button className="Review-send__btn" type="submit">
+            Send
+          </button>
+
+        </div>
+      </form>
+      <Comments commentsReview={commentsReview} />
+    </div>
   );
 }
 
