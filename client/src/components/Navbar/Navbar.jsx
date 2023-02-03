@@ -109,7 +109,7 @@ function NavBar() {
             ) :(
               <div className="login">
                 <div className="navbar-options__link">
-                  <Link to="/register">
+                  <Link to="/registerdos">
                     <button className="navbar-btn__option">
                       <b>Register</b>
                     </button>
