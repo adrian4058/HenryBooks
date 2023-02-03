@@ -18,11 +18,12 @@ import {
   SEARCH_BY_NAME_DASH,
   FILTER_ALL_DASH,
   TYPES,
+  ASYNC_REGISTER_AUTH0,
+  ASYNC_LOGIN_AUTH0,
 } from "../actions";
 
-export const initialState = {
+const initialState = {
   books: [],
-  cart: [],
   allBooks: [],
   booksDashboard: [],
   allBooksDashboard: [],
@@ -31,6 +32,7 @@ export const initialState = {
   detail: [],
   message: "",
   token: "",
+  userProfile: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -336,7 +338,19 @@ function rootReducer(state = initialState, action) {
         ...state,
         allAuthors: action.payload,
       };
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Obtener auth de usuario
+    case ASYNC_REGISTER_AUTH0 || ASYNC_LOGIN_AUTH0:
+      return {
+        ...state,
+        userProfile: {
+          nombre: action.payload.nombre || "matias",
+          email: action.payload.email || "matiasacosta25@gmail.com",
+          //rol: action.payload.rol || "user",
+          //img: action.payload.profilePic,
+          //authzero: action.payload.authzero,
+        },
+      };
     default:
       return state;
   }

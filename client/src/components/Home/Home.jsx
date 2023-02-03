@@ -128,7 +128,6 @@ function Home(props) {
       </div>
 
       <Slider />
-
       <SliderProducts />
 
       {!books?.length ? (
@@ -199,58 +198,18 @@ function Home(props) {
               </div>
             </div>
 
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Editorial</div>
-              <div className="home-filter">
-                <select
-                  ref={editorialSelect}
-                  onChange={(e) =>
-                    setEditorialValue(e.target.value) &
-                    handleFilterChange(
-                      categoryValue,
-                      e.target.value,
-                      authorValue
-                    )
-                  }
-                >
-                  <option defaultValue="All" value="All">
-                    All
-                  </option>
-                  {uniqueEditorial?.map((book) => (
-                    <option key={book} value={book}>
-                      {book}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Alphabet</div>
-              <div className="home-filter">
-                <select
-                  ref={alphabetSelect}
-                  onChange={(e) => handlerOrderAlphabet(e)}
-                >
-                  <option value="All">All</option>
-                  <option value="ASC">A-Z</option>
-                  <option value="DESC">Z-A</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Price</div>
-              <div className="home-filter">
-                <select
-                  ref={priceSelect}
-                  onChange={(e) => handlerOrderPrice(e)}
-                >
-                  <option value="All">All</option>
-                  <option value="ASC_PRICE">Price (smaller-higher)</option>
-                  <option value="DESC_PRICE">Price (higher-smaller)</option>
-                </select>
-              </div>
+            <div className="book-card">
+              {books.map((elem) => (
+                <Card
+                  key={elem.id}
+                  genre={elem.genero}
+                  author={elem.Autor.nombre}
+                  image={elem.image}
+                  name={elem.name}
+                  id={elem.id}
+                  price={elem.price}
+                />
+              ))}
             </div>
           </div>
 

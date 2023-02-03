@@ -118,6 +118,12 @@ select::-ms-expand {
 
 /* FILTERS & BOOKS */
 
+.Home-books-title {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 5px dotted black;
+}
+
 .home-books-problems {
   text-align: center;
   padding: 1rem 0;

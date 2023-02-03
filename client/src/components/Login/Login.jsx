@@ -8,7 +8,10 @@ import Cookies from "universal-cookie";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Api from "../../Global";
-import * as actions from '../../actions/index'
+import * as actions from "../../actions/index";
+import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
+import Auth0 from "../Auth0/Auth0";
 
 const Login = () => {
   let dispatch = useDispatch();
@@ -44,93 +47,101 @@ const Login = () => {
       });
       const parseRes = await response.json();
       localStorage.setItem("token", parseRes.token);
-      console.log("trae respuesta",parseRes);
-      dispatch(actions.putToken(parseRes.token))
+      console.log("trae respuesta", parseRes);
+      dispatch(actions.putToken(parseRes.token));
       cookie.set("email", data.email, { path: "/" });
       alert(`welcome ${data.email.split("@")[0]}`);
       // window.location.href = "./home";
-
-      
     },
   });
 
   return (
-    <form noValidate onSubmit={handleSubmit}>
-      <div className="register">
-        <div className="all-content">
-          <div className="register-container">
-            <h1>Register here!</h1>
-            <div className="content">
-              <label htmlFor="email">E-mail:</label>
-              <input
-                type="email"
-                placeholder="E-mail"
-                {...getFieldProps("email")}
-                className={`${touched.email && errors.email && "error_input"}`}
-              />
-              <div className="adv">
-                {touched.email && errors.email && (
-                  <span className="error">{errors.email}</span>
-                )}
-              </div>
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                placeholder="Password"
-                {...getFieldProps("password")}
-                className={`${touched.password &&
-                  errors.password &&
-                  "error_input"}`}
-              />
-              <div className="adv">
-                {touched.password && errors.password && (
-                  <span className="error">{errors.password}</span>
-                )}
-              </div>
-              <Link to='/home'>
-              <button type="submit" className="botsub">Log In
-              </button>
-              </Link>
-              <p>Don't have any account?</p>
-              <Link to="/register" className="link">
-                {" "}
-                Register here!{" "}
-              </Link>
-              <br />
-              <p>Or</p>
-              {/* <LoginGoogle /> */}
-              <br />
-              <div className="login">
-                <div>
-                  {isAuthenticated ? (
-                    <button
-                      className="navbar-btn__option"
-                      onClick={() =>
-                        logout({ returnTo: window.location.origin })
-                      }
-                    >
-                      Logout
-                    </button>
-                  ) : (
-                    <button
-                      className="navbar-btn__option"
-                      onClick={() => loginWithPopup()}
-                    >
-                      <i class="fa-brands fa-google"></i>
-                    </button>
-                  )}
-                </div>
-              </div>
-              <br />
-              <div className="navbar-options__link">
-                <Link to="/home">
-                  <button className="form-btn">
-                    <b>Home</b>
-                  </button>
-                </Link>
-              </div>
+    <form className="Login" noValidate onSubmit={handleSubmit}>
+      <div className="Login-content">
+        <div className="Login-home-container">
+          <Link to="/home">
+            <button className="Login-home__btn">
+              <AiFillHome />
+              <span>Home</span>
+            </button>
+          </Link>
+        </div>
+
+        <h1>Login</h1>
+
+        <div className="Login-form">
+          <div className="Login-input">
+            <label htmlFor="email">E-mail:</label>
+            <input
+              type="email"
+              placeholder="E-mail"
+              {...getFieldProps("email")}
+              className={`Login-Register__input ${touched.email &&
+                errors.email &&
+                "error_input"}`}
+            />
+
+            <div className="adv">
+              {touched.email && errors.email && (
+                <span className="error">{errors.email}</span>
+              )}
             </div>
           </div>
+
+          <div className="Login-input">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              placeholder="Password"
+              {...getFieldProps("password")}
+              className={`Login-Register__input ${touched.password &&
+                errors.password &&
+                "error_input"}`}
+            />
+
+            <div className="adv">
+              {touched.password && errors.password && (
+                <span className="error">{errors.password}</span>
+              )}
+            </div>
+          </div>
+
+          {/* <Link to="/home"> */}
+          <button type="submit" className="Login-login__btn">
+            <AiOutlineLogin />
+            Log In
+          </button>
+          {/* </Link> */}
+        </div>
+
+        <p className="Login-noaccount">
+          Don't have any account?
+          <Link to="/register">
+            <span className="Login-register__link">Register here!</span>
+          </Link>
+        </p>
+        <p>Or</p>
+        <Auth0 />
+        {/* <LoginGoogle /> */}
+
+        <div className="Login-google">
+          {isAuthenticated ? (
+            <button
+              className="Login-google__btn"
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
+              <FcGoogle />
+              <span>Logout</span>
+            </button>
+          ) : (
+            <button
+              className="Login-google__btn"
+              onClick={() => loginWithPopup()}
+            >
+              <FcGoogle />
+              <span>Login With Google</span>
+            </button>
+          )}
         </div>
       </div>
     </form>
