@@ -102,9 +102,9 @@ function Home(props) {
       </div>
 
       <Slider />
-
       <SliderProducts />
 
+      <h1 className="Home-books-title">Dale un ojo a nuestros libros</h1>
       {
         !books?.length ?
           <div className="home-books">
@@ -247,6 +247,7 @@ function Home(props) {
                 </div>
               </div>
             </div>
+
 
             <div className="book-card">
               {
