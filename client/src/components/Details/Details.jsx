@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import books from "../../utils/books.js";
+import SliderProducts from "../SliderProducts/SliderProducts";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookDetail, cleanDetail } from "../../actions/index";
@@ -16,6 +16,7 @@ function Details(props) {
   useEffect(() => {
     dispatch(cleanDetail());
     dispatch(getBookDetail(id));
+    window.scrollTo(0, 0)
   }, [dispatch, id]);
 
   console.log(details);
@@ -54,6 +55,8 @@ function Details(props) {
     }
   };
 
+  console.log(details);
+
   return (
     <div key={id} className="Details">
       <Navbar />
@@ -68,7 +71,7 @@ function Details(props) {
         {details ? (
           <div className="book-info">
             <div className="book-info__info">
-              {details.name && <h4>{details.name}</h4>}
+              {details.name && <h2>{details.name}</h2>}
             </div>
             <div className="book-info__info">
               {<h4>Author:</h4>}
@@ -79,18 +82,22 @@ function Details(props) {
               {details.editorial && <p>{details.editorial}</p>}
             </div>
             <div className="book-info__info">
-              {details.genero && <h4>Genre: {details.genero}</h4>}
+              {details.genero && <h4>Genre: </h4>}
+              {details.genero && <p>{details.genero}</p>}
             </div>
             <div className="book-info__info">
               {details.price && (
                 <h4 className="book-info__price">${details.price}</h4>
               )}
             </div>
-            <div className="btn-pay">
-              <button onClick={() => sendMp()}>
-                Pay <i className="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
+            {
+              details.stock !== 0 ?
+                <button className="btn-pay" onClick={() => sendMp()}>
+                  <span>Pay</span>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </button> :
+                <h3 className="No-Stock">No Hay Stock</h3>
+            }
           </div>
         ) : (
           //cambio
@@ -100,6 +107,7 @@ function Details(props) {
         )}
       </div>
       <Reviews LibroId={id} commentsReview={details.Resenas} />
+      <SliderProducts />
       <Footer />
     </div>
   );
