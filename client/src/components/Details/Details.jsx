@@ -8,6 +8,7 @@ import { getBookDetail, cleanDetail } from "../../actions/index";
 import "./Details.css";
 import axios from "axios";
 import Reviews from "../Reviews/Reviews";
+import Api from "../../Global";
 
 function Details(props) {
   const { id } = useParams();
@@ -38,11 +39,9 @@ function Details(props) {
       item: compra,
     };
 
-    console.log(body);
-
     try {
       const respuesta = await axios
-        .post("http://localhost:7415/payment", body)
+        .post(Api.Url + "/payment", body)
         .then((res) => {
           return res.data[0];
         })
