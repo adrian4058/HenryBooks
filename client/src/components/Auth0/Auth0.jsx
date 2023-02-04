@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch /*useSelector*/ } from "react-redux";
 import { asyncRegisterAuth0 } from "../../actions/index";
+import { FcGoogle } from "react-icons/fc";
 
 function Auth0() {
   const dispatch = useDispatch();
-  const { loginWithPopup, user } = useAuth0();
+  const { loginWithPopup, user, logout, isAuthenticated } = useAuth0();
   console.log(user);
   useEffect(() => {
     if (user) {
@@ -22,10 +23,24 @@ function Auth0() {
   function login() {
     loginWithPopup();
   }
-  return <div onClick={login}>Continue with Google</div>;
+  return (
+    <div className="Login-google">
+      {isAuthenticated ? (
+        <button
+          className="Login-google__btn"
+          onClick={() => logout({ returnTo: window.location.origin })}
+        >
+          <FcGoogle />
+          <span>Logout</span>
+        </button>
+      ) : (
+        <button className="Login-google__btn" onClick={login}>
+          <FcGoogle />
+          <span>Continue With Google</span>
+        </button>
+      )}
+    </div>
+  );
 }
 
 export default Auth0;
-
-//auth_zero: true,
-//const { userProfile } = useSelector((state) => state.profile);/*&& !userProfile.ID*/

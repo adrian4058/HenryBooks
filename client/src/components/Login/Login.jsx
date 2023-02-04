@@ -1,24 +1,24 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link,Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 //import LoginGoogle from "../GoogleLogin/GoogleLogin";
 import "./Login.css";
-import { useAuth0 } from "@auth0/auth0-react";
-import Cookies from "universal-cookie";
+//import { useAuth0 } from "@auth0/auth0-react";
+//import Cookies from "universal-cookie";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Api from "../../Global";
+import { useDispatch /*useSelector*/ } from "react-redux";
+//import Api from "../../Global";
 import * as actions from "../../actions/index";
 import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
-import { FcGoogle } from "react-icons/fc";
+//import { FcGoogle } from "react-icons/fc";
 import Auth0 from "../Auth0/Auth0";
 
 const Login = () => {
   let dispatch = useDispatch();
-  let token = useSelector((state) => state.token);
-  const cookie = new Cookies();
-  let [home,setHome]=useState(false)
-  const { loginWithPopup, logout, isAuthenticated } = useAuth0();
+  //let token = useSelector((state) => state.token);
+  //const cookie = new Cookies();
+  let [home, setHome] = useState(false);
+  //const { loginWithPopup, logout, isAuthenticated } = useAuth0();
   const { handleSubmit, getFieldProps, errors, touched } = useFormik({
     initialValues: {
       email: "",
@@ -39,32 +39,31 @@ const Login = () => {
         email: values.email,
         password: values.password,
       };
-      let url="http://localhost:5685/auth/signin"
-      let status
-      fetch(url,{
+      let url = "http://localhost:5685/auth/signin";
+      let status;
+      fetch(url, {
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         method: "POST",
-        body: JSON.stringify(datos)
+        body: JSON.stringify(datos),
       })
-      .then(res=>{
-        status=res.status
-        return res.json()
-      })
-      .then(respuesta=>{
-        console.log(respuesta,status)
-        if(status==200){
-          dispatch(actions.llenarUsuario(respuesta.usuario))
-          dispatch(actions.putToken(respuesta.token))
-          setHome(true)
-          alert(`bienvenido ${respuesta.usuario.nombre}`)
-        }
-        else{
-          alert(respuesta.message)
-        }
-      })
+        .then((res) => {
+          status = res.status;
+          return res.json();
+        })
+        .then((respuesta) => {
+          console.log(respuesta, status);
+          if (status === 200) {
+            dispatch(actions.llenarUsuario(respuesta.usuario));
+            dispatch(actions.putToken(respuesta.token));
+            setHome(true);
+            alert(`bienvenido ${respuesta.usuario.nombre}`);
+          } else {
+            alert(respuesta.message);
+          }
+        });
       // console.log(values);
       // console.log(data);
       // const response = await fetch(Api.Url + "/auth/signin", {
@@ -81,9 +80,9 @@ const Login = () => {
       // // window.location.href = "./home";
     },
   });
-  if(home==true){
-    return <Redirect to="/home"/>
-}
+  if (home === true) {
+    return <Redirect to="/home" />;
+  }
 
   return (
     <form className="Login" noValidate onSubmit={handleSubmit}>
@@ -154,7 +153,7 @@ const Login = () => {
         <Auth0 />
         {/* <LoginGoogle /> */}
 
-        <div className="Login-google">
+        {/* <div className="Login-google">
           {isAuthenticated ? (
             <button
               className="Login-google__btn"
@@ -172,7 +171,7 @@ const Login = () => {
               <span>Login With Google</span>
             </button>
           )}
-        </div>
+        </div> */}
       </div>
     </form>
   );
