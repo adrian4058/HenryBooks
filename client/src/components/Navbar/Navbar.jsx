@@ -18,6 +18,7 @@ function NavBar() {
     e.preventDefault();
     dispatch(actions.vaciarUsuario())
     dispatch(actions.deletToken())
+    logout()
 
   }
   return (

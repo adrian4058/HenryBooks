@@ -5,8 +5,8 @@ import { Link, Redirect } from "react-router-dom";
 import "./Login.css";
 //import { useAuth0 } from "@auth0/auth0-react";
 //import Cookies from "universal-cookie";
-import { useState } from "react";
-import { useDispatch /*useSelector*/ } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 //import Api from "../../Global";
 import * as actions from "../../actions/index";
 import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
@@ -15,10 +15,17 @@ import Auth0 from "../Auth0/Auth0";
 
 const Login = () => {
   let dispatch = useDispatch();
-  //let token = useSelector((state) => state.token);
+  let token = useSelector((state) => state.token);
   //const cookie = new Cookies();
   let [home, setHome] = useState(false);
   //const { loginWithPopup, logout, isAuthenticated } = useAuth0();
+  useEffect(()=>{
+    if(token){
+      console.log("estoy aqui")
+      setHome(true)
+      // return <Redirect to="/home" />;
+    }
+  })
   const { handleSubmit, getFieldProps, errors, touched } = useFormik({
     initialValues: {
       email: "",
@@ -145,7 +152,7 @@ const Login = () => {
 
         <p className="Login-noaccount">
           Don't have any account?
-          <Link to="/register">
+          <Link to="/registerdos">
             <span className="Login-register__link">Register here!</span>
           </Link>
         </p>

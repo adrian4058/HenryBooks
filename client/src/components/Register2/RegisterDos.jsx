@@ -161,10 +161,10 @@ export const RegisterDos = () => {
             </div>
           </div>
 
-          <div className="Register-google">
+          {/* <div className="Register-google">
             <p>or</p>
             <Auth0 />
-          </div>
+          </div> */}
         </div>
       </form>
     </>
