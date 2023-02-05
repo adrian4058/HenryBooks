@@ -40,11 +40,21 @@
   padding: .5rem 0;
 }
 
+.danger{
+  color: red;
+}
+
 .Register-input__select {
   text-align: center;
   font-family: 'Maven Pro', sans-serif;
   background-color: white;
   border-radius: .5em;
+  
+}
+.errores{
+  color: red;
+  font-size: smaller;
+  text-align: center;
 }
 
 .Register-input__option {

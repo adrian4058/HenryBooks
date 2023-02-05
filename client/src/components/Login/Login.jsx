@@ -1,23 +1,31 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 //import LoginGoogle from "../GoogleLogin/GoogleLogin";
 import "./Login.css";
-import { useAuth0 } from "@auth0/auth0-react";
-import Cookies from "universal-cookie";
-import { useState } from "react";
+//import { useAuth0 } from "@auth0/auth0-react";
+//import Cookies from "universal-cookie";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Api from "../../Global";
+//import Api from "../../Global";
 import * as actions from "../../actions/index";
 import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
-import { FcGoogle } from "react-icons/fc";
+//import { FcGoogle } from "react-icons/fc";
 import Auth0 from "../Auth0/Auth0";
 
 const Login = () => {
   let dispatch = useDispatch();
   let token = useSelector((state) => state.token);
-  const cookie = new Cookies();
-  const { loginWithPopup, logout, isAuthenticated } = useAuth0();
+  //const cookie = new Cookies();
+  let [home, setHome] = useState(false);
+  //const { loginWithPopup, logout, isAuthenticated } = useAuth0();
+  useEffect(()=>{
+    if(token){
+      console.log("estoy aqui")
+      setHome(true)
+      // return <Redirect to="/home" />;
+    }
+  })
   const { handleSubmit, getFieldProps, errors, touched } = useFormik({
     initialValues: {
       email: "",
@@ -34,26 +42,54 @@ const Login = () => {
     }),
 
     onSubmit: async (values) => {
-      const data = {
+      const datos = {
         email: values.email,
         password: values.password,
       };
-      console.log(values);
-      console.log(data);
-      const response = await fetch(Api.Url + "/auth/signin", {
+      let url = "http://localhost:5685/auth/signin";
+      let status;
+      fetch(url, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const parseRes = await response.json();
-      localStorage.setItem("token", parseRes.token);
-      console.log("trae respuesta", parseRes);
-      dispatch(actions.putToken(parseRes.token));
-      cookie.set("email", data.email, { path: "/" });
-      alert(`welcome ${data.email.split("@")[0]}`);
-      // window.location.href = "./home";
+        body: JSON.stringify(datos),
+      })
+        .then((res) => {
+          status = res.status;
+          return res.json();
+        })
+        .then((respuesta) => {
+          console.log(respuesta, status);
+          if (status === 200) {
+            dispatch(actions.llenarUsuario(respuesta.usuario));
+            dispatch(actions.putToken(respuesta.token));
+            setHome(true);
+            alert(`bienvenido ${respuesta.usuario.nombre}`);
+          } else {
+            alert(respuesta.message);
+          }
+        });
+      // console.log(values);
+      // console.log(data);
+      // const response = await fetch(Api.Url + "/auth/signin", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(data),
+      // });
+      // const parseRes = await response.json();
+      // localStorage.setItem("token", parseRes.token);
+      // console.log("trae respuesta", parseRes);
+      // dispatch(actions.putToken(parseRes.token));
+      // cookie.set("email", data.email, { path: "/" });
+      // alert(`welcome ${data.email.split("@")[0]}`);
+      // // window.location.href = "./home";
     },
   });
+  if (home === true) {
+    return <Redirect to="/home" />;
+  }
 
   return (
     <form className="Login" noValidate onSubmit={handleSubmit}>
@@ -116,7 +152,7 @@ const Login = () => {
 
         <p className="Login-noaccount">
           Don't have any account?
-          <Link to="/register">
+          <Link to="/registerdos">
             <span className="Login-register__link">Register here!</span>
           </Link>
         </p>
@@ -124,7 +160,7 @@ const Login = () => {
         <Auth0 />
         {/* <LoginGoogle /> */}
 
-        <div className="Login-google">
+        {/* <div className="Login-google">
           {isAuthenticated ? (
             <button
               className="Login-google__btn"
@@ -142,7 +178,7 @@ const Login = () => {
               <span>Login With Google</span>
             </button>
           )}
-        </div>
+        </div> */}
       </div>
     </form>
   );
