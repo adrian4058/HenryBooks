@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks, TYPES } from "../../actions";
+import { getAllBooks, GET_ALL_BOOKS, TYPES } from "../../actions";
 import Card from "../Card/Card";
 import CartItem from "./CartItem";
 
@@ -19,7 +19,7 @@ const ShoppingCart = () => {
   };
   const delFromCart = () => {};
   const clearCart = () => {
-    dispatch({ type: TYPES.CLEAR_CART });
+    dispatch({ type: TYPES.CLEAR_CART }, { type: GET_ALL_BOOKS });
   };
 
   return (
