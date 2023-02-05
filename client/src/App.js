@@ -13,6 +13,7 @@ import ProfileEdit from "./components/ProfileEdit/ProfileEdit";
 import userProfile from "./components/userProfile/userProfile";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import DefaultPage from "./components/DefaultPage/DefaultPage";
+import { RegisterDos } from "./components/Register2/RegisterDos";
 
 function App() {
   return (
@@ -31,7 +32,9 @@ function App() {
           <Route exact path="/cart" component={ShoppingCart} />
           <Route exact path="/profile/edit" component={ProfileEdit} />
           <Route exact path="/profile" component={userProfile} />
+          <Route exact path="/registerdos" component={RegisterDos} />
           <Route component={DefaultPage} />
+          
         </Switch>
       </div>
     </BrowserRouter>

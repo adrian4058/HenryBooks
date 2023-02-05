@@ -1,6 +1,6 @@
 import axios from "axios";
 import Api from "../Global";
-import loginUser from "../reducer/index";
+//import loginUser from "../reducer/index";
 
 // CART
 export const TYPES = {
@@ -37,6 +37,8 @@ export const PUT_TOKEN = "PUT_TOKEN";
 export const DELETE_TOKEN = "DELETE_TOKEN";
 export const REPORT_REVIEW = "REPORT_REVIEW";
 // AUTH
+export const LLENAR_DATOS = "LLENAR_DATOS";
+export const VACIAR_DATOS = "VACIAR_DATOS";
 export const ASYNC_REGISTER_AUTH0 = "ASYNC_REGISTER_AUTH0";
 export const ASYNC_LOGIN_AUTH0 = "ASYNC_LOGIN_AUTH0";
 
@@ -55,6 +57,16 @@ export const getAllBooks = () => {
       console.log("error");
     }
   };
+};
+//////////////////////////////////////////////////////////////////////
+//Datos usuario
+//llenar datos usuario
+export const llenarUsuario = (usuario) => {
+  return { type: LLENAR_DATOS, payload: usuario };
+};
+//vaciar datos usuario
+export const vaciarUsuario = () => {
+  return { type: VACIAR_DATOS };
 };
 
 // Filtrar por nombre
@@ -238,56 +250,27 @@ export const deletToken = () => {
 // Postear usuario desde Auth0
 
 export const asyncRegisterAuth0 = (body) => async (dispatch) => {
-  console.log(body);
-  const respuesta = await axios.post(url + "/auth/signin", body).data;
-  console.log(respuesta.token);
+  const respuesta = await axios.post(url + "/auth/signin", body);
+  if (respuesta.data) {
+    localStorage.setItem("token", respuesta.data.token);
+    dispatch({ type: ASYNC_REGISTER_AUTH0, payload: respuesta.data.token });
+    console.log(respuesta.data.token);
+  } else {
+    const registro = await axios.post(url + "/auth/signup", body);
+    console.log(registro);
+  }
 
-  localStorage.setItem("token", respuesta.token);
-  dispatch(loginUser(respuesta.data));
-
-  dispatch({ type: ASYNC_REGISTER_AUTH0, payload: respuesta.token });
-  // .then(
-  //   respuesta.data
-  //     ? localStorage.setItem("token", respuesta.data.token)
-  //     : dispatch(asyncLoginAuth0(body)).then(
-  //         respuesta.data
-  //           ? dispatch(loginUser(respuesta.data))
-  //           : dispatch(asyncLoginAuth0(body))
-  //       )
-  //console.log(respuesta)
-  //)
-  // .then((response) =>
-  //   dispatch({ type: ASYNC_REGISTER_AUTH0, payload: response.data.token })
-  // );
-  // const respuesta = await fetch(
-  //   (url + "/auth/signin",
-  //   {
-  //     method: "POST",
-  //     body: JSON.stringify(body),
-  //     headers: { "Content-Type": "application/json" },
-  //   })
-  // )
-  // .then(
-  //   response.body
-  //     ? localStorage.setItem("token", response.body.token)
-  //     : dispatch(asyncLoginAuth0(body))
-  // )
-  // .then((response) =>
-  //   dispatch({ type: ASYNC_REGISTER_AUTH0, payload: response.data.token })
-  // );
-  // .then(console.log(respuesta));
+  // const registro = await axios
+  //   .post(url + "/auth/signup", body)
+  //   .then(async (registro) => {
+  //     if (!registro.data) {
+  //       const respuesta = await axios.post(url + "/auth/signin", body);
+  //       localStorage.setItem("token", respuesta.data.token);
+  //       dispatch({ type: ASYNC_REGISTER_AUTH0, payload: respuesta.data.token });
+  //       console.log(respuesta.data.token);
+  //     } else {
+  //       localStorage.setItem("token", registro.data.token);
+  //       dispatch({ type: ASYNC_REGISTER_AUTH0, payload: registro.data.token });
+  //     }
+  //   });
 };
-
-//export const asyncLoginAuth0 = (body) => async (dispatch) => {
-// try {
-//   const respuesta = await axios
-//     .post((url + "/auth/signin", body.email))
-//     .then(localStorage.setItem("token", respuesta.data.token))
-//     .then((response) =>
-//       dispatch({ type: ASYNC_LOGIN_AUTH0, payload: response.data.token })
-//     );
-// } catch (error) {
-//   console.log(error);
-// }
-//console.log("llegue");
-//};

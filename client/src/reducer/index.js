@@ -20,6 +20,8 @@ import {
   TYPES,
   ASYNC_REGISTER_AUTH0,
   ASYNC_LOGIN_AUTH0,
+  LLENAR_DATOS,
+  VACIAR_DATOS
 } from "../actions";
 
 const initialState = {
@@ -183,12 +185,13 @@ function rootReducer(state = initialState, action) {
       };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    //colocar token
     case PUT_TOKEN:
       return {
         ...state,
         token: action.payload,
       };
+    // quitar token
     case DELETE_TOKEN:
       return {
         ...state,
@@ -352,6 +355,16 @@ function rootReducer(state = initialState, action) {
           //authzero: action.payload.authzero,
         },
       };
+    case LLENAR_DATOS:
+      return{
+        ...state,
+        userProfile:action.payload
+      }
+    case VACIAR_DATOS:
+      return{
+        ...state,
+        userProfile:{}
+      }
     default:
       return state;
   }
