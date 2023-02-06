@@ -9,7 +9,7 @@ import { getAllBooks } from '../../actions/index'
 import { useEffect } from "react";
 
 function SliderProducts() {
-    const allBooks = useSelector(state => state.books)
+    const allBooks = useSelector(state => state.allBooks)
 
     const books = allBooks.filter(e => e.stock < 60)
 

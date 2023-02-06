@@ -119,6 +119,24 @@ function Home(props) {
 
   return (
     <div className="home">
+      <div className="home-icons__sm">
+        <a href='https://www.facebook.com'
+          target='_blank'
+          rel='noreferrer'>
+          <ion-icon name='logo-facebook' />
+
+        </a>
+        <a href='https://www.instagram.com/henrybooks_pf/'
+          target='_blank'
+          rel='noreferrer'>
+          <ion-icon name='logo-instagram' />
+        </a>
+        <a href='https://twitter.com/HenryBooks_PF'
+          target='_blank'
+          rel='noreferrer'>
+          <ion-icon name='logo-twitter' />
+        </a>
+      </div>
       <Navbar />
       <div className="home-welcome">
         <h1 className="home-welcome__h1">Welcome to HenryBooks!</h1>
@@ -128,8 +146,13 @@ function Home(props) {
       </div>
 
       <Slider />
-      <SliderProducts />
+      <div className="home-products-slider">
+        <SliderProducts />
+      </div>
 
+      <h1 className="home-books-title">
+        Our Books
+      </h1>
       {!books?.length ? (
         <div className="home-books">
           <div className="home-filters">
@@ -198,18 +221,58 @@ function Home(props) {
               </div>
             </div>
 
-            <div className="book-card">
-              {books.map((elem) => (
-                <Card
-                  key={elem.id}
-                  genre={elem.genero}
-                  author={elem.Autor.nombre}
-                  image={elem.image}
-                  name={elem.name}
-                  id={elem.id}
-                  price={elem.price}
-                />
-              ))}
+            <div className="home-filter__content">
+              <div className="filter-title">Order by Editorial</div>
+              <div className="home-filter">
+                <select
+                  ref={editorialSelect}
+                  onChange={(e) =>
+                    setEditorialValue(e.target.value) &
+                    handleFilterChange(
+                      categoryValue,
+                      e.target.value,
+                      authorValue
+                    )
+                  }
+                >
+                  <option defaultValue="All" value="All">
+                    All
+                  </option>
+                  {uniqueEditorial?.map((book) => (
+                    <option key={book} value={book}>
+                      {book}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className="home-filter__content">
+              <div className="filter-title">Order by Alphabet</div>
+              <div className="home-filter">
+                <select
+                  ref={alphabetSelect}
+                  onChange={(e) => handlerOrderAlphabet(e)}
+                >
+                  <option value="All">All</option>
+                  <option value="ASC">A-Z</option>
+                  <option value="DESC">Z-A</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="home-filter__content">
+              <div className="filter-title">Order by Price</div>
+              <div className="home-filter">
+                <select
+                  ref={priceSelect}
+                  onChange={(e) => handlerOrderPrice(e)}
+                >
+                  <option value="All">All</option>
+                  <option value="ASC_PRICE">Price (smaller-higher)</option>
+                  <option value="DESC_PRICE">Price (higher-smaller)</option>
+                </select>
+              </div>
             </div>
           </div>
 

@@ -33,6 +33,7 @@ const initialState = {
   books: [],
   cart: [],
   allBooks: [],
+  allBooksSlider: [],
   booksDashboard: [],
   allBooksDashboard: [],
   allAuthors: [],
@@ -56,13 +57,13 @@ function rootReducer(state = initialState, action) {
 
       return itemInCart
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            ),
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === newItem.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ),
+        }
         : { ...state, cart: [...state.cart, { ...newItem, quantity: 1 }] };
     }
 
@@ -116,8 +117,8 @@ function rootReducer(state = initialState, action) {
         action.payload === ""
           ? state.allBooks
           : state.allBooks.filter((e) =>
-              e.name.toLowerCase().includes(action.payload.toLowerCase())
-            );
+            e.name.toLowerCase().includes(action.payload.toLowerCase())
+          );
       return {
         ...state,
         books: nombre,
@@ -279,8 +280,8 @@ function rootReducer(state = initialState, action) {
         action.payload === ""
           ? state.allBooksDashboard
           : state.allBooksDashboard.filter((e) =>
-              e.name.toLowerCase().includes(action.payload.toLowerCase())
-            );
+            e.name.toLowerCase().includes(action.payload.toLowerCase())
+          );
       return {
         ...state,
         booksDashboard: nombreDash,
@@ -355,24 +356,24 @@ function rootReducer(state = initialState, action) {
 
     //////////////////////////////////////////////////////////////////////////////////
     // USUARIOS
-      
-    case GET_ALL_USERS: 
-        return {
-            ...state,
-            allUsers: action.payload.data //fijar 
-        }
-    
+
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: action.payload.data //fijar 
+      }
+
     case GET_USER:
-        return {
-            ...state,
-            user: action.payload
-        }
+      return {
+        ...state,
+        user: action.payload
+      }
 
     case EDIT_USER:
-        return {
-            ...state,
-            userProfile: action.payload
-        }
+      return {
+        ...state,
+        userProfile: action.payload
+      }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Obtener auth de usuario
     case ASYNC_REGISTER_AUTH0 || ASYNC_LOGIN_AUTH0:
@@ -390,21 +391,21 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         reviews: action.payload
-      } 
+      }
     case CLEAN_REVIEW:
-      return{
+      return {
         ...state,
         reviews: {}
       }
     case LLENAR_DATOS:
-      return{
+      return {
         ...state,
-        userProfile:action.payload
+        userProfile: action.payload
       }
     case VACIAR_DATOS:
-      return{
+      return {
         ...state,
-        userProfile:{}
+        userProfile: {}
       }
     default:
       return state;

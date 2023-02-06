@@ -85,6 +85,23 @@ select::-ms-expand {
   }
 }
 
+/* SOCIAL MEDIA ICONS */
+
+.home-icons__sm {
+  z-index: 99;
+  position: fixed;
+  top: 40%;
+  background-color: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home-icons__sm>a {
+  padding: 1rem;
+  background-color: #b9b9b9ba;
+}
+
 /* HOME WELCOME */
 
 .home-welcome {
@@ -116,7 +133,17 @@ select::-ms-expand {
   text-shadow: 0.6px 0.6px 1px Sienna;
 }
 
+.home-products-slider {
+  margin: 1rem 0;
+  background-color: #dad2bc;
+  border-bottom: 5px dotted black;
+}
+
 /* FILTERS & BOOKS */
+
+.home-books-title {
+  text-align: center;
+}
 
 .Home-books-title {
   text-align: center;
