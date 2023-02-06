@@ -1,5 +1,7 @@
 // const express = require("express");
 const { Libro, Autor, Resena } = require("../db");
+const { uploadImage } = require("../libraries/cloudinary");
+const fs=require('fs-extra');
 
 async function allBooks(req, res) {
   try {
@@ -94,12 +96,17 @@ async function deleteBook(req,res){
 }
 async function updateBook(req, res) {
   const { id } = req.params;
-  const { name, autor, editorial, reviews, image, genero, stock, price, estado } =
-    req.body;
+  let datos=req.body;
+  const {image}=req.files
+  if(image){
+    let url =await uploadImage(image.tempFilePath);
+    await fs.remove(req.files.image.tempFilePath)
+    datos.image=url.secure_url;
+  }
   try {
     let book = await Libro.findByPk(id);
     //aca va lo de los autores
-    let updated = await book.update(req.body,{where:{id}});
+    let updated = await book.update(datos,{where:{id}});
     res.status(200).json({ message: "Libro Actualizado", updated });
   } catch (error) {
     res
@@ -128,11 +135,55 @@ async function ordenAlfabetico(req, res) {
   }
 }
 
+async function createBookc(req, res) {
+  
+  let { name, autor, editorial, image, genero, stock, price } = req.body;
+  let idAutor;
+  let existe = await Autor.findAll({
+    where: {
+      nombre: autor,
+    },
+  });
+  if (existe.length > 0) {
+    idAutor = existe[0].id;
+  } else {
+    try {
+      let nuevoa = await Autor.create({ nombre: autor });
+      idAutor = nuevoa.id;
+    } catch (e) {
+      res.status(404).send(e);
+    }
+  }
+  if(!image){
+    let{imageF}=req.files
+    const url=await uploadImage(imageF.tempFilePath);
+    await fs.remove(req.files.imageF.tempFilePath)
+    image=url.secure_url
+  }
+  try {
+    const newBook = await Libro.create({
+      name,
+      AutorId: idAutor,
+      editorial,
+      image,
+      genero,
+      stock,
+      price,
+    });
+    return res.status(201).send({ message: "Libro Creado", newBook });
+  } catch (error) {
+    res.status(500).json({
+      message: "error, no se ha podido crear el libro",
+      error,
+    });
+  }
+}
 module.exports = {
   createBook,
   allBooks,
   updateBook,
   findBook,
   ordenAlfabetico,
-  deleteBook
+  deleteBook,
+  createBookc 
 };
