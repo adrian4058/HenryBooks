@@ -40,6 +40,7 @@ export const ADD_REVIEW = "ADD_REVIEW";
 export const PUT_TOKEN = "PUT_TOKEN";
 export const DELETE_TOKEN = "DELETE_TOKEN";
 export const REPORT_REVIEW = "REPORT_REVIEW";
+export const CLEAN_REVIEW = "CLEAN_REVIEW"
 // AUTH
 export const LLENAR_DATOS = "LLENAR_DATOS";
 export const VACIAR_DATOS = "VACIAR_DATOS";
@@ -230,8 +231,14 @@ export const reportReview = (id) => (dispatch) => {
     },
     method: "PUT",
     body: JSON.stringify(id),
-  }).then((data) => dispatch({ type: REPORT_REVIEW }));
+  }).then((response) => response.json())
+  .then((response) => dispatch({ type: REPORT_REVIEW, payload: response }));
 };
+// Vacia el objeto Review
+export const cleanReview = () => {
+  return { type: CLEAN_REVIEW };
+};
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // OTHERS
