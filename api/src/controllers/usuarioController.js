@@ -31,15 +31,17 @@ async function getUsuarioById(req,res,next){
 //editar usuario
 async function editUsuario(req,res,next){
     const{id}=req.params;
-    const{nombre,email,password,rol,estado,direccion,pais,ciudad,img}=req.body
+    const{nombre,email,passworx,rol,estado,direccion,pais,ciudad,img}=req.body;
+    // const {img}=req.files;
     try{
         let usuario=await Usuario.findByPk(id)
         if(usuario==null){
             return res.status(404).json({msj:`èl usuario con id ${id} no existe`})
         }
         let actualizado = await Usuario.update(req.body,{where:{id}})
+        usuario=await Usuario.findByPk(id);
         // let updated = await Usuario.update({nombre,email,passworx,rol,estado,direccion,pais,ciudad,img})
-        res.status(200).json({message:`usuario actualizado`})
+        res.status(200).json({usuario})
     }catch(e){
         res.status(404).json(e)
     }
