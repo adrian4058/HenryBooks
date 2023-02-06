@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../actions/index";
 import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
 //import { FcGoogle } from "react-icons/fc";
+import HB_logo from "../img/HenryBooks_Logo.png";
 import Auth0 from "../Auth0/Auth0";
 
 const Login = () => {
@@ -19,8 +20,8 @@ const Login = () => {
   //const cookie = new Cookies();
   let [home, setHome] = useState(false);
   //const { loginWithPopup, logout, isAuthenticated } = useAuth0();
-  useEffect(()=>{
-    if(token){
+  useEffect(() => {
+    if (token) {
       console.log("estoy aqui")
       setHome(true)
       // return <Redirect to="/home" />;
@@ -102,7 +103,6 @@ const Login = () => {
             </button>
           </Link>
         </div>
-
         <h1>Login</h1>
 
         <div className="Login-form">

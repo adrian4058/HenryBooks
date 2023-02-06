@@ -276,7 +276,7 @@ function Home(props) {
             </div>
           </div>
 
-          <h1>No hay libros con estos filtros</h1>
+          <h1>There are not books with these filters</h1>
         </div>
       ) : (
         <div className="home-books">
