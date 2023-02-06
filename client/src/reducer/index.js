@@ -21,7 +21,10 @@ import {
   ASYNC_REGISTER_AUTH0,
   ASYNC_LOGIN_AUTH0,
   LLENAR_DATOS,
-  VACIAR_DATOS
+  VACIAR_DATOS,
+  GET_ALL_USERS,
+  GET_USER,
+  EDIT_USER
 } from "../actions";
 
 const initialState = {
@@ -33,8 +36,11 @@ const initialState = {
   allAuthors: [],
   author: [],
   detail: [],
+  user: [],
+  allUsers: [],
   message: "",
   token: "",
+
   userProfile: {},
 };
 
@@ -342,6 +348,28 @@ function rootReducer(state = initialState, action) {
         ...state,
         allAuthors: action.payload,
       };
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    // USUARIOS
+      
+    case GET_ALL_USERS: 
+        return {
+            ...state,
+            allUsers: action.payload.data //fijar 
+        }
+    
+    case GET_USER:
+        return {
+            ...state,
+            user: action.payload
+        }
+
+    case EDIT_USER:
+        return {
+            ...state,
+            userProfile: action.payload
+        }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Obtener auth de usuario
     case ASYNC_REGISTER_AUTH0 || ASYNC_LOGIN_AUTH0:
