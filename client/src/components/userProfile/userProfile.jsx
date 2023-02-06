@@ -1,7 +1,6 @@
 import React, {useEffect} from "react"
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
 import { getUser, updateUser } from "../../actions";
 import NavBar from "../Navbar/Navbar";
 import "./userProfile.css";
@@ -11,7 +10,7 @@ import Modal from "react-modal"
 // import Api from "../Global";
 // const url = Api.Url;
 
-export default function UserProfile (props) {
+export default function UserProfile () {
 
     const dispatch = useDispatch();
     const user = useSelector((state) => state.userProfile);
@@ -19,9 +18,9 @@ export default function UserProfile (props) {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    useEffect(() => {
-      dispatch(getUser());
-    }, [dispatch]);
+    // useEffect(() => {
+    //   dispatch(getUser());
+    // }, [dispatch]);
 
 
     const openEditModal = () => {
@@ -36,12 +35,13 @@ export default function UserProfile (props) {
 
 
     const [editUser, setEditUser] = useState({
-      nombre: props.nombre,
-      email: props.email,
-      password: props.password,
-      address: props.direccion,
-      pais: props.pais,
-      ciudad: props.ciudad,
+      
+      nombre: user.nombre,
+      email: user.email,
+      password: user.password,
+      direccion: user.direccion,
+      pais: user.pais,
+      ciudad: user.ciudad,
       
     });
 
@@ -54,7 +54,9 @@ export default function UserProfile (props) {
 
     const handleSubmitUpdate = (e) => {
       e.preventDefault()
-      dispatch((updateUser(props.id, editUser)))
+      if (editUser.name === "" || editUser.email === "" || editUser.password === "")
+      return alert('This fields cannot be empty')
+      dispatch((updateUser(user.id, editUser)))
     }
 
   const logout = (e) => {
@@ -65,6 +67,7 @@ export default function UserProfile (props) {
   // function handleEdit() {
   //   window.location.assign("http://localhost:3000/profile/edit");
   // }
+
   
 
 return (
@@ -91,6 +94,11 @@ return (
               ></img>
             </div> */}
             <div>
+            <h3 className="dato" name="id" value={user.id}>
+                {" "}
+                ID: {user.id}{" "}
+              </h3>
+
               <h3 className="dato" name="name" value={user.nombre}>
                 {" "}
                 Name: {user.nombre}{" "}
@@ -123,7 +131,7 @@ return (
             Logout
           </button>
         </div>
-        <button  onClick={openEditModal}>Edit Properties</button>
+        <button  onClick={openEditModal}>Edit profile</button>
           <Modal
             isOpen={modalIsOpen}
             onRequestClose={closeEditModal}
@@ -131,6 +139,7 @@ return (
             className="modal-form"
           >
             <form className="BC-CreateBooks" onSubmit={handleSubmitUpdate}>
+            
               <div className="BC-CreateBooks-input">
                 <label>Name: </label>
                 <input
@@ -192,6 +201,8 @@ return (
                 />
               </div>
               <input className="input-btn-dash-form" type="submit" value="Edit User" />
+              {/* <button onClick={(e) => handleSubmitUpdate(e)}> Edit User</button> */}
+
               {
                 message.length ? <div>Profile Edited Succesfully</div> : null
               }
