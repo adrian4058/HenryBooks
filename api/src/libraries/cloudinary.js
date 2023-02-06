@@ -11,7 +11,14 @@ const uploadImage=async filePath=>{
     })
 }
 
+const uploadImageUser =async filePath=>{
+    return await cloudinary.uploader.upload(filePath,{
+        folder:'usuarios'
+    })
+}
+
 
 module.exports={
     uploadImage,
+    uploadImageUser
 }
