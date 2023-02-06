@@ -10,16 +10,15 @@ import * as actions from "../../actions/index";
 function NavBar() {
   let dispatch = useDispatch();
   let token = useSelector((state) => state.token);
-  let usuario=useSelector((state)=>state.userProfile)
-  const { logout, isAuthenticated, user } = useAuth0();
+  let usuario = useSelector((state) => state.userProfile);
+  const { logout } = useAuth0();
   const cookies = new Cookies();
 
-  function cerrrarSesion(e){
+  function cerrrarSesion(e) {
     e.preventDefault();
-    dispatch(actions.vaciarUsuario())
-    dispatch(actions.deletToken())
-    logout()
-
+    dispatch(actions.vaciarUsuario());
+    dispatch(actions.deletToken());
+    logout();
   }
   return (
     <div className="navbar">
@@ -68,15 +67,15 @@ function NavBar() {
         </div>
       </div>
       <div>
-        {
-          (usuario.rol=="admin"?(<div className="navbar-options__link">
-          <Link to="/dashboard">
-            <button className="navbar-btn__option">
-              <b>Dashboard</b>
-            </button>
-          </Link>
-        </div>):(null))
-        }
+        {usuario.rol == "admin" ? (
+          <div className="navbar-options__link">
+            <Link to="/dashboard">
+              <button className="navbar-btn__option">
+                <b>Dashboard</b>
+              </button>
+            </Link>
+          </div>
+        ) : null}
         {/* {isAuthenticated || cookies.get("email") ? (
           <div className="navbar-options__link">
             <Link to="/dashboard">
@@ -90,42 +89,40 @@ function NavBar() {
 
       <div className="login">
         <div>
-          {
-            (Object.keys(usuario).length>0?(
-              <div>
-                <button
-                  className="navbar-btn__option"
-                  onClick={(e) =>cerrrarSesion(e)} 
-                >
-                  Logout
-                </button>
-                {cookies.get("email") ? (
-                  <a href="/profile/edit">
-                    <label className="user-name">
-                      {"User: " + cookies.get("email")}
-                    </label>
-                  </a>
-                ) : null}
+          {Object.keys(usuario).length > 0 ? (
+            <div>
+              <button
+                className="navbar-btn__option"
+                onClick={(e) => cerrrarSesion(e)}
+              >
+                Logout
+              </button>
+              {cookies.get("email") ? (
+                <a href="/profile/edit">
+                  {/* <label className="user-name">
+                    {"User: " + cookies.get("email")}
+                  </label> */}
+                </a>
+              ) : null}
+            </div>
+          ) : (
+            <div className="login">
+              <div className="navbar-options__link">
+                <Link to="/registerdos">
+                  <button className="navbar-btn__option">
+                    <b>Register</b>
+                  </button>
+                </Link>
               </div>
-            ) :(
-              <div className="login">
-                <div className="navbar-options__link">
-                  <Link to="/registerdos">
-                    <button className="navbar-btn__option">
-                      <b>Register</b>
-                    </button>
-                  </Link>
-                </div>
-                <div className="navbar-options__link">
-                  <Link to="/login">
-                    <button className="navbar-btn__option">
-                      <b>Login</b>
-                    </button>
-                  </Link>
-                </div>
+              <div className="navbar-options__link">
+                <Link to="/login">
+                  <button className="navbar-btn__option">
+                    <b>Login</b>
+                  </button>
+                </Link>
               </div>
-            ))
-          }
+            </div>
+          )}
           {/* {isAuthenticated || cookies.get("email") ? (
             <div>
               <button
@@ -175,13 +172,16 @@ function NavBar() {
             <h4 className="user-name">{user.nickname}</h4>
           </div>
         )} */}
-        {
-          (Object.keys(usuario).length>0?(<>
-          <div className="user">
-            <img className="user-img" src={usuario.img} alt="img" />
-            <h4 className="user-name">{usuario.nombre}</h4>
-          </div></>):(null))
-        }
+        {Object.keys(usuario).length > 0 ? (
+          <>
+            <div className="user">
+              <img className="user-img" src={usuario.img} alt="img" />
+              <Link to="/profile">
+                <h4 className="user-name">{usuario.nombre}</h4>
+              </Link>
+            </div>
+          </>
+        ) : null}
       </div>
     </div>
   );

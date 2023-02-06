@@ -31,7 +31,7 @@ async function getUsuarioById(req,res,next){
 //editar usuario
 async function editUsuario(req,res,next){
     const{id}=req.params;
-    const{nombre,email,passworx,rol,estado,direccion,pais,ciudad,img}=req.body
+    const{nombre,email,password,rol,estado,direccion,pais,ciudad,img}=req.body
     try{
         let usuario=await Usuario.findByPk(id)
         if(usuario==null){

@@ -73,7 +73,7 @@ async function aumentoPorId(req, res, next) {
     if(!resena)return res.status(404).send('el id no existe')
     let suma=resena.denuncias+1
     await Resena.update({denuncias:suma},{where:{id}})
-    res.json({msj:`las denuncias aumentaron ahora el nuevo valor es ${suma}`})
+    res.json({msj:"Tu denuncia ha sido recibida. Gracias!"})
   } catch (e) {
     res.status(404).send(e);
   }

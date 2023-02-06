@@ -16,6 +16,10 @@ export const FILTER_BY_ALPHABET = "FILTER_BY_ALPHABET";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const SEARCH_BY_NAME = "SEARCH_BY_NAME";
 export const FILTER_ALL = "FILTER_ALL";
+// USUARIOS
+export const GET_ALL_USERS = "GET_ALL_USERS"
+export const GET_USER = "GET_USER"
+export const EDIT_USER = "EDIT_USER"
 // DETAILS
 export const GET_BOOK_DETAIL = "GET_BOOK_DETAIL";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
@@ -36,6 +40,7 @@ export const ADD_REVIEW = "ADD_REVIEW";
 export const PUT_TOKEN = "PUT_TOKEN";
 export const DELETE_TOKEN = "DELETE_TOKEN";
 export const REPORT_REVIEW = "REPORT_REVIEW";
+export const CLEAN_REVIEW = "CLEAN_REVIEW"
 // AUTH
 export const LLENAR_DATOS = "LLENAR_DATOS";
 export const VACIAR_DATOS = "VACIAR_DATOS";
@@ -226,8 +231,14 @@ export const reportReview = (id) => (dispatch) => {
     },
     method: "PUT",
     body: JSON.stringify(id),
-  }).then((data) => dispatch({ type: REPORT_REVIEW }));
+  }).then((response) => response.json())
+  .then((response) => dispatch({ type: REPORT_REVIEW, payload: response }));
 };
+// Vacia el objeto Review
+export const cleanReview = () => {
+  return { type: CLEAN_REVIEW };
+};
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // OTHERS
@@ -244,6 +255,45 @@ export const putToken = (token) => {
 export const deletToken = () => {
   return { type: DELETE_TOKEN };
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//USUARIOS 
+  export const getAllUsers = () => (dispatch) => {
+    fetch(url + "/users")
+      // .then((data) => data.json())
+      .then((data) => dispatch({
+        type: GET_ALL_USERS,
+        payload: data
+      }))
+  }
+
+  export const getUser = (id) => async (dispatch) => {
+    try { 
+    const usuario = await axios.get(url + `/users/${id}`)
+      return dispatch({
+        type: GET_USER,
+        payload: usuario.data
+      })
+    } catch(error) {
+      console.log(error)
+    }
+  }
+   
+      
+
+  export const updateUser = (id, input) => async (dispatch) => {
+    try {
+      const response = await fetch(url + `/users/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      dispatch({ type: EDIT_USER, payload: data });
+    } catch (error) {
+      dispatch({ type: EDIT_USER, payload: error });
+    }
+  };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AUTH0

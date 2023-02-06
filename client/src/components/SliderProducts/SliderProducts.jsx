@@ -9,7 +9,7 @@ import { getAllBooks } from '../../actions/index'
 import { useEffect } from "react";
 
 function SliderProducts() {
-    const allBooks = useSelector(state => state.books)
+    const allBooks = useSelector(state => state.allBooks)
 
     const books = allBooks.filter(e => e.stock < 60)
 
@@ -23,7 +23,7 @@ function SliderProducts() {
     return (
         <>
             <div className={Style.container}>
-                <h2>Libros Destacados</h2>
+                <h2>Featured Books</h2>
                 <Swiper
                     slidesPerView={3}
                     spaceBetween={30}
