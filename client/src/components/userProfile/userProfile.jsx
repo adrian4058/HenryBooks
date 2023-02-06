@@ -2,6 +2,7 @@ import React, {useEffect} from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUser } from "../../actions";
+import NavBar from "../Navbar/Navbar";
 
 
 // import Api from "../Global";
@@ -10,7 +11,7 @@ import { getUser } from "../../actions";
 export default function UserProfile ({setAuth}) {
 
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user);
+    const user = useSelector((state) => state.userProfile);
     useEffect(() => {
       dispatch(getUser());
     }, [dispatch]);
@@ -21,17 +22,18 @@ export default function UserProfile ({setAuth}) {
     localStorage.removeItem("token");
     // setAuth(false);
   };
-  function handleEdit() {
-    window.location.assign("http://localhost:3000/profile/edit");
-  }
+  // function handleEdit() {
+  //   window.location.assign("http://localhost:3000/profile/edit");
+  // }
   
 
 return (
     
         <div className="info">
+          <NavBar />
           <div className="headatos">
             <h3 className="tituloAccount"> Datos personales </h3>
-            <Link className="editAcc" onClick={handleEdit}>
+            <Link to="/profile/edit">
               {" "}
               Editar datos{" "}
             </Link>
@@ -48,9 +50,9 @@ return (
               ></img>
             </div> */}
             <div>
-              <h3 className="dato" name="name" value={user.name}>
+              <h3 className="dato" name="name" value={user.nombre}>
                 {" "}
-                Name: {user.name}{" "}
+                Name: {user.nombre}{" "}
               </h3>
             
               <h3 className="dato" name="email" value={user.email}>

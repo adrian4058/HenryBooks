@@ -261,35 +261,30 @@ export const deletToken = () => {
   }
 
   export const getUser = (id) => async (dispatch) => {
+    try { 
     const usuario = await axios.get(url + `/users/${id}`)
       return dispatch({
         type: GET_USER,
         payload: usuario.data
       })
+    } catch(error) {
+      console.log(error)
+    }
   }
    
       
 
-  export const updateUser = (id, data) => async (dispatch) => {
+  export const updateUser = (id, input) => async (dispatch) => {
     try {
-      const config = {
-        headers: {
-          token: localStorage.token,
-        },
-      };
-  
-      const usuarios = await axios.put(
-        url + `/users/${id}`,
-        data,
-        config
-      );
-  
-      return dispatch({
-        type: EDIT_USER,
-        payload: usuarios.data,
+      const response = await fetch(url + `/users/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(input),
+        headers: { "Content-Type": "application/json" },
       });
+      const data = await response.json();
+      dispatch({ type: EDIT_USER, payload: data });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: EDIT_USER, payload: error });
     }
   };
 

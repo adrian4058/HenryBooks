@@ -5,13 +5,14 @@ import { getUser, updateUser } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { countries } from "../../utils/countries"
+import NavBar from "../Navbar/Navbar";
 
 
 
  const Edit = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const user = useSelector((state) => state.user)
+    const user = useSelector((state) => state.userProfile)
    
    
     useEffect(() => {
@@ -42,16 +43,16 @@ import { countries } from "../../utils/countries"
 
     function handleUpdate(e) {
         e.preventDefault();
-        dispatch(updateUser(user.id, getUser)); 
+        dispatch(updateUser(user.id, updateAccount)); 
         history.push("/profile")
-        window.location.href = window.location.href
+        // window.location.href = window.location.href
     }
 
 
   ///////////////////////// FALTA CONECTAR LA INFO DE LOS PAISES PARA SELECCIONAR
     return (  
-    
-    <div>
+        <div>
+        <NavBar />
     <form className='editForm' >
                     <h3>Editar información personal</h3>
                     <div>
@@ -61,7 +62,7 @@ import { countries } from "../../utils/countries"
 
                     <div>
                         <label> Mail: </label>
-                        <input type='email' name="email" placeholder="New Email" value={updateAccount.mail} onChange={handleSubmit}/>
+                        <input type='email' name="email" placeholder="New Email" value={updateAccount.email} onChange={handleSubmit}/>
                     </div>
 
                     <div>

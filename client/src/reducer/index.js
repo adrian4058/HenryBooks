@@ -21,7 +21,7 @@ import {
   ASYNC_REGISTER_AUTH0,
   ASYNC_LOGIN_AUTH0,
   LLENAR_DATOS,
-  VACIAR_DATOS
+  VACIAR_DATOS,
   GET_ALL_USERS,
   GET_USER,
   EDIT_USER
@@ -368,7 +368,7 @@ function rootReducer(state = initialState, action) {
     case EDIT_USER:
         return {
             ...state,
-            user: action.payload
+            userProfile: action.payload
         }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Obtener auth de usuario
