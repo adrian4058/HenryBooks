@@ -24,7 +24,9 @@ import {
   VACIAR_DATOS,
   GET_ALL_USERS,
   GET_USER,
-  EDIT_USER
+  EDIT_USER,
+  REPORT_REVIEW,
+  CLEAN_REVIEW
 } from "../actions";
 
 const initialState = {
@@ -40,6 +42,7 @@ const initialState = {
   allUsers: [],
   message: "",
   token: "",
+  reviews: {},
 
   userProfile: {},
 };
@@ -383,6 +386,16 @@ function rootReducer(state = initialState, action) {
           //authzero: action.payload.authzero,
         },
       };
+    case REPORT_REVIEW:
+      return {
+        ...state,
+        reviews: action.payload
+      } 
+    case CLEAN_REVIEW:
+      return{
+        ...state,
+        reviews: {}
+      }
     case LLENAR_DATOS:
       return{
         ...state,
