@@ -40,8 +40,9 @@ async function editUsuario(req,res,next){
         }
         let actualizado = await Usuario.update(req.body,{where:{id}})
         usuario=await Usuario.findByPk(id);
+        console.log(usuario)
         // let updated = await Usuario.update({nombre,email,passworx,rol,estado,direccion,pais,ciudad,img})
-        res.status(200).json({usuario})
+        res.status(200).json(usuario)
     }catch(e){
         res.status(404).json(e)
     }
