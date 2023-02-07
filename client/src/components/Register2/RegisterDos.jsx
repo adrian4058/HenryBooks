@@ -70,6 +70,10 @@ export const RegisterDos = () => {
     //password
     if (!input.password) {
       error.password = "password es requerido";
+    } else if (input.password.length < 6) {
+      error.password = "Debe tener mas de 6 caracteres"
+    }else if ((/[^A-Za-z0-9 ]+/g.test(input.password))) {
+      error.password = "No debe contener caracteres especiales"
     }
     return error;
   }
