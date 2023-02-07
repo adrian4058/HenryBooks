@@ -9,20 +9,19 @@ import { Redirect } from "react-router-dom";
 
 function Auth0() {
   const dispatch = useDispatch();
-  let [variable,setVariable]=useState("")
+  let [variable, setVariable] = useState("");
   let [home, setHome] = useState(false);
   const { loginWithPopup, user, logout, isAuthenticated } = useAuth0();
-  console.log(user);
+  //console.log(user);
   useEffect(() => {
     if (user) {
-      setVariable(user)
-      let datos={
-        email:user.email,
-        password:"Auth0pass",
-        nombre:user.nickname
-        
-      }
-      let url="http://localhost:5685/auth/signup";
+      setVariable(user);
+      let datos = {
+        email: user.email,
+        password: "Auth0pass",
+        nombre: user.nickname,
+      };
+      let url = "http://localhost:5685/auth/signup";
       let status;
       fetch(url, {
         headers: {
@@ -32,42 +31,42 @@ function Auth0() {
         method: "POST",
         body: JSON.stringify(datos),
       })
-      .then((res) => {
-        status = res.status;
-        return res.json();
-      })
-      .then((respuesta) => {
-        console.log(respuesta, status);
-        datos={
-          email:user.email,
-          password:"Auth0pass",
-        }
-        let url = "http://localhost:5685/auth/signin";
-        fetch(url, {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          method: "POST",
-          body: JSON.stringify(datos),
-        })
         .then((res) => {
           status = res.status;
           return res.json();
         })
         .then((respuesta) => {
           console.log(respuesta, status);
-          if (status === 200) {
-            dispatch(actions.llenarUsuario(respuesta.usuario));
-            dispatch(actions.putToken(respuesta.token));
-            setHome(true);
-            alert(`bienvenido ${respuesta.usuario.nombre}`);
-          } else {
-            alert(respuesta.message);
-          }
-        });
-      })
-      .catch((error) => console.error(error));
+          datos = {
+            email: user.email,
+            password: "Auth0pass",
+          };
+          let url = "http://localhost:5685/auth/signin";
+          fetch(url, {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(datos),
+          })
+            .then((res) => {
+              status = res.status;
+              return res.json();
+            })
+            .then((respuesta) => {
+              console.log(respuesta, status);
+              if (status === 200) {
+                dispatch(actions.llenarUsuario(respuesta.usuario));
+                dispatch(actions.putToken(respuesta.token));
+                setHome(true);
+                alert(`bienvenido ${respuesta.usuario.nombre}`);
+              } else {
+                alert(respuesta.message);
+              }
+            });
+        })
+        .catch((error) => console.error(error));
     }
   }, [user]);
   function login() {
@@ -79,10 +78,7 @@ function Auth0() {
   return (
     <div className="Login-google">
       {isAuthenticated ? (
-        <button
-          className="Login-google__btn"
-          onClick={() => logout()}
-        >
+        <button className="Login-google__btn" onClick={() => logout()}>
           <FcGoogle />
           <span>Logout</span>
         </button>
