@@ -269,7 +269,9 @@ export const deletToken = () => {
 
   export const getUser = (id) => async (dispatch) => {
     try { 
-    const usuario = await axios.get(url + `/users/${id}`)
+    const usuario = await axios.get(url + `/users/${id}`, {
+      headers: { token: localStorage.token },
+    })
       return dispatch({
         type: GET_USER,
         payload: usuario.data
