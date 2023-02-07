@@ -1,6 +1,9 @@
 import axios from "axios";
 import Api from "../Global";
+
 //import loginUser from "../reducer/index";
+
+// const FormData = require("form-data");
 
 // CART
 export const TYPES = {
@@ -53,7 +56,7 @@ const url = Api.Url;
 // HOME
 // Obtener Libros HOME
 export const getAllBooks = () => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       fetch(url + "/book")
         .then((data) => data.json())
@@ -105,7 +108,7 @@ export const filterAll = (category, editorial, author) => {
 // DASHBOARD
 // Obtener Libros DASHBOARD
 export const getAllBooksDashboard = () => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       fetch(url + "/book")
         .then((data) => data.json())
@@ -119,42 +122,90 @@ export const getAllBooksDashboard = () => {
 };
 
 // Crear nuevo libro
+// export const addNewBook = (payload) => {
+//   return async function (dispatch) {
+//     try {
+//       const response = await fetch(url + "/book", {
+//         method: "POST",
+//         body: JSON.stringify(payload),
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       });
+//       const data = await response.json();
+//       if (!response.ok) {
+//         throw new Error(data.message);
+//       }
+//       return dispatch({
+//         type: ADD_NEW_BOOK,
+//         payload: data,
+//       });
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+// };
+
 export const addNewBook = (payload) => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
-      const response = await fetch(url + "/book", {
-        method: "POST",
-        body: JSON.stringify(payload),
+      axios.post('http://localhost:5685/book', payload, {
         headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
-      return dispatch({
-        type: ADD_NEW_BOOK,
-        payload: data,
-      });
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then(response => {
+          console.log(response.data);
+          return dispatch({
+            type: ADD_NEW_BOOK,
+            payload: response.data,
+          });
+        })
+        .catch(error => {
+          console.error(error);
+        });
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
-  };
+  }
 };
 
 // Editar Libro
-export const editBook = (id, input) => async (dispatch) => {
-  try {
-    const response = await fetch(url + `/book/${id}`, {
-      method: "PUT",
-      body: JSON.stringify(input),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await response.json();
-    dispatch({ type: UPDATE_BOOK, payload: data });
-  } catch (error) {
-    dispatch({ type: UPDATE_BOOK, payload: error });
+// export const editBook = (id, input) => async (dispatch) => {
+//   try {
+//     const response = await fetch(url + `/book/${id}`, {
+//       method: "PUT",
+//       body: JSON.stringify(input),
+//       headers: { "Content-Type": "application/json" },
+//     });
+//     const data = await response.json();
+//     dispatch({ type: UPDATE_BOOK, payload: data });
+//   } catch (error) {
+//     dispatch({ type: UPDATE_BOOK, payload: error });
+//   }
+// };
+
+export const editBook = (id, input) => {
+  return async function (dispatch) {
+    try {
+      axios.put(url + `/book/${id}`, input, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then(response => {
+          console.log(response.data);
+          return dispatch({
+            type: UPDATE_BOOK,
+            payload: response.data
+          })
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 
@@ -232,7 +283,7 @@ export const reportReview = (id) => (dispatch) => {
     method: "PUT",
     body: JSON.stringify(id),
   }).then((response) => response.json())
-  .then((response) => dispatch({ type: REPORT_REVIEW, payload: response }));
+    .then((response) => dispatch({ type: REPORT_REVIEW, payload: response }));
 };
 // Vacia el objeto Review
 export const cleanReview = () => {
@@ -258,18 +309,20 @@ export const deletToken = () => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //USUARIOS 
-  export const getAllUsers = () => (dispatch) => {
-    fetch(url + "/users")
-      // .then((data) => data.json())
-      .then((data) => dispatch({
-        type: GET_ALL_USERS,
-        payload: data
-      }))
-  }
+export const getAllUsers = () => (dispatch) => {
+  fetch(url + "/users")
+    // .then((data) => data.json())
+    .then((data) => dispatch({
+      type: GET_ALL_USERS,
+      payload: data
+    }))
+}
 
   export const getUser = (id) => async (dispatch) => {
     try { 
-    const usuario = await axios.get(url + `/users/${id}`)
+    const usuario = await axios.get(url + `/users/${id}`, {
+      headers: { token: localStorage.token },
+    })
       return dispatch({
         type: GET_USER,
         payload: usuario.data
@@ -278,22 +331,22 @@ export const deletToken = () => {
       console.log(error)
     }
   }
-   
-      
 
-  export const updateUser = (id, input) => async (dispatch) => {
-    try {
-      const response = await fetch(url + `/users/${id}`, {
-        method: "PUT",
-        body: JSON.stringify(input),
-        headers: { "Content-Type": "application/json" },
-      });
-      const data = await response.json();
-      dispatch({ type: EDIT_USER, payload: data });
-    } catch (error) {
-      dispatch({ type: EDIT_USER, payload: error });
-    }
-  };
+
+
+export const updateUser = (id, input) => async (dispatch) => {
+  try {
+    const response = await fetch(url + `/users/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(input),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await response.json();
+    dispatch({ type: EDIT_USER, payload: data });
+  } catch (error) {
+    dispatch({ type: EDIT_USER, payload: error });
+  }
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AUTH0

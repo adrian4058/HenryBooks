@@ -1,7 +1,8 @@
 import "./BookCard.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
+import FormData from "form-data";
 import { editBook, emptyMessage } from "../../../../../actions";
 
 const BookCard = (props) => {
@@ -20,17 +21,22 @@ const BookCard = (props) => {
     window.location.reload();
   }
 
+  const [file, setFile] = useState(null)
+
   const [updateBook, setUpdatedBook] = useState({
     name: props.name,
     autor: props.author,
     editorial: props.editorial,
     reviews: [],
-    image: props.image,
     genero: props.genre,
     stock: props.stock,
     price: props.price,
     estado: props.state,
   });
+
+  const handleFileUpload = (e) => {
+    setFile(e.target.files[0]);
+  }
 
   const handleUpdateForm = (e) => {
     setUpdatedBook({
@@ -52,9 +58,19 @@ const BookCard = (props) => {
 
   const handleSubmitUpdate = (e) => {
     e.preventDefault();
-    if (updateBook.name === "" || updateBook.autor === "" || updateBook.editorial === "" || updateBook.genero === "" || updateBook.stock === "" || updateBook.price === "" || updateBook.image === "")
+    if (updateBook.name === "" || updateBook.autor === "" || updateBook.editorial === "" || updateBook.genero === "" || updateBook.stock === "" || updateBook.price === "")
       return alert('You must complete the fields');
-    dispatch((editBook(props.id, updateBook)))
+    const formData = new FormData();
+    console.log(file);
+    formData.append('image', file);
+    formData.append('name', updateBook.name);
+    formData.append('autor', updateBook.autor);
+    formData.append('editorial', updateBook.editorial);
+    formData.append('genero', updateBook.genero);
+    formData.append('stock', updateBook.stock);
+    formData.append('price', updateBook.price);
+    formData.append('estado', updateBook.estado);
+    dispatch((editBook(props.id, formData)))
   };
 
   return (
@@ -148,12 +164,13 @@ const BookCard = (props) => {
                 <label>Image: </label>
                 <input
                   className="Input-CreateBooks"
-                  type="text"
+                  type="file"
                   name="image"
-                  value={updateBook.image}
-                  onChange={handleUpdateForm}
+                  onChange={handleFileUpload}
                 />
               </div>
+              <img className="image-form" src={props.image} alt="image" />
+              <img className="image-form" src={file} alt="image2" />
               <input className="input-btn-dash-form" type="submit" value="Edit Book" />
               {
                 message.length ? <div>Book Edited Succesfully</div> : null
