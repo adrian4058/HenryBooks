@@ -12,6 +12,7 @@ import Login from "./components/Login/Login";
 import userProfile from "./components/userProfile/userProfile";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import DefaultPage from "./components/DefaultPage/DefaultPage";
+import Usuarios from "./components/Admin/Usuario";
 import { RegisterDos } from "./components/Register2/RegisterDos";
 
 function App() {
@@ -31,8 +32,8 @@ function App() {
           <Route exact path="/cart" component={ShoppingCart} />
           <Route exact path="/profile" component={userProfile} />
           <Route exact path="/registerdos" component={RegisterDos} />
+          <Route exact path="/users" component={Usuarios} />
           <Route component={DefaultPage} />
-          
         </Switch>
       </div>
     </BrowserRouter>

@@ -20,9 +20,10 @@ export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const SEARCH_BY_NAME = "SEARCH_BY_NAME";
 export const FILTER_ALL = "FILTER_ALL";
 // USUARIOS
-export const GET_ALL_USERS = "GET_ALL_USERS"
-export const GET_USER = "GET_USER"
-export const EDIT_USER = "EDIT_USER"
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const GET_USER = "GET_USER";
+export const EDIT_USER = "EDIT_USER";
+export const UPDATE_USER = "UPDATE_USER";
 // DETAILS
 export const GET_BOOK_DETAIL = "GET_BOOK_DETAIL";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
@@ -43,7 +44,7 @@ export const ADD_REVIEW = "ADD_REVIEW";
 export const PUT_TOKEN = "PUT_TOKEN";
 export const DELETE_TOKEN = "DELETE_TOKEN";
 export const REPORT_REVIEW = "REPORT_REVIEW";
-export const CLEAN_REVIEW = "CLEAN_REVIEW"
+export const CLEAN_REVIEW = "CLEAN_REVIEW";
 // AUTH
 export const LLENAR_DATOS = "LLENAR_DATOS";
 export const VACIAR_DATOS = "VACIAR_DATOS";
@@ -56,7 +57,7 @@ const url = Api.Url;
 // HOME
 // Obtener Libros HOME
 export const getAllBooks = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       fetch(url + "/book")
         .then((data) => data.json())
@@ -108,7 +109,7 @@ export const filterAll = (category, editorial, author) => {
 // DASHBOARD
 // Obtener Libros DASHBOARD
 export const getAllBooksDashboard = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       fetch(url + "/book")
         .then((data) => data.json())
@@ -147,27 +148,28 @@ export const getAllBooksDashboard = () => {
 // };
 
 export const addNewBook = (payload) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
-      axios.post('http://localhost:5685/book', payload, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
-        .then(response => {
+      axios
+        .post("http://localhost:5685/book", payload, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
           console.log(response.data);
           return dispatch({
             type: ADD_NEW_BOOK,
             payload: response.data,
           });
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 };
 
 // Editar Libro
@@ -186,27 +188,28 @@ export const addNewBook = (payload) => {
 // };
 
 export const editBook = (id, input) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
-      axios.put(url + `/book/${id}`, input, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
-        .then(response => {
+      axios
+        .put(url + `/book/${id}`, input, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
           console.log(response.data);
           return dispatch({
             type: UPDATE_BOOK,
-            payload: response.data
-          })
+            payload: response.data,
+          });
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 };
 
 // Vacíar mensaje
@@ -282,14 +285,14 @@ export const reportReview = (id) => (dispatch) => {
     },
     method: "PUT",
     body: JSON.stringify(id),
-  }).then((response) => response.json())
+  })
+    .then((response) => response.json())
     .then((response) => dispatch({ type: REPORT_REVIEW, payload: response }));
 };
 // Vacia el objeto Review
 export const cleanReview = () => {
   return { type: CLEAN_REVIEW };
 };
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // OTHERS
@@ -308,31 +311,50 @@ export const deletToken = () => {
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-//USUARIOS 
-export const getAllUsers = () => (dispatch) => {
-  fetch(url + "/users")
-    // .then((data) => data.json())
-    .then((data) => dispatch({
-      type: GET_ALL_USERS,
-      payload: data
-    }))
-}
+//USUARIOS
+export const getAllUsers = () => {
+  return async function(dispatch) {
+    try {
+      const response = await fetch(url + "/users/")
+        .then((data) => data.json())
+        .then((data) => dispatch({ type: GET_ALL_USERS, payload: data }));
+      //console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
-  export const getUser = (id) => async (dispatch) => {
-    try { 
+export const getUser = (id) => async (dispatch) => {
+  try {
     const usuario = await axios.get(url + `/users/${id}`, {
       headers: { token: localStorage.token },
-    })
-      return dispatch({
-        type: GET_USER,
-        payload: usuario.data
-      })
-    } catch(error) {
-      console.log(error)
-    }
+    });
+    return dispatch({
+      type: GET_USER,
+      payload: usuario.data,
+    });
+  } catch (error) {
+    console.log(error);
   }
+};
 
-
+export const userUpdate = (id, e) => {
+  return async function(dispatch) {
+    try {
+      const response = await fetch(url + `/users/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(e),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      dispatch({ type: UPDATE_USER, payload: data });
+      //console.log(response.payload.sql);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 export const updateUser = (id, input) => async (dispatch) => {
   try {
