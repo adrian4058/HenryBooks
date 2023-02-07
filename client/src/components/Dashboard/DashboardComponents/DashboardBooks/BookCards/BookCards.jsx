@@ -7,6 +7,7 @@ import React from "react";
 import Modal from "react-modal";
 import FormData from "form-data";
 import "./BookCards.css";
+import { Link } from "react-router-dom";
 
 const BookCards = () => {
 
@@ -103,10 +104,11 @@ const FormCreateBook = () => {
     formData.append('stock', book.stock);
     formData.append('price', book.price);
     dispatch(addNewBook(formData))
+    alert("libro creado correctamente");
   };
 
   return (
-    <form className="BC-CreateBooks" onSubmit={handleSubmitCreate}>
+    <form className="BC-CreateBooks" onSubmit={(e)=>handleSubmitCreate(e)}>
       <div className="BC-CreateBooks-input">
         <label>Book Name: </label>
         <input
