@@ -1,11 +1,11 @@
 import React, {useEffect} from "react"
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, updateUser } from "../../actions";
+import { getUser, updateUser} from "../../actions";
 import NavBar from "../Navbar/Navbar";
 import "./userProfile.css";
 import Modal from "react-modal"
-
+import { countries } from "../../utils/countries"
 
 // import Api from "../Global";
 // const url = Api.Url;
@@ -14,13 +14,14 @@ export default function UserProfile () {
 
     const dispatch = useDispatch();
     const user = useSelector((state) => state.userProfile);
-    const message = useSelector((state => state.message))
+    const message = useSelector(state => state.message)
+    
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    // useEffect(() => {
-    //   dispatch(getUser());
-    // }, [dispatch]);
+    useEffect(() => {
+      dispatch(getUser());
+    }, [dispatch]);
 
 
     const openEditModal = () => {
@@ -29,8 +30,7 @@ export default function UserProfile () {
   
     const closeEditModal = () => {
       setModalIsOpen(false);
-      // dispatch(emptyMessage());
-      // window.location.reload();
+      
     }
 
 
@@ -53,10 +53,12 @@ export default function UserProfile () {
     };
 
     const handleSubmitUpdate = (e) => {
-      e.preventDefault()
+      e.preventDefault();
       if (editUser.name === "" || editUser.email === "" || editUser.password === "")
-      return alert('This fields cannot be empty')
+        return alert('This fields cannot be empty')
       dispatch((updateUser(user.id, editUser)))
+      // window.location.reload()
+     
     }
 
   const logout = (e) => {
@@ -64,11 +66,11 @@ export default function UserProfile () {
     localStorage.removeItem("token");
     // setAuth(false);
   };
-  // function handleEdit() {
-  //   window.location.assign("http://localhost:3000/profile/edit");
-  // }
-
   
+
+  const imagedefault = "https://thumbs.dreamstime.com/z/icono-del-usuario-en-estilo-plano-de-moda-aislado-fondo-gris-s%C3%ADmbolo-123663211.jpg"
+
+
 
 return (
     
@@ -77,14 +79,11 @@ return (
           <div className="alldata">
           <div className="headatos">
             <h3 className="tituloAccount"> Datos personales </h3>
-            {/* <Link to="/profile/edit">
-              {" "}
-              Editar datos{" "}
-            </Link> */}
+           
           </div>
 
           <div className="usuario">
-            {/* <div className="usuarioimg">
+            <div className="usuarioimg">
               <img
                 className="datoimg"
                 name="image"
@@ -92,7 +91,7 @@ return (
                 src={user.image? user.image : imagedefault}
                 width="120px"
               ></img>
-            </div> */}
+            </div>
             <div>
             <h3 className="dato" name="id" value={user.id}>
                 {" "}
@@ -182,13 +181,17 @@ return (
               </div>
               <div className="BC-CreateBooks-input">
                 <label>Country: </label>
-                <input
+                <select
                   className="Input-CreateBooks"
                   type="text"
                   name="pais"
                   value={editUser.pais}
-                  onChange={handleUpdateForm}
-                />
+                  onChange={handleUpdateForm} >
+                    <option> </option>
+                    {countries.map((data) => (
+                      <option value={data.id}>{data.name_es}</option>
+                    ))}
+                  </select>
               </div>
               <div className="BC-CreateBooks-input">
                 <label>City: </label>
@@ -198,10 +201,12 @@ return (
                   name="ciudad"
                   value={editUser.ciudad}
                   onChange={handleUpdateForm}
-                />
+                >
+
+                </input>
               </div>
-              <input className="input-btn-dash-form" type="submit" value="Edit User" />
-              {/* <button onClick={(e) => handleSubmitUpdate(e)}> Edit User</button> */}
+              {/* <input className="input-btn-dash-form" type="submit" value="Edit User" /> */}
+              <button onClick={(e) => handleSubmitUpdate(e)}> Edit User</button>
 
               {
                 message.length ? <div>Profile Edited Succesfully</div> : null

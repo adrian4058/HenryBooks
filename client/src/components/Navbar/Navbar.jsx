@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -9,10 +9,16 @@ import * as actions from "../../actions/index";
 
 function NavBar() {
   let dispatch = useDispatch();
-  let token = useSelector((state) => state.token);
-  let usuario = useSelector((state) => state.userProfile);
+  let token2 = useSelector((state) => state.token);
+  let usuario2 = useSelector((state) => state.userProfile);
+  let [token,setToken]=useState(token2)
+  let [usuario,setUsuario] =useState(usuario2);
   const { logout } = useAuth0();
   const cookies = new Cookies();
+  useEffect(()=>{
+    setToken(token2)
+    setUsuario(usuario2)
+  },[usuario2][token2])
 
   function cerrrarSesion(e) {
     e.preventDefault();

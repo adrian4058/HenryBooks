@@ -318,17 +318,19 @@ export const getAllUsers = () => (dispatch) => {
     }))
 }
 
-export const getUser = (id) => async (dispatch) => {
-  try {
-    const usuario = await axios.get(url + `/users/${id}`)
-    return dispatch({
-      type: GET_USER,
-      payload: usuario.data
+  export const getUser = (id) => async (dispatch) => {
+    try { 
+    const usuario = await axios.get(url + `/users/${id}`, {
+      headers: { token: localStorage.token },
     })
-  } catch (error) {
-    console.log(error)
+      return dispatch({
+        type: GET_USER,
+        payload: usuario.data
+      })
+    } catch(error) {
+      console.log(error)
+    }
   }
-}
 
 
 
