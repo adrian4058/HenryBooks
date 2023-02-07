@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index");
+const fileupload =require('express-fileupload')
 
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -16,6 +17,10 @@ server.name = "API";
 
 server.use(express.urlencoded({ extended: true, limit: "50mb" }));
 server.use(express.json({ limit: "50mb" }));
+server.use(fileupload({
+  useTempFiles: true,
+  tempFileDir:'./files'
+}))
 server.use(cookieParser());
 server.use(morgan("dev"));
 server.use(cors());
