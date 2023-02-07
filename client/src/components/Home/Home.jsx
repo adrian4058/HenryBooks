@@ -15,7 +15,7 @@ import {
 import "./Home.css";
 import Slider from "../Slider/Slider";
 import { useRef } from "react";
-import Chat from "../ChatBot/Chat";
+// import Chat from "../ChatBot/Chat";
 import SliderProducts from "../SliderProducts/SliderProducts";
 
 function Home(props) {
@@ -418,8 +418,8 @@ function Home(props) {
         </div>
       )}
 
-      <Chat />
-      <Paginate
+      {/* <Chat /> */}
+      <Paginate 
         booksPerPage={booksPerPage}
         allBooks={allBooksF.length}
         paginado={paginado}
