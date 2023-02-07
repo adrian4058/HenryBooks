@@ -18,7 +18,7 @@ function NavBar() {
   useEffect(()=>{
     setToken(token2)
     setUsuario(usuario2)
-  },[usuario])
+  },[usuario2][token2])
 
   function cerrrarSesion(e) {
     e.preventDefault();
