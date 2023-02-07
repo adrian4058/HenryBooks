@@ -103,6 +103,7 @@ export const RegisterDos = () => {
                 placeholder="Name"
                 name="name"
                 value={input.name}
+                className="Login-Register__input"
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -121,6 +122,7 @@ export const RegisterDos = () => {
                 placeholder="email"
                 name="email"
                 value={input.email}
+                className="Login-Register__input"
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -139,6 +141,7 @@ export const RegisterDos = () => {
                 placeholder="Password"
                 name="password"
                 value={input.password}
+                className="Login-Register__input"
                 onChange={(e) => handleChange(e)}
               />
             </div>
