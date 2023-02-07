@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNewBook, emptyMessage } from "../../../../../actions";
 import React from "react";
 import Modal from "react-modal";
+import FormData from "form-data";
 import "./BookCards.css";
 
 const BookCards = () => {
@@ -66,6 +67,7 @@ const BookCards = () => {
 const FormCreateBook = () => {
   const message = useSelector(state => state.message)
   const dispatch = useDispatch();
+  const [file, setFile] = useState(null);
   const [book, setBook] = useState({
     name: "",
     autor: "",
@@ -74,8 +76,12 @@ const FormCreateBook = () => {
     genero: "",
     stock: "",
     price: "",
-    image: "",
+    imageF: "",
   });
+
+  const handleFileUpload = e => {
+    setFile(e.target.files[0]);
+  }
 
   const handleForm = (e) => {
     setBook({
@@ -86,19 +92,17 @@ const FormCreateBook = () => {
 
   const handleSubmitCreate = (e) => {
     e.preventDefault();
-    if (book.name === "" || book.autor === "" || book.editorial === "" || book.genero === "" || book.stock === "" || book.price === "" || book.image === "")
+    if (book.name === "" || book.autor === "" || book.editorial === "" || book.genero === "" || book.stock === "" || book.price === "" || book.imageF === null)
       return alert('You must complete the fields');
-    dispatch(addNewBook(book));
-    setBook({
-      name: "",
-      autor: "",
-      editorial: "",
-      reviews: [],
-      genero: "",
-      stock: "",
-      price: "",
-      image: "",
-    })
+    const formData = new FormData();
+    formData.append('imageF', file);
+    formData.append('name', book.name);
+    formData.append('autor', book.autor);
+    formData.append('editorial', book.editorial);
+    formData.append('genero', book.genero);
+    formData.append('stock', book.stock);
+    formData.append('price', book.price);
+    dispatch(addNewBook(formData))
   };
 
   return (
@@ -169,10 +173,9 @@ const FormCreateBook = () => {
         <label>Image: </label>
         <input
           className="Input-CreateBooks"
-          type="text"
+          type="file"
           name="image"
-          value={book.image}
-          onChange={handleForm}
+          onChange={handleFileUpload}
         />
       </div>
       <input className="input-btn-dash-form" type="submit" value="Crear Nuevo Libro" />
