@@ -11,7 +11,7 @@ export default function AllUsers() {
 
   useEffect(() => {
     dispatch(getAllUsers());
-  }, [dispatch]);
+  });
   //console.log(usuario.usuarios);
 
   return (
