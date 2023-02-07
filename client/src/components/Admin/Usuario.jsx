@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { getAllUsers } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import User from "./User";
-import NavBar from "../Navbar/Navbar";
+import "./Usuario.css";
+//import NavBar from "../Navbar/Navbar";
 
 export default function AllUsers() {
   const dispatch = useDispatch();
@@ -10,30 +11,29 @@ export default function AllUsers() {
 
   useEffect(() => {
     dispatch(getAllUsers());
-  });
+  }, [dispatch]);
   //console.log(usuario.usuarios);
 
   return (
-    <div>
-      <NavBar />
-      <div>
-        {usuario.usuarios?.map((e) => (
-          <div key={e.id}>
-            <User
-              img={e.img}
-              id={e.id}
-              nombre={e.nombre}
-              email={e.email}
-              password={e.password}
-              pais={e.pais}
-              ciudad={e.ciudad}
-              rol={e.rol}
-              estado={e.estado}
-            />
-            <br />
-          </div>
-        ))}
-      </div>
+    <div className="main-container">
+      {/* <NavBar /> */}
+      {usuario.usuarios?.map((e) => (
+        <div className="container-usuario" key={e.id}>
+          <User
+            img={e.img}
+            id={e.id}
+            nombre={e.nombre}
+            pais={e.pais}
+            ciudad={e.ciudad}
+            direccion={e.direccion}
+            email={e.email}
+            password={e.password}
+            rol={e.rol}
+            estado={e.estado}
+          />
+          <br />
+        </div>
+      ))}
     </div>
   );
 }
