@@ -1,4 +1,6 @@
+
 import React, { useEffect } from "react";
+
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -195,4 +197,4 @@ function NavBar() {
 
 export default NavBar;
 
-// {error.name?('danger Register-input'):("Register-input")}
+
