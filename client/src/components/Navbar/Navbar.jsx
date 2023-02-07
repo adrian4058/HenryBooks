@@ -6,19 +6,21 @@ import "./Navbar.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../actions/index";
+import { HiShoppingCart } from "react-icons/hi";
+
 
 function NavBar() {
   let dispatch = useDispatch();
   let token2 = useSelector((state) => state.token);
   let usuario2 = useSelector((state) => state.userProfile);
-  let [token,setToken]=useState(token2)
-  let [usuario,setUsuario] =useState(usuario2);
+  let [token, setToken] = useState(token2)
+  let [usuario, setUsuario] = useState(usuario2);
   const { logout } = useAuth0();
   const cookies = new Cookies();
-  useEffect(()=>{
+  useEffect(() => {
     setToken(token2)
     setUsuario(usuario2)
-  },[usuario2][token2])
+  }, [usuario2][token2])
 
   function cerrrarSesion(e) {
     e.preventDefault();
@@ -97,12 +99,20 @@ function NavBar() {
         <div>
           {Object.keys(usuario).length > 0 ? (
             <div>
-              <button
-                className="navbar-btn__option"
-                onClick={(e) => cerrrarSesion(e)}
-              >
-                Logout
-              </button>
+              <div className="user-btns">
+                <Link to="/cart">
+                  <button className="navbar-btn__option cart-btn">
+                    <b>Cart</b>
+                    <HiShoppingCart />
+                  </button>
+                </Link>
+                <button
+                  className="navbar-btn__option"
+                  onClick={(e) => cerrrarSesion(e)}
+                >
+                  Logout
+                </button>
+              </div>
               {cookies.get("email") ? (
                 <a href="/profile/edit">
                   {/* <label className="user-name">
