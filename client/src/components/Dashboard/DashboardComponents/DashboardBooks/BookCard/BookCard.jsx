@@ -40,13 +40,14 @@ const BookCard = (props) => {
   };
 
   const handleChangeStatus = (e) => {
-    const updatedBook = {
+    e.preventDefault();
+    let updatedBooks = {
       ...updateBook,
       estado: updateBook.estado === "activo" ? "desactivado" : "activo"
     }
-    setUpdatedBook(updateBook);
-    dispatch((editBook(props.id, updatedBook)))
-    window.location.reload();
+    setUpdatedBook(updatedBooks);
+    dispatch((editBook(props.id, updatedBooks)))
+    // window.location.reload();
   }
 
   const handleSubmitUpdate = (e) => {
@@ -80,7 +81,7 @@ const BookCard = (props) => {
             ariaHideApp={false}
             className="modal-form"
           >
-            <form className="BC-CreateBooks" onSubmit={handleSubmitUpdate}>
+            <form className="BC-CreateBooks" onSubmit={(e)=>handleSubmitUpdate(e)}>
               <div className="BC-CreateBooks-input">
                 <label>Book Name: </label>
                 <input
@@ -160,7 +161,7 @@ const BookCard = (props) => {
             </form>
           </Modal>
         </div>
-        <button className="status-btn" onClick={handleChangeStatus}>{updateBook.estado === "activo" ? "Desactive" : "Active"}</button>
+        <button className="status-btn" onClick={(e)=>handleChangeStatus(e)}>{updateBook.estado === "activo" ? "Desactive" : "Active"}</button>
       </div>
     </div>
   )
