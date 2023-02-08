@@ -42,16 +42,20 @@ function Details() {
               {details.name && <h2>{details.name}</h2>}
             </div>
             <div className="book-info__info">
-              {<h4>Author:</h4>}
+              <h4>Author:</h4>
               {<h4>{details.Autor?.nombre}</h4>}
             </div>
             <div className="book-info__info">
-              {details.editorial && <h4>Editorial: </h4>}
+              <h4>Editorial: </h4>
               {details.editorial && <p>{details.editorial}</p>}
             </div>
             <div className="book-info__info">
-              {details.genero && <h4>Genre: </h4>}
+              <h4>Genre: </h4>
               {details.genero && <p>{details.genero}</p>}
+            </div>
+            <div className="book-info__info">
+              <h4>Stock: </h4>
+              {details.stock && <p>{details.stock}</p>}
             </div>
             <div className="book-info__info">
               {details.price && (

@@ -17,6 +17,7 @@ import Slider from "../Slider/Slider";
 import { useRef } from "react";
 import Chat from "../ChatBot/Chat";
 import SliderProducts from "../SliderProducts/SliderProducts";
+import axios from "axios";
 
 function Home(props) {
   const dispatch = useDispatch();
@@ -27,7 +28,9 @@ function Home(props) {
   const priceSelect = useRef();
   const authorsSelect = useRef();
 
-  
+
+  axios.get("https://apirest-webfam-production.up.railway.app/api/users")
+    .then(response => console.log(response));
 
   const [, setOrder] = React.useState("");
   // allBooks contiene TODOS los libros
