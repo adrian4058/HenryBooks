@@ -223,7 +223,7 @@ export default function UserProfile() {
           <button className="Register-create__btn" onClick={(e) => handleSubmitUpdate(e)}> Edit User</button>
 
           {
-            message.length ? <div>Profile Edited Succesfully</div> : null
+            message.length ? <div>Profile Edited Succesfully!!</div> : null
           }
         </form>
       </Modal>
