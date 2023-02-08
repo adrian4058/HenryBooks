@@ -67,7 +67,7 @@ const Login = () => {
             dispatch(actions.llenarUsuario(respuesta.usuario));
             dispatch(actions.putToken(respuesta.token));
             setHome(true);
-            alert(`bienvenido ${respuesta.usuario.nombre}`);
+            alert(`Bienvenido ${respuesta.usuario.nombre}!`);
           } else {
             alert(respuesta.message);
           }

@@ -1,12 +1,13 @@
 import React, { useEffect } from "react"
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, updateUser } from "../../actions";
+import { getUser, updateUser, deletToken, vaciarUsuario } from "../../actions";
 import NavBar from "../Navbar/Navbar";
 import "./userProfile.css";
 import Modal from "react-modal"
 import { countries } from "../../utils/countries"
 import imageDefault from "../img/img-df.jpeg";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // import Api from "../Global";
 // const url = Api.Url;
@@ -16,6 +17,7 @@ export default function UserProfile() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userProfile);
   const message = useSelector(state => state.message)
+  const { logout } = useAuth0();
 
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -58,14 +60,16 @@ export default function UserProfile() {
     if (editUser.name === "" || editUser.email === "" || editUser.password === "")
       return alert('This fields cannot be empty')
     dispatch((updateUser(user.id, editUser)))
+    closeEditModal()
     // window.location.reload()
 
   }
 
-  const logout = (e) => {
+  const logOut = (e) => {
     e.preventDefault();
-    localStorage.removeItem("token");
-    // setAuth(false);
+    dispatch(vaciarUsuario())
+    dispatch(deletToken())
+    logout()
   };
 
   return (
@@ -88,13 +92,6 @@ export default function UserProfile() {
             />
           </div>
           <div className="Profile-user__info">
-
-            <div className="Profile-usuario__data">
-              <h5 className="Profile-info" name="id" value={user.id}>
-                <span>UserID:</span>
-                <span>{user.id}</span>
-              </h5>
-            </div>
 
             <div className="Profile-usuario__data">
               <h5 className="Profile-info" name="name" value={user.nombre}>
@@ -142,7 +139,7 @@ export default function UserProfile() {
         </div>
         <div className="Profile-btns">
           <button className="Profile-btn" onClick={openEditModal}>Edit profile</button>
-          <button className="Profile-btn" onClick={(e) => logout(e)}>
+          <button className="Profile-btn" onClick={(e) => logOut(e)}>
             Logout
           </button>
         </div>
@@ -226,7 +223,7 @@ export default function UserProfile() {
           <button className="Register-create__btn" onClick={(e) => handleSubmitUpdate(e)}> Edit User</button>
 
           {
-            message.length ? <div>Profile Edited Succesfully</div> : null
+            message.length ? <div>Profile Edited Succesfully!!</div> : null
           }
         </form>
       </Modal>
