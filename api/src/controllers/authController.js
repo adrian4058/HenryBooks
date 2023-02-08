@@ -4,11 +4,11 @@ async function signUp (req,res){
     let {nombre, email, password,rol,estado}=req.body
     let existe = await Usuario.findOne({ where: {nombre} });
     if(existe){
-        return res.status(404).send({msj:`el usuarios con nombre ${nombre} ya existe`})
+        return res.status(404).send({msj:`User with name: ${nombre} already exist!`})
     }
     existe =await Usuario.findOne({ where: {email} });
     if(existe){
-        return res.status(404).send({msj:`el email ${email} ya existe`})
+        return res.status(404).send({msj:`E-mail: ${email} already registered`})
     }
     try{
         let nuevoU= await Usuario.create({nombre,email,password,rol,estado})
@@ -30,7 +30,7 @@ async function signIn (req,res){
     }
     console.log(encontrarUsuario.password)
     if(password!=encontrarUsuario.password){
-        return res.status(404).json({message:"password not have coincidence"})
+        return res.status(404).json({message:"Wrong password"})
     }
 
     const token =jwt.sign({id:encontrarUsuario.id},'henribooks',{
