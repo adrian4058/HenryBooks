@@ -65,7 +65,7 @@ const Login = () => {
             setHome(true);
             Swal.fire({
               icon: "success",
-              title: "Welcome to Henry Books!",
+              title: `Welcome to Henry Books, ${respuesta.usuario.nombre}!`,
               showConfirmButton: false,
               timer: 2000,
             });
