@@ -156,50 +156,50 @@ export default function UserProfile() {
       >
         <form className="BC-CreateBooks" onSubmit={handleSubmitUpdate}>
 
-          <div className="BC-CreateBooks-input">
+          <div className="Register-input">
             <label>Name: </label>
             <input
-              className="Input-CreateBooks"
+              className="Login-Register__input"
               type="text"
               name="nombre"
               value={editUser.nombre}
               onChange={handleUpdateForm}
             />
           </div>
-          <div className="BC-CreateBooks-input">
+          <div className="Register-input">
             <label>Email: </label>
             <input
-              className="Input-CreateBooks"
+              className="Login-Register__input"
               type="text"
               name="email"
               value={editUser.email}
               onChange={handleUpdateForm}
             />
           </div>
-          <div className="BC-CreateBooks-input">
+          <div className="Register-input">
             <label>Password: </label>
             <input
-              className="Input-CreateBooks"
+              className="Login-Register__input"
               type="text"
               name="password"
               value={editUser.password}
               onChange={handleUpdateForm}
             />
           </div>
-          <div className="BC-CreateBooks-input">
+          <div className="Register-input">
             <label>Address: </label>
             <input
-              className="Input-CreateBooks"
+              className="Login-Register__input"
               type="text"
               name="direccion"
               value={editUser.direccion}
               onChange={handleUpdateForm}
             />
           </div>
-          <div className="BC-CreateBooks-input">
+          <div className="Register-input">
             <label>Country: </label>
             <select
-              className="Input-CreateBooks"
+              className="Register-input__select"
               type="text"
               name="pais"
               value={editUser.pais}
@@ -210,10 +210,10 @@ export default function UserProfile() {
               ))}
             </select>
           </div>
-          <div className="BC-CreateBooks-input">
+          <div className="Register-input">
             <label>City: </label>
             <input
-              className="Input-CreateBooks"
+              className="Login-Register__input"
               type="text"
               name="ciudad"
               value={editUser.ciudad}
@@ -223,7 +223,7 @@ export default function UserProfile() {
             </input>
           </div>
           {/* <input className="input-btn-dash-form" type="submit" value="Edit User" /> */}
-          <button onClick={(e) => handleSubmitUpdate(e)}> Edit User</button>
+          <button className="Register-create__btn" onClick={(e) => handleSubmitUpdate(e)}> Edit User</button>
 
           {
             message.length ? <div>Profile Edited Succesfully</div> : null
