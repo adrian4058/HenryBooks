@@ -7,7 +7,6 @@ import CartItem from "./CartItem";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const allBooks = useSelector((state) => state.allBooks);
-  // const cart = useSelector((state) => state.cart);
   useEffect(() => {
     dispatch(getAllBooks());
   }, [dispatch]);
@@ -17,10 +16,20 @@ const ShoppingCart = () => {
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
-  const delFromCart = () => {};
-  const clearCart = () => {
-    dispatch({ type: TYPES.CLEAR_CART }, { type: GET_ALL_BOOKS });
+  const delFromCart = (id, all = false) => {
+    console.log(id, all);
+    if (all) {
+      dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
+    } else {
+      dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+    }
   };
+
+  const clearCart = () => {
+    dispatch({ type: TYPES.CLEAR_CART });
+  };
+
+  
 
   return (
     <div>
@@ -47,7 +56,6 @@ const ShoppingCart = () => {
           <CartItem
             key={index}
             genre={item.genero}
-            author={item.Autor.nombre}
             image={item.image}
             name={item.name}
             id={item.id}

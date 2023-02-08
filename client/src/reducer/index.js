@@ -26,7 +26,7 @@ import {
   GET_USER,
   EDIT_USER,
   REPORT_REVIEW,
-  CLEAN_REVIEW
+  CLEAN_REVIEW,
 } from "../actions";
 
 const initialState = {
@@ -57,24 +57,44 @@ function rootReducer(state = initialState, action) {
 
       return itemInCart
         ? {
-          ...state,
-          cart: state.cart.map((item) =>
-            item.id === newItem.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          ),
-        }
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === newItem.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            ),
+          }
         : { ...state, cart: [...state.cart, { ...newItem, quantity: 1 }] };
     }
 
-    case TYPES.REMOVE_ONE_FROM_CART:
-      break;
+    case TYPES.REMOVE_ONE_FROM_CART: {
+      let itemToDelete = state.cart.find((item) => item.id === action.payload);
+      return itemToDelete.quantity > 1
+        ? {
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === action.payload
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            ),
+          }
+        : {
+            ...state,
+            cart: state.cart.filter((item) => item.id !== action.payload),
+          };
+    }
 
     case TYPES.REMOVE_ALL_FROM_CART:
-      break;
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload),
+      };
 
     case TYPES.CLEAR_CART:
-      return initialState
+      return {
+        ...state,
+        cart: [],
+      };
 
     // HOME
     // Obtener Libros HOME
@@ -117,8 +137,8 @@ function rootReducer(state = initialState, action) {
         action.payload === ""
           ? state.allBooks
           : state.allBooks.filter((e) =>
-            e.name.toLowerCase().includes(action.payload.toLowerCase())
-          );
+              e.name.toLowerCase().includes(action.payload.toLowerCase())
+            );
       return {
         ...state,
         books: nombre,
@@ -280,8 +300,8 @@ function rootReducer(state = initialState, action) {
         action.payload === ""
           ? state.allBooksDashboard
           : state.allBooksDashboard.filter((e) =>
-            e.name.toLowerCase().includes(action.payload.toLowerCase())
-          );
+              e.name.toLowerCase().includes(action.payload.toLowerCase())
+            );
       return {
         ...state,
         booksDashboard: nombreDash,
@@ -353,27 +373,26 @@ function rootReducer(state = initialState, action) {
         allAuthors: action.payload,
       };
 
-
     //////////////////////////////////////////////////////////////////////////////////
     // USUARIOS
 
     case GET_ALL_USERS:
       return {
         ...state,
-        allUsers: action.payload.data //fijar 
-      }
+        allUsers: action.payload.data, //fijar
+      };
 
     case GET_USER:
       return {
         ...state,
-        user: action.payload
-      }
+        user: action.payload,
+      };
 
     case EDIT_USER:
       return {
         ...state,
-        userProfile: action.payload
-      }
+        userProfile: action.payload,
+      };
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Obtener auth de usuario
     case ASYNC_REGISTER_AUTH0 || ASYNC_LOGIN_AUTH0:
@@ -390,23 +409,23 @@ function rootReducer(state = initialState, action) {
     case REPORT_REVIEW:
       return {
         ...state,
-        reviews: action.payload
-      }
+        reviews: action.payload,
+      };
     case CLEAN_REVIEW:
       return {
         ...state,
-        reviews: {}
-      }
+        reviews: {},
+      };
     case LLENAR_DATOS:
       return {
         ...state,
-        userProfile: action.payload
-      }
+        userProfile: action.payload,
+      };
     case VACIAR_DATOS:
       return {
         ...state,
-        userProfile: {}
-      }
+        userProfile: {},
+      };
     default:
       return state;
   }
