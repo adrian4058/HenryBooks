@@ -22,9 +22,10 @@
 
 .slider-card {
   height: 180px;
-  width: 350px;
+  width: 380px;
   padding: 1rem;
-  margin: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
 @media (max-width: 990px) {
