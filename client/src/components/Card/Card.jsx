@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import imagenPrueba from "../img/wallpaper.jpg";
 import "../Card/Card.css";
 
 function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
