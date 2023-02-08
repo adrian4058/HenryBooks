@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBooks, TYPES } from "../../actions";
 import axios from "axios";
-import Card from "../Card/Card";
 import Footer from "../Footer/Footer";
 import NavBar from "../Navbar/Navbar";
 import CartItem from "./CartItem";
