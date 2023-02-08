@@ -272,8 +272,8 @@ export const addReview = (objeto) => (dispatch) => {
       "Content-Type": "application/json",
     },
     method: "POST",
-    body: JSON.stringify(objeto),
-  }).then((data) => dispatch({ type: ADD_REVIEW }));
+    body: JSON.stringify(objeto)
+  }).then((response) => response.json()).then((data) => dispatch({ type: ADD_REVIEW, payload: data }));
 };
 //
 // Agregar denuncia Review

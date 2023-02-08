@@ -11,7 +11,7 @@ async function crearResena(req, res, next) {
   }
   try {
     let nuevaReseña = await Resena.create(req.body);
-    res.send(nuevaReseña);
+    res.send({success: "We have received your review. Your comment will appear soon"});
   } catch (e) {
     res.status(404).send(e);
   }
@@ -73,7 +73,7 @@ async function aumentoPorId(req, res, next) {
     if(!resena)return res.status(404).send('el id no existe')
     let suma=resena.denuncias+1
     await Resena.update({denuncias:suma},{where:{id}})
-    res.json({msj:"Tu denuncia ha sido recibida. Gracias!"})
+    res.json({msj:"Thank you for your report!"})
   } catch (e) {
     res.status(404).send(e);
   }
