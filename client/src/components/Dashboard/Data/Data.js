@@ -16,24 +16,14 @@ export const SidebarData = [
     link: "/dashboard"
   },
   {
-    icon: BsFileText,
-    heading: "Orders",
-    link: "/dashboard"
-  },
-  {
     icon: BsFillPeopleFill,
-    heading: "Customers",
-    link: "/dashboard"
+    heading: "Users",
+    link: "/dashboard-users"
   },
   {
     icon: BsMinecartLoaded,
     heading: "Books",
     link: "/dashboard-books"
-  },
-  {
-    icon: BsFileBarGraph,
-    heading: "Analytics",
-    link: "/dashboard"
   },
   {
     icon: BiHomeAlt,

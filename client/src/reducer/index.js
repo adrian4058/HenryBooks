@@ -23,6 +23,7 @@ import {
   LLENAR_DATOS,
   VACIAR_DATOS,
   GET_ALL_USERS,
+  UPDATE_USER,
   GET_USER,
   EDIT_USER,
   REPORT_REVIEW,
@@ -44,7 +45,7 @@ const initialState = {
   message: "",
   token: "",
   reviews: {},
-
+  usuarios: {},
   userProfile: {},
 };
 
@@ -379,13 +380,21 @@ function rootReducer(state = initialState, action) {
     case GET_ALL_USERS:
       return {
         ...state,
-        allUsers: action.payload.data, //fijar
+        usuarios: action.payload, //fijar
       };
 
     case GET_USER:
       return {
         ...state,
         user: action.payload,
+      };
+
+    case UPDATE_USER:
+      return {
+        ...state,
+        usuarios: state.usuarios.usuarios?.map((e) =>
+          e.id === action.payload.id ? action.payload : e
+        ),
       };
 
     case EDIT_USER:

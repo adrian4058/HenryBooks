@@ -27,7 +27,7 @@ function Home(props) {
   const priceSelect = useRef();
   const authorsSelect = useRef();
 
-  const cart = useSelector((state) => state.cart);
+  
 
   const [, setOrder] = React.useState("");
   // allBooks contiene TODOS los libros
@@ -120,21 +120,22 @@ function Home(props) {
   return (
     <div className="home">
       <div className="home-icons__sm">
-        <a href='https://www.facebook.com'
-          target='_blank'
-          rel='noreferrer'>
-          <ion-icon name='logo-facebook' />
-
+        <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
+          <ion-icon name="logo-facebook" />
         </a>
-        <a href='https://www.instagram.com/henrybooks_pf/'
-          target='_blank'
-          rel='noreferrer'>
-          <ion-icon name='logo-instagram' />
+        <a
+          href="https://www.instagram.com/henrybooks_pf/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <ion-icon name="logo-instagram" />
         </a>
-        <a href='https://twitter.com/HenryBooks_PF'
-          target='_blank'
-          rel='noreferrer'>
-          <ion-icon name='logo-twitter' />
+        <a
+          href="https://twitter.com/HenryBooks_PF"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <ion-icon name="logo-twitter" />
         </a>
       </div>
       <Navbar />
@@ -150,9 +151,7 @@ function Home(props) {
         <SliderProducts />
       </div>
 
-      <h1 className="home-books-title">
-        Our Books
-      </h1>
+      <h1 className="home-books-title">Our Books</h1>
       {!books?.length ? (
         <div className="home-books">
           <div className="home-filters">

@@ -1,6 +1,9 @@
 import axios from "axios";
 import Api from "../Global";
+
 //import loginUser from "../reducer/index";
+
+// const FormData = require("form-data");
 
 // CART
 export const TYPES = {
@@ -20,6 +23,7 @@ export const FILTER_ALL = "FILTER_ALL";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER = "GET_USER";
 export const EDIT_USER = "EDIT_USER";
+export const UPDATE_USER = "UPDATE_USER";
 // DETAILS
 export const GET_BOOK_DETAIL = "GET_BOOK_DETAIL";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
@@ -119,43 +123,93 @@ export const getAllBooksDashboard = () => {
 };
 
 // Crear nuevo libro
+// export const addNewBook = (payload) => {
+//   return async function (dispatch) {
+//     try {
+//       const response = await fetch(url + "/book", {
+//         method: "POST",
+//         body: JSON.stringify(payload),
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       });
+//       const data = await response.json();
+//       if (!response.ok) {
+//         throw new Error(data.message);
+//       }
+//       return dispatch({
+//         type: ADD_NEW_BOOK,
+//         payload: data,
+//       });
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+// };
+
 export const addNewBook = (payload) => {
   return async function(dispatch) {
     try {
-      const response = await fetch(url + "/book", {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
-      return dispatch({
-        type: ADD_NEW_BOOK,
-        payload: data,
-      });
+      axios
+        .post("http://localhost:5685/book", payload, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          return dispatch({
+            type: ADD_NEW_BOOK,
+            payload: response.data,
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 };
 
 // Editar Libro
-export const editBook = (id, input) => async (dispatch) => {
-  try {
-    const response = await fetch(url + `/book/${id}`, {
-      method: "PUT",
-      body: JSON.stringify(input),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await response.json();
-    dispatch({ type: UPDATE_BOOK, payload: data });
-  } catch (error) {
-    dispatch({ type: UPDATE_BOOK, payload: error });
-  }
+// export const editBook = (id, input) => async (dispatch) => {
+//   try {
+//     const response = await fetch(url + `/book/${id}`, {
+//       method: "PUT",
+//       body: JSON.stringify(input),
+//       headers: { "Content-Type": "application/json" },
+//     });
+//     const data = await response.json();
+//     dispatch({ type: UPDATE_BOOK, payload: data });
+//   } catch (error) {
+//     dispatch({ type: UPDATE_BOOK, payload: error });
+//   }
+// };
+
+export const editBook = (id, input) => {
+  return async function(dispatch) {
+    try {
+      axios
+        .put(url + `/book/${id}`, input, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          return dispatch({
+            type: UPDATE_BOOK,
+            payload: response.data,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 // Vacíar mensaje
@@ -258,15 +312,17 @@ export const deletToken = () => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //USUARIOS
-export const getAllUsers = () => (dispatch) => {
-  fetch(url + "/users")
-    // .then((data) => data.json())
-    .then((data) =>
-      dispatch({
-        type: GET_ALL_USERS,
-        payload: data,
-      })
-    );
+export const getAllUsers = () => {
+  return async function(dispatch) {
+    try {
+      const response = await fetch(url + "/users/")
+        .then((data) => data.json())
+        .then((data) => dispatch({ type: GET_ALL_USERS, payload: data }));
+      //console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const getUser = (id) => async (dispatch) => {
@@ -281,6 +337,23 @@ export const getUser = (id) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const userUpdate = (id, e) => {
+  return async function(dispatch) {
+    try {
+      const response = await fetch(url + `/users/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(e),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      dispatch({ type: UPDATE_USER, payload: data });
+      //console.log(response.payload.sql);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const updateUser = (id, input) => async (dispatch) => {

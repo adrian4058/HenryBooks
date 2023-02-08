@@ -1,0 +1,68 @@
+/*          Usuario.jsx          */
+
+.Users {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  padding: 1rem 0;
+  row-gap: 2rem;
+}
+
+.Users-content {
+  /* border-bottom: 1px solid black; */
+  border-radius: .5em;
+  background-color: rgba(245, 241, 237, 90%);
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  padding: .5rem;
+  display: grid;
+  place-items: center;
+}
+
+/*           User.jsx             */
+
+.User {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  width: 380px;
+  height: max-content;
+  overflow: hidden;
+  padding: .5rem;
+}
+
+.User-img__container {
+  display: flex;
+  justify-content: center;
+}
+
+.User-img {
+  border-radius: 50%;
+}
+
+.datos {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.User-btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-users {
+  color: black;
+  border-radius: .5em;
+  border: none;
+  background: var(--yellow);
+  padding: 1em;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.btn-users:hover {
+  cursor: pointer;
+  background: var(--activeItem);
+}
