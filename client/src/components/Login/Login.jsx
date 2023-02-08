@@ -13,6 +13,7 @@ import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
 //import { FcGoogle } from "react-icons/fc";
 import HB_logo from "../img/HenryBooks_Logo.png";
 import Auth0 from "../Auth0/Auth0";
+import Swal from "sweetalert2"
 
 const Login = () => {
   let dispatch = useDispatch();
@@ -67,9 +68,17 @@ const Login = () => {
             dispatch(actions.llenarUsuario(respuesta.usuario));
             dispatch(actions.putToken(respuesta.token));
             setHome(true);
-            alert(`Bienvenido ${respuesta.usuario.nombre}!`);
+            Swal.fire({
+              icon: 'success',
+              title: 'Welcome to Henry Books!',
+              showConfirmButton: false,
+              timer: 2000
+            })
           } else {
-            alert(respuesta.message);
+            Swal.fire({
+              icon: 'error',
+              title:respuesta.message
+            })
           }
         });
       // console.log(values);
