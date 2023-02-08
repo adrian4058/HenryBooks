@@ -8,6 +8,7 @@ import Modal from "react-modal"
 import { countries } from "../../utils/countries"
 import imageDefault from "../img/img-df.jpeg";
 import { useAuth0 } from "@auth0/auth0-react";
+import Swal from "sweetalert2"
 
 // import Api from "../Global";
 // const url = Api.Url;
@@ -57,8 +58,18 @@ export default function UserProfile() {
 
   const handleSubmitUpdate = (e) => {
     e.preventDefault();
-    if (editUser.name === "" || editUser.email === "" || editUser.password === "")
+    if (editUser.name === "" || editUser.email === "" || editUser.password === "") {
       return alert('This fields cannot be empty')
+
+    } else {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'User edited successfully!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
     dispatch((updateUser(user.id, editUser)))
     closeEditModal()
     // window.location.reload()
