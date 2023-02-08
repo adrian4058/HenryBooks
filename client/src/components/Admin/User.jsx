@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userUpdate } from "../../actions";
+import imagedefault from "../img/img-df.jpeg"
+import "./Usuario.css";
 
 export default function User(props) {
   const dispatch = useDispatch();
@@ -11,6 +13,7 @@ export default function User(props) {
     nombre: props.nombre,
     email: props.email,
     password: props.password,
+    direccion: props.direccion,
     pais: props.pais,
     img: props.img,
     ciudad: props.ciudad,
@@ -37,25 +40,60 @@ export default function User(props) {
   };
 
   return (
-    <div>
-      <div key={props.id}>
-        <h1>id: {props.id}</h1>
-        <img src={props.img} alt="" className="user-img" />
-        <h1>nombre: {props.nombre}</h1>
-        <h1>email: {props.email}</h1>
-        <h1>password: {props.password}</h1>
-        <h1>pais: {props.pais}</h1>
-        <h1>ciudad: {props.ciudad}</h1>
-        <h1>rol: {props.rol}</h1>
-        <h1>estado: {props.estado}</h1>
-        <br />
+    <div className="User">
+      <div className="User-container" key={props.id}>
+        <div className="User-img__container">
+          <img src={props.img ? props.img : imagedefault} alt="" className="User-img" width={100} />
+        </div>
+
+        <h4 className="datos">
+          <span>Name:</span>
+          <span>{props.nombre}</span>
+        </h4>
+
+        <h4 className="datos">
+          <span>Country:</span>
+          <span>{props.pais}</span>
+        </h4>
+
+        <h4 className="datos">
+          <span>City/State:</span>
+          <span>{props.ciudad}</span>
+        </h4>
+
+        <h4 className="datos">
+          <span>Address:</span>
+          <span>{props.direccion}</span>
+        </h4 >
+
+        <h4 className="datos">
+          <span>Email:</span>
+          <span>{props.email}</span>
+        </h4 >
+
+        <h4 className="datos">
+          <span>Password:</span>
+          <span>{props.password.replace(/[^\s]/g, "*")}</span>
+        </h4 >
+
+        <h4 className="datos">
+          <span>Role:</span>
+          <span>{props.rol}</span>
+        </h4 >
+
+        <h4 className="datos">
+          <span>State:</span>
+          <span>{props.estado}</span>
+        </h4 >
+      </div >
+      <div className="User-btns">
+        <button className="btn-users" onClick={handleChangeStatus}>
+          {user.estado === "activo" ? "Disable state" : "Activate state"}
+        </button>
+        <button className="btn-users" onClick={handleChange}>
+          {user.rol === "user" ? "Convert to admin" : "convert to user"}
+        </button>
       </div>
-      <button onClick={handleChangeStatus}>
-        {user.estado === "activo" ? "Desactive" : "Active"}
-      </button>
-      <button onClick={handleChange}>
-        {user.rol === "user" ? "admin" : "user"}
-      </button>
-    </div>
+    </div >
   );
 }
