@@ -97,9 +97,8 @@ async function deleteBook(req,res){
 async function updateBook(req, res) {
   const { id } = req.params;
   let datos=req.body;
-  const {image}=req.files
-  if(image){
-    let url =await uploadImage(image.tempFilePath);
+  if(req.files){
+    let url =await uploadImage(req.files.image.tempFilePath);
     await fs.remove(req.files.image.tempFilePath)
     datos.image=url.secure_url;
   }
@@ -136,7 +135,6 @@ async function ordenAlfabetico(req, res) {
 }
 
 async function createBookc(req, res) {
-  
   let { name, autor, editorial, image, genero, stock, price } = req.body;
   let idAutor;
   let existe = await Autor.findAll({

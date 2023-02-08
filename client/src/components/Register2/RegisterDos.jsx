@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
 import Auth0 from "../Auth0/Auth0";
+import Swal from "sweetalert2"
 
 export const RegisterDos = () => {
   let [input, setInput] = useState({ name: "", email: "", password: "" });
@@ -41,9 +42,21 @@ export const RegisterDos = () => {
         console.log(respuesta, status);
         if (status === 200) {
           setHome(true);
-          alert(`User whit name ${input.name} was created successfully`);
+          Swal.fire({
+            icon: 'success',
+            title: 'User registered'
+          })
         } else {
-          alert(respuesta.msj);
+          Swal.fire({
+            icon: 'error',
+            title: 'Name or Email already exist',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            }
+          })
         }
       })
       .catch((error) => console.error(error));

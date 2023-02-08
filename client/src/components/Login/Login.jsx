@@ -1,32 +1,27 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link, Redirect } from "react-router-dom";
-//import LoginGoogle from "../GoogleLogin/GoogleLogin";
 import "./Login.css";
-//import { useAuth0 } from "@auth0/auth0-react";
-//import Cookies from "universal-cookie";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//import Api from "../../Global";
 import * as actions from "../../actions/index";
 import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
-//import { FcGoogle } from "react-icons/fc";
 import HB_logo from "../img/HenryBooks_Logo.png";
 import Auth0 from "../Auth0/Auth0";
+import Swal from "sweetalert2";
 
 const Login = () => {
   let dispatch = useDispatch();
   let token = useSelector((state) => state.token);
-  //const cookie = new Cookies();
   let [home, setHome] = useState(false);
-  //const { loginWithPopup, logout, isAuthenticated } = useAuth0();
+  let [view, setView] = useState(false);
+
   useEffect(() => {
     if (token) {
-      console.log("estoy aqui")
-      setHome(true)
-      // return <Redirect to="/home" />;
+      console.log("estoy aqui");
+      setHome(true);
     }
-  })
+  });
   const { handleSubmit, getFieldProps, errors, touched } = useFormik({
     initialValues: {
       email: "",
@@ -67,30 +62,29 @@ const Login = () => {
             dispatch(actions.llenarUsuario(respuesta.usuario));
             dispatch(actions.putToken(respuesta.token));
             setHome(true);
-            alert(`bienvenido ${respuesta.usuario.nombre}`);
+            Swal.fire({
+              icon: "success",
+              title: "Welcome to Henry Books!",
+              showConfirmButton: false,
+              timer: 2000,
+            });
           } else {
-            alert(respuesta.message);
+            Swal.fire({
+              icon: "error",
+              title: respuesta.message,
+            });
           }
         });
-      // console.log(values);
-      // console.log(data);
-      // const response = await fetch(Api.Url + "/auth/signin", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(data),
-      // });
-      // const parseRes = await response.json();
-      // localStorage.setItem("token", parseRes.token);
-      // console.log("trae respuesta", parseRes);
-      // dispatch(actions.putToken(parseRes.token));
-      // cookie.set("email", data.email, { path: "/" });
-      // alert(`welcome ${data.email.split("@")[0]}`);
-      // // window.location.href = "./home";
     },
   });
+
   if (home === true) {
     return <Redirect to="/home" />;
   }
+
+  const handleView = () => {
+    view ? setView(false) : setView(true);
+  };
 
   return (
     <form className="Login" noValidate onSubmit={handleSubmit}>
@@ -127,13 +121,20 @@ const Login = () => {
           <div className="Login-input">
             <label htmlFor="password">Password:</label>
             <input
-              type="password"
+              type={view ? "text" : "password"}
               placeholder="Password"
               {...getFieldProps("password")}
               className={`Login-Register__input ${touched.password &&
                 errors.password &&
                 "error_input"}`}
             />
+            <button onClick={handleView} className="btn-view">
+              {!view ? (
+                <ion-icon name="eye-outline" />
+              ) : (
+                <ion-icon name="eye-off-outline" />
+              )}
+            </button>
 
             <div className="adv">
               {touched.password && errors.password && (
@@ -142,12 +143,10 @@ const Login = () => {
             </div>
           </div>
 
-          {/* <Link to="/home"> */}
           <button type="submit" className="Login-login__btn">
             <AiOutlineLogin />
             Log In
           </button>
-          {/* </Link> */}
         </div>
 
         <p className="Login-noaccount">
@@ -158,27 +157,6 @@ const Login = () => {
         </p>
         <p>Or</p>
         <Auth0 />
-        {/* <LoginGoogle /> */}
-
-        {/* <div className="Login-google">
-          {isAuthenticated ? (
-            <button
-              className="Login-google__btn"
-              onClick={() => logout({ returnTo: window.location.origin })}
-            >
-              <FcGoogle />
-              <span>Logout</span>
-            </button>
-          ) : (
-            <button
-              className="Login-google__btn"
-              onClick={() => loginWithPopup()}
-            >
-              <FcGoogle />
-              <span>Login With Google</span>
-            </button>
-          )}
-        </div> */}
       </div>
     </form>
   );

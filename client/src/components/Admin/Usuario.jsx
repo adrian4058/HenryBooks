@@ -11,14 +11,14 @@ export default function AllUsers() {
 
   useEffect(() => {
     dispatch(getAllUsers());
-  }, [dispatch]);
+  });
   //console.log(usuario.usuarios);
 
   return (
-    <div className="main-container">
+    <div className="Users">
       {/* <NavBar /> */}
       {usuario.usuarios?.map((e) => (
-        <div className="container-usuario" key={e.id}>
+        <div className="Users-content" key={e.id}>
           <User
             img={e.img}
             id={e.id}
