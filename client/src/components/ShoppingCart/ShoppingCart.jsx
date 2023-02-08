@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 import NavBar from "../Navbar/Navbar";
 import CartItem from "./CartItem";
 import Api from "../../Global";
+import { Link } from "react-router-dom";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -62,25 +63,13 @@ const ShoppingCart = () => {
     }
   };
 
-  return (
+  const total = cart.reduce((acc, el) => acc + el.price * el.quantity, 0);
+
+  return cart.length > 0 ? (
     <div>
       <NavBar />
       <h3> Your Books in Cart</h3>
-      <article>
-        {allBooks.map((book) => (
-          <Card
-            key={book.id}
-            id={book.id}
-            genre={book.genero}
-            author={book.Autor.nombre}
-            image={book.image}
-            name={book.name}
-            price={book.price}
-            addToCart={addToCart}
-          />
-        ))}
-      </article>
-      <h3>Carrito</h3>
+      
       <article className="box">
         <button onClick={clearCart}>Limpiar Carrito</button>
         {cart.map((item, index) => (
@@ -93,13 +82,31 @@ const ShoppingCart = () => {
             price={item.price}
             quantity={item.quantity}
             delFromCart={delFromCart}
+            totalCart={total}
           />
         ))}
       </article>
+      <h3>Total a pagar: ${total}</h3>
       <button className="btn-pay" onClick={() => sendMp()}>
-        <span>Pay</span>
+        <span>Pay Cart</span>
         <i className="fa-solid fa-cart-shopping"></i>
       </button>
+      <Footer />
+    </div>
+  ) : (
+    <div>
+      <NavBar />
+      <h2>You have no products added to the cart</h2>
+      <br />
+      <br />
+      <br />
+      <div>
+        <Link className="btn-pay" to={"/home"}>
+          <h2 className="fa-solid fa-cart-shopping">Add products</h2>
+        </Link>
+      </div>
+      <br />
+
       <Footer />
     </div>
   );
