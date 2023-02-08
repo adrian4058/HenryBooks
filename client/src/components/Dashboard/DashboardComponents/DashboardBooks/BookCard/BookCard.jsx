@@ -18,7 +18,7 @@ const BookCard = (props) => {
   const closeEditModal = () => {
     setModalIsOpen(false);
     dispatch(emptyMessage());
-    window.location.reload();
+
   }
 
   const [file, setFile] = useState(null)
@@ -170,7 +170,10 @@ const BookCard = (props) => {
                 />
               </div>
               <img className="image-form" src={props.image} alt="image" />
-              <img className="image-form" src={file} alt="image2" />
+              {/* {
+                file==null?(null):(<img className="image-form" src={file} alt="image2" />)
+              } */}
+              {/* <img className="image-form" src={file} alt="image2" /> */}
               <input className="input-btn-dash-form" type="submit" value="Edit Book" />
               {
                 message.length ? <div>Book Edited Succesfully</div> : null

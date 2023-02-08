@@ -27,7 +27,6 @@ const BookCards = () => {
   const closeModal = () => {
     setModalIsOpen(false);
     dispatch(emptyMessage());
-    window.location.reload();
   }
 
   return (
