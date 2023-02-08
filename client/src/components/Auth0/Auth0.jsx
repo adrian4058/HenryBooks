@@ -7,6 +7,7 @@ import * as actions from "../../actions/index";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Api from "../../Global";
+import Swap from "sweetalert2"
 
 function Auth0() {
   const dispatch = useDispatch();
@@ -61,7 +62,11 @@ function Auth0() {
                 dispatch(actions.llenarUsuario(respuesta.usuario));
                 dispatch(actions.putToken(respuesta.token));
                 setHome(true);
-                alert(`bienvenido ${respuesta.usuario.nombre}`);
+                Swap.fire({
+                  icon: 'success',
+                  title: `User created! Welcome, ${respuesta.usuario.nombre}`,
+                  timer: 2000
+                });
               } else {
                 alert(respuesta.message);
               }

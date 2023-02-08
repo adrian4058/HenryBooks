@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import Api from "../../Global";
 import "./Register.css";
 
+
 export const RegisterDos = () => {
   let [input, setInput] = useState({ name: "", email: "", password: "" });
   let [error, setError] = useState({ name: "", email: "", password: "" });
