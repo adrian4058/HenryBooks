@@ -6,6 +6,7 @@ import NavBar from "../Navbar/Navbar";
 import "./userProfile.css";
 import Modal from "react-modal"
 import { countries } from "../../utils/countries"
+import imageDefault from "../img/img-df.jpeg";
 
 // import Api from "../Global";
 // const url = Api.Url;
@@ -67,11 +68,6 @@ export default function UserProfile() {
     // setAuth(false);
   };
 
-
-  const imagedefault = "https://thumbs.dreamstime.com/z/icono-del-usuario-en-estilo-plano-de-moda-aislado-fondo-gris-s%C3%ADmbolo-123663211.jpg"
-
-
-
   return (
 
     <div className="Profile">
@@ -87,7 +83,7 @@ export default function UserProfile() {
               className="datoimg"
               name="image"
               value={user.image}
-              src={user.image ? user.image : imagedefault}
+              src={user.image ? user.image : imageDefault}
               width="120px"
             />
           </div>

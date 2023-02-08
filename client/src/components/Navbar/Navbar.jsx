@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useAuth0 } from "@auth0/auth0-react";
+import imageDefault from "../img/img-df.jpeg";
 import "./Navbar.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -191,7 +192,7 @@ function NavBar() {
         {Object.keys(usuario).length > 0 ? (
           <>
             <div className="user">
-              <img className="user-img" src={usuario.img} alt="img" />
+              <img className="user-img" src={usuario.img ? usuario.img : imageDefault} alt="img" />
               <Link to="/profile">
                 <h4 className="user-name">{usuario.nombre}</h4>
               </Link>

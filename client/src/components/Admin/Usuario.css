@@ -1,83 +1,68 @@
 /*          Usuario.jsx          */
 
-.main-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: space-around;
-  background: linear-gradient(
-    106.37deg,
-    #ffe1bc 29.63%,
-    #ffcfd1 51.55%,
-    #f3c6f1 90.85%
-  );
+.Users {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  padding: 1rem 0;
+  row-gap: 2rem;
 }
 
-.container-usuario {
-  height: 100vh;
-  width: 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Courier New", Courier, monospace;
+.Users-content {
+  /* border-bottom: 1px solid black; */
+  border-radius: .5em;
+  background-color: rgba(245, 241, 237, 90%);
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  padding: .5rem;
+  display: grid;
+  place-items: center;
 }
 
 /*           User.jsx             */
 
-.main-container-user {
-  display: grid;
-  height: 97%;
-  width: 97%;
-  background: var(--glass);
-  border-radius: 2rem;
-  gap: 1rem;
-  overflow: hidden;
-  align-content: space-evenly;
-}
-
-.container-user {
-  margin: 0 2rem;
+.User {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 60vh;
-  overflow-y: scroll;
+  justify-content: center;
+  gap: 1rem;
+  width: 380px;
+  height: max-content;
+  overflow: hidden;
+  padding: .5rem;
 }
 
-.img-user {
-  width: 100px;
+.User-img__container {
+  display: flex;
+  justify-content: center;
+}
+
+.User-img {
   border-radius: 50%;
-  position: relative;
-  left: 70%;
 }
 
 .datos {
   display: flex;
-  width: 300px;
-  gap: 0.5rem;
+  justify-content: space-between;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.props {
+.User-btns {
+  width: 100%;
   display: flex;
-  width: 300px;
-  gap: 0.5rem;
-  font-style: italic;
-  padding-left: 1rem;
+  justify-content: space-around;
 }
 
 .btn-users {
   color: black;
-  border-radius: 1em;
+  border-radius: .5em;
   border: none;
-  background: linear-gradient(180deg, #f8d49a -146.42%, #fad79d -46.42%);
+  background: var(--yellow);
   padding: 1em;
-  border-bottom: 1px solid black;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
-  width: 75%;
-  justify-self: center;
 }
 
 .btn-users:hover {
-  background: #f799a354;
+  cursor: pointer;
+  background: var(--activeItem);
 }
