@@ -82,7 +82,8 @@ const Login = () => {
     return <Redirect to="/home" />;
   }
 
-  const handleView = () => {
+  const handleView = (e) => {
+    e.preventDefault();
     view ? setView(false) : setView(true);
   };
 
