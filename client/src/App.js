@@ -7,6 +7,7 @@ import Details from "./components/Details/Details";
 import Team from "./components/Team/Team";
 import DashboardRoutes from "./components/Dashboard/DashboardRoutes/DashboardRoutes";
 import DashboardBooks from "./components/Dashboard/DashboardComponents/DashboardBooks/DashboardBooks";
+import DashboardUsers from "./components/Dashboard/DashboardComponents/DashboardUsers/DashboardUsers";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import userProfile from "./components/userProfile/userProfile";
@@ -26,13 +27,13 @@ function App() {
           <Route exact path="/team" component={Team} />
           <Route exact path="/dashboard" component={DashboardRoutes} />
           <Route exact path="/dashboard-books" component={DashboardBooks} />
+          <Route exact path="/dashboard-users" component={DashboardUsers} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route path="/books/:id" component={Details} />
           <Route exact path="/cart" component={ShoppingCart} />
           <Route exact path="/profile" component={userProfile} />
           <Route exact path="/registerdos" component={RegisterDos} />
-          <Route exact path="/users" component={Usuarios} />
           <Route component={DefaultPage} />
         </Switch>
       </div>
