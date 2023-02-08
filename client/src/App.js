@@ -8,12 +8,10 @@ import Team from "./components/Team/Team";
 import DashboardRoutes from "./components/Dashboard/DashboardRoutes/DashboardRoutes";
 import DashboardBooks from "./components/Dashboard/DashboardComponents/DashboardBooks/DashboardBooks";
 import DashboardUsers from "./components/Dashboard/DashboardComponents/DashboardUsers/DashboardUsers";
-import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import userProfile from "./components/userProfile/userProfile";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import DefaultPage from "./components/DefaultPage/DefaultPage";
-import Usuarios from "./components/Admin/Usuario";
 import { RegisterDos } from "./components/Register2/RegisterDos";
 
 function App() {
@@ -28,7 +26,6 @@ function App() {
           <Route exact path="/dashboard" component={DashboardRoutes} />
           <Route exact path="/dashboard-books" component={DashboardBooks} />
           <Route exact path="/dashboard-users" component={DashboardUsers} />
-          <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route path="/books/:id" component={Details} />
           <Route exact path="/cart" component={ShoppingCart} />
