@@ -4,6 +4,7 @@ import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
 import Auth0 from "../Auth0/Auth0";
 import Swal from "sweetalert2";
 import Api from "../../Global";
+import "./Register.css";
 
 export const RegisterDos = () => {
   let [input, setInput] = useState({ name: "", email: "", password: "" });
