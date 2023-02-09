@@ -13,6 +13,7 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
   const allBooks = useSelector((state) => state.allBooks);
   const usuario = useSelector((state) => state.userProfile);
+  const token=useSelector((state)=>state.token)
   useEffect(() => {
     dispatch(getAllBooks());
   }, [dispatch]);
@@ -34,6 +35,7 @@ const ShoppingCart = () => {
 
   const sendMp = async (e) => {
     e.preventDefault();
+    localStorage.setItem("token",token);
     localStorage.setItem("usuario", JSON.stringify(usuario));
     const compra = cart.map((item) => {
       return {
