@@ -27,7 +27,7 @@ function Home(props) {
   const priceSelect = useRef();
   const authorsSelect = useRef();
 
-  
+
 
   const [, setOrder] = React.useState("");
   // allBooks contiene TODOS los libros
@@ -120,7 +120,7 @@ function Home(props) {
   return (
     <div className="home">
       <div className="home-icons__sm">
-        <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
+        <a href="https://www.facebook.com/people/Henry-Book/100089922381588/" target="_blank" rel="noreferrer">
           <ion-icon name="logo-facebook" />
         </a>
         <a
