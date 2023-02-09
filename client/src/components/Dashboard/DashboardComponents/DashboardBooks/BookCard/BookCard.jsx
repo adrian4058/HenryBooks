@@ -33,7 +33,7 @@ const BookCard = (props) => {
     price: props.price,
     estado: props.state,
   });
-
+const [estadito,setEstadito]=useState(props.state)
   const handleFileUpload = (e) => {
     setFile(e.target.files[0]);
   }
@@ -53,6 +53,11 @@ const BookCard = (props) => {
     }
     setUpdatedBook(updatedBooks);
     dispatch((editBook(props.id, updatedBooks)))
+    if(estadito=="activo"){
+      setEstadito("desactivado")
+    }else{
+      setEstadito("activo")
+    }
     // window.location.reload();
   }
 
@@ -87,7 +92,7 @@ const BookCard = (props) => {
         <div className="Dash-BC-Info"><span>Genre:</span> {props.genre}</div>
         <div className="Dash-BC-Info"><span>Stock:</span> {props.stock}</div>
         <div className="Dash-BC-Info"><span>Price:</span> ${props.price}</div>
-        <div className="Dash-BC-Info"><span>State:</span> {props.state}</div>
+        <div className="Dash-BC-Info"><span>State:</span> {estadito}</div>
       </div>
       <div>
         <img className="Dash-BookCard__img" src={props.image} alt={props.name} />
@@ -185,7 +190,7 @@ const BookCard = (props) => {
             </form>
           </Modal>
         </div>
-        <button className="status-btn" onClick={(e)=>handleChangeStatus(e)}>{updateBook.estado === "activo" ? "Desactive" : "Active"}</button>
+        <button className="status-btn" onClick={(e)=>handleChangeStatus(e)}>{updateBook.estado === "activo" ? "Active" : "Desactive"}</button>
       </div>
     </div>
   )
