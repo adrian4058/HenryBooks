@@ -62,7 +62,11 @@ const BookCard = (props) => {
       return alert('You must complete the fields');
     const formData = new FormData();
     console.log(file);
-    formData.append('image', file);
+    if (file){
+      formData.append('image', file)
+    }else{
+      formData.append('image',props.image)
+    }
     formData.append('name', updateBook.name);
     formData.append('autor', updateBook.autor);
     formData.append('editorial', updateBook.editorial);
