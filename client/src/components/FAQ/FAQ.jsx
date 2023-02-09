@@ -50,7 +50,6 @@ function FAQ() {
                 <div className={Style.faqs}>
                     <h2 className={Style.title}>Preguntas frecuentes</h2>
 
-
                     <div className={Style.q}>
                         <button onClick={() => setShowAnswer(!showAnswer)}
                             className={Style.btn}>
