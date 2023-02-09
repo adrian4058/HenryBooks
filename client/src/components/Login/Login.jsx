@@ -62,6 +62,9 @@ const Login = () => {
           if (status === 200) {
             dispatch(actions.llenarUsuario(respuesta.usuario));
             dispatch(actions.putToken(respuesta.token));
+            localStorage.setItem("token", respuesta.token);
+            localStorage.setItem("usuario", JSON.stringify(respuesta.usuario));
+            console.log("usuarios",localStorage.getItem("usuario"));
             setHome(true);
             Swal.fire({
               icon: "success",

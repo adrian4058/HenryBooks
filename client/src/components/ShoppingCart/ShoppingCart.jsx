@@ -35,7 +35,8 @@ const ShoppingCart = () => {
   };
 
   const sendMp = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+    console.log("entreeeeee")
     localStorage.setItem("token", token);
     localStorage.setItem("usuario", JSON.stringify(usuario));
     const compra = cart.map((item) => {
@@ -52,18 +53,20 @@ const ShoppingCart = () => {
       item: compra,
     };
     try {
-      const respuesta = await axios
-        .post(Api.Url + "/payment", body)
+      let respuesta;
+      await axios.post(Api.Url + "/payment", body)
         .then((res) => {
+          console.log("aqui tambien entro",res)
+          respuesta=res.data[0]
           return res.data[0];
         })
-
         .catch((error) => console.log(error));
       Swal.fire({
         title: "¡Link de compra generado correctamente!",
         icon: "success",
       });
       window.location.href = respuesta;
+
       return respuesta;
     } catch (error) {
       console.log(error);
@@ -117,7 +120,7 @@ const ShoppingCart = () => {
               <i className="fa-solid fa-cart-shopping"></i>Add products
             </button>
           </Link>
-        </div>
+        </div>)
       </div>
       <Footer />
     </div>
