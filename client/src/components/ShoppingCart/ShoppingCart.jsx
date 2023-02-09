@@ -12,6 +12,7 @@ import "./ShoppingCart.css";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const allBooks = useSelector((state) => state.allBooks);
+  const usuario =useSelector((state)=>state.userProfile)
   useEffect(() => {
     dispatch(getAllBooks());
   }, [dispatch]);
@@ -34,9 +35,9 @@ const ShoppingCart = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
 
-  
-
-  const sendMp = async () => {
+  const sendMp = async (e) => {
+    e.preventDefault();
+    localStorage.setItem("usuario", JSON.stringify( usuario));
     const compra = cart.map((item) => {
       return {
         title: item.name,
@@ -92,7 +93,7 @@ const ShoppingCart = () => {
         </div>
         <div className="Shopping-Cart__pay">
           <h3>Total a pagar: ${total}</h3>
-          <button className="btn-pay" onClick={() => sendMp()}>
+          <button className="btn-pay" onClick={(e) => sendMp(e)}>
             <span>Pay Cart</span>
             <i className="fa-solid fa-cart-shopping"></i>
           </button>

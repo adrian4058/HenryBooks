@@ -80,7 +80,8 @@ export default function UserProfile() {
     e.preventDefault();
     dispatch(vaciarUsuario())
     dispatch(deletToken())
-    logout()
+    localStorage.clear();
+    logout();
   };
 
   return (
