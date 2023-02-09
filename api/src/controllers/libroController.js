@@ -21,7 +21,7 @@ async function allBooks(req, res) {
     if (bookInDb.length > 0) {
       return res.status(201).json({ status: "success", book: bookInDb });
     } else
-      return res.status(404).json({ status: "error", msg: "No data found!" });
+      return res.status(404).json({ status: "error", msg: "No data found!!" });
   } catch (error) {
     res.status(404).json(error);
   }
