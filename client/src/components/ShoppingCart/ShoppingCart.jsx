@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBooks, TYPES } from "../../actions";
 import axios from "axios";
-import Card from "../Card/Card";
 import Footer from "../Footer/Footer";
 import NavBar from "../Navbar/Navbar";
 import CartItem from "./CartItem";
 import Api from "../../Global";
 import { Link } from "react-router-dom";
+import "./ShoppingCart.css"
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -66,47 +66,48 @@ const ShoppingCart = () => {
   const total = cart.reduce((acc, el) => acc + el.price * el.quantity, 0);
 
   return cart.length > 0 ? (
-    <div>
+    <div className="Shopping-Cart">
       <NavBar />
-      <h3> Your Books in Cart</h3>
-      
-      <article className="box">
-        <button onClick={clearCart}>Limpiar Carrito</button>
-        {cart.map((item, index) => (
-          <CartItem
-            key={index}
-            genre={item.genero}
-            image={item.image}
-            name={item.name}
-            id={item.id}
-            price={item.price}
-            quantity={item.quantity}
-            delFromCart={delFromCart}
-            totalCart={total}
-          />
-        ))}
-      </article>
-      <h3>Total a pagar: ${total}</h3>
-      <button className="btn-pay" onClick={() => sendMp()}>
-        <span>Pay Cart</span>
-        <i className="fa-solid fa-cart-shopping"></i>
-      </button>
+      <div className="Shopping-Cart__content">
+        <div className="Shopping-Cart-box">
+          <h1>Your Books in Cart</h1>
+          <button className="Cart-btn Cart-clean" onClick={clearCart}>Limpiar Carrito</button>
+          {cart.map((item, index) => (
+            <CartItem
+              key={index}
+              genre={item.genero}
+              image={item.image}
+              name={item.name}
+              id={item.id}
+              price={item.price}
+              quantity={item.quantity}
+              delFromCart={delFromCart}
+              totalCart={total}
+            />
+          ))}
+        </div>
+        <div className="Shopping-Cart__pay">
+          <h3>Total a pagar: ${total}</h3>
+          <button className="btn-pay" onClick={() => sendMp()}>
+            <span>Pay Cart</span>
+            <i className="fa-solid fa-cart-shopping"></i>
+          </button>
+        </div>
+      </div>
       <Footer />
     </div>
   ) : (
-    <div>
+    <div className="Shopping-Cart">
       <NavBar />
-      <h2>You have no products added to the cart</h2>
-      <br />
-      <br />
-      <br />
-      <div>
-        <Link className="btn-pay" to={"/home"}>
-          <h2 className="fa-solid fa-cart-shopping">Add products</h2>
-        </Link>
+      <div className="No-products">
+        <h1>You have no products added to the cart</h1>
+        <h1>:(</h1>
+        <div>
+          <Link to={"/home"}>
+            <button className="btn-pay no-products__btn"><i className="fa-solid fa-cart-shopping"></i>Add products</button>
+          </Link>
+        </div>
       </div>
-      <br />
-
       <Footer />
     </div>
   );

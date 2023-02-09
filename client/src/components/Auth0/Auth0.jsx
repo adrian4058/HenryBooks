@@ -6,6 +6,8 @@ import { FcGoogle } from "react-icons/fc";
 import * as actions from "../../actions/index";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
+import Api from "../../Global";
+import Swap from "sweetalert2"
 
 function Auth0() {
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ function Auth0() {
         password: "Auth0pass",
         nombre: user.nickname,
       };
-      let url = "http://localhost:5685/auth/signup";
+      let url = Api.Url + "/auth/signup";
       let status;
       fetch(url, {
         headers: {
@@ -41,7 +43,7 @@ function Auth0() {
             email: user.email,
             password: "Auth0pass",
           };
-          let url = "http://localhost:5685/auth/signin";
+          let url = Api.Url + "/auth/signin";
           fetch(url, {
             headers: {
               Accept: "application/json",
@@ -60,7 +62,11 @@ function Auth0() {
                 dispatch(actions.llenarUsuario(respuesta.usuario));
                 dispatch(actions.putToken(respuesta.token));
                 setHome(true);
-                alert(`bienvenido ${respuesta.usuario.nombre}`);
+                Swap.fire({
+                  icon: 'success',
+                  title: `User created! Welcome, ${respuesta.usuario.nombre}`,
+                  timer: 2000
+                });
               } else {
                 alert(respuesta.message);
               }

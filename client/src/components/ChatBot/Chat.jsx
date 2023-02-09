@@ -41,7 +41,7 @@ function Chat() {
                             },
                             {
                                 id: 'libro',
-                                message: 'Seguro, en Henry Books tememos una gran cantidad de libros de calidad',
+                                message: 'Seguro, en Henry Books tenemos una gran cantidad de libros de calidad',
                                 trigger: 'genero',
                             },
                             {
@@ -75,7 +75,7 @@ function Chat() {
                             },
                             {
                                 id: 'noA',
-                                message: 'gracias por elegir Henry Books, que tengas bune día',
+                                message: 'gracias por elegir Henry Books, que tengas buen día',
                                 end: true,
                             }, {
                                 id: 'no',

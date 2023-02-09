@@ -9,6 +9,7 @@ import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
 import HB_logo from "../img/HenryBooks_Logo.png";
 import Auth0 from "../Auth0/Auth0";
 import Swal from "sweetalert2";
+import Api from "../../Global";
 
 const Login = () => {
   let dispatch = useDispatch();
@@ -42,7 +43,7 @@ const Login = () => {
         email: values.email,
         password: values.password,
       };
-      let url = "http://localhost:5685/auth/signin";
+      let url = Api.Url + "/auth/signin";
       let status;
       fetch(url, {
         headers: {
@@ -64,7 +65,7 @@ const Login = () => {
             setHome(true);
             Swal.fire({
               icon: "success",
-              title: "Welcome to Henry Books!",
+              title: `Welcome to Henry Books, ${respuesta.usuario.nombre}!`,
               showConfirmButton: false,
               timer: 2000,
             });
