@@ -33,6 +33,7 @@
   font-family: "Maven Pro", sans-serif;
   font-weight: bold;
   transition: .5s;
+  overflow: hidden;
 }
 
 .btn-pay:hover {

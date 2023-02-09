@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import imagenPrueba from "../img/wallpaper.jpg";
+import Swal from "sweetalert2";
 import "../Card/Card.css";
 
 function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
-
+ 
   return (
-
     <div className={`card ${inSlider ? "slider-card" : ""}`}>
       <Link to={`/books/${id}`} className="card-container">
         <div className="card-img__container">

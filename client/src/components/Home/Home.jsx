@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
@@ -11,23 +11,46 @@ import {
   filterByPrice,
   filterAll,
   TYPES,
+  llenarUsuario,
+  putToken
 } from "../../actions/index";
 import "./Home.css";
 import Slider from "../Slider/Slider";
 import { useRef } from "react";
 // import Chat from "../ChatBot/Chat";
 import SliderProducts from "../SliderProducts/SliderProducts";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 function Home(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
   // Referencias para los input
   const categorySelect = useRef();
   const editorialSelect = useRef();
   const alphabetSelect = useRef();
   const priceSelect = useRef();
   const authorsSelect = useRef();
+  const token = useSelector((state) => state.token);
+  const [, addCartAlert] = useState(false);
+  useEffect(() => {
+    if (token) {
+      console.log("alerta desactivada");
+    } else {
+      registerToBuy();
+    }
+  }, []);
 
-  const cart = useSelector((state) => state.cart);
+  const registerToBuy = () => {
+    Swal.fire("Register to buy", {
+      icon: "warning",
+    });
+    history.push("/login");
+  };
+
+  // axios
+  //   .get("https://apirest-webfam-production.up.railway.app/api/users")
+  //   .then((response) => console.log(response));
 
   const [, setOrder] = React.useState("");
   // allBooks contiene TODOS los libros
@@ -66,6 +89,16 @@ function Home(props) {
 
   // Llámado de libros
   React.useEffect(() => {
+    if (localStorage.getItem("usuario")) {
+      let user = JSON.parse(localStorage.getItem("usuario"));
+      let token=localStorage.getItem("token");
+      console.log(user);
+      if (user) {
+        dispatch(putToken(token));
+        dispatch(llenarUsuario(user));
+      }
+    }
+
     dispatch(getAllBooks());
   }, [dispatch]);
 
@@ -107,9 +140,34 @@ function Home(props) {
     setCurrentPage(1);
   }
   //cart
+
+  // const addCartAlert = () => {
+  // if (token) {
+  //   Swal.fire("Claro que si pa");
+  //   console.log("agregado");
+  // } else {
+
+  // }
+  // };
+  useEffect(() => {
+    addCartAlert(true);
+  }, []);
+
   const addToCart = (id) => {
     console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+    addCartAlert(true);
+    if (token) {
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Product Added To Cart",
+        showConfirmButton: false,
+        timer: 900,
+      });
+      console.log("agregado");
+    } else {
+    }
   };
 
   // función para páginado
@@ -120,21 +178,26 @@ function Home(props) {
   return (
     <div className="home">
       <div className="home-icons__sm">
-        <a href='https://www.facebook.com'
-          target='_blank'
-          rel='noreferrer'>
-          <ion-icon name='logo-facebook' />
-
+        <a
+          href="https://www.facebook.com/people/Henry-Book/100089922381588/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <ion-icon name="logo-facebook" />
         </a>
-        <a href='https://www.instagram.com/henrybooks_pf/'
-          target='_blank'
-          rel='noreferrer'>
-          <ion-icon name='logo-instagram' />
+        <a
+          href="https://www.instagram.com/henrybooks_pf/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <ion-icon name="logo-instagram" />
         </a>
-        <a href='https://twitter.com/HenryBooks_PF'
-          target='_blank'
-          rel='noreferrer'>
-          <ion-icon name='logo-twitter' />
+        <a
+          href="https://twitter.com/HenryBooks_PF"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <ion-icon name="logo-twitter" />
         </a>
       </div>
       <Navbar />
@@ -150,9 +213,7 @@ function Home(props) {
         <SliderProducts />
       </div>
 
-      <h1 className="home-books-title">
-        Our Books
-      </h1>
+      <h1 className="home-books-title">Our Books</h1>
       {!books?.length ? (
         <div className="home-books">
           <div className="home-filters">

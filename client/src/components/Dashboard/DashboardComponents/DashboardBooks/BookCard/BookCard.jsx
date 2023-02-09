@@ -18,7 +18,7 @@ const BookCard = (props) => {
   const closeEditModal = () => {
     setModalIsOpen(false);
     dispatch(emptyMessage());
-    window.location.reload();
+
   }
 
   const [file, setFile] = useState(null)
@@ -33,7 +33,7 @@ const BookCard = (props) => {
     price: props.price,
     estado: props.state,
   });
-
+const [estadito,setEstadito]=useState(props.state)
   const handleFileUpload = (e) => {
     setFile(e.target.files[0]);
   }
@@ -53,6 +53,11 @@ const BookCard = (props) => {
     }
     setUpdatedBook(updatedBooks);
     dispatch((editBook(props.id, updatedBooks)))
+    if(estadito=="activo"){
+      setEstadito("desactivado")
+    }else{
+      setEstadito("activo")
+    }
     // window.location.reload();
   }
 
@@ -62,7 +67,11 @@ const BookCard = (props) => {
       return alert('You must complete the fields');
     const formData = new FormData();
     console.log(file);
-    formData.append('image', file);
+    if (file){
+      formData.append('image', file)
+    }else{
+      formData.append('image',props.image)
+    }
     formData.append('name', updateBook.name);
     formData.append('autor', updateBook.autor);
     formData.append('editorial', updateBook.editorial);
@@ -83,7 +92,7 @@ const BookCard = (props) => {
         <div className="Dash-BC-Info"><span>Genre:</span> {props.genre}</div>
         <div className="Dash-BC-Info"><span>Stock:</span> {props.stock}</div>
         <div className="Dash-BC-Info"><span>Price:</span> ${props.price}</div>
-        <div className="Dash-BC-Info"><span>State:</span> {props.state}</div>
+        <div className="Dash-BC-Info"><span>State:</span> {estadito}</div>
       </div>
       <div>
         <img className="Dash-BookCard__img" src={props.image} alt={props.name} />
@@ -170,7 +179,10 @@ const BookCard = (props) => {
                 />
               </div>
               <img className="image-form" src={props.image} alt="image" />
-              <img className="image-form" src={file} alt="image2" />
+              {/* {
+                file==null?(null):(<img className="image-form" src={file} alt="image2" />)
+              } */}
+              {/* <img className="image-form" src={file} alt="image2" /> */}
               <input className="input-btn-dash-form" type="submit" value="Edit Book" />
               {
                 message.length ? <div>Book Edited Succesfully</div> : null
@@ -178,7 +190,7 @@ const BookCard = (props) => {
             </form>
           </Modal>
         </div>
-        <button className="status-btn" onClick={(e)=>handleChangeStatus(e)}>{updateBook.estado === "activo" ? "Desactive" : "Active"}</button>
+        <button className="status-btn" onClick={(e)=>handleChangeStatus(e)}>{updateBook.estado === "activo" ? "Active" : "Desactive"}</button>
       </div>
     </div>
   )

@@ -123,35 +123,11 @@ export const getAllBooksDashboard = () => {
 };
 
 // Crear nuevo libro
-// export const addNewBook = (payload) => {
-//   return async function (dispatch) {
-//     try {
-//       const response = await fetch(url + "/book", {
-//         method: "POST",
-//         body: JSON.stringify(payload),
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       });
-//       const data = await response.json();
-//       if (!response.ok) {
-//         throw new Error(data.message);
-//       }
-//       return dispatch({
-//         type: ADD_NEW_BOOK,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-// };
-
 export const addNewBook = (payload) => {
   return async function(dispatch) {
     try {
       axios
-        .post("http://localhost:5685/book", payload, {
+        .post(Api.Url + "/book", payload, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -273,7 +249,9 @@ export const addReview = (objeto) => (dispatch) => {
     },
     method: "POST",
     body: JSON.stringify(objeto),
-  }).then((data) => dispatch({ type: ADD_REVIEW }));
+  })
+    .then((response) => response.json())
+    .then((data) => dispatch({ type: ADD_REVIEW, payload: data }));
 };
 //
 // Agregar denuncia Review

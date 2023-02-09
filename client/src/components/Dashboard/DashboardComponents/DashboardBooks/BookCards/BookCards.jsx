@@ -8,6 +8,7 @@ import Modal from "react-modal";
 import FormData from "form-data";
 import "./BookCards.css";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2"
 
 const BookCards = () => {
 
@@ -27,7 +28,6 @@ const BookCards = () => {
   const closeModal = () => {
     setModalIsOpen(false);
     dispatch(emptyMessage());
-    window.location.reload();
   }
 
   return (
@@ -94,7 +94,11 @@ const FormCreateBook = () => {
   const handleSubmitCreate = (e) => {
     e.preventDefault();
     if (book.name === "" || book.autor === "" || book.editorial === "" || book.genero === "" || book.stock === "" || book.price === "" || book.imageF === null)
-      return alert('You must complete the fields');
+      Swal.fire({
+        icon: 'info',
+        title: 'You must complete the fields',
+        showConfirmButton: true
+      });
     const formData = new FormData();
     formData.append('imageF', file);
     formData.append('name', book.name);
@@ -104,7 +108,11 @@ const FormCreateBook = () => {
     formData.append('stock', book.stock);
     formData.append('price', book.price);
     dispatch(addNewBook(formData))
-    alert("libro creado correctamente");
+    Swal.fire({
+      icon: 'success',
+      title: 'Book created successfully',
+      showConfirmButton: true
+    });;
   };
 
   return (

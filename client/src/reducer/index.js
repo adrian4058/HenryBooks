@@ -28,6 +28,7 @@ import {
   EDIT_USER,
   REPORT_REVIEW,
   CLEAN_REVIEW,
+  ADD_REVIEW,
 } from "../actions";
 
 const initialState = {
@@ -68,14 +69,34 @@ function rootReducer(state = initialState, action) {
         : { ...state, cart: [...state.cart, { ...newItem, quantity: 1 }] };
     }
 
-    case TYPES.REMOVE_ONE_FROM_CART:
-      break;
+    case TYPES.REMOVE_ONE_FROM_CART: {
+      let itemToDelete = state.cart.find((item) => item.id === action.payload);
+      return itemToDelete.quantity > 1
+        ? {
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === action.payload
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            ),
+          }
+        : {
+            ...state,
+            cart: state.cart.filter((item) => item.id !== action.payload),
+          };
+    }
 
     case TYPES.REMOVE_ALL_FROM_CART:
-      break;
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload),
+      };
 
     case TYPES.CLEAR_CART:
-      break;
+      return {
+        ...state,
+        cart: [],
+      };
 
     // HOME
     // Obtener Libros HOME
@@ -394,6 +415,11 @@ function rootReducer(state = initialState, action) {
           //img: action.payload.profilePic,
           //authzero: action.payload.authzero,
         },
+      };
+    case ADD_REVIEW:
+      return {
+        ...state,
+        reviews: action.payload,
       };
     case REPORT_REVIEW:
       return {

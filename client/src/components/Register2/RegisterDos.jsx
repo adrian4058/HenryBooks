@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
 import Auth0 from "../Auth0/Auth0";
+import Swal from "sweetalert2";
+import Api from "../../Global";
+import "./Register.css";
+
 
 export const RegisterDos = () => {
   let [input, setInput] = useState({ name: "", email: "", password: "" });
@@ -23,7 +27,7 @@ export const RegisterDos = () => {
       email: input.email,
       password: input.password,
     };
-    let url = "http://localhost:5685/auth/signup";
+    let url = Api.Url + "/auth/signup";
     let status;
     fetch(url, {
       headers: {
@@ -41,9 +45,21 @@ export const RegisterDos = () => {
         console.log(respuesta, status);
         if (status === 200) {
           setHome(true);
-          alert(`User whit name ${input.name} was created successfully`);
+          Swal.fire({
+            icon: "success",
+            title: "User registered",
+          });
         } else {
-          alert(respuesta.msj);
+          Swal.fire({
+            icon: "error",
+            title: "Name or Email already exist",
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+          });
         }
       })
       .catch((error) => console.error(error));
@@ -71,9 +87,9 @@ export const RegisterDos = () => {
     if (!input.password) {
       error.password = "password es requerido";
     } else if (input.password.length < 6) {
-      error.password = "Debe tener mas de 6 caracteres"
-    }else if ((/[^A-Za-z0-9 ]+/g.test(input.password))) {
-      error.password = "No debe contener caracteres especiales"
+      error.password = "Debe tener mas de 6 caracteres";
+    } else if (/[^A-Za-z0-9 ]+/g.test(input.password)) {
+      error.password = "No debe contener caracteres especiales";
     }
     return error;
   }

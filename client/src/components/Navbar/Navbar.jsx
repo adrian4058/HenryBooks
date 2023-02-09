@@ -4,28 +4,32 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useAuth0 } from "@auth0/auth0-react";
+import imageDefault from "../img/img-df.jpeg";
 import "./Navbar.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../actions/index";
+import { HiShoppingCart } from "react-icons/hi";
+
 
 function NavBar() {
   let dispatch = useDispatch();
   let token2 = useSelector((state) => state.token);
   let usuario2 = useSelector((state) => state.userProfile);
-  let [token,setToken]=useState(token2)
-  let [usuario,setUsuario] =useState(usuario2);
+  let [token, setToken] = useState(token2)
+  let [usuario, setUsuario] = useState(usuario2);
   const { logout } = useAuth0();
   const cookies = new Cookies();
-  useEffect(()=>{
+  useEffect(() => {
     setToken(token2)
     setUsuario(usuario2)
-  },[usuario2][token2])
+  }, [usuario2][token2])
 
   function cerrrarSesion(e) {
     e.preventDefault();
     dispatch(actions.vaciarUsuario());
     dispatch(actions.deletToken());
+    localStorage.clear()
     logout();
   }
   return (
@@ -99,12 +103,20 @@ function NavBar() {
         <div>
           {Object.keys(usuario).length > 0 ? (
             <div>
-              <button
-                className="navbar-btn__option"
-                onClick={(e) => cerrrarSesion(e)}
-              >
-                Logout
-              </button>
+              <div className="user-btns">
+                <Link to="/cart">
+                  <button className="navbar-btn__option cart-btn">
+                    <b>Cart</b>
+                    <HiShoppingCart />
+                  </button>
+                </Link>
+                <button
+                  className="navbar-btn__option"
+                  onClick={(e) => cerrrarSesion(e)}
+                >
+                  Logout
+                </button>
+              </div>
               {cookies.get("email") ? (
                 <a href="/profile/edit">
                   {/* <label className="user-name">
@@ -183,7 +195,7 @@ function NavBar() {
         {Object.keys(usuario).length > 0 ? (
           <>
             <div className="user">
-              <img className="user-img" src={usuario.img} alt="img" />
+              <img className="user-img" src={usuario.img ? usuario.img : imageDefault} alt="img" />
               <Link to="/profile">
                 <h4 className="user-name">{usuario.nombre}</h4>
               </Link>

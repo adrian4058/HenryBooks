@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addReview } from "../../actions/index";
 import "./Reviews.css";
 import Comments from "./Review Components/Comments";
@@ -9,6 +9,7 @@ import { useState } from "react";
 
 function Reviews({ LibroId, commentsReview }) {
   const dispatch = useDispatch();
+  const reviews = useSelector(state => state.reviews)
   const formik = useFormik({
     initialValues: {
       titulo: "",
@@ -92,6 +93,7 @@ function Reviews({ LibroId, commentsReview }) {
 
         </div>
       </form>
+      {reviews.success ? <h3>{reviews.success}</h3>: null}
       <Comments commentsReview={commentsReview} />
     </div>
   );

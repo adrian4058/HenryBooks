@@ -7,13 +7,16 @@ import Details from "./components/Details/Details";
 import Team from "./components/Team/Team";
 import DashboardRoutes from "./components/Dashboard/DashboardRoutes/DashboardRoutes";
 import DashboardBooks from "./components/Dashboard/DashboardComponents/DashboardBooks/DashboardBooks";
-import Register from "./components/Register/Register";
+import DashboardUsers from "./components/Dashboard/DashboardComponents/DashboardUsers/DashboardUsers";
 import Login from "./components/Login/Login";
 import userProfile from "./components/userProfile/userProfile";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import DefaultPage from "./components/DefaultPage/DefaultPage";
-import Usuarios from "./components/Admin/Usuario";
 import { RegisterDos } from "./components/Register2/RegisterDos";
+
+
+import FAQ from './components/FAQ/FAQ'
+
 
 function App() {
   return (
@@ -26,14 +29,17 @@ function App() {
           <Route exact path="/team" component={Team} />
           <Route exact path="/dashboard" component={DashboardRoutes} />
           <Route exact path="/dashboard-books" component={DashboardBooks} />
-          <Route exact path="/register" component={Register} />
+          <Route exact path="/dashboard-users" component={DashboardUsers} />
           <Route exact path="/login" component={Login} />
           <Route path="/books/:id" component={Details} />
           <Route exact path="/cart" component={ShoppingCart} />
           <Route exact path="/profile" component={userProfile} />
           <Route exact path="/registerdos" component={RegisterDos} />
-          <Route exact path="/users" component={Usuarios} />
+
+          <Route exact path="/preguntas" component={FAQ} />
+
           <Route component={DefaultPage} />
+
         </Switch>
       </div>
     </BrowserRouter>
