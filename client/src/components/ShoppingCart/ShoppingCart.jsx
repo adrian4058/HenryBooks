@@ -34,7 +34,8 @@ const ShoppingCart = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
 
-  const sendMp = async () => {
+  const sendMp = async (e) => {
+    e.preventDefault();
     const compra = cart.map((item) => {
       return {
         title: item.name,
@@ -88,7 +89,7 @@ const ShoppingCart = () => {
         </div>
         <div className="Shopping-Cart__pay">
           <h3>Total a pagar: ${total}</h3>
-          <button className="btn-pay" onClick={() => sendMp()}>
+          <button className="btn-pay" onClick={(e) => sendMp(e)}>
             <span>Pay Cart</span>
             <i className="fa-solid fa-cart-shopping"></i>
           </button>

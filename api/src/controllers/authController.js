@@ -33,7 +33,8 @@ async function signIn (req,res){
         return res.status(404).json({message:"Wrong password"})
     }
     if(encontrarUsuario.estado=="desactivado"){
-        return res.status(404).json({message:"User not found...."})
+        return res.status(404).json({message:"User not found...."}) 
+        
     }
     const token =jwt.sign({id:encontrarUsuario.id},'henribooks',{
             expiresIn:86400//24 horas
