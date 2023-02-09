@@ -15,7 +15,7 @@ function Footer() {
 
           <div className="footer-column">
             <h4>Follow</h4>
-            <a href='https://www.facebook.com'
+            <a href='https://www.facebook.com/people/Henry-Book/100089922381588/'
               target='_blank'
               rel='noreferrer'>
               <ion-icon name='logo-facebook' /> Facebook
@@ -44,6 +44,10 @@ function Footer() {
             <Link to='/about-us'>
               <p className="navegationText">About us</p>
             </Link>
+            <Link to='/preguntas'>
+              <p className="navegationText">FaQs</p>
+            </Link>
+
           </div>
         </div>
 
