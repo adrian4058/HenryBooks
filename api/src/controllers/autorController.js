@@ -9,6 +9,8 @@ async function autores(req, res) {
     res.send(`la lista de autores esta vacia`);
   } catch (e) {
     res.status(404).send(`${e}`);
+
+    
   }
 }
 
