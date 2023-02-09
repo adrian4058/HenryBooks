@@ -57,7 +57,7 @@ const url = Api.Url;
 // HOME
 // Obtener Libros HOME
 export const getAllBooks = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       fetch(url + "/book")
         .then((data) => data.json())
@@ -109,7 +109,7 @@ export const filterAll = (category, editorial, author) => {
 // DASHBOARD
 // Obtener Libros DASHBOARD
 export const getAllBooksDashboard = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       fetch(url + "/book")
         .then((data) => data.json())
@@ -124,10 +124,10 @@ export const getAllBooksDashboard = () => {
 
 // Crear nuevo libro
 export const addNewBook = (payload) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       axios
-        .post("http://localhost:5685/book", payload, {
+        .post("http://localhost:7872/book", payload, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -164,7 +164,7 @@ export const addNewBook = (payload) => {
 // };
 
 export const editBook = (id, input) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       axios
         .put(url + `/book/${id}`, input, {
@@ -248,8 +248,10 @@ export const addReview = (objeto) => (dispatch) => {
       "Content-Type": "application/json",
     },
     method: "POST",
-    body: JSON.stringify(objeto)
-  }).then((response) => response.json()).then((data) => dispatch({ type: ADD_REVIEW, payload: data }));
+    body: JSON.stringify(objeto),
+  })
+    .then((response) => response.json())
+    .then((data) => dispatch({ type: ADD_REVIEW, payload: data }));
 };
 //
 // Agregar denuncia Review
@@ -289,7 +291,7 @@ export const deletToken = () => {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //USUARIOS
 export const getAllUsers = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       const response = await fetch(url + "/users/")
         .then((data) => data.json())
@@ -316,7 +318,7 @@ export const getUser = (id) => async (dispatch) => {
 };
 
 export const userUpdate = (id, e) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       const response = await fetch(url + `/users/${id}`, {
         method: "PUT",
