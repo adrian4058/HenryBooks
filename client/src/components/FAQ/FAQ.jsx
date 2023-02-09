@@ -60,6 +60,7 @@ function FAQ() {
                             showAnswer && <p className={Style.res}>Para hacer un cambio o devolución, contactanos para que podamos ayudarte.<br /> <strong>henrybooks.info@gmail.com</strong></p>
 
                         }
+
                     </div>
 
                     <div className={Style.separatorQ}></div>
