@@ -4,7 +4,6 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import SearchBar from "../SearchBar/SearchBar";
 import Paginate from "../Paginate/Paginate";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllBooks,
@@ -12,19 +11,19 @@ import {
   filterByPrice,
   filterAll,
   TYPES,
-  llenarUsuario
+  llenarUsuario,
 } from "../../actions/index";
 import "./Home.css";
 import Slider from "../Slider/Slider";
 import { useRef } from "react";
 import Chat from "../ChatBot/Chat";
 import SliderProducts from "../SliderProducts/SliderProducts";
-import axios from "axios";
 import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 function Home(props) {
-  const history = useHistory();
   const dispatch = useDispatch();
+  const history = useHistory();
   // Referencias para los input
   const categorySelect = useRef();
   const editorialSelect = useRef();
@@ -42,7 +41,10 @@ function Home(props) {
   }, []);
 
   const registerToBuy = () => {
-    Swal.fire("Register to buy");
+    Swal.fire("Register to buy", {
+      icon: "warning",
+    });
+    history.push("/login");
   };
 
   // axios
@@ -86,15 +88,14 @@ function Home(props) {
 
   // Llámado de libros
   React.useEffect(() => {
-    console.log(localStorage)
-    if(localStorage.getItem("usuario")){
-      let user=JSON.parse( localStorage.getItem("usuario"));
-      console.log(user)
-      if(user){
-        dispatch(llenarUsuario(user))
+    console.log(localStorage);
+    if (localStorage.getItem("usuario")) {
+      let user = JSON.parse(localStorage.getItem("usuario"));
+      console.log(user);
+      if (user) {
+        dispatch(llenarUsuario(user));
       }
     }
-    
 
     dispatch(getAllBooks());
   }, [dispatch]);

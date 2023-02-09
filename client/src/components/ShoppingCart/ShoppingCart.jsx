@@ -12,16 +12,13 @@ import "./ShoppingCart.css";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const allBooks = useSelector((state) => state.allBooks);
-  const usuario =useSelector((state)=>state.userProfile)
+  const usuario = useSelector((state) => state.userProfile);
   useEffect(() => {
     dispatch(getAllBooks());
   }, [dispatch]);
 
   const cart = useSelector((state) => state.cart);
 
-  const addToCart = (id) => {
-    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
-  };
   const delFromCart = (id, all = false) => {
     console.log(id, all);
     if (all) {
@@ -37,7 +34,7 @@ const ShoppingCart = () => {
 
   const sendMp = async (e) => {
     e.preventDefault();
-    localStorage.setItem("usuario", JSON.stringify( usuario));
+    localStorage.setItem("usuario", JSON.stringify(usuario));
     const compra = cart.map((item) => {
       return {
         title: item.name,
