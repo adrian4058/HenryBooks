@@ -12,6 +12,7 @@ import {
   filterAll,
   TYPES,
   llenarUsuario,
+  putToken
 } from "../../actions/index";
 import "./Home.css";
 import Slider from "../Slider/Slider";
@@ -88,11 +89,12 @@ function Home(props) {
 
   // Llámado de libros
   React.useEffect(() => {
-    console.log(localStorage);
     if (localStorage.getItem("usuario")) {
       let user = JSON.parse(localStorage.getItem("usuario"));
+      let token=localStorage.getItem("token");
       console.log(user);
       if (user) {
+        dispatch(putToken(token));
         dispatch(llenarUsuario(user));
       }
     }
