@@ -7,21 +7,18 @@ import NavBar from "../Navbar/Navbar";
 import CartItem from "./CartItem";
 import Api from "../../Global";
 import { Link } from "react-router-dom";
-import "./ShoppingCart.css"
+import "./ShoppingCart.css";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const allBooks = useSelector((state) => state.allBooks);
-  const usuario =useSelector((state)=>state.userProfile)
+  const usuario = useSelector((state) => state.userProfile);
   useEffect(() => {
     dispatch(getAllBooks());
   }, [dispatch]);
 
   const cart = useSelector((state) => state.cart);
 
-  const addToCart = (id) => {
-    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
-  };
   const delFromCart = (id, all = false) => {
     console.log(id, all);
     if (all) {
@@ -37,7 +34,7 @@ const ShoppingCart = () => {
 
   const sendMp = async (e) => {
     e.preventDefault();
-    localStorage.setItem("usuario", JSON.stringify( usuario));
+    localStorage.setItem("usuario", JSON.stringify(usuario));
     const compra = cart.map((item) => {
       return {
         title: item.name,
@@ -74,7 +71,9 @@ const ShoppingCart = () => {
       <div className="Shopping-Cart__content">
         <div className="Shopping-Cart-box">
           <h1>Your Books in Cart</h1>
-          <button className="Cart-btn Cart-clean" onClick={clearCart}>Limpiar Carrito</button>
+          <button className="Cart-btn Cart-clean" onClick={clearCart}>
+            Limpiar Carrito
+          </button>
           {cart.map((item, index) => (
             <CartItem
               key={index}
@@ -107,7 +106,9 @@ const ShoppingCart = () => {
         <h1>:(</h1>
         <div>
           <Link to={"/home"}>
-            <button className="btn-pay no-products__btn"><i className="fa-solid fa-cart-shopping"></i>Add products</button>
+            <button className="btn-pay no-products__btn">
+              <i className="fa-solid fa-cart-shopping"></i>Add products
+            </button>
           </Link>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
@@ -11,28 +11,45 @@ import {
   filterByPrice,
   filterAll,
   TYPES,
-  llenarUsuario
+  llenarUsuario,
 } from "../../actions/index";
 import "./Home.css";
 import Slider from "../Slider/Slider";
 import { useRef } from "react";
 import Chat from "../ChatBot/Chat";
 import SliderProducts from "../SliderProducts/SliderProducts";
-import axios from "axios";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 function Home(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
   // Referencias para los input
   const categorySelect = useRef();
   const editorialSelect = useRef();
   const alphabetSelect = useRef();
   const priceSelect = useRef();
   const authorsSelect = useRef();
+  const token = useSelector((state) => state.token);
+  const [, addCartAlert] = useState(false);
+  useEffect(() => {
+    if (token) {
+      console.log("alerta desactivada");
+    } else {
+      registerToBuy();
+    }
+  }, []);
 
+  const registerToBuy = () => {
+    Swal.fire("Register to buy", {
+      icon: "warning",
+    });
+    history.push("/login");
+  };
 
-
-  axios.get("https://apirest-webfam-production.up.railway.app/api/users")
-    .then(response => console.log(response));
+  // axios
+  //   .get("https://apirest-webfam-production.up.railway.app/api/users")
+  //   .then((response) => console.log(response));
 
   const [, setOrder] = React.useState("");
   // allBooks contiene TODOS los libros
@@ -71,15 +88,14 @@ function Home(props) {
 
   // Llámado de libros
   React.useEffect(() => {
-    console.log(localStorage)
-    if(localStorage.getItem("usuario")){
-      let user=JSON.parse( localStorage.getItem("usuario"));
-      console.log(user)
-      if(user){
-        dispatch(llenarUsuario(user))
+    console.log(localStorage);
+    if (localStorage.getItem("usuario")) {
+      let user = JSON.parse(localStorage.getItem("usuario"));
+      console.log(user);
+      if (user) {
+        dispatch(llenarUsuario(user));
       }
     }
-    
 
     dispatch(getAllBooks());
   }, [dispatch]);
@@ -122,9 +138,34 @@ function Home(props) {
     setCurrentPage(1);
   }
   //cart
+
+  // const addCartAlert = () => {
+  // if (token) {
+  //   Swal.fire("Claro que si pa");
+  //   console.log("agregado");
+  // } else {
+
+  // }
+  // };
+  useEffect(() => {
+    addCartAlert(true);
+  }, []);
+
   const addToCart = (id) => {
     console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+    addCartAlert(true);
+    if (token) {
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Product Added To Cart",
+        showConfirmButton: false,
+        timer: 900,
+      });
+      console.log("agregado");
+    } else {
+    }
   };
 
   // función para páginado
@@ -135,7 +176,11 @@ function Home(props) {
   return (
     <div className="home">
       <div className="home-icons__sm">
-        <a href="https://www.facebook.com/people/Henry-Book/100089922381588/" target="_blank" rel="noreferrer">
+        <a
+          href="https://www.facebook.com/people/Henry-Book/100089922381588/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <ion-icon name="logo-facebook" />
         </a>
         <a
