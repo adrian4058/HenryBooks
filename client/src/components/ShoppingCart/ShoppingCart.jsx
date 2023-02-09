@@ -7,7 +7,7 @@ import NavBar from "../Navbar/Navbar";
 import CartItem from "./CartItem";
 import Api from "../../Global";
 import { Link } from "react-router-dom";
-import "./ShoppingCart.css"
+import "./ShoppingCart.css";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -33,6 +33,8 @@ const ShoppingCart = () => {
   const clearCart = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
+
+  
 
   const sendMp = async () => {
     const compra = cart.map((item) => {
@@ -71,7 +73,9 @@ const ShoppingCart = () => {
       <div className="Shopping-Cart__content">
         <div className="Shopping-Cart-box">
           <h1>Your Books in Cart</h1>
-          <button className="Cart-btn Cart-clean" onClick={clearCart}>Limpiar Carrito</button>
+          <button className="Cart-btn Cart-clean" onClick={clearCart}>
+            Limpiar Carrito
+          </button>
           {cart.map((item, index) => (
             <CartItem
               key={index}
@@ -104,7 +108,9 @@ const ShoppingCart = () => {
         <h1>:(</h1>
         <div>
           <Link to={"/home"}>
-            <button className="btn-pay no-products__btn"><i className="fa-solid fa-cart-shopping"></i>Add products</button>
+            <button className="btn-pay no-products__btn">
+              <i className="fa-solid fa-cart-shopping"></i>Add products
+            </button>
           </Link>
         </div>
       </div>

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import SearchBar from "../SearchBar/SearchBar";
 import Paginate from "../Paginate/Paginate";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllBooks,
@@ -18,8 +19,10 @@ import { useRef } from "react";
 import Chat from "../ChatBot/Chat";
 import SliderProducts from "../SliderProducts/SliderProducts";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Home(props) {
+  const history = useHistory();
   const dispatch = useDispatch();
   // Referencias para los input
   const categorySelect = useRef();
@@ -27,11 +30,23 @@ function Home(props) {
   const alphabetSelect = useRef();
   const priceSelect = useRef();
   const authorsSelect = useRef();
+  const token = useSelector((state) => state.token);
+  const [, addCartAlert] = useState(false);
+  useEffect(() => {
+    if (token) {
+      console.log("alerta desactivada");
+    } else {
+      registerToBuy();
+    }
+  }, []);
 
+  const registerToBuy = () => {
+    Swal.fire("Register to buy");
+  };
 
-
-  axios.get("https://apirest-webfam-production.up.railway.app/api/users")
-    .then(response => console.log(response));
+  // axios
+  //   .get("https://apirest-webfam-production.up.railway.app/api/users")
+  //   .then((response) => console.log(response));
 
   const [, setOrder] = React.useState("");
   // allBooks contiene TODOS los libros
@@ -111,9 +126,34 @@ function Home(props) {
     setCurrentPage(1);
   }
   //cart
+
+  // const addCartAlert = () => {
+  // if (token) {
+  //   Swal.fire("Claro que si pa");
+  //   console.log("agregado");
+  // } else {
+
+  // }
+  // };
+  useEffect(() => {
+    addCartAlert(true);
+  }, []);
+
   const addToCart = (id) => {
     console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+    addCartAlert(true);
+    if (token) {
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Product Added To Cart",
+        showConfirmButton: false,
+        timer: 900,
+      });
+      console.log("agregado");
+    } else {
+    }
   };
 
   // función para páginado
@@ -124,7 +164,11 @@ function Home(props) {
   return (
     <div className="home">
       <div className="home-icons__sm">
-        <a href="https://www.facebook.com/people/Henry-Book/100089922381588/" target="_blank" rel="noreferrer">
+        <a
+          href="https://www.facebook.com/people/Henry-Book/100089922381588/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <ion-icon name="logo-facebook" />
         </a>
         <a

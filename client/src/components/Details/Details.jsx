@@ -7,11 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBookDetail, cleanDetail, TYPES } from "../../actions/index";
 import "./Details.css";
 import Reviews from "../Reviews/Reviews";
+import Swal from "sweetalert2";
 
 function Details() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const details = useSelector((state) => state.detail);
+  const token = useSelector((state) => state.token);
+  const [, addCartAlert] = useState(false);
 
   useEffect(() => {
     dispatch(cleanDetail());
@@ -21,8 +24,25 @@ function Details() {
 
   const addID = details.id;
 
+  useEffect(() => {
+    addCartAlert(true);
+  }, []);
+
   const addToCart = (addID) => {
+    console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: addID });
+    addCartAlert(true);
+    if (token) {
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Product Added To Cart",
+        showConfirmButton: false,
+        timer: 900,
+      });
+      console.log("agregado");
+    } else {
+    }
   };
 
   return (

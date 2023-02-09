@@ -28,7 +28,7 @@ import {
   EDIT_USER,
   REPORT_REVIEW,
   CLEAN_REVIEW,
-  ADD_REVIEW
+  ADD_REVIEW,
 } from "../actions";
 
 const initialState = {
@@ -419,8 +419,8 @@ function rootReducer(state = initialState, action) {
     case ADD_REVIEW:
       return {
         ...state,
-        reviews: action.payload
-      }   
+        reviews: action.payload,
+      };
     case REPORT_REVIEW:
       return {
         ...state,
