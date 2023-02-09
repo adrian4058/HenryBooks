@@ -127,7 +127,7 @@ export const addNewBook = (payload) => {
   return async function(dispatch) {
     try {
       axios
-        .post("http://localhost:7872/book", payload, {
+        .post(Api.Url + "/book", payload, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

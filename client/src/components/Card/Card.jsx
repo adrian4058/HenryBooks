@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import "../Card/Card.css";
 
 function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
