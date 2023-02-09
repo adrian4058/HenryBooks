@@ -8,12 +8,13 @@ import CartItem from "./CartItem";
 import Api from "../../Global";
 import { Link } from "react-router-dom";
 import "./ShoppingCart.css";
+import Swal from "sweetalert2";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
-  const allBooks = useSelector((state) => state.allBooks);
+ 
   const usuario = useSelector((state) => state.userProfile);
-  const token=useSelector((state)=>state.token)
+  const token = useSelector((state) => state.token);
   useEffect(() => {
     dispatch(getAllBooks());
   }, [dispatch]);
@@ -34,8 +35,9 @@ const ShoppingCart = () => {
   };
 
   const sendMp = async (e) => {
-    e.preventDefault();
-    localStorage.setItem("token",token);
+    // e.preventDefault();
+    console.log("entreeeeee")
+    localStorage.setItem("token", token);
     localStorage.setItem("usuario", JSON.stringify(usuario));
     const compra = cart.map((item) => {
       return {
@@ -51,14 +53,20 @@ const ShoppingCart = () => {
       item: compra,
     };
     try {
-      const respuesta = await axios
-        .post(Api.Url + "/payment", body)
+      let respuesta;
+      await axios.post(Api.Url + "/payment", body)
         .then((res) => {
+          console.log("aqui tambien entro",res)
+          respuesta=res.data[0]
           return res.data[0];
         })
-
         .catch((error) => console.log(error));
+      Swal.fire({
+        title: "¡Link de compra generado correctamente!",
+        icon: "success",
+      });
       window.location.href = respuesta;
+
       return respuesta;
     } catch (error) {
       console.log(error);
@@ -112,7 +120,7 @@ const ShoppingCart = () => {
               <i className="fa-solid fa-cart-shopping"></i>Add products
             </button>
           </Link>
-        </div>
+        </div>)
       </div>
       <Footer />
     </div>
@@ -120,3 +128,21 @@ const ShoppingCart = () => {
 };
 
 export default ShoppingCart;
+
+
+//   const total_Price = req.body.item
+  //   .map((e) => e.unit_price * e.quantity)
+  //   .reduce((a, b) => a + b);
+
+  // const items = req.body.item.map((e) => e.title, e.quantity, e.unit_price);
+  // contentHTML = `
+
+  // <h1>Sus items adquiridos fueron ${items} </h1>
+  //     <h2>Gracias por tu compra, su total es: ${total_Price}</h2>
+  // `;
+  // const send = await transporter.sendMail({
+  //   from: `${Email}`, // sender address
+  //   to: "adrian_2016_@outlook.es", // list of receivers
+  //   subject: "Compra Exitosa", // Subject line
+  //   html: contentHTML,
+  // });

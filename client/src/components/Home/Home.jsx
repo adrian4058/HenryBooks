@@ -12,7 +12,7 @@ import {
   filterAll,
   TYPES,
   llenarUsuario,
-  putToken
+  putToken,
 } from "../../actions/index";
 import "./Home.css";
 import Slider from "../Slider/Slider";
@@ -32,9 +32,10 @@ function Home(props) {
   const priceSelect = useRef();
   const authorsSelect = useRef();
   const token = useSelector((state) => state.token);
+  const userProfile = useSelector((state) => state.userProfile);
   const [, addCartAlert] = useState(false);
   useEffect(() => {
-    if (token) {
+    if (userProfile) {
       console.log("alerta desactivada");
     } else {
       registerToBuy();
@@ -91,7 +92,7 @@ function Home(props) {
   React.useEffect(() => {
     if (localStorage.getItem("usuario")) {
       let user = JSON.parse(localStorage.getItem("usuario"));
-      let token=localStorage.getItem("token");
+      let token = localStorage.getItem("token");
       console.log(user);
       if (user) {
         dispatch(putToken(token));
