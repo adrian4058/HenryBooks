@@ -33,10 +33,14 @@ function Home(props) {
   const authorsSelect = useRef();
   const token = useSelector((state) => state.token);
   const userProfile = useSelector((state) => state.userProfile);
+  const cart = useSelector((state) => state.cart);
+  localStorage.setItem("cart", JSON.stringify(cart));
+
   const [, addCartAlert] = useState(false);
+
   useEffect(() => {
     if (userProfile) {
-      console.log("alerta desactivada");
+      console.log("Alerta desactivada");
     } else {
       registerToBuy();
     }
