@@ -38,6 +38,7 @@ const ShoppingCart = () => {
     e.preventDefault();
     localStorage.setItem("token", token);
     localStorage.setItem("usuario", JSON.stringify(usuario));
+    
     const compra = cart.map((item) => {
       return {
         title: item.name,
