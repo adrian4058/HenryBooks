@@ -111,7 +111,7 @@ export const filterAll = (category, editorial, author) => {
 export const getAllBooksDashboard = () => {
   return async function(dispatch) {
     try {
-      fetch(url + "/book")
+      axios.get(Api.Url+ "/book")
         .then((data) => data.json())
         .then((data) =>
           dispatch({ type: GET_ALL_BOOKS_DASHBOARD, payload: data.book })
@@ -256,7 +256,7 @@ export const addReview = (objeto) => (dispatch) => {
 //
 // Agregar denuncia Review
 export const reportReview = (id) => (dispatch) => {
-  fetch(url + "/resena" + "/denuncias", {
+  fetch(Api.Url + "/resena" + "/denuncias", {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

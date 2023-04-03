@@ -1,6 +1,6 @@
 const axios = require("axios");
-const { transporter } = require("../middleware/mail");
-const { Email, TO } = process.env;
+// const { transporter } = require("../middleware/mail");
+// const { Email, TO } = process.env;
 
 const createPayment = async (item) => {
   try {
@@ -35,25 +35,26 @@ const linkPayment = async (req, res, next) => {
     const total_Price = req.body.item
       .map((e) => e.unit_price * e.quantity)
       .reduce((a, b) => a + b);
-    const items = req.body.item.map((item) => {
-      return ` Producto: ${item.title} Cantidad: ${item.quantity} x $${item.unit_price}u `;
-    });
-    contentHTML = `
-    <h1>COMPRA REALIZADA CON ÉXITO</h1>
+    // const items = req.body.item.map((item) => {
+    //   return ` Producto: ${item.title} Cantidad: ${item.quantity} x $${item.unit_price}u `;
+    // });
+    // contentHTML = `
+    // <h1>COMPRA REALIZADA CON ÉXITO</h1>
 
-    <h2>Su compra fue realizada con éxito, su pedido detallado es:
-     <p>${items}</p> 
-     </h2>
-        <h2>Gracias por tu compra, su total es: $${total_Price}</h2>
-    `;
-    const send = await transporter.sendMail({
-      from: `${Email}`, // sender address
-      to: `${TO}`, // list of receivers
-      subject: "Compra Exitosa", // Subject line
-      html: contentHTML,
-    });
+    // <h2>Su compra fue realizada con éxito, su pedido detallado es:
+    //  <p>${items}</p>
+    //  </h2>
+    //     <h2>Gracias por tu compra, su total es: $${total_Price}</h2>
+    // `;
+    // const send = await transporter.sendMail({
+    //   from: `${Email}`, // sender address
+    //   to: `${TO}`, // list of receivers
+    //   subject: "Compra Exitosa", // Subject line
+    //   html: contentHTML,
+    // });
 
-    res.send(resultado).json(send);
+    // res.send(resultado).json(send);
+    res.send(resultado);
   } catch (error) {
     error;
   }
