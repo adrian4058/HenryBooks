@@ -104,3 +104,14 @@
   align-items: center;
   gap: .4rem;
 }
+
+@media screen and (max-width: 375px) {
+  .navbar{
+    display: none;
+  }
+}
+@media screen and (max-width: 720px) {
+  .navbar{
+    display: none;
+  }
+}

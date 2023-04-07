@@ -58,17 +58,16 @@
 
 @media screen and (max-width: 720px) {
   .member-card {
-    width: 175px;
+    width: 170px;
     margin: 0.5rem 0.5rem;
   }
 }
 
 @media screen and (max-width: 375px) {
-
-  .navbar{
+  .navbar {
     display: none;
   }
-  
+
   .member-card {
     justify-content: space-between;
     width: 125px;
