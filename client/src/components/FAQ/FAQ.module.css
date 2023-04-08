@@ -1,126 +1,164 @@
 .container {
-    margin-bottom: 10rem;
-    background-color: #f5f1ed;
+  margin-bottom: 10rem;
+  background-color: #f5f1ed;
 }
 
 .buy {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding-top: 4rem;
-    margin-bottom: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 4rem;
+  margin-bottom: 5rem;
 }
 
 .buy p {
-    color: #222121;
-    font-size: 1rem;
+  color: #222121;
+  font-size: 1rem;
 }
 
 .content2 {
-    text-align: center;
-    padding-right: 7rem;
+  text-align: center;
+  padding-right: 7rem;
 }
 
 .content3 {
-    text-align: center;
-    padding-left: 5rem;
+  text-align: center;
+  padding-left: 5rem;
 }
 
 .title_3 {
-    font-size: 1.5em;
-    font-weight: 400;
-    line-height: 1.25;
-    margin: 0;
-    padding-bottom: 1.6rem;
+  font-size: 1.5em;
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 0;
+  padding-bottom: 1.6rem;
 }
 
 .title_2 {
-    font-size: 1.6em;
-    font-weight: 500;
-    margin-bottom: 2.2rem;
+  font-size: 1.6em;
+  font-weight: 500;
+  margin-bottom: 2.2rem;
 }
 
 .content2 span {
-    font-size: 4rem;
-    opacity: .4;
-    color: #464646;
-
+  font-size: 4rem;
+  opacity: 0.4;
+  color: #464646;
 }
 
 .content3 span {
-    font-size: 4rem;
-    opacity: .4;
-    color: #464646;
-
+  font-size: 4rem;
+  opacity: 0.4;
+  color: #464646;
 }
 
 .content {
-    text-align: center;
-    padding: 2rem;
-    margin-top: 1.2rem;
-
+  text-align: center;
+  padding: 2rem;
+  margin-top: 1.2rem;
 }
 
 .separator {
-    background: rgba(0, 0, 0, .2);
-    height: 9.4rem;
-    position: relative;
-    top: 32px;
-    width: 1px;
+  background: rgba(0, 0, 0, 0.2);
+  height: 9.4rem;
+  position: relative;
+  top: 32px;
+  width: 1px;
 }
 
 .faqs {
-    text-align: start;
-    display: flex;
-    flex-direction: column;
-
-
+  display: flex;
+  flex-direction: column;
 }
 
-
 .title {
-    text-align: center;
-    font-size: 1.9rem;
-    font-weight: 500;
-    margin-bottom: 5rem;
-    margin-top: 3rem;
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 500;
+  margin-bottom: 5rem;
+  margin-top: 3rem;
 }
 
 .q1 {
-    font-size: 1.7em;
-    font-weight: 400;
-    line-height: 1.25;
-    margin: 0;
-    padding-bottom: 1.6rem;
-    text-align: start;
-    padding-left: 15rem;
-    padding-top: 5rem;
+  font-size: 1.7em;
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 0;
+  padding-bottom: 1.6rem;
+  text-align: start;
+  padding-left: 15rem;
+  padding-top: 5rem;
 }
 
 .res {
-    color: #222121;
-    font-size: 1rem;
-    padding-bottom: 1.9rem;
-    padding-left: 18rem;
+  color: #222121;
+  font-size: 1rem;
+  padding-bottom: 1.9rem;
+  padding-left: 18rem;
 }
 
 .btn {
-    background-color: transparent;
-    border: transparent;
-    cursor: pointer;
-
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
 }
 
 .separatorQ {
-    background: rgba(0, 0, 0, .2);
-    height: 1px;
-    position: relative;
-    top: 32px;
-    width: 60rem;
-    margin-left: 13rem;
+  background: rgba(0, 0, 0, 0.2);
+  height: 1px;
+  position: relative;
+  top: 32px;
+  width: 60rem;
+  margin-left: 13rem;
 }
 
 body {
-    background-color: #f5f1ed;
+  background-color: #f5f1ed;
+}
 
+
+/* responsive design */
+@media screen and (max-width: 720px) {
+  .buy {
+    padding-top: 2rem;
+    margin: 0 5rem;
+  }
+
+  .content3 {
+    padding-left: 2rem;
+  }
+
+  .content2 {
+    text-align: center;
+    padding-right: 2rem;
+  }
+
+  .faqs {
+    display: flex;
+    /* flex-direction: column; */
+  }
+
+  .faqs div {
+  }
+
+  .q1 {
+    margin: 0;
+    padding-bottom: 1.6rem;
+    padding-left: 3.5rem;
+    padding-top: 5rem;
+  }
+  .separatorQ {
+    margin-left: 7rem;
+  }
+
+  .res {
+    padding-bottom: 1.9rem;
+    padding-left: 9rem;
+  }
+
+  .title {
+    text-decoration: underline;
+    margin-bottom: -2rem;
+    margin-top: 4rem;
+  }
 }
