@@ -1,7 +1,11 @@
 // const express = require("express");
+<<<<<<< HEAD
 const { Libro, Autor, Resena } = require("../db");
 const { uploadImage } = require("../libraries/cloudinary");
 const fs=require('fs-extra');
+=======
+const { Libro, Autor } = require("../db");
+>>>>>>> main
 
 async function allBooks(req, res) {
   try {
@@ -46,7 +50,12 @@ async function findBook(req, res) {
 }
 
 async function createBook(req, res) {
+<<<<<<< HEAD
   let { name, autor, editorial, image, genero, stock, price } = req.body;
+=======
+  let { name, autor, editorial, reviews, image, genero, stock, price } =
+    req.body;
+>>>>>>> main
   let idAutor;
   let existe = await Autor.findAll({
     where: {
@@ -134,6 +143,7 @@ async function ordenAlfabetico(req, res) {
   }
 }
 
+<<<<<<< HEAD
 async function createBookc(req, res) {
   let { name, autor, editorial, image, genero, stock, price } = req.body;
   let idAutor;
@@ -176,12 +186,17 @@ async function createBookc(req, res) {
     });
   }
 }
+=======
+>>>>>>> main
 module.exports = {
   createBook,
   allBooks,
   updateBook,
   findBook,
   ordenAlfabetico,
+<<<<<<< HEAD
   deleteBook,
   createBookc 
+=======
+>>>>>>> main
 };

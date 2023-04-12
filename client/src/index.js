@@ -18,11 +18,9 @@ root.render(
       redirectUri={window.location.origin}
     >
       <App />
-    </Auth0Provider>    
-  </Provider>,
+    </Auth0Provider>
+  </Provider>
 );
-
-
 
 // No funciona con React.StricMode
 
@@ -41,7 +39,7 @@ root.render(
 // const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 // console.log(window.location); // redireccionar al Home
 // root.render(
-//   <React.StrictMode>  
+//   <React.StrictMode>
 //     <BrowserRouter>
 //       <Provider store={store}>
 //         <Auth0Provider
@@ -60,4 +58,3 @@ root.render(
 // // to log results (for example: reportWebVitals(console.log))
 // // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
-
