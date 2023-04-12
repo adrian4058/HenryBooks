@@ -4,7 +4,6 @@ const { Libro, Autor, Resena } = require("../db");
 const { uploadImage } = require("../libraries/cloudinary");
 const fs=require('fs-extra');
 
-
 async function allBooks(req, res) {
   try {
     let bookInDb = await Libro.findAll({

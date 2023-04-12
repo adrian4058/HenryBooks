@@ -1,5 +1,6 @@
 .navbar {
   display: flex;
+  width: 100vw;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: space-between;
@@ -79,6 +80,7 @@
 }
 
 .login {
+  margin-right: 15px;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -111,4 +113,15 @@
   justify-content: center;
   align-items: center;
   gap: .4rem;
+}
+
+@media screen and (max-width: 375px) {
+  .navbar{
+    display: none;
+  }
+}
+@media screen and (max-width: 720px) {
+  .navbar{
+    display: none;
+  }
 }

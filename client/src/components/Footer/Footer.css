@@ -6,12 +6,10 @@ p {
 
 .footer {
   background-color: #dad2bc;
-  width: 100%;
+  width: 100vw;
   bottom: 0;
   position: relative;
-  bottom: 0;
 }
-
 
 .footer-container {
   border-top: solid 1px rgb(0, 0, 0);
@@ -19,7 +17,7 @@ p {
 
 .footer-content {
   display: flex;
-  border-bottom: 1px solid rgb(0, 0, 0);
+  /* border-bottom: 1px solid rgb(0, 0, 0); */
   justify-content: space-evenly;
   padding: 2rem 0;
 }
@@ -33,12 +31,55 @@ p {
 }
 
 .footer-copy {
-  padding: .5rem 0;
+  border-top: 1px solid black;
+  padding: 0.5rem 0;
   text-align: center;
 }
-
 
 a {
   text-decoration: none;
   color: rgb(15, 15, 15);
+}
+
+@media screen and (max-width: 720px) {
+  .footer {
+    height: fit-content;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .footer-content {
+    padding: 10px 0;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .footer-column {
+    padding: 10px 0;
+    gap: 0.2rem;
+  }
+
+  .footer-column h4 {
+    font-size: 1.4rem;
+    text-decoration: underline;
+    padding-bottom: 5px;
+  }
+
+  .footer-copy {
+    
+    padding: 0.8rem 0;
+    
+  }
+
+  a {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
 }

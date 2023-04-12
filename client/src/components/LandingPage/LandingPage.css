@@ -15,7 +15,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Maven Pro', sans-serif;
+  font-family: "Maven Pro", sans-serif;
 }
 
 .landing-container {
@@ -55,7 +55,7 @@ p {
   background: rgb(20, 20, 20);
   color: rgb(255, 255, 1);
   border: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -65,7 +65,7 @@ p {
   text-transform: uppercase;
   cursor: pointer;
   transform: skew(-21deg);
-  font-family: 'Maven Pro', sans-serif;
+  font-family: "Maven Pro", sans-serif;
 }
 
 .landing-btn__span {
@@ -74,7 +74,7 @@ p {
 }
 
 .landing-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -94,4 +94,50 @@ p {
   left: 0;
   right: 0;
   opacity: 1;
+}
+
+/* tablet pequeña */
+@media screen and (max-width: 720px) {
+  .landing-container {
+    justify-content: space-evenly;
+    height: 80vh;
+    padding: 10px;
+  }
+  .landing-title {
+    display: flex;
+    font-size: 2.5rem;
+  }
+  .landing-content {
+
+    height: 60%;
+  }
+  .paragram {
+    font-size: 1.4rem;
+  }
+  .paragram p {
+    font-size: 1.3rem;
+  }
+}
+
+/* movil pequeño */
+@media screen and (max-width: 376px) {
+  .landing-container {
+    justify-content: space-evenly;
+    height: 80vh;
+    padding: 10px;
+  }
+  .landing-title {
+    display: flex;
+    font-size: 2.2rem;
+  }
+  .landing-content {
+    margin-top: 10px;
+    height: 50vh;
+  }
+  .paragram {
+    font-size: 1.3rem;
+  }
+  .paragram p{
+    font-size: 1.2rem;
+  }
 }

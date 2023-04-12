@@ -11,25 +11,24 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../actions/index";
 import { HiShoppingCart } from "react-icons/hi";
 
-
 function NavBar() {
   let dispatch = useDispatch();
   let token2 = useSelector((state) => state.token);
   let usuario2 = useSelector((state) => state.userProfile);
-  let [token, setToken] = useState(token2)
+  let [, setToken] = useState(token2);
   let [usuario, setUsuario] = useState(usuario2);
   const { logout } = useAuth0();
   const cookies = new Cookies();
   useEffect(() => {
-    setToken(token2)
-    setUsuario(usuario2)
-  }, [usuario2][token2])
+    setToken(token2);
+    setUsuario(usuario2);
+  }, [usuario2, token2]);
 
   function cerrrarSesion(e) {
     e.preventDefault();
     dispatch(actions.vaciarUsuario());
     dispatch(actions.deletToken());
-    localStorage.clear()
+    localStorage.clear();
     logout();
   }
   return (
@@ -79,7 +78,7 @@ function NavBar() {
         </div>
       </div>
       <div>
-        {usuario.rol == "admin" ? (
+        {usuario.rol === "admin" ? (
           <div className="navbar-options__link">
             <Link to="/dashboard">
               <button className="navbar-btn__option">
@@ -195,7 +194,11 @@ function NavBar() {
         {Object.keys(usuario).length > 0 ? (
           <>
             <div className="user">
-              <img className="user-img" src={usuario.img ? usuario.img : imageDefault} alt="img" />
+              <img
+                className="user-img"
+                src={usuario.img ? usuario.img : imageDefault}
+                alt="img"
+              />
               <Link to="/profile">
                 <h4 className="user-name">{usuario.nombre}</h4>
               </Link>
@@ -209,4 +212,4 @@ function NavBar() {
 
 export default NavBar;
 
-
+// {error.name?('danger Register-input'):("Register-input")}
