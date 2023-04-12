@@ -29,7 +29,6 @@ async function crearAutor(req, res) {
 }
 //eliminar un autor
 
-<<<<<<< HEAD
 async function eliminarAutor (req,res){
     let {id}=req.body
     try{
@@ -40,20 +39,6 @@ async function eliminarAutor (req,res){
     }catch(e){
         res.status(404).send(e)
     }    
-=======
-async function eliminarAutor(req, res) {
-  let { id } = req.body;
-  try {
-    let borrar = await Autor.destroy({
-      where: {
-        id,
-      },
-    });
-    res.send(`el autor con id ${id} fue borrado correctamente`);
-  } catch (e) {
-    res.status(404).send(e);
-  }
->>>>>>> main
 }
 
 //EDITAR AUTOR POR ID

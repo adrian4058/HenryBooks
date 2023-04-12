@@ -4,7 +4,7 @@ const { DB_PORT } = process.env;
 
 conn.sync({ force: false }).then(() => {
   console.log("conectado a base de datos");
-  server.listen(DB_PORT, () => {
-    console.log(`listening at port: ${DB_PORT}`); // eslint-disable-line no-console
+  server.listen(7872, () => {
+    console.log(`listening at port: 7872`); // eslint-disable-line no-console
   });
 });
