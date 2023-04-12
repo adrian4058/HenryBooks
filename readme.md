@@ -17,6 +17,7 @@ _Tecnologías y librerías utilizadas en backend_
 * Checkout API de Mercadopago
 * Nodemailer
 * Auth0
+* React Simple Chat
 
 
 _Tecnologías y librerías utilizadas en el frontend_
@@ -28,4 +29,4 @@ _Tecnologías y librerías utilizadas en el frontend_
 
 ## Autores ✒️
 
-* [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
+* [contribuyentes](https://github.com/scch94/probando-pf/contributors) quíenes han participado en este proyecto. 
