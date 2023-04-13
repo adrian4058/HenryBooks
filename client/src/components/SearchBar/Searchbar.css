@@ -34,7 +34,7 @@
   outline: none;
   background-color: #f3f3f4;
   color: #0d0c22;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .input-searchbar::placeholder {
@@ -60,12 +60,12 @@
 .searchbar-submit {
   position: relative;
   font-size: 1em;
-  padding: .5rem 1.2rem;
+  padding: 0.5rem 1.2rem;
   background-color: #70798c;
   text-decoration: none;
   border: none;
   border-radius: 0.5em;
-  color: #DEDEDE;
+  color: #dedede;
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -75,12 +75,18 @@
 
 .searchbar-submit::before {
   position: absolute;
-  content: '';
+  content: "";
   height: 0;
   width: 0;
   top: 0;
   left: 0;
-  background: linear-gradient(135deg, #dad2bc 0%, #dad2bc 50%, rgba(112, 121, 140, 1) 50%, rgba(112, 121, 140, 1) 60%);
+  background: linear-gradient(
+    135deg,
+    #dad2bc 0%,
+    #dad2bc 50%,
+    rgba(112, 121, 140, 1) 50%,
+    rgba(112, 121, 140, 1) 60%
+  );
   border-radius: 0 0 0.5em 0;
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
   transition: 0.3s;
@@ -94,4 +100,16 @@
 .searchbar-submit:active {
   box-shadow: 0.2em 0.2em 0.3em #dad2bc;
   transform: translate(0.1em, 0.1em);
+}
+
+/* RESPONSIVE TABLET */
+
+@media screen and (max-width: 720px) {
+  .searchbar {
+    width: 95%;
+  }
+
+  .input-searchbar {
+    width: 100%;
+  }
 }
