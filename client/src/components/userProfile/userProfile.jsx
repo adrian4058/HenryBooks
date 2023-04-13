@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser, deletToken, vaciarUsuario } from "../../actions";
 import NavBar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer"
 import "./userProfile.css";
 import Modal from "react-modal";
 import { countries } from "../../utils/countries";
@@ -101,21 +102,21 @@ export default function UserProfile() {
             <div className="Profile-usuario__data">
               <h5 className="Profile-info" name="name" value={user.nombre}>
                 <span>Name:</span>
-                <span>{user.nombre}</span>
+                <span className="Profile-data">{user.nombre}</span>
               </h5>
             </div>
 
             <div className="Profile-usuario__data">
               <h5 className="Profile-info" name="email" value={user.email}>
                 <span>Email:</span>
-                <span>{user.email}</span>
+                <span className="Profile-data">{user.email}</span>
               </h5>
             </div>
 
             <div className="Profile-usuario__data">
               <h5 className="Profile-info" name="password" value={user.email}>
                 <span>Password:</span>
-                <span>**********</span>
+                <span className="Profile-data">**********</span>
               </h5>
             </div>
 
@@ -126,21 +127,21 @@ export default function UserProfile() {
                 value={user.direccion}
               >
                 <span>Address:</span>
-                <span>{user.direccion}</span>
+                <span className="Profile-data">{user.direccion}</span>
               </h5>
             </div>
 
             <div className="Profile-usuario__data">
               <h5 className="Profile-info" name="pais" value={user.pais}>
                 <span>Country:</span>
-                <span>{user.pais}</span>
+                <span className="Profile-data">{user.pais}</span>
               </h5>
             </div>
 
             <div className="Profile-usuario__data">
               <h5 className="Profile-info" name="ciudad" value={user.ciudad}>
                 <span>City/State:</span>
-                <span>{user.ciudad}</span>
+                <span className="Profile-data">{user.ciudad}</span>
               </h5>
             </div>
           </div>
@@ -239,6 +240,7 @@ export default function UserProfile() {
           {message.length ? <div>Profile Edited Succesfully!!</div> : null}
         </form>
       </Modal>
+      <Footer/>
     </div>
   );
 }
