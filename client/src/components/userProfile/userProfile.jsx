@@ -1,25 +1,23 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser, deletToken, vaciarUsuario } from "../../actions";
 import NavBar from "../Navbar/Navbar";
 import "./userProfile.css";
-import Modal from "react-modal"
-import { countries } from "../../utils/countries"
+import Modal from "react-modal";
+import { countries } from "../../utils/countries";
 import imageDefault from "../img/img-df.jpeg";
 import { useAuth0 } from "@auth0/auth0-react";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 // import Api from "../Global";
 // const url = Api.Url;
 
 export default function UserProfile() {
-
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userProfile);
-  const message = useSelector(state => state.message)
+  const message = useSelector((state) => state.message);
   const { logout } = useAuth0();
-
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -27,65 +25,61 @@ export default function UserProfile() {
     dispatch(getUser());
   }, [dispatch]);
 
-
   const openEditModal = () => {
     setModalIsOpen(true);
-  }
+  };
 
   const closeEditModal = () => {
     setModalIsOpen(false);
-
-  }
-
+  };
 
   const [editUser, setEditUser] = useState({
-
     nombre: user.nombre,
     email: user.email,
     password: user.password,
     direccion: user.direccion,
     pais: user.pais,
     ciudad: user.ciudad,
-
   });
 
   const handleUpdateForm = (e) => {
     setEditUser({
       ...editUser,
-      [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmitUpdate = (e) => {
     e.preventDefault();
-    if (editUser.name === "" || editUser.email === "" || editUser.password === "") {
-      return alert('This fields cannot be empty')
-
+    if (
+      editUser.name === "" ||
+      editUser.email === "" ||
+      editUser.password === ""
+    ) {
+      return alert("This fields cannot be empty");
     } else {
       Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'User edited successfully!',
+        position: "top-end",
+        icon: "success",
+        title: "User edited successfully!",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
     }
-    dispatch((updateUser(user.id, editUser)))
-    closeEditModal()
+    dispatch(updateUser(user.id, editUser));
+    closeEditModal();
     // window.location.reload()
-
-  }
+  };
 
   const logOut = (e) => {
     e.preventDefault();
-    dispatch(vaciarUsuario())
-    dispatch(deletToken())
+    dispatch(vaciarUsuario());
+    dispatch(deletToken());
     localStorage.clear();
     logout();
   };
 
   return (
-
     <div className="Profile">
       <NavBar />
       <div className="Profile-user__content">
@@ -104,7 +98,6 @@ export default function UserProfile() {
             />
           </div>
           <div className="Profile-user__info">
-
             <div className="Profile-usuario__data">
               <h5 className="Profile-info" name="name" value={user.nombre}>
                 <span>Name:</span>
@@ -127,7 +120,11 @@ export default function UserProfile() {
             </div>
 
             <div className="Profile-usuario__data">
-              <h5 className="Profile-info" name="direccion" value={user.direccion}>
+              <h5
+                className="Profile-info"
+                name="direccion"
+                value={user.direccion}
+              >
                 <span>Address:</span>
                 <span>{user.direccion}</span>
               </h5>
@@ -146,11 +143,12 @@ export default function UserProfile() {
                 <span>{user.ciudad}</span>
               </h5>
             </div>
-
           </div>
         </div>
         <div className="Profile-btns">
-          <button className="Profile-btn" onClick={openEditModal}>Edit profile</button>
+          <button className="Profile-btn" onClick={openEditModal}>
+            Edit profile
+          </button>
           <button className="Profile-btn" onClick={(e) => logOut(e)}>
             Logout
           </button>
@@ -164,7 +162,6 @@ export default function UserProfile() {
         className="modal-form"
       >
         <form className="BC-CreateBooks" onSubmit={handleSubmitUpdate}>
-
           <div className="Register-input">
             <label>Name: </label>
             <input
@@ -212,7 +209,8 @@ export default function UserProfile() {
               type="text"
               name="pais"
               value={editUser.pais}
-              onChange={handleUpdateForm} >
+              onChange={handleUpdateForm}
+            >
               <option> </option>
               {countries.map((data) => (
                 <option value={data.id}>{data.name_es}</option>
@@ -227,16 +225,18 @@ export default function UserProfile() {
               name="ciudad"
               value={editUser.ciudad}
               onChange={handleUpdateForm}
-            >
-
-            </input>
+            ></input>
           </div>
           {/* <input className="input-btn-dash-form" type="submit" value="Edit User" /> */}
-          <button className="Register-create__btn" onClick={(e) => handleSubmitUpdate(e)}> Edit User</button>
+          <button
+            className="Register-create__btn"
+            onClick={(e) => handleSubmitUpdate(e)}
+          >
+            {" "}
+            Edit User
+          </button>
 
-          {
-            message.length ? <div>Profile Edited Succesfully!!</div> : null
-          }
+          {message.length ? <div>Profile Edited Succesfully!!</div> : null}
         </form>
       </Modal>
     </div>
