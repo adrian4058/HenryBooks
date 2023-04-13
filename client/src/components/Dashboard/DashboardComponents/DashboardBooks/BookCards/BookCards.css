@@ -85,3 +85,31 @@
   cursor: pointer;
   background: var(--purple);
 }
+
+@media screen and (max-width: 720px) {
+  .BC-CreateBooks {
+   width: 65vw;
+  }
+  .Register-input{
+  
+  }
+  .Register-input__select{
+   
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .BC-CreateBooks {
+    width: 75vw;
+    /* margin: 0 20px; */
+    margin-top: 0rem;
+  }
+  .Register-input{
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+  }
+  .Register-input__select{
+    padding: 0.2em
+  }
+}
