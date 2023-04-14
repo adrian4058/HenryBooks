@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
- 
+
   const usuario = useSelector((state) => state.userProfile);
   const token = useSelector((state) => state.token);
   useEffect(() => {
@@ -36,10 +36,10 @@ const ShoppingCart = () => {
 
   const sendMp = async (e) => {
     // e.preventDefault();
-    console.log("entreeeeee")
+    console.log("entreeeeee");
     localStorage.setItem("token", token);
     localStorage.setItem("usuario", JSON.stringify(usuario));
-    
+
     const compra = cart.map((item) => {
       return {
         title: item.name,
@@ -55,10 +55,11 @@ const ShoppingCart = () => {
     };
     try {
       let respuesta;
-      await axios.post(Api.Url + "/payment", body)
+      await axios
+        .post(Api.Url + "/payment", body)
         .then((res) => {
-          console.log("aqui tambien entro",res)
-          respuesta=res.data[0]
+          console.log("aqui tambien entro", res);
+          respuesta = res.data[0];
           return res.data[0];
         })
         .catch((error) => console.log(error));
@@ -113,15 +114,17 @@ const ShoppingCart = () => {
     <div className="Shopping-Cart">
       <NavBar />
       <div className="No-products">
-        <h1>You have no products added to the cart</h1>
-        <h1>:(</h1>
-        <div>
-          <Link to={"/home"}>
-            <button className="btn-pay no-products__btn">
-              <i className="fa-solid fa-cart-shopping"></i>Add products
-            </button>
-          </Link>
-        </div>)
+        <div className="No-products__content">
+          <h1>You have no products added to the cart</h1>
+          <h1>:(</h1>
+          <div>
+            <Link to={"/home"}>
+              <button className="btn-pay no-products__btn">
+                <i className="fa-solid fa-cart-shopping"></i>Add products
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
       <Footer />
     </div>
@@ -130,20 +133,19 @@ const ShoppingCart = () => {
 
 export default ShoppingCart;
 
-
 //   const total_Price = req.body.item
-  //   .map((e) => e.unit_price * e.quantity)
-  //   .reduce((a, b) => a + b);
+//   .map((e) => e.unit_price * e.quantity)
+//   .reduce((a, b) => a + b);
 
-  // const items = req.body.item.map((e) => e.title, e.quantity, e.unit_price);
-  // contentHTML = `
+// const items = req.body.item.map((e) => e.title, e.quantity, e.unit_price);
+// contentHTML = `
 
-  // <h1>Sus items adquiridos fueron ${items} </h1>
-  //     <h2>Gracias por tu compra, su total es: ${total_Price}</h2>
-  // `;
-  // const send = await transporter.sendMail({
-  //   from: `${Email}`, // sender address
-  //   to: "adrian_2016_@outlook.es", // list of receivers
-  //   subject: "Compra Exitosa", // Subject line
-  //   html: contentHTML,
-  // });
+// <h1>Sus items adquiridos fueron ${items} </h1>
+//     <h2>Gracias por tu compra, su total es: ${total_Price}</h2>
+// `;
+// const send = await transporter.sendMail({
+//   from: `${Email}`, // sender address
+//   to: "adrian_2016_@outlook.es", // list of receivers
+//   subject: "Compra Exitosa", // Subject line
+//   html: contentHTML,
+// });
