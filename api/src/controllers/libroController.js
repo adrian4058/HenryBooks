@@ -1,4 +1,5 @@
 // const express = require("express");
+
 const { Libro, Autor, Resena } = require("../db");
 const { uploadImage } = require("../libraries/cloudinary");
 const fs=require('fs-extra');
@@ -19,7 +20,7 @@ async function allBooks(req, res) {
     if (bookInDb.length > 0) {
       return res.status(201).json({ status: "success", book: bookInDb });
     } else
-      return res.status(404).json({ status: "error", msg: "No data found!" });
+      return res.status(404).json({ status: "error", msg: "No data found!!" });
   } catch (error) {
     res.status(404).json(error);
   }
@@ -46,7 +47,9 @@ async function findBook(req, res) {
 }
 
 async function createBook(req, res) {
+
   let { name, autor, editorial, image, genero, stock, price } = req.body;
+
   let idAutor;
   let existe = await Autor.findAll({
     where: {

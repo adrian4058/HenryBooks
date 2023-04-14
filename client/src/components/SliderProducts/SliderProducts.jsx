@@ -7,7 +7,7 @@ import Card from "../Card/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllBooks, TYPES } from "../../actions/index";
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
+//import Swal from "sweetalert2";
 
 function SliderProducts() {
   const allBooks = useSelector((state) => state.allBooks);
@@ -17,22 +17,22 @@ function SliderProducts() {
     addCartAlert(true);
   }, []);
 
-  const addToCart = (id) => {
-    console.log(id);
-    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
-    addCartAlert(true);
-    if (token) {
-      Swal.fire({
-        position: "top",
-        icon: "success",
-        title: "Product Added To Cart",
-        showConfirmButton: false,
-        timer: 900,
-      });
-      console.log("agregado");
-    } else {
-    }
-  };
+  // const addToCart = (id) => {
+  //   console.log(id);
+  //   dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+  //   addCartAlert(true);
+  //   if (token) {
+  //     Swal.fire({
+  //       position: "top",
+  //       icon: "success",
+  //       title: "Product Added To Cart",
+  //       showConfirmButton: false,
+  //       timer: 900,
+  //     });
+  //     console.log("agregado");
+  //   } else {
+  //   }
+  //};
 
   const books = allBooks.filter((e) => e.stock < 60);
 
@@ -70,7 +70,7 @@ function SliderProducts() {
                 name={elem.name}
                 id={elem.id}
                 price={elem.price}
-                addToCart={addToCart}
+                //addToCart={addToCart}
                 inSlider
               />
             </SwiperSlide>

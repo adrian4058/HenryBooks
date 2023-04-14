@@ -9,20 +9,19 @@ import { store } from "./store/index";
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
+// REACT_APP_AUTH0_DOMAIN=dev-fq6g074xa1tiehuq.us.auth0.com
+// REACT_APP_AUTH0_CLIENT_ID=cCgyCVo9rw7zBm0ycKBFajcpNt6KOoPL
 root.render(
   <Provider store={store}>
     <Auth0Provider
-      domain={domain}
-      clientId={clientId}
+      domain="dev-fq6g074xa1tiehuq.us.auth0.com"
+      clientId="cCgyCVo9rw7zBm0ycKBFajcpNt6KOoPL"
       redirectUri={window.location.origin}
     >
       <App />
-    </Auth0Provider>    
-  </Provider>,
+    </Auth0Provider>
+  </Provider>
 );
-
-
 
 // No funciona con React.StricMode
 
@@ -41,7 +40,7 @@ root.render(
 // const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 // console.log(window.location); // redireccionar al Home
 // root.render(
-//   <React.StrictMode>  
+//   <React.StrictMode>
 //     <BrowserRouter>
 //       <Provider store={store}>
 //         <Auth0Provider
@@ -60,4 +59,3 @@ root.render(
 // // to log results (for example: reportWebVitals(console.log))
 // // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
-
