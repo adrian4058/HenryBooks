@@ -306,3 +306,57 @@ select::-ms-expand {
     gap: 0.5rem;
   }
 }
+
+@media screen and (max-width: 375px) {
+  .home-welcome {
+    width: 60%;
+  }
+
+  .home-welcome__h1 {
+    font-size: 25pt;
+  }
+
+  .home-welcome__h3 {
+    font-size: 15pt;
+  }
+
+  .home-icons__sm {
+    display: none;
+  }
+
+  .home-products-slider {
+    display: none;
+  }
+
+  .home-books-title {
+    width: 60%;
+    font-size: 20pt;
+  }
+
+  .home-books {
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    gap: 3rem;
+  }
+
+  .book-card {
+    gap: 3rem;
+    margin-left: 5px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .home-filters {
+    width: 55%;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .home-filter__content {
+    width: 100%;
+  }
+}
