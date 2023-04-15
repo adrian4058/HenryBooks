@@ -63,7 +63,7 @@ function Details() {
             </div>
             <div className="book-info__info">
               <h4>Author:</h4>
-              {<h4>{details.Autor?.nombre}</h4>}
+              {<p>{details.Autor?.nombre}</p>}
             </div>
             <div className="book-info__info">
               <h4>Editorial: </h4>
@@ -79,7 +79,7 @@ function Details() {
             </div>
             <div className="book-info__info">
               {details.price && (
-                <h4 className="book-info__price">${details.price}</h4>
+                <h3 className="book-info__price">${details.price}</h3>
               )}
             </div>
             {details.stock !== 0 ? (
