@@ -71,9 +71,7 @@ a {
   }
 
   .footer-copy {
-    
     padding: 0.8rem 0;
-    
   }
 
   a {
@@ -82,5 +80,28 @@ a {
 
   p {
     font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .footer {
+    width: 60%;
+  }
+
+  .footer-content {
+    padding: 5px 0;
+  }
+
+  .footer-column {
+    width: 200px;
+  }
+
+  .footer-column h4 {
+    font-size: 1.2rem;
+  }
+
+  .footer-column p,
+  a {
+    font-size: 0.9rem;
   }
 }

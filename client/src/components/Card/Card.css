@@ -156,3 +156,22 @@
     width: 240px;
   }
 }
+
+@media screen and (max-width: 375px) {
+  .card {
+    width: 215px;
+    height: 315px;
+
+    align-items: stretch;
+    padding: 5px;
+    margin: 0 auto;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .card-add {
+    padding: 5px;
+    border-radius: 1em;
+  }
+}
