@@ -85,7 +85,7 @@ a {
 
 @media screen and (max-width: 375px) {
   .footer {
-    width: 60%;
+    width: 100%;
   }
 
   .footer-content {
@@ -93,7 +93,7 @@ a {
   }
 
   .footer-column {
-    width: 200px;
+    width: 60vw;
   }
 
   .footer-column h4 {
