@@ -1,10 +1,9 @@
-
 import React, { useEffect } from "react";
-
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useAuth0 } from "@auth0/auth0-react";
-import imageDefault from "../img/img-df.jpeg";
+import imageDefault from "../img/user.png";
+import hb from "../img/HenryBooks_Logo.png";
 import "./Navbar.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,175 +32,97 @@ function NavBar() {
   }
   return (
     <div className="navbar">
-      <div className="navbar-logo-options">
-        <div className="navbar-logo">
+      <div className="about-hb">
+        <Link to="/home">
+          <img className="hb" src={hb} alt="HenryBooks" />
+        </Link>
+
+        <div className="navbar-options__link">
           <Link to="/home">
-            <h1 className="navbar-logo__title">HENRYBOOKS</h1>
+            <button className="navbar-btn__option">
+              <b>Home</b>
+            </button>
           </Link>
         </div>
-        <div className="navbar-options">
-          <div className="navbar-options__link">
-            <Link to="/home">
-              <button className="navbar-btn__option">
-                <b>Home</b>
-              </button>
-            </Link>
-          </div>
-          <div className="navbar-options__link">
-            <Link to="/about-us">
-              <button className="navbar-btn__option">
-                <b>About</b>
-              </button>
-            </Link>
-          </div>
-          <div className="navbar-options__link">
-            <Link to="/team">
-              <button className="navbar-btn__option">
-                <b>Team</b>
-              </button>
-            </Link>
-          </div>
-          {/* <div className="navbar-options__link">
-            <Link to="/register">
-              <button className="navbar-btn__option">
-                <b>Register</b>
-              </button>
-            </Link>
-          </div> */}
-          {/* <div className="navbar-options__link">
-            <Link to="/login">
-              <button className="navbar-btn__option">
-                <b>Login</b>
-              </button>
-            </Link>
-          </div> */}
+        <div className="navbar-options__link">
+          <Link to="/about-us">
+            <button className="navbar-btn__option">
+              <b>About</b>
+            </button>
+          </Link>
         </div>
-      </div>
-      <div>
-        {usuario.rol === "admin" ? (
-          <div className="navbar-options__link">
-            <Link to="/dashboard">
-              <button className="navbar-btn__option">
-                <b>Dashboard</b>
-              </button>
-            </Link>
-          </div>
-        ) : null}
-        {/* {isAuthenticated || cookies.get("email") ? (
-          <div className="navbar-options__link">
-            <Link to="/dashboard">
-              <button className="navbar-btn__option">
-                <b>Dashboard</b>
-              </button>
-            </Link>
-          </div>
-        ) : null} */}
+        <div className="navbar-options__link">
+          <Link to="/team">
+            <button className="navbar-btn__option">
+              <b>Team</b>
+            </button>
+          </Link>
+        </div>
       </div>
 
       <div className="login">
-        <div>
-          {Object.keys(usuario).length > 0 ? (
-            <div>
-              <div className="user-btns">
-                <Link to="/cart">
-                  <button className="navbar-btn__option cart-btn">
-                    <b>Cart</b>
-                    <HiShoppingCart />
-                  </button>
-                </Link>
-                <button
-                  className="navbar-btn__option"
-                  onClick={(e) => cerrrarSesion(e)}
-                >
-                  Logout
-                </button>
-              </div>
-              {cookies.get("email") ? (
-                <a href="/profile/edit">
-                  {/* <label className="user-name">
+        {Object.keys(usuario).length > 0 ? (
+          <div>
+            <Link to="/cart">
+              <button className="navbar-btn__option cart-btn">
+                <b>Cart</b>
+                <HiShoppingCart />
+              </button>
+            </Link>
+            {cookies.get("email") ? (
+              <a href="/profile/edit">
+                {/* <label className="user-name">
                     {"User: " + cookies.get("email")}
                   </label> */}
-                </a>
-              ) : null}
-            </div>
-          ) : (
-            <div className="login">
-              <div className="navbar-options__link">
-                <Link to="/registerdos">
-                  <button className="navbar-btn__option">
-                    <b>Register</b>
-                  </button>
-                </Link>
-              </div>
-              <div className="navbar-options__link">
-                <Link to="/login">
-                  <button className="navbar-btn__option">
-                    <b>Login</b>
-                  </button>
-                </Link>
-              </div>
-            </div>
-          )}
-          {/* {isAuthenticated || cookies.get("email") ? (
-            <div>
-              <button
-                className="navbar-btn__option"
-                onClick={() => {
-                  if (isAuthenticated) {
-                    dispatch(actions.deletToken);
-                    logout({ returnTo: window.location.origin });
-                  } else {
-                    cookies.remove("email", { path: "/" });
-                    window.location.href = "./home";
-                  }
-                }}
-              >
-                Logout
-              </button>
-              {cookies.get("email") ? (
-                <a href="/profile/edit">
-                  <label className="user-name">
-                    {"User: " + cookies.get("email")}
-                  </label>
-                </a>
-              ) : null}
-            </div>
-          ) : (
-            <div className="login">
-              <div className="navbar-options__link">
-                <Link to="/register">
-                  <button className="navbar-btn__option">
-                    <b>Register</b>
-                  </button>
-                </Link>
-              </div>
-              <div className="navbar-options__link">
-                <Link to="/login">
-                  <button className="navbar-btn__option">
-                    <b>Login</b>
-                  </button>
-                </Link>
-              </div>
-            </div>
-          )} */}
-        </div>
-        {/* {isAuthenticated && (
-          <div className="user">
-            <img className="user-img" src={user.picture} alt="Imagen-user" />
-            <h4 className="user-name">{user.nickname}</h4>
+              </a>
+            ) : null}
           </div>
-        )} */}
+        ) : (
+          <div className="login">
+            {usuario.rol === "admin" ? (
+              <div className="navbar-options__link">
+                <Link to="/dashboard">
+                  <button className="navbar-btn__option">
+                    <b>Dashboard</b>
+                  </button>
+                </Link>
+              </div>
+            ) : null}
+            <div className="navbar-options__link">
+              <Link to="/registerdos">
+                <button className="navbar-btn__option">
+                  <b>Register</b>
+                </button>
+              </Link>
+            </div>
+            <div className="navbar-options__link">
+              <Link to="/login">
+                <button className="navbar-btn__option">
+                  <b>Login</b>
+                </button>
+              </Link>
+            </div>
+          </div>
+        )}
         {Object.keys(usuario).length > 0 ? (
           <>
             <div className="user">
-              <img
-                className="user-img"
-                src={usuario.img ? usuario.img : imageDefault}
-                alt="img"
-              />
-              <Link to="/profile">
-                <h4 className="user-name">{usuario.nombre}</h4>
-              </Link>
+              <div className="avatar">
+                <img
+                  className="user-img"
+                  src={usuario.img ? imageDefault : usuario.img}
+                  alt="img"
+                />
+                <Link to="/profile">
+                  <h4 className="user-name">{usuario.nombre}</h4>
+                </Link>
+              </div>
+              <button
+                className="navbar-btn__option"
+                onClick={(e) => cerrrarSesion(e)}
+              >
+                Logout
+              </button>
             </div>
           </>
         ) : null}
