@@ -14,6 +14,7 @@ function NavBar() {
   let dispatch = useDispatch();
   let token2 = useSelector((state) => state.token);
   let usuario2 = useSelector((state) => state.userProfile);
+  let cart = useSelector((state) => state.cart);
   let [, setToken] = useState(token2);
   let [usuario, setUsuario] = useState(usuario2);
   const { logout } = useAuth0();
@@ -36,7 +37,6 @@ function NavBar() {
         <Link to="/home">
           <img className="hb" src={hb} alt="HenryBooks" />
         </Link>
-
         <div className="navbar-options__link">
           <Link to="/home">
             <button className="navbar-btn__option">
@@ -62,13 +62,11 @@ function NavBar() {
 
       <div className="login">
         {Object.keys(usuario).length > 0 ? (
-          <div>
-            <Link to="/cart">
-              <button className="navbar-btn__option cart-btn">
-                <b>Cart</b>
-                <HiShoppingCart />
-              </button>
-            </Link>
+          <Link to="/cart">
+            <button className="navbar-btn__option cart-btn">
+              <b>{cart.length}</b>
+              <HiShoppingCart />
+            </button>
             {cookies.get("email") ? (
               <a href="/profile/edit">
                 {/* <label className="user-name">
@@ -76,7 +74,7 @@ function NavBar() {
                   </label> */}
               </a>
             ) : null}
-          </div>
+          </Link>
         ) : (
           <div className="login">
             {usuario.rol === "admin" ? (

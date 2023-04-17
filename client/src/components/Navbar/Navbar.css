@@ -3,13 +3,14 @@
   position: fixed;
   z-index: 2;
   width: 100vw;
+  height: 100px;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
   background-color: #dad2bc;
-  padding: 1rem;
+  padding: 0.8rem;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
 }
@@ -86,10 +87,10 @@
 }
 
 .login {
-  margin-right: 15px;
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin: 0 15px;
 }
 
 .avatar {
@@ -131,19 +132,39 @@
 
 @media screen and (max-width: 1050px) {
   .navbar {
-    /* display: none; */
     top: 0;
     right: 0;
     background: wheat;
-    width: 250px;
+    width: 220px;
     height: 100vh;
     padding: 40px;
+    align-content: space-between;
+    justify-content: center;
   }
-  .navbar-logo-options {
+  .about-hb {
     flex-direction: column;
+    height: 32vh;
   }
   .login {
     flex-direction: column;
+    align-content: flex-end;
+    height: auto;
+  }
+  .user {
+    border-radius: 15%;
+    width: 180px;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .avatar {
+    justify-content: space-evenly;
+  }
+  .user-img{
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .user-name{
+    font-size: 16px;
   }
 }
 
