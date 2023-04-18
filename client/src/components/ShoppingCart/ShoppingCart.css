@@ -1,5 +1,4 @@
 .Shopping-Cart {
-  
   margin-top: 100px;
   background-color: #f5f1ed;
 }
@@ -119,23 +118,22 @@
 }
 
 @media screen and (max-width: 720px) {
-  .Shopping-Cart__content{
+  .Shopping-Cart__content {
     /* width: 80vw; */
     flex-direction: column;
   }
-  
+
   .Cart-book {
     width: 80vw;
     justify-content: space-between;
     padding: 1rem 0;
     border-bottom: 1px solid black;
   }
-  .Shopping-Cart__pay h3{
+  .Shopping-Cart__pay h3 {
     margin-bottom: 0;
   }
-  .Cart-price span{
+  .Cart-price span {
     font-size: 14px;
     font-weight: 600;
-
   }
 }

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-//import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import "../Card/Card.css";
 
 function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
@@ -29,7 +29,7 @@ function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
           </div>
         </div>
       </Link>
-      {inSlider ? null : (
+      {!inSlider ? (
         <button className="card-add" onClick={() => addToCart(id)}>
           <div>
             <span>Add</span>
@@ -38,7 +38,7 @@ function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
             <i className="fa-solid fa-cart-shopping"></i>
           </div>
         </button>
-      )}
+      ) : null}
     </div>
   );
 }

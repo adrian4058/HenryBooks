@@ -14,10 +14,10 @@ function App() {
     <>
       <div className={Style.container}>
         <Swiper
-          navigation={true}
+          navigation={false}
           modules={[Navigation, Autoplay]}
           autoplay={{
-            delay: 3000,
+            delay: 10000000,
             disableOnInteraction: false,
           }}
           className="mySwiper"
