@@ -1,8 +1,6 @@
 /* HOME */
-
 .home {
   background-color: #f5f1ed;
-  height: max-content;
 }
 
 .home p,
@@ -103,6 +101,10 @@ select::-ms-expand {
 }
 
 /* HOME WELCOME */
+
+.home-content {
+  margin-top: 100px;
+}
 
 .home-welcome {
   display: flex;

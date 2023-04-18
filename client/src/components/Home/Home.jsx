@@ -206,6 +206,7 @@ function Home(props) {
         </a>
       </div>
       <Navbar />
+      <div className="home-content">
       <div className="home-welcome">
         <h1 className="home-welcome__h1">Welcome to HenryBooks!</h1>
         <h3 className="home-welcome__h3">
@@ -485,15 +486,15 @@ function Home(props) {
       )}
 
       {/* <Chat /> */}
-      <Paginate 
+      <Paginate
         booksPerPage={booksPerPage}
         allBooks={allBooksF.length}
         paginado={paginado}
       />
       <Footer />
+      </div>
     </div>
   );
 }
 
 export default Home;
-

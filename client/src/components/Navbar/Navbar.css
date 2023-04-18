@@ -6,6 +6,7 @@
   height: 100px;
   flex-wrap: wrap;
   gap: 1rem;
+  overflow: hidden;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
@@ -159,11 +160,11 @@
   .avatar {
     justify-content: space-evenly;
   }
-  .user-img{
+  .user-img {
     width: 2.5rem;
     height: 2.5rem;
   }
-  .user-name{
+  .user-name {
     font-size: 16px;
   }
 }
