@@ -18,8 +18,8 @@ select {
   /* Personalize */
   flex: 1;
   padding: 0 1em;
-  color: #ffffff;
-  background-color: #ff686b;
+  color: #000000;
+  background-color: #ffd7ba;
   background-image: none;
   cursor: pointer;
 }
@@ -97,7 +97,7 @@ select::-ms-expand {
 
 .home-icons__sm > a {
   padding: 1rem;
-  background-color: #ffa69e;
+  background-color: #fec89a;
   opacity: 0.85;
 }
 
@@ -192,7 +192,7 @@ select::-ms-expand {
 
 .filter-title {
   width: max-content;
-  background-color: #ccd5ae;
+  background-color: #ffd7ba;
   color: #000000;
   padding: 0 0.2rem;
   margin-top: 1rem;

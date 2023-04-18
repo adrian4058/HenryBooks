@@ -1,7 +1,9 @@
 .container {
   margin-top: 100px;
-  margin-bottom: 10rem;
-  background-color: #f5f1ed;
+  padding-bottom: 10rem;
+  background-color: #ffd7ba;
+
+  height: 100%;
 }
 
 .buy {

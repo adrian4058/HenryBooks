@@ -7,7 +7,7 @@ p {
 .footer {
   background-color: #ffa69e;
   width: 100vw;
-  margin-top: 40px;
+  /* margin-top: 40px; */
   bottom: 0;
   position: relative;
 }
