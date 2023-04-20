@@ -5,14 +5,21 @@ p {
 }
 
 .footer {
-  background-color: #dad2bc;
+  background-color: #ffa69e;
   width: 100vw;
+  /* margin-top: 40px; */
   bottom: 0;
   position: relative;
 }
 
 .footer-container {
   border-top: solid 1px rgb(0, 0, 0);
+}
+
+.footer-column h4 {
+  font-size: 22px;
+  text-decoration: underline;
+  font-weight: 500;
 }
 
 .footer-content {
@@ -30,10 +37,19 @@ p {
   gap: 1rem;
 }
 
+.footer-column p {
+  font-weight: 500;
+}
+
+.footer-column a {
+  font-weight: 500;
+}
+
 .footer-copy {
   border-top: 1px solid black;
   padding: 0.5rem 0;
   text-align: center;
+  font-weight: 500;
 }
 
 a {
@@ -64,15 +80,11 @@ a {
   }
 
   .footer-column h4 {
-    font-size: 1.4rem;
-    text-decoration: underline;
     padding-bottom: 5px;
   }
 
   .footer-copy {
-    
     padding: 0.8rem 0;
-    
   }
 
   a {
@@ -81,5 +93,28 @@ a {
 
   p {
     font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .footer {
+    width: 100%;
+  }
+
+  .footer-content {
+    padding: 5px 0;
+  }
+
+  .footer-column {
+    width: 60vw;
+  }
+
+  .footer-column h4 {
+    font-size: 1.2rem;
+  }
+
+  .footer-column p,
+  a {
+    font-size: 0.9rem;
   }
 }

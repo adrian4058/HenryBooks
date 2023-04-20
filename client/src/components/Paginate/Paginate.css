@@ -1,27 +1,36 @@
 .pagination {
   display: flex;
   justify-content: center;
-  gap: .5rem;
+  gap: 0.5rem;
   margin: 1.5rem 0;
 }
 
 .pagination-btn {
   font-size: 1em;
-  padding: .4em .5rem;
-  background-color: #a99985;
+  font-weight: 500;
+  padding: 0.4em 0.5rem;
+  background-color: #fec89a;
   text-decoration: none;
   border: none;
   border-radius: 0.5em;
-  color: #252323;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-  transition: .3s;
+  color: #000;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  transition: 0.3s;
 }
 
 .pagination-btn:hover {
   cursor: pointer;
-  background-color: #70798c;
+  background-color: #ff686b;
 }
 
 .active {
-  background-color: #70798c;
+  background-color: #ff686b;
+}
+
+@media screen and (max-width: 375px) {
+  .pagination {
+    width: 60%;
+  }
 }

@@ -8,14 +8,13 @@ import { store } from "./store/index";
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-// REACT_APP_AUTH0_DOMAIN=dev-fq6g074xa1tiehuq.us.auth0.com
-// REACT_APP_AUTH0_CLIENT_ID=cCgyCVo9rw7zBm0ycKBFajcpNt6KOoPL
 root.render(
   <Provider store={store}>
     <Auth0Provider
-      domain="dev-fq6g074xa1tiehuq.us.auth0.com"
-      clientId="cCgyCVo9rw7zBm0ycKBFajcpNt6KOoPL"
+      domain={`${domain}`}
+      clientId={`${clientId}`}
       redirectUri={window.location.origin}
     >
       <App />

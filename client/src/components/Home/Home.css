@@ -1,8 +1,6 @@
 /* HOME */
-
 .home {
-  background-color: #f5f1ed;
-  height: max-content;
+  background-color: #fae1dd;
 }
 
 .home p,
@@ -20,8 +18,8 @@ select {
   /* Personalize */
   flex: 1;
   padding: 0 1em;
-  color: #000;
-  background-color: #dad2bc;
+  color: #000000;
+  background-color: #ffd7ba;
   background-image: none;
   cursor: pointer;
 }
@@ -37,7 +35,7 @@ select::-ms-expand {
 
 /* Loading */
 
-.NoBooks>h1 {
+.NoBooks > h1 {
   text-align: center;
   width: 300px;
 }
@@ -97,12 +95,17 @@ select::-ms-expand {
   justify-content: center;
 }
 
-.home-icons__sm>a {
+.home-icons__sm > a {
   padding: 1rem;
-  background-color: #b9b9b9ba;
+  background-color: #fec89a;
+  opacity: 0.85;
 }
 
 /* HOME WELCOME */
+
+.home-content {
+  margin-top: 100px;
+}
 
 .home-welcome {
   display: flex;
@@ -135,8 +138,9 @@ select::-ms-expand {
 
 .home-products-slider {
   margin: 1rem 0;
-  background-color: #dad2bc;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  background-color: #ffa69e;
+  box-shadow: #ff686b 0px 0px 0px 2px, #ff686b 0px 4px 6px -1px,
+    #ff686b 0px 1px 0px inset;
 }
 
 /* FILTERS & BOOKS */
@@ -171,16 +175,15 @@ select::-ms-expand {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #a99985;
+  background-color: #ffa69e;
   justify-content: left;
   padding: 1.55rem 1rem;
   margin-bottom: 2rem;
   gap: 1rem;
   height: max-content;
   border-radius: 1rem;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
-    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
-    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  box-shadow: #ff686b 0px 0px 0px 2px, #ff686b 0px 4px 6px -1px,
+    #ff686b 0px 1px 0px inset;
 }
 
 .home-filter__content {
@@ -189,7 +192,8 @@ select::-ms-expand {
 
 .filter-title {
   width: max-content;
-  background-color: #dad2bc;
+  background-color: #ffd7ba;
+  color: #000000;
   padding: 0 0.2rem;
   margin-top: 1rem;
   border-radius: 0.25em 0.25em 0 0;
@@ -211,7 +215,7 @@ select::-ms-expand {
   top: 0;
   right: 0;
   padding: 1em;
-  background-color: #34495e;
+  background-color: #ff686b;
   transition: 0.25s all ease;
   pointer-events: none;
 }
@@ -228,11 +232,11 @@ select::-ms-expand {
   position: relative;
   font-size: 1em;
   padding: 0.5rem 1.2rem;
-  background-color: #70798c;
+  background-color: #ff686b;
   text-decoration: none;
   border: none;
   border-radius: 0.5em;
-  color: #dedede;
+  color: #ffffff;
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
     rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
     rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
@@ -249,11 +253,13 @@ select::-ms-expand {
   width: 0;
   top: 0;
   left: 0;
-  background: linear-gradient(135deg,
-      #a99985 0%,
-      #a99985 50%,
-      rgba(112, 121, 140, 1) 50%,
-      rgba(112, 121, 140, 1) 60%);
+  background: linear-gradient(
+    135deg,
+    #ffa69e 0%,
+    #ffa69e 50%,
+    rgba(112, 121, 140, 1) 50%,
+    #a5ffd6 60%
+  );
   border-radius: 0 0 0.5em 0;
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
   transition: 0.3s;
@@ -277,4 +283,82 @@ select::-ms-expand {
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
+}
+
+/* RESPONSIVE TABLET */
+
+@media screen and (max-width: 720px) {
+  .home-icons__sm > a {
+    padding: 0.7rem;
+  }
+
+  .home-books {
+    gap: 5rem;
+  }
+
+  .home-filters {
+    padding: 1rem 0.5rem;
+  }
+
+  .home-filter__content {
+    width: 95%;
+  }
+
+  .book-card {
+    gap: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .home-welcome {
+    width: 60%;
+  }
+
+  .home-welcome__h1 {
+    font-size: 25pt;
+  }
+
+  .home-welcome__h3 {
+    font-size: 15pt;
+  }
+
+  .home-icons__sm {
+    display: none;
+  }
+
+  .home-products-slider {
+    display: none;
+  }
+
+  .home-books-title {
+    width: 60%;
+    font-size: 20pt;
+  }
+
+  .home-books {
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    gap: 3rem;
+  }
+
+  .book-card {
+    gap: 3rem;
+    margin-left: 5px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .home-filters {
+    width: 55%;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .home-filter__content {
+    width: 100%;
+  }
 }

@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import "../Card/Card.css";
 
 function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
- 
   return (
     <div className={`card ${inSlider ? "slider-card" : ""}`}>
       <Link to={`/books/${id}`} className="card-container">
@@ -30,14 +29,16 @@ function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
           </div>
         </div>
       </Link>
-      <button className="card-add" onClick={() => addToCart(id)}>
-        <div>
-          <span>Add</span>
-          <span>to</span>
-          <span>Cart</span>
-          <i className="fa-solid fa-cart-shopping"></i>
-        </div>
-      </button>
+      {!inSlider ? (
+        <button className="card-add" onClick={() => addToCart(id)}>
+          <div>
+            <span>Add</span>
+            <span>to</span>
+            <span>Cart</span>
+            <i className="fa-solid fa-cart-shopping"></i>
+          </div>
+        </button>
+      ) : null}
     </div>
   );
 }
