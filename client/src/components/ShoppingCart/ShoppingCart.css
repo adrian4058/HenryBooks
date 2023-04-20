@@ -8,7 +8,8 @@
   min-height: 70vh;
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
+  align-content: center;
+  align-items: center;
   padding: 2rem;
   margin: 1rem;
 }
@@ -81,6 +82,7 @@
 .Shopping-Cart__pay {
   display: flex;
   flex-direction: column;
+  align-content: center;
   gap: 1rem;
   background-color: #f5f1ed;
   margin: 1rem 2rem;

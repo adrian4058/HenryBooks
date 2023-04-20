@@ -16,6 +16,12 @@ p {
   border-top: solid 1px rgb(0, 0, 0);
 }
 
+.footer-column h4 {
+  font-size: 22px;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
 .footer-content {
   display: flex;
   /* border-bottom: 1px solid rgb(0, 0, 0); */
@@ -31,10 +37,19 @@ p {
   gap: 1rem;
 }
 
+.footer-column p {
+  font-weight: 500;
+}
+
+.footer-column a {
+  font-weight: 500;
+}
+
 .footer-copy {
   border-top: 1px solid black;
   padding: 0.5rem 0;
   text-align: center;
+  font-weight: 500;
 }
 
 a {
@@ -65,8 +80,6 @@ a {
   }
 
   .footer-column h4 {
-    font-size: 1.4rem;
-    text-decoration: underline;
     padding-bottom: 5px;
   }
 

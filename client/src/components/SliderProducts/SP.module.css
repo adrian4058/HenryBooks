@@ -1,6 +1,7 @@
 .container {
     padding-top: 1rem;
     padding-bottom: 1rem;
+    background-color: #fae1dd;
 }
 
 .container>h2 {

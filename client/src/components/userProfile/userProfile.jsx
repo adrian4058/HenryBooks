@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser, deletToken, vaciarUsuario } from "../../actions";
 import NavBar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer"
+import Footer from "../Footer/Footer";
 import "./userProfile.css";
 import Modal from "react-modal";
 import { countries } from "../../utils/countries";
@@ -83,76 +83,79 @@ export default function UserProfile() {
   return (
     <div className="Profile">
       <NavBar />
-      <div className="Profile-user__content">
-        <div className="headatos">
-          <h3 className="tituloAccount">Personal Info</h3>
-        </div>
-
-        <div className="Profile-user">
-          <div className="Profile-user__img">
-            <img
-              className="datoimg"
-              name="image"
-              value={user.image}
-              src={user.image ? user.image : imageDefault}
-              width="120px"
-            />
+      <div className="Profile-user-total">
+        <div className="Profile-user__content">
+          <div className="headatos">
+            <h3 className="tituloAccount">Personal Info</h3>
           </div>
-          <div className="Profile-user__info">
-            <div className="Profile-usuario__data">
-              <h5 className="Profile-info" name="name" value={user.nombre}>
-                <span>Name:</span>
-                <span className="Profile-data">{user.nombre}</span>
-              </h5>
-            </div>
 
-            <div className="Profile-usuario__data">
-              <h5 className="Profile-info" name="email" value={user.email}>
-                <span>Email:</span>
-                <span className="Profile-data">{user.email}</span>
-              </h5>
+          <div className="Profile-user">
+            <div className="Profile-user__img">
+              <img
+                className="datoimg"
+                name="image"
+                value={user.image}
+                src={user.image ? user.image : imageDefault}
+                width="120px"
+                alt="avatar"
+              />
             </div>
+            <div className="Profile-user__info">
+              <div className="Profile-usuario__data">
+                <h5 className="Profile-info" name="name" value={user.nombre}>
+                  <span>Name:</span>
+                  <span className="Profile-data">{user.nombre}</span>
+                </h5>
+              </div>
 
-            <div className="Profile-usuario__data">
-              <h5 className="Profile-info" name="password" value={user.email}>
-                <span>Password:</span>
-                <span className="Profile-data">**********</span>
-              </h5>
-            </div>
+              <div className="Profile-usuario__data">
+                <h5 className="Profile-info" name="email" value={user.email}>
+                  <span>Email:</span>
+                  <span className="Profile-data">{user.email}</span>
+                </h5>
+              </div>
 
-            <div className="Profile-usuario__data">
-              <h5
-                className="Profile-info"
-                name="direccion"
-                value={user.direccion}
-              >
-                <span>Address:</span>
-                <span className="Profile-data">{user.direccion}</span>
-              </h5>
-            </div>
+              <div className="Profile-usuario__data">
+                <h5 className="Profile-info" name="password" value={user.email}>
+                  <span>Password:</span>
+                  <span className="Profile-data">**********</span>
+                </h5>
+              </div>
 
-            <div className="Profile-usuario__data">
-              <h5 className="Profile-info" name="pais" value={user.pais}>
-                <span>Country:</span>
-                <span className="Profile-data">{user.pais}</span>
-              </h5>
-            </div>
+              <div className="Profile-usuario__data">
+                <h5
+                  className="Profile-info"
+                  name="direccion"
+                  value={user.direccion}
+                >
+                  <span>Address:</span>
+                  <span className="Profile-data">{user.direccion}</span>
+                </h5>
+              </div>
 
-            <div className="Profile-usuario__data">
-              <h5 className="Profile-info" name="ciudad" value={user.ciudad}>
-                <span>City/State:</span>
-                <span className="Profile-data">{user.ciudad}</span>
-              </h5>
+              <div className="Profile-usuario__data">
+                <h5 className="Profile-info" name="pais" value={user.pais}>
+                  <span>Country:</span>
+                  <span className="Profile-data">{user.pais}</span>
+                </h5>
+              </div>
+
+              <div className="Profile-usuario__data">
+                <h5 className="Profile-info" name="ciudad" value={user.ciudad}>
+                  <span>City/State:</span>
+                  <span className="Profile-data">{user.ciudad}</span>
+                </h5>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="Profile-btns">
-          <button className="Profile-btn" onClick={openEditModal}>
-            Edit profile
-          </button>
-          <button className="Profile-btn" onClick={(e) => logOut(e)}>
-            Logout
-          </button>
+          <div className="Profile-btns">
+            <button className="Profile-btn" onClick={openEditModal}>
+              Edit profile
+            </button>
+            <button className="Profile-btn" onClick={(e) => logOut(e)}>
+              Logout
+            </button>
+          </div>
         </div>
       </div>
 
@@ -240,7 +243,7 @@ export default function UserProfile() {
           {message.length ? <div>Profile Edited Succesfully!!</div> : null}
         </form>
       </Modal>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
