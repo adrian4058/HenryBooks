@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  background-color: #a99985;
+  background-color: #ffd7ba;
   height: 150px;
   width: 700px;
   padding: 1rem;
@@ -18,12 +18,14 @@
 .card-container {
   display: flex;
   width: 100%;
+  height: 150px;
   align-items: center;
   gap: 1rem;
 }
 
 .slider-card {
-  height: 195px;
+  background-color: #ffd7ba;
+  height: 180px;
   width: 380px;
   padding: 1rem;
   margin-top: 2rem;
@@ -44,7 +46,7 @@
 }
 
 .card:hover {
-  background-color: rgba(205, 191, 173, 0.8);
+  background-color: #ffa69e;
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
     rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
     rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
@@ -129,49 +131,4 @@
 
 .card-add > div > i {
   padding-top: 0.2rem;
-}
-
-/* RESPONSIVE TABLET */
-
-@media screen and (max-width: 720px) {
-  .card {
-    width: 390px;
-  }
-
-  .card-container {
-    gap: 0.5rem;
-  }
-
-  .card-img {
-    width: 100px;
-    height: 140px;
-    border-radius: 10px;
-  }
-
-  .card-info__description {
-    gap: 0.2rem;
-  }
-
-  .slider-card {
-    width: 240px;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .card {
-    width: 215px;
-    height: 315px;
-
-    align-items: stretch;
-    padding: 5px;
-    margin: 0 auto;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-  }
-
-  .card-add {
-    padding: 5px;
-    border-radius: 1em;
-  }
 }

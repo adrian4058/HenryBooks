@@ -111,7 +111,7 @@ export const filterAll = (category, editorial, author) => {
 export const getAllBooksDashboard = () => {
   return async function(dispatch) {
     try {
-      axios.get(Api.Url+ "/book")
+      axios.get(url+ "/book")
         .then((data) => data.json())
         .then((data) =>
           dispatch({ type: GET_ALL_BOOKS_DASHBOARD, payload: data.book })

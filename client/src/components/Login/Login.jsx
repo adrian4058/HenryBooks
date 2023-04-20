@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../actions/index";
 import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
-import HB_logo from "../img/HenryBooks_Logo.png";
+// import HB_logo from "../img/HenryBooks_Logo.png";
 import Auth0 from "../Auth0/Auth0";
 import Swal from "sweetalert2";
 import Api from "../../Global";
@@ -64,7 +64,7 @@ const Login = () => {
             dispatch(actions.putToken(respuesta.token));
             localStorage.setItem("token", respuesta.token);
             localStorage.setItem("usuario", JSON.stringify(respuesta.usuario));
-            console.log("usuarios",localStorage.getItem("usuario"));
+            console.log("usuarios", localStorage.getItem("usuario"));
             setHome(true);
             Swal.fire({
               icon: "success",
@@ -133,18 +133,19 @@ const Login = () => {
                 errors.password &&
                 "error_input"}`}
             />
-            <button onClick={handleView} className="btn-view">
-              {!view ? (
-                <ion-icon name="eye-outline" />
-              ) : (
-                <ion-icon name="eye-off-outline" />
-              )}
-            </button>
-
             <div className="adv">
               {touched.password && errors.password && (
                 <span className="error">{errors.password}</span>
               )}
+            </div>
+            <div className="eye-password">
+              <button onClick={handleView} className="btn-view">
+                {!view ? (
+                  <ion-icon name="eye-outline" />
+                ) : (
+                  <ion-icon name="eye-off-outline" />
+                )}
+              </button>
             </div>
           </div>
 

@@ -1,6 +1,7 @@
 .Details {
-  background-color: #f5f1ed;
-  height: max-content;
+  margin-top: 100px;
+  background-color: #fae1dd;
+  height: 100vh;
   font-family: "Maven Pro", sans-serif;
 }
 
@@ -22,17 +23,19 @@
 
 .btn-pay {
   background-color: #7bca57;
-  padding: .5rem;
+  padding: 0.5rem;
   border: none;
-  border-radius: .5em;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  border-radius: 0.5em;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
   font-family: "Maven Pro", sans-serif;
   font-weight: bold;
-  transition: .5s;
+  transition: 0.5s;
   overflow: hidden;
 }
 
@@ -86,35 +89,46 @@
   display: flex;
   justify-content: center;
   padding: 3rem 0;
-  margin: 1rem 0;
+  margin: 1rem 2rem;
   gap: 3rem;
   border-bottom: 5px dotted black;
 }
 
 .book-img {
-  height: 500px;
-  width: 400px;
+  height: 70vh;
+  min-width: 300px;
+  width: auto;
   object-fit: contain;
-  border: 10px solid #a99985;
+  border: 10px solid #fec89a;
   background-color: #f5f1ed;
-  box-shadow: 8px 8px 8px rgb(146, 146, 146);
+  box-shadow: 8px 8px 8px #ffa69e;
 }
 
 .book-info {
   display: flex;
   flex-direction: column;
+  align-content: center;
+  align-items: center;
   gap: 2rem;
   padding: 3rem 2rem;
   background-color: #f5f1ed;
-  height: 500px;
+  height: 70vh;
+  min-width: 300px;
   width: 400px;
-  border: 10px solid #a99985;
-  box-shadow: 8px 8px 8px rgb(146, 146, 146);
+  border: 10px solid #fec89a;
+  box-shadow: 8px 8px 15px #ffa69e;
 }
 
 .book-info__info {
   display: flex;
   justify-content: space-between;
+  width: 250px;
+}
+.book-info__info h4 {
+  text-decoration: underline;
+}
+.book-info__info h2 {
+  text-align: center;
 }
 
 .book-info__price {
@@ -124,8 +138,49 @@
 .No-Stock {
   background-color: rgb(165, 37, 37);
   color: #f5f1ed;
-  padding: .5rem;
-  border-radius: .5em;
+  padding: 0.5rem;
+  border-radius: 0.5em;
   text-align: center;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+@media screen and (max-width: 720px) {
+  .Details {
+    height: max-content;
+  }
+
+  .book-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  .book-info {
+    justify-content: space-evenly;
+    /* height: 68vh; */
+    width: 30vw;
+  }
+
+  .btn-pay{
+    height: 150px;
+    width: 120px;
+  }
+
+  .btn-pay {
+    background-color: #7bca57;
+    padding: 1.4rem;
+    border: none;
+  }
+
+  .fa-solid fa-cart-shoppin{
+    height: 150px;
+  }
+
+  .book-img {
+    height: 60vh;
+    width: 30vw;
+  }
 }

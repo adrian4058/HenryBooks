@@ -27,13 +27,15 @@ p {
 
 .landing-title {
   text-decoration: underline;
-  background-color: rgb(255, 255, 1);
+  background-color: #ff686b;
   border-radius: 50%;
   padding: 1.5rem 3rem;
+  color: #ffffff;
 }
 
 .landing-content {
-  background-color: rgb(255, 243, 221, 80%);
+  /* background-color: rgb(255, 243, 221, 80%); */
+  background-color: #ffd7ba;
   border-radius: 1.5rem;
   margin-top: 2rem;
   padding: 1rem 0;
@@ -52,8 +54,8 @@ p {
 }
 
 .landing-btn {
-  background: rgb(20, 20, 20);
-  color: rgb(255, 255, 1);
+  background: #ffa69e;
+  color: #ffffff;
   border: none;
   padding: 0.5rem 1rem;
   display: flex;
@@ -80,7 +82,7 @@ p {
   bottom: 0;
   right: 100%;
   left: 0;
-  background: rgb(255, 255, 1);
+  background: #ff686b;
   opacity: 0;
   z-index: -1;
   transition: all 0.5s;
@@ -108,7 +110,6 @@ p {
     font-size: 2.5rem;
   }
   .landing-content {
-
     height: 60%;
   }
   .paragram {
@@ -137,7 +138,7 @@ p {
   .paragram {
     font-size: 1.3rem;
   }
-  .paragram p{
+  .paragram p {
     font-size: 1.2rem;
   }
 }
