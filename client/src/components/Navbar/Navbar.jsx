@@ -33,29 +33,29 @@ function NavBar() {
   }
   return (
     <div className="navbar">
+   
       <div className="about-hb">
+      <div className="back_navbar"></div>
         <Link to="/home">
           <img className="hb" src={hb} alt="HenryBooks" />
         </Link>
         <div className="navbar-options__link">
-          <Link to="/home">
-            <button className="navbar-btn__option">
-              <b>Home</b>
+          <Link to="/home" className="content__item"> 
+            <button className="button button--hyperion">
+              <span>
+                <span>Home</span>
+              </span>
             </button>
           </Link>
         </div>
         <div className="navbar-options__link">
           <Link to="/about-us">
-            <button className="navbar-btn__option">
-              <b>About</b>
-            </button>
+            <button className="navbar-btn__option">About</button>
           </Link>
         </div>
         <div className="navbar-options__link">
           <Link to="/team">
-            <button className="navbar-btn__option">
-              <b>Team</b>
-            </button>
+            <button className="navbar-btn__option">Team</button>
           </Link>
         </div>
       </div>

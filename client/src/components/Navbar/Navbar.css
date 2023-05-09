@@ -15,6 +15,7 @@
   box-shadow: #ff686b 0px 1px 0px, #ff686b 0px 2px 5px, #ff686b 0px 10px 30px;
 }
 
+
 .about-hb {
   display: flex;
   flex-direction: row;
@@ -134,11 +135,22 @@
   .navbar {
     top: 0;
     right: 0;
-    width: 220px;
+    width: 25%;
     height: 100vh;
     padding: 40px;
     align-content: space-between;
     justify-content: center;
+  }
+
+  .back_navbar{
+    position: fixed;
+    z-index: -3;
+    top: 0;
+    left: 0;
+    width: 75%;
+    z-index: 0;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
   }
   .about-hb {
     flex-direction: column;
@@ -169,8 +181,14 @@
 
 @media screen and (max-width: 720px) {
   .navbar{
-    display: none;
+    width: 30%;
   }
+  .back_navbar{
+    width: 70%;
+  }
+
+  
+  
   
 }
 
