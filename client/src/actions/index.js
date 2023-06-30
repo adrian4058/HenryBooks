@@ -78,6 +78,8 @@ export const vaciarUsuario = () => {
   return { type: VACIAR_DATOS };
 };
 
+
+
 // Filtrar por nombre
 export const findBook = (name) => {
   return { type: SEARCH_BY_NAME, payload: name };
@@ -347,6 +349,16 @@ export const updateUser = (id, input) => async (dispatch) => {
     dispatch({ type: EDIT_USER, payload: error });
   }
 };
+
+// actions.js
+
+export const token = (token) => {
+  return {
+    type: PUT_TOKEN,
+    payload: token,
+  };
+};
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AUTH0

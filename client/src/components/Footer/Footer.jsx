@@ -54,7 +54,7 @@ function Footer() {
           </div>
         </div>
 
-        <p className="footer-copy">Ⓒ Henry Books | All Rights Reserved 2023 </p>
+        <p className="footer-copy">Ⓒ Books Store | All Rights Reserved 2023 </p>
       </div>
     </div>
   );

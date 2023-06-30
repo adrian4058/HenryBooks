@@ -6,12 +6,12 @@ function LandingPage() {
   return (
     <div className="landing">
       <div className="landing-container">
-        <h1 className="landing-title">HENRYBOOKS</h1>
+        <h1 className="landing-title">BOOKS STORE</h1>
         <div className="landing-content">
           <h2>Online Books Store</h2>
           <div className="paragram">
             <p>
-              Welcome to Henry's online store.
+              Welcome to online store.
               <br /> On this website you can buy or sell the books that you like
               the most.
               <br /> We have a large catalog of books.

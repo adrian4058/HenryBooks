@@ -1,20 +1,27 @@
 import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch /*useSelector*/ } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { asyncRegisterAuth0 } from "../../actions/index";
 import { FcGoogle } from "react-icons/fc";
 import * as actions from "../../actions/index";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Api from "../../Global";
-import Swap from "sweetalert2"
+import Swap from "sweetalert2";
 
 function Auth0() {
   const dispatch = useDispatch();
   let [variable, setVariable] = useState("");
+  let token = useSelector((state) => state.token);
   let [home, setHome] = useState(false);
   const { loginWithPopup, user, logout, isAuthenticated } = useAuth0();
   //console.log(user);
+  useEffect(() => {
+    if (token) {
+      console.log("estoy aqui");
+      setHome(true);
+    }
+  });
   useEffect(() => {
     if (user) {
       setVariable(user);
@@ -61,11 +68,17 @@ function Auth0() {
               if (status === 200) {
                 dispatch(actions.llenarUsuario(respuesta.usuario));
                 dispatch(actions.putToken(respuesta.token));
+                localStorage.setItem("token", respuesta.token);
+                localStorage.setItem(
+                  "usuario",
+                  JSON.stringify(respuesta.usuario)
+                );
+                console.log("usuarios", localStorage.getItem("usuario"));
                 setHome(true);
                 Swap.fire({
-                  icon: 'success',
+                  icon: "success",
                   title: `User created! Welcome, ${respuesta.usuario.nombre}`,
-                  timer: 2000
+                  timer: 2000,
                 });
               } else {
                 alert(respuesta.message);

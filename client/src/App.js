@@ -1,4 +1,5 @@
 import "./App.css";
+import React from 'react';
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
 import About from "./components/About/About";
@@ -14,11 +15,10 @@ import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import DefaultPage from "./components/DefaultPage/DefaultPage";
 import { RegisterDos } from "./components/Register2/RegisterDos";
 
-
 import FAQ from './components/FAQ/FAQ'
 
-
 function App() {
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -35,11 +35,8 @@ function App() {
           <Route exact path="/cart" component={ShoppingCart} />
           <Route exact path="/profile" component={userProfile} />
           <Route exact path="/registerdos" component={RegisterDos} />
-
           <Route exact path="/preguntas" component={FAQ} />
-
           <Route component={DefaultPage} />
-
         </Switch>
       </div>
     </BrowserRouter>

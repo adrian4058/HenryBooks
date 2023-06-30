@@ -52,6 +52,7 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+    
     //CART
     case TYPES.ADD_TO_CART: {
       let newItem = state.books.find((book) => book.id === action.payload); //por payload mando el id del libro
@@ -447,4 +448,3 @@ function rootReducer(state = initialState, action) {
 }
 
 export default rootReducer;
-

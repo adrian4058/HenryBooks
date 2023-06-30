@@ -209,7 +209,7 @@ function Home(props) {
       <Navbar />
       <div className="home-content">
       <div className="home-welcome">
-        <h1 className="home-welcome__h1">Welcome to HenryBooks!</h1>
+        <h1 className="home-welcome__h1">Welcome to BooksStore!</h1>
         <h3 className="home-welcome__h3">
           Here you can find your favorite books
         </h3>
