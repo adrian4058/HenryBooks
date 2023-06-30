@@ -11,29 +11,31 @@ async function signUp(req, res) {
   let existe = await Usuario.findOne({ where: { nombre } });
   if (existe) {
     return res
-      .status(404)
-      .send({ msj: `User with name: ${nombre} already exist!` });
+      .status(400)
+      .send({ msj: `User with name: ${nombre} already exists!` });
   }
   existe = await Usuario.findOne({ where: { email } });
   if (existe) {
-    return res.status(404).send({ msj: `E-mail: ${email} already registered` });
+    return res.status(400).send({ msj: `E-mail: ${email} already registered` });
   }
   try {
     let nuevoU = await Usuario.create({ nombre, email, password, rol, estado });
     const token = jwt.sign({ id: nuevoU.id }, "henribooks", {
-      expiresIn: 86400, //24 horas
+      expiresIn: 86400, // 24 horas
     });
-    // const send = await transporter.sendMail({
+     // const send = await transporter.sendMail({
     //   from: `${Email}`, // sender address
     //   to: email, // list of receivers
     //   subject: "Registro Exitoso", // Subject line
     //   html: { path: filepath }, // html body
     // });
-    res.json({ token, send, usuario: nuevoU });
+    res.json({ token, usuario: nuevoU });
   } catch (e) {
-    res.status(404).send(e);
+    res.status(400).send(e);
   }
 }
+
+
 
 async function signIn(req, res) {
   let { email, password } = req.body;

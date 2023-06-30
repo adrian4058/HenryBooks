@@ -4,6 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import SearchBar from "../SearchBar/SearchBar";
 import Paginate from "../Paginate/Paginate";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllBooks,
@@ -17,7 +18,7 @@ import {
 import "./Home.css";
 import Slider from "../Slider/Slider";
 import { useRef } from "react";
-// import Chat from "../ChatBot/Chat";
+import Chat from "../ChatBot/Chat";
 import SliderProducts from "../SliderProducts/SliderProducts";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
@@ -208,7 +209,7 @@ function Home(props) {
       <Navbar />
       <div className="home-content">
       <div className="home-welcome">
-        <h1 className="home-welcome__h1">Welcome to HenryBooks!</h1>
+        <h1 className="home-welcome__h1">Welcome to BooksStore!</h1>
         <h3 className="home-welcome__h3">
           Here you can find your favorite books
         </h3>
@@ -485,7 +486,7 @@ function Home(props) {
         </div>
       )}
 
-      {/* <Chat /> */}
+      
       <Paginate
         booksPerPage={booksPerPage}
         allBooks={allBooksF.length}
@@ -493,6 +494,7 @@ function Home(props) {
       />
       <Footer />
       </div>
+      <Chat />
     </div>
   );
 }
