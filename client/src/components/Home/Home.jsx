@@ -4,6 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import SearchBar from "../SearchBar/SearchBar";
 import Paginate from "../Paginate/Paginate";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllBooks,
@@ -17,7 +18,7 @@ import {
 import "./Home.css";
 import Slider from "../Slider/Slider";
 import { useRef } from "react";
-// import Chat from "../ChatBot/Chat";
+import Chat from "../ChatBot/Chat";
 import SliderProducts from "../SliderProducts/SliderProducts";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
@@ -485,7 +486,7 @@ function Home(props) {
         </div>
       )}
 
-      {/* <Chat /> */}
+      
       <Paginate
         booksPerPage={booksPerPage}
         allBooks={allBooksF.length}
@@ -493,6 +494,7 @@ function Home(props) {
       />
       <Footer />
       </div>
+      <Chat />
     </div>
   );
 }

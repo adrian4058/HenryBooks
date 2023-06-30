@@ -14,8 +14,8 @@ function Comment({ titulo, descripcion, calificacion, id }) {
             <h4>{titulo}</h4>
             <button onClick={(e) => handlerSubmit(e)}> 🚩</button>
          </div>
-         <p>{descripcion}</p>
-         <span>{calificacion} ⭐</span>
+         <p className="description">{descripcion}</p>
+         <span className="description">{calificacion} ⭐</span>
       </div>)
 }
 
