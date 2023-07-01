@@ -81,13 +81,25 @@ function Home(props) {
       : null;
 
   //Paginado
-  const [booksPerPage, setBooksPerPage] = React.useState(4);
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const indexLast = currentPage * booksPerPage;
-  const indexFirst = indexLast - booksPerPage;
-  const books =
-    allBooksF !== undefined ? allBooksF.slice(indexFirst, indexLast) : null;
+  const INITIAL_PAGE = 1;
+  const FINAL_PAGE = 4;
+  const [currentPage, setCurrentPage] = React.useState(INITIAL_PAGE);
+  const [booksPerPage, setBooksPerPage] = React.useState(FINAL_PAGE);
 
+  const indexFirst = (currentPage - 1 ) * booksPerPage;
+  const indexLast = indexFirst + booksPerPage;
+  
+  const books = allBooksF !== undefined ? allBooksF.slice(indexFirst, indexLast) : null;
+  const paginated = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  const handleNext = () => {
+    setCurrentPage(currentPage + 1);
+  };
+  const handlePrevious = () => {
+    setCurrentPage(currentPage - 1);
+  };
+  // paginado
   //
   const [categoryValue, setCategoryValue] = React.useState("All");
   const [editorialValue, setEditorialValue] = React.useState("All");
@@ -176,11 +188,7 @@ function Home(props) {
     }
   };
 
-  // función para páginado
-  const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
+ 
   return (
     <div className="home">
       <div className="home-icons__sm">
@@ -208,293 +216,296 @@ function Home(props) {
       </div>
       <Navbar />
       <div className="home-content">
-      <div className="home-welcome">
-        <h1 className="home-welcome__h1">Welcome to BooksStore!</h1>
-        <h3 className="home-welcome__h3">
-          Here you can find your favorite books
-        </h3>
-      </div>
-
-      <Slider />
-      <div className="home-products-slider">
-        <SliderProducts />
-      </div>
-
-      <h1 className="home-books-title">Our Books</h1>
-      {!books?.length ? (
-        <div className="home-books">
-          <div className="home-filters">
-            <div className="home-filter__content">
-              <button
-                className="filter-reset__btn"
-                onClick={() => handleReset()}
-              >
-                Reset Filter
-              </button>
-            </div>
-
-            <div className="home-searchbar">
-              <SearchBar />
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Gender</div>
-              <div className="home-filter">
-                <select
-                  ref={categorySelect}
-                  onChange={(e) =>
-                    setCategoryValue(e.target.value) &
-                    handleFilterChange(
-                      e.target.value,
-                      editorialValue,
-                      authorValue
-                    )
-                  }
-                >
-                  <option defaultValue="All" value="All">
-                    All
-                  </option>
-                  {uniqueGender?.map((book) => (
-                    <option key={book} value={book}>
-                      {book}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Author</div>
-              <div className="home-filter">
-                <select
-                  ref={authorsSelect}
-                  onChange={(e) =>
-                    setAuthorValue(e.target.value) &
-                    handleFilterChange(
-                      categoryValue,
-                      editorialValue,
-                      e.target.value
-                    )
-                  }
-                >
-                  <option defaultValue="All" value="All">
-                    All
-                  </option>
-                  {uniqueAuthor?.map((book) => (
-                    <option key={book} value={book}>
-                      {book}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Editorial</div>
-              <div className="home-filter">
-                <select
-                  ref={editorialSelect}
-                  onChange={(e) =>
-                    setEditorialValue(e.target.value) &
-                    handleFilterChange(
-                      categoryValue,
-                      e.target.value,
-                      authorValue
-                    )
-                  }
-                >
-                  <option defaultValue="All" value="All">
-                    All
-                  </option>
-                  {uniqueEditorial?.map((book) => (
-                    <option key={book} value={book}>
-                      {book}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Alphabet</div>
-              <div className="home-filter">
-                <select
-                  ref={alphabetSelect}
-                  onChange={(e) => handlerOrderAlphabet(e)}
-                >
-                  <option value="All">All</option>
-                  <option value="ASC">A-Z</option>
-                  <option value="DESC">Z-A</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Price</div>
-              <div className="home-filter">
-                <select
-                  ref={priceSelect}
-                  onChange={(e) => handlerOrderPrice(e)}
-                >
-                  <option value="All">All</option>
-                  <option value="ASC_PRICE">Price (smaller-higher)</option>
-                  <option value="DESC_PRICE">Price (higher-smaller)</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <h1>There are not books with these filters</h1>
+        <div className="home-welcome">
+          <h1 className="home-welcome__h1">Welcome to HenryBooks!</h1>
+          <h3 className="home-welcome__h3">
+            Here you can find your favorite books
+          </h3>
         </div>
-      ) : (
-        <div className="home-books">
-          <div className="home-filters">
-            <div className="home-filter__content">
-              <button
-                className="filter-reset__btn"
-                onClick={() => handleReset()}
-              >
-                Reset Filter
-              </button>
-            </div>
 
-            <div className="home-searchbar">
-              <SearchBar />
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Gender</div>
-              <div className="home-filter">
-                <select
-                  ref={categorySelect}
-                  onChange={(e) =>
-                    setCategoryValue(e.target.value) &
-                    handleFilterChange(
-                      e.target.value,
-                      editorialValue,
-                      authorValue
-                    )
-                  }
-                >
-                  <option defaultValue="All" value="All">
-                    All
-                  </option>
-                  {uniqueGender?.map((book) => (
-                    <option key={book} value={book}>
-                      {book}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Author</div>
-              <div className="home-filter">
-                <select
-                  ref={authorsSelect}
-                  onChange={(e) =>
-                    setAuthorValue(e.target.value) &
-                    handleFilterChange(
-                      categoryValue,
-                      editorialValue,
-                      e.target.value
-                    )
-                  }
-                >
-                  <option defaultValue="All" value="All">
-                    All
-                  </option>
-                  {uniqueAuthor?.map((book) => (
-                    <option key={book} value={book}>
-                      {book}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Editorial</div>
-              <div className="home-filter">
-                <select
-                  ref={editorialSelect}
-                  onChange={(e) =>
-                    setEditorialValue(e.target.value) &
-                    handleFilterChange(
-                      categoryValue,
-                      e.target.value,
-                      authorValue
-                    )
-                  }
-                >
-                  <option defaultValue="All" value="All">
-                    All
-                  </option>
-                  {uniqueEditorial?.map((book) => (
-                    <option key={book} value={book}>
-                      {book}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Alphabet</div>
-              <div className="home-filter">
-                <select
-                  ref={alphabetSelect}
-                  onChange={(e) => handlerOrderAlphabet(e)}
-                >
-                  <option value="All">All</option>
-                  <option value="ASC">A-Z</option>
-                  <option value="DESC">Z-A</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="home-filter__content">
-              <div className="filter-title">Order by Price</div>
-              <div className="home-filter">
-                <select
-                  ref={priceSelect}
-                  onChange={(e) => handlerOrderPrice(e)}
-                >
-                  <option value="All">All</option>
-                  <option value="ASC_PRICE">Price (smaller-higher)</option>
-                  <option value="DESC_PRICE">Price (higher-smaller)</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div className="book-card">
-            {books.map((book) => (
-              <Card
-                key={book.id}
-                genre={book.genero}
-                author={book.Autor.nombre}
-                image={book.image}
-                name={book.name}
-                id={book.id}
-                addToCart={addToCart}
-                price={book.price}
-              />
-            ))}
-          </div>
+        <Slider />
+        <div className="home-products-slider">
+          <SliderProducts />
         </div>
-      )}
 
-      
-      <Paginate
-        booksPerPage={booksPerPage}
-        allBooks={allBooksF.length}
-        paginado={paginado}
-      />
-      <Footer />
+        <h1 className="home-books-title">Our Books</h1>
+        {!books?.length ? (
+          <div className="home-books">
+            <div className="home-filters">
+              <div className="home-filter__content">
+                <button
+                  className="filter-reset__btn"
+                  onClick={() => handleReset()}
+                >
+                  Reset Filter
+                </button>
+              </div>
+
+              <div className="home-searchbar">
+                <SearchBar />
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Gender</div>
+                <div className="home-filter">
+                  <select
+                    ref={categorySelect}
+                    onChange={(e) =>
+                      setCategoryValue(e.target.value) &
+                      handleFilterChange(
+                        e.target.value,
+                        editorialValue,
+                        authorValue
+                      )
+                    }
+                  >
+                    <option defaultValue="All" value="All">
+                      All
+                    </option>
+                    {uniqueGender?.map((book) => (
+                      <option key={book} value={book}>
+                        {book}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Author</div>
+                <div className="home-filter">
+                  <select
+                    ref={authorsSelect}
+                    onChange={(e) =>
+                      setAuthorValue(e.target.value) &
+                      handleFilterChange(
+                        categoryValue,
+                        editorialValue,
+                        e.target.value
+                      )
+                    }
+                  >
+                    <option defaultValue="All" value="All">
+                      All
+                    </option>
+                    {uniqueAuthor?.map((book) => (
+                      <option key={book} value={book}>
+                        {book}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Editorial</div>
+                <div className="home-filter">
+                  <select
+                    ref={editorialSelect}
+                    onChange={(e) =>
+                      setEditorialValue(e.target.value) &
+                      handleFilterChange(
+                        categoryValue,
+                        e.target.value,
+                        authorValue
+                      )
+                    }
+                  >
+                    <option defaultValue="All" value="All">
+                      All
+                    </option>
+                    {uniqueEditorial?.map((book) => (
+                      <option key={book} value={book}>
+                        {book}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Alphabet</div>
+                <div className="home-filter">
+                  <select
+                    ref={alphabetSelect}
+                    onChange={(e) => handlerOrderAlphabet(e)}
+                  >
+                    <option value="All">All</option>
+                    <option value="ASC">A-Z</option>
+                    <option value="DESC">Z-A</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Price</div>
+                <div className="home-filter">
+                  <select
+                    ref={priceSelect}
+                    onChange={(e) => handlerOrderPrice(e)}
+                  >
+                    <option value="All">All</option>
+                    <option value="ASC_PRICE">Price (smaller-higher)</option>
+                    <option value="DESC_PRICE">Price (higher-smaller)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <h1>There are not books with these filters</h1>
+          </div>
+        ) : (
+          <div className="home-books">
+            <div className="home-filters">
+              <div className="home-filter__content">
+                <button
+                  className="filter-reset__btn"
+                  onClick={() => handleReset()}
+                >
+                  Reset Filter
+                </button>
+              </div>
+
+              <div className="home-searchbar">
+                <SearchBar />
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Gender</div>
+                <div className="home-filter">
+                  <select
+                    ref={categorySelect}
+                    onChange={(e) =>
+                      setCategoryValue(e.target.value) &
+                      handleFilterChange(
+                        e.target.value,
+                        editorialValue,
+                        authorValue
+                      )
+                    }
+                  >
+                    <option defaultValue="All" value="All">
+                      All
+                    </option>
+                    {uniqueGender?.map((book) => (
+                      <option key={book} value={book}>
+                        {book}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Author</div>
+                <div className="home-filter">
+                  <select
+                    ref={authorsSelect}
+                    onChange={(e) =>
+                      setAuthorValue(e.target.value) &
+                      handleFilterChange(
+                        categoryValue,
+                        editorialValue,
+                        e.target.value
+                      )
+                    }
+                  >
+                    <option defaultValue="All" value="All">
+                      All
+                    </option>
+                    {uniqueAuthor?.map((book) => (
+                      <option key={book} value={book}>
+                        {book}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Editorial</div>
+                <div className="home-filter">
+                  <select
+                    ref={editorialSelect}
+                    onChange={(e) =>
+                      setEditorialValue(e.target.value) &
+                      handleFilterChange(
+                        categoryValue,
+                        e.target.value,
+                        authorValue
+                      )
+                    }
+                  >
+                    <option defaultValue="All" value="All">
+                      All
+                    </option>
+                    {uniqueEditorial?.map((book) => (
+                      <option key={book} value={book}>
+                        {book}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Alphabet</div>
+                <div className="home-filter">
+                  <select
+                    ref={alphabetSelect}
+                    onChange={(e) => handlerOrderAlphabet(e)}
+                  >
+                    <option value="All">All</option>
+                    <option value="ASC">A-Z</option>
+                    <option value="DESC">Z-A</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="home-filter__content">
+                <div className="filter-title">Order by Price</div>
+                <div className="home-filter">
+                  <select
+                    ref={priceSelect}
+                    onChange={(e) => handlerOrderPrice(e)}
+                  >
+                    <option value="All">All</option>
+                    <option value="ASC_PRICE">Price (smaller-higher)</option>
+                    <option value="DESC_PRICE">Price (higher-smaller)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className="book-card">
+              {books.map((book) => (
+                <Card
+                  key={book.id}
+                  genre={book.genero}
+                  author={book.Autor.nombre}
+                  image={book.image}
+                  name={book.name}
+                  id={book.id}
+                  addToCart={addToCart}
+                  price={book.price}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        <Chat />
+        <Paginate
+          booksPerPage={booksPerPage}
+          allBooks={allBooksF.length}
+          paginado={paginated}
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
+          currentPage={currentPage}
+          currentBooks={books}
+        />
+        <Footer />
       </div>
-      <Chat />
     </div>
   );
 }
