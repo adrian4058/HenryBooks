@@ -44,10 +44,6 @@ function Home(props) {
 
   const [, addCartAlert] = useState(false);
 
-  useEffect(() => {
-    dispatch(getAllBooks(cart)); // Pasa el estado del carrito como argumento a getAllBooks
-  }, [dispatch, cart]);
-
   // useEffect(() => {
   //   if (userProfile) {
   //     console.log("Alerta desactivada");
@@ -120,6 +116,7 @@ function Home(props) {
       }
     }
 
+    // dispatch(getAllBooks());
   }, [dispatch]);
 
   // Despachar Filtros Combinados
