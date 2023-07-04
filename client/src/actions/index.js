@@ -11,6 +11,7 @@ export const TYPES = {
   REMOVE_ONE_FROM_CART: "REMOVE_ONE_FROM_CART",
   REMOVE_ALL_FROM_CART: "REMOVE_ALL_FROM_CART",
   CLEAR_CART: "CLEAR_CART",
+  SET_CART: "SET_CART",
 };
 
 // HOME
@@ -52,6 +53,16 @@ export const ASYNC_REGISTER_AUTH0 = "ASYNC_REGISTER_AUTH0";
 export const ASYNC_LOGIN_AUTH0 = "ASYNC_LOGIN_AUTH0";
 
 const url = Api.Url;
+
+
+// ...
+export const setCart = (cart) => {
+  return {
+    type: TYPES.SET_CART,
+    payload: cart,
+  };
+};
+// ...
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // HOME

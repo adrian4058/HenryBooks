@@ -30,8 +30,8 @@ export default function Paginado({
         </li>
         {pageNumbers &&
           pageNumbers.map((number) => (
-            <li key={number} >
-            <button
+            <li key={number}>
+              <button
                 className={currentPage === number ? "active" : "pagination-btn"}
                 onClick={() => paginado(number)}
               >

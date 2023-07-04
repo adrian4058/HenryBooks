@@ -52,7 +52,6 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    
     //CART
     case TYPES.ADD_TO_CART: {
       let newItem = state.books.find((book) => book.id === action.payload); //por payload mando el id del libro
@@ -98,6 +97,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         cart: [],
       };
+      
+    case TYPES.SET_CART:
+      return {
+        ...state,
+        cart: action.payload,
+      };
 
     // HOME
     // Obtener Libros HOME
@@ -109,6 +114,8 @@ function rootReducer(state = initialState, action) {
         ...state,
         books: allActiveBooks,
         allBooks: allActiveBooks,
+        cart: state.cart,
+  
       };
 
     // Filtros HOME

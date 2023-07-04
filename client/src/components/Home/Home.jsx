@@ -13,6 +13,7 @@ import {
   filterAll,
   TYPES,
   llenarUsuario,
+  setCart,
   putToken,
 } from "../../actions/index";
 import "./Home.css";
@@ -34,35 +35,37 @@ function Home(props) {
   const authorsSelect = useRef();
   const token = useSelector((state) => state.token);
   const userProfile = useSelector((state) => state.userProfile);
-  const cart = useSelector((state) => state.cart);
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  const [, addCartAlert] = useState(false);
-
-  useEffect(() => {
-    if (userProfile) {
-      console.log("Alerta desactivada");
-    } else {
-      registerToBuy();
-    }
-  }, []);
-
-  const registerToBuy = () => {
-    Swal.fire("Register to buy", {
-      icon: "warning",
-    });
-    history.push("/login");
-  };
-
-  // axios
-  //   .get("https://apirest-webfam-production.up.railway.app/api/users")
-  //   .then((response) => console.log(response));
-
-  const [, setOrder] = React.useState("");
   // allBooks contiene TODOS los libros
   const allBooks = useSelector((state) => state.allBooks);
   // allBooksF contiene todos los libros según LOS FILTROS
   const allBooksF = useSelector((state) => state.books);
+  const cart = useSelector((state) => state.cart);
+  
+
+  const [, addCartAlert] = useState(false);
+
+  useEffect(() => {
+    dispatch(getAllBooks(cart)); // Pasa el estado del carrito como argumento a getAllBooks
+  }, [dispatch, cart]);
+
+  // useEffect(() => {
+  //   if (userProfile) {
+  //     console.log("Alerta desactivada");
+  //   } else {
+  //     registerToBuy();
+  //   }
+  // }, []);
+
+  // const registerToBuy = () => {
+  //   Swal.fire("Register to buy", {
+  //     icon: "warning",
+  //   });
+  //   history.push("/login");
+  // };
+
+
+  const [, setOrder] = React.useState("");
+  
 
   // uniqueGender contiene un filtro donde aparecen todos los generos de los libros sin repetirsen
   const uniqueGender =
@@ -117,7 +120,6 @@ function Home(props) {
       }
     }
 
-    dispatch(getAllBooks());
   }, [dispatch]);
 
   // Despachar Filtros Combinados
@@ -174,6 +176,7 @@ function Home(props) {
   const addToCart = (id) => {
     console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+    localStorage.setItem("cart", JSON.stringify(cart));
     addCartAlert(true);
     if (token) {
       Swal.fire({
@@ -187,6 +190,16 @@ function Home(props) {
     } else {
     }
   };
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  useEffect(() => {
+    // Obtener el carrito del almacenamiento local al cargar la página
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      dispatch(setCart(JSON.parse(savedCart)));
+    }
+  }, [dispatch]);
 
  
   return (

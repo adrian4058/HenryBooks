@@ -15,7 +15,6 @@ function Auth0() {
   let token = useSelector((state) => state.token);
   let [home, setHome] = useState(false);
   const { loginWithPopup, user, logout, isAuthenticated } = useAuth0();
-  //console.log(user);
   useEffect(() => {
     if (token) {
       console.log("estoy aqui");

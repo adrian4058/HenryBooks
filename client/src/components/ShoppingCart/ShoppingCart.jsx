@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBooks, TYPES } from "../../actions";
+import {
+  TYPES,
+  setCart,
+  putToken,
+  llenarUsuario,
+} from "../../actions";
 import axios from "axios";
 import Footer from "../Footer/Footer";
 import NavBar from "../Navbar/Navbar";
@@ -15,11 +20,29 @@ const ShoppingCart = () => {
 
   const usuario = useSelector((state) => state.userProfile);
   const token = useSelector((state) => state.token);
-  useEffect(() => {
-    dispatch(getAllBooks());
-  }, [dispatch]);
 
   const cart = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    if (localStorage.getItem("usuario")) {
+      let user = JSON.parse(localStorage.getItem("usuario"));
+      let token = localStorage.getItem("token");
+      console.log(user);
+      if (user) {
+        dispatch(putToken(token));
+        dispatch(llenarUsuario(user));
+      }
+    }
+  }, [dispatch]);
+
+
+  // useEffect(() => {
+  //   // Obtener el carrito del almacenamiento local al cargar la página
+  //   const savedCart = localStorage.getItem("cart");
+  //   if (savedCart) {
+  //     dispatch(setCart(JSON.parse(savedCart)));
+  //   }
+  // }, [dispatch]);
 
   const delFromCart = (id, all = false) => {
     console.log(id, all);
@@ -74,6 +97,14 @@ const ShoppingCart = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    // Obtener el carrito del almacenamiento local al cargar la página
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      dispatch(setCart(JSON.parse(savedCart)));
+    }
+  }, [dispatch]);
 
   const total = cart.reduce((acc, el) => acc + el.price * el.quantity, 0);
 
