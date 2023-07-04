@@ -14,6 +14,7 @@ function Details() {
   const dispatch = useDispatch();
   const details = useSelector((state) => state.detail);
   const token = useSelector((state) => state.token);
+  const cart = useSelector((state) => state.cart);
   const [, addCartAlert] = useState(false);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ function Details() {
   const addToCart = (addID) => {
     console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: addID });
+    localStorage.setItem("cart", JSON.stringify(cart));
     addCartAlert(true);
     if (token) {
       Swal.fire({

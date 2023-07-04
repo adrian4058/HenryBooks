@@ -11,9 +11,6 @@ import {
   filterByPrice,
   filterAll,
   TYPES,
-  llenarUsuario,
-  setCart,
-  putToken,
 } from "../../actions/index";
 import "./Home.css";
 import Slider from "../Slider/Slider";
@@ -24,21 +21,9 @@ import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 
 function Home(props) {
-
-  
   const dispatch = useDispatch();
   // Llámado de libros
   useEffect(() => {
-    if (localStorage.getItem("usuario")) {
-      let user = JSON.parse(localStorage.getItem("usuario"));
-      let token = localStorage.getItem("token");
-      console.log(user);
-      if (user) {
-        dispatch(putToken(token));
-        dispatch(llenarUsuario(user));
-      }
-    }
-
     dispatch(getAllBooks());
   }, [dispatch]);
   const history = useHistory();
@@ -49,13 +34,9 @@ function Home(props) {
   const priceSelect = useRef();
   const authorsSelect = useRef();
   const token = useSelector((state) => state.token);
-  const userProfile = useSelector((state) => state.userProfile);
   const cart = useSelector((state) => state.cart);
-  
 
   const [, addCartAlert] = useState(false);
-
-  
 
   // allBooks contiene TODOS los libros
   const allBooks = useSelector((state) => state.allBooks);
@@ -77,9 +58,7 @@ function Home(props) {
   //   history.push("/login");
   // };
 
-
   const [, setOrder] = React.useState("");
-  
 
   // uniqueGender contiene un filtro donde aparecen todos los generos de los libros sin repetirsen
   const uniqueGender =
@@ -103,10 +82,11 @@ function Home(props) {
   const [currentPage, setCurrentPage] = React.useState(INITIAL_PAGE);
   const [booksPerPage, setBooksPerPage] = React.useState(FINAL_PAGE);
 
-  const indexFirst = (currentPage - 1 ) * booksPerPage;
+  const indexFirst = (currentPage - 1) * booksPerPage;
   const indexLast = indexFirst + booksPerPage;
-  
-  const books = allBooksF !== undefined ? allBooksF.slice(indexFirst, indexLast) : null;
+
+  const books =
+    allBooksF !== undefined ? allBooksF.slice(indexFirst, indexLast) : null;
   const paginated = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -116,13 +96,11 @@ function Home(props) {
   const handlePrevious = () => {
     setCurrentPage(currentPage - 1);
   };
-  // paginado
-  //
+
   const [categoryValue, setCategoryValue] = React.useState("All");
   const [editorialValue, setEditorialValue] = React.useState("All");
   const [authorValue, setAuthorValue] = React.useState("All");
 
-  
   // Despachar Filtros Combinados
   const handleFilterChange = (category, editorial, author) => {
     setCategoryValue(category);
@@ -192,15 +170,6 @@ function Home(props) {
     }
   };
 
-  useEffect(() => {
-    // Obtener el carrito del almacenamiento local al cargar la página
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      dispatch(setCart(JSON.parse(savedCart)));
-    }
-  }, [dispatch]);
-
- 
   return (
     <div className="home">
       <div className="home-icons__sm">
