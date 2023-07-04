@@ -4,7 +4,6 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import SearchBar from "../SearchBar/SearchBar";
 import Paginate from "../Paginate/Paginate";
-
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllBooks,
@@ -25,7 +24,23 @@ import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 
 function Home(props) {
+
+  
   const dispatch = useDispatch();
+  // Llámado de libros
+  useEffect(() => {
+    if (localStorage.getItem("usuario")) {
+      let user = JSON.parse(localStorage.getItem("usuario"));
+      let token = localStorage.getItem("token");
+      console.log(user);
+      if (user) {
+        dispatch(putToken(token));
+        dispatch(llenarUsuario(user));
+      }
+    }
+
+    dispatch(getAllBooks());
+  }, [dispatch]);
   const history = useHistory();
   // Referencias para los input
   const categorySelect = useRef();
@@ -35,14 +50,17 @@ function Home(props) {
   const authorsSelect = useRef();
   const token = useSelector((state) => state.token);
   const userProfile = useSelector((state) => state.userProfile);
-  // allBooks contiene TODOS los libros
-  const allBooks = useSelector((state) => state.allBooks);
-  // allBooksF contiene todos los libros según LOS FILTROS
-  const allBooksF = useSelector((state) => state.books);
   const cart = useSelector((state) => state.cart);
   
 
   const [, addCartAlert] = useState(false);
+
+  
+
+  // allBooks contiene TODOS los libros
+  const allBooks = useSelector((state) => state.allBooks);
+  // allBooksF contiene todos los libros según LOS FILTROS
+  const allBooksF = useSelector((state) => state.books);
 
   // useEffect(() => {
   //   if (userProfile) {
@@ -104,21 +122,7 @@ function Home(props) {
   const [editorialValue, setEditorialValue] = React.useState("All");
   const [authorValue, setAuthorValue] = React.useState("All");
 
-  // Llámado de libros
-  React.useEffect(() => {
-    if (localStorage.getItem("usuario")) {
-      let user = JSON.parse(localStorage.getItem("usuario"));
-      let token = localStorage.getItem("token");
-      console.log(user);
-      if (user) {
-        dispatch(putToken(token));
-        dispatch(llenarUsuario(user));
-      }
-    }
-
-    // dispatch(getAllBooks());
-  }, [dispatch]);
-
+  
   // Despachar Filtros Combinados
   const handleFilterChange = (category, editorial, author) => {
     setCategoryValue(category);
@@ -187,8 +191,6 @@ function Home(props) {
     } else {
     }
   };
-
-  localStorage.setItem("cart", JSON.stringify(cart));
 
   useEffect(() => {
     // Obtener el carrito del almacenamiento local al cargar la página

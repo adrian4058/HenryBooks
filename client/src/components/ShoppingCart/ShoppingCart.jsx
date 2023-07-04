@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  TYPES,
-  setCart,
-  putToken,
-  llenarUsuario,
-} from "../../actions";
+import { TYPES, setCart, putToken, llenarUsuario } from "../../actions";
 import axios from "axios";
 import Footer from "../Footer/Footer";
 import NavBar from "../Navbar/Navbar";
@@ -35,7 +30,6 @@ const ShoppingCart = () => {
     }
   }, [dispatch]);
 
-
   // useEffect(() => {
   //   // Obtener el carrito del almacenamiento local al cargar la página
   //   const savedCart = localStorage.getItem("cart");
@@ -54,6 +48,7 @@ const ShoppingCart = () => {
   };
 
   const clearCart = () => {
+    localStorage.removeItem("cart");
     dispatch({ type: TYPES.CLEAR_CART });
   };
 
