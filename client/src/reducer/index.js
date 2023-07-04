@@ -114,7 +114,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         books: allActiveBooks,
         allBooks: allActiveBooks,
-        cart: state.cart,
   
       };
 
