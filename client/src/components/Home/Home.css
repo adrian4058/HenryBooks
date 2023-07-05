@@ -101,6 +101,14 @@ select::-ms-expand {
   opacity: 0.85;
 }
 
+.icon-color-fb{
+  color: #3B5998;
+}
+.icon-color-tw{
+  color: #1DA1F2 ;
+}
+
+
 /* HOME WELCOME */
 
 .home-content {

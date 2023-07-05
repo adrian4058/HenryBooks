@@ -173,21 +173,23 @@ function Home(props) {
   return (
     <div className="home">
       <div className="home-icons__sm">
-        <a
+        <a 
+        className="icon-color-fb"
           href="https://www.facebook.com/people/Henry-Book/100089922381588/"
           target="_blank"
           rel="noreferrer"
         >
           <ion-icon name="logo-facebook" />
         </a>
-        <a
+        <a 
+        // className="icon-color-ig"
           href="https://www.instagram.com/henrybooks_pf/"
           target="_blank"
           rel="noreferrer"
         >
-          <ion-icon name="logo-instagram" />
+          <ion-icon  name="logo-instagram" />
         </a>
-        <a
+        <a className="icon-color-tw"
           href="https://twitter.com/HenryBooks_PF"
           target="_blank"
           rel="noreferrer"
@@ -198,7 +200,7 @@ function Home(props) {
       <Navbar />
       <div className="home-content">
         <div className="home-welcome">
-          <h1 className="home-welcome__h1">Welcome to HenryBooks!</h1>
+          <h1 className="home-welcome__h1">Welcome to BooksStore!</h1>
           <h3 className="home-welcome__h3">
             Here you can find your favorite books
           </h3>
