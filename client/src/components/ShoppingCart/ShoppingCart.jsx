@@ -14,8 +14,6 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
 
   const usuario = useSelector((state) => state.userProfile);
-  const token = useSelector((state) => state.token);
-
   const cart = useSelector((state) => state.cart);
 
   const delFromCart = (id, all = false) => {
@@ -32,11 +30,10 @@ const ShoppingCart = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
 
+  const payerEmail = usuario.email;
+  console.log(payerEmail);
   const sendMp = async (e) => {
     // e.preventDefault();
-    console.log("entreeeeee");
-    localStorage.setItem("token", token);
-    localStorage.setItem("usuario", JSON.stringify(usuario));
 
     const compra = cart.map((item) => {
       return {
@@ -50,11 +47,15 @@ const ShoppingCart = () => {
     });
     const body = {
       item: compra,
+      payer: {
+        email: payerEmail,
+      },
     };
+    console.log(body);
     try {
       let respuesta;
       await axios
-        .post(Api.Url + "/payment", body)
+        .post(Api.Url + "/payment", body, payerEmail)
         .then((res) => {
           console.log("aqui tambien entro", res);
           respuesta = res.data[0];
@@ -65,8 +66,10 @@ const ShoppingCart = () => {
         title: "¡Link de compra generado correctamente!",
         icon: "success",
       });
-      window.location.href = respuesta;
-
+      setTimeout(function() {
+        window.location.href = respuesta;
+      }, 5000); // 5000 milisegundos = 5 segundos
+      localStorage.removeItem("cart");
       return respuesta;
     } catch (error) {
       console.log(error);

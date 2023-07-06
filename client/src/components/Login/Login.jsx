@@ -2,8 +2,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link, Redirect } from "react-router-dom";
 import "./Login.css";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch} from "react-redux";
 import * as actions from "../../actions/index";
 import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
 // import HB_logo from "../img/HenryBooks_Logo.png";
@@ -13,16 +13,11 @@ import Api from "../../Global";
 
 const Login = () => {
   let dispatch = useDispatch();
-  let token = useSelector((state) => state.token);
+ 
   let [home, setHome] = useState(false);
   let [view, setView] = useState(false);
 
-  useEffect(() => {
-    if (token) {
-      console.log("estoy aqui");
-      setHome(true);
-    }
-  });
+  
   const { handleSubmit, getFieldProps, errors, touched } = useFormik({
     initialValues: {
       email: "",
