@@ -98,7 +98,7 @@ select::-ms-expand {
 .home-icons__sm > a {
   padding: 1rem;
   background-color: #fec89a;
-  opacity: 0.85;
+  opacity: 0.95;
 }
 
 .icon-color-fb{
@@ -108,7 +108,9 @@ select::-ms-expand {
   color: #1DA1F2 ;
 }
 
-
+.icon-color-ig {
+  color: #E1306C; /* Este es el color original del logo de Instagram */
+  }
 /* HOME WELCOME */
 
 .home-content {

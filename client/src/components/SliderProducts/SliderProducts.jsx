@@ -36,7 +36,7 @@ function SliderProducts() {
           className="mySwiper"
         >
           {books.map((elem) => (
-            <SwiperSlide>
+            <SwiperSlide key={elem.id}>
               {" "}
               <Card
                 key={elem.id}

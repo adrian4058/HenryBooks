@@ -52,6 +52,8 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+    
+
     //CART
     case TYPES.ADD_TO_CART: {
       let newItem = state.books.find((book) => book.id === action.payload); //por payload mando el id del libro
@@ -70,10 +72,14 @@ function rootReducer(state = initialState, action) {
     }
 
     case TYPES.REMOVE_ONE_FROM_CART: {
-      const itemToDelete = state.cart.find((item) => item.id === action.payload);
+      const itemToDelete = state.cart.find(
+        (item) => item.id === action.payload
+      );
       if (itemToDelete) {
         let nuevoCarrito = JSON.parse(localStorage.getItem("cart"));
-        const index = nuevoCarrito.findIndex((item) => item.id === action.payload);
+        const index = nuevoCarrito.findIndex(
+          (item) => item.id === action.payload
+        );
         if (index !== -1) {
           if (itemToDelete.quantity > 1) {
             nuevoCarrito[index].quantity -= 1;
@@ -85,29 +91,33 @@ function rootReducer(state = initialState, action) {
       }
       return {
         ...state,
-        cart: state.cart.map((item) =>
-          item.id === action.payload ? { ...item, quantity: item.quantity - 1 } : item
-        ).filter((item) => item.quantity > 0),
+        cart: state.cart
+          .map((item) =>
+            item.id === action.payload
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          )
+          .filter((item) => item.quantity > 0),
       };
     }
-    
 
     case TYPES.REMOVE_ALL_FROM_CART: {
-      const updatedCart = state.cart.filter((item) => item.id !== action.payload);
+      const updatedCart = state.cart.filter(
+        (item) => item.id !== action.payload
+      );
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       return {
         ...state,
         cart: updatedCart,
       };
     }
-    
 
     case TYPES.CLEAR_CART:
       return {
         ...state,
         cart: [],
       };
-      
+
     case TYPES.SET_CART:
       return {
         ...state,
@@ -124,7 +134,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         books: allActiveBooks,
         allBooks: allActiveBooks,
-  
       };
 
     // Filtros HOME

@@ -1,10 +1,6 @@
 import axios from "axios";
 import Api from "../Global";
 
-//import loginUser from "../reducer/index";
-
-// const FormData = require("form-data");
-
 // CART
 export const TYPES = {
   ADD_TO_CART: "ADD_TO_CART",

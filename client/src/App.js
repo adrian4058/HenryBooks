@@ -11,7 +11,7 @@ import DashboardBooks from "./components/Dashboard/DashboardComponents/Dashboard
 import DashboardUsers from "./components/Dashboard/DashboardComponents/DashboardUsers/DashboardUsers";
 import Login from "./components/Login/Login";
 import { putToken, llenarUsuario, setCart } from "./actions";
-import userProfile from "./components/userProfile/userProfile";
+import UserProfile from "./components/userProfile/userProfile";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import DefaultPage from "./components/DefaultPage/DefaultPage";
 import { RegisterDos } from "./components/Register2/RegisterDos";
@@ -51,7 +51,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route path="/books/:id" component={Details} />
           <Route exact path="/cart" component={ShoppingCart} />
-          <Route exact path="/profile" component={userProfile} />
+          <Route exact path="/profile" component={UserProfile} />
           <Route exact path="/registerdos" component={RegisterDos} />
           <Route exact path="/preguntas" component={FAQ} />
           <Route component={DefaultPage} />

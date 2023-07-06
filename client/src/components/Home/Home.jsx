@@ -33,50 +33,16 @@ function Home(props) {
   const alphabetSelect = useRef();
   const priceSelect = useRef();
   const authorsSelect = useRef();
+  //ESTADOS
   const token = useSelector((state) => state.token);
+  const userProfile = useSelector((state) => state.userProfile);
   const cart = useSelector((state) => state.cart);
-
-  const [, addCartAlert] = useState(false);
-
   // allBooks contiene TODOS los libros
   const allBooks = useSelector((state) => state.allBooks);
   // allBooksF contiene todos los libros según LOS FILTROS
   const allBooksF = useSelector((state) => state.books);
 
-  // useEffect(() => {
-  //   if (userProfile) {
-  //     console.log("Alerta desactivada");
-  //   } else {
-  //     registerToBuy();
-  //   }
-  // }, []);
-
-  // const registerToBuy = () => {
-  //   Swal.fire("Register to buy", {
-  //     icon: "warning",
-  //   });
-  //   history.push("/login");
-  // };
-
-  const [, setOrder] = React.useState("");
-
-  // uniqueGender contiene un filtro donde aparecen todos los generos de los libros sin repetirsen
-  const uniqueGender =
-    allBooks !== undefined
-      ? [...new Set(allBooks.map((book) => book.genero))]
-      : null;
-  // uniqueEditorial contiene un filtro donde aparecen todos las editoriales de los libros sin repetirsen
-  const uniqueEditorial =
-    allBooks !== undefined
-      ? [...new Set(allBooks.map((book) => book.editorial))]
-      : null;
-  // uniqueAuthor contiene un filtro donde aparecen todos los autores de los libros sin repetirsen
-  const uniqueAuthor =
-    allBooks !== undefined
-      ? [...new Set(allBooks.map((book) => book.Autor?.nombre))]
-      : null;
-
-  //Paginado
+  //PAGINADO
   const INITIAL_PAGE = 1;
   const FINAL_PAGE = 4;
   const [currentPage, setCurrentPage] = React.useState(INITIAL_PAGE);
@@ -96,6 +62,25 @@ function Home(props) {
   const handlePrevious = () => {
     setCurrentPage(currentPage - 1);
   };
+
+  //FILTROS
+  const [, setOrder] = React.useState("");
+
+  // uniqueGender contiene un filtro donde aparecen todos los generos de los libros sin repetirsen
+  const uniqueGender =
+    allBooks !== undefined
+      ? [...new Set(allBooks.map((book) => book.genero))]
+      : null;
+  // uniqueEditorial contiene un filtro donde aparecen todos las editoriales de los libros sin repetirsen
+  const uniqueEditorial =
+    allBooks !== undefined
+      ? [...new Set(allBooks.map((book) => book.editorial))]
+      : null;
+  // uniqueAuthor contiene un filtro donde aparecen todos los autores de los libros sin repetirsen
+  const uniqueAuthor =
+    allBooks !== undefined
+      ? [...new Set(allBooks.map((book) => book.Autor?.nombre))]
+      : null;
 
   const [categoryValue, setCategoryValue] = React.useState("All");
   const [editorialValue, setEditorialValue] = React.useState("All");
@@ -138,16 +123,10 @@ function Home(props) {
     handleFilterChange("All", "All", "All");
     setCurrentPage(1);
   }
-  //cart
 
-  // const addCartAlert = () => {
-  // if (token) {
-  //   Swal.fire("Claro que si pa");
-  //   console.log("agregado");
-  // } else {
+  //ALERTA CARRITO AÑADIR/LOGUEAR
+  const [, addCartAlert] = useState(false);
 
-  // }
-  // };
   useEffect(() => {
     addCartAlert(true);
   }, []);
@@ -157,7 +136,7 @@ function Home(props) {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
     localStorage.setItem("cart", JSON.stringify(cart));
     addCartAlert(true);
-    if (token) {
+    if (token && userProfile) {
       Swal.fire({
         position: "top",
         icon: "success",
@@ -165,31 +144,36 @@ function Home(props) {
         showConfirmButton: false,
         timer: 900,
       });
-      console.log("agregado");
     } else {
+      Swal.fire("Login or register to buy to buy", {
+        icon: "warning",
+        timer: 900,
+      });
+      history.push("/login");
     }
   };
 
   return (
     <div className="home">
       <div className="home-icons__sm">
-        <a 
-        className="icon-color-fb"
+        <a
+          className="icon-color-fb"
           href="https://www.facebook.com/people/Henry-Book/100089922381588/"
           target="_blank"
           rel="noreferrer"
         >
           <ion-icon name="logo-facebook" />
         </a>
-        <a 
-        // className="icon-color-ig"
+        <a
+          className="icon-color-ig"
           href="https://www.instagram.com/henrybooks_pf/"
           target="_blank"
           rel="noreferrer"
         >
-          <ion-icon  name="logo-instagram" />
+          <ion-icon name="logo-instagram" />
         </a>
-        <a className="icon-color-tw"
+        <a
+          className="icon-color-tw"
           href="https://twitter.com/HenryBooks_PF"
           target="_blank"
           rel="noreferrer"
