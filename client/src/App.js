@@ -1,5 +1,5 @@
 import "./App.css";
-import React from 'react';
+import React, { useEffect } from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
 import About from "./components/About/About";
@@ -10,14 +10,32 @@ import DashboardRoutes from "./components/Dashboard/DashboardRoutes/DashboardRou
 import DashboardBooks from "./components/Dashboard/DashboardComponents/DashboardBooks/DashboardBooks";
 import DashboardUsers from "./components/Dashboard/DashboardComponents/DashboardUsers/DashboardUsers";
 import Login from "./components/Login/Login";
-import userProfile from "./components/userProfile/userProfile";
+import { putToken, llenarUsuario, setCart } from "./actions";
+import UserProfile from "./components/userProfile/userProfile";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import DefaultPage from "./components/DefaultPage/DefaultPage";
 import { RegisterDos } from "./components/Register2/RegisterDos";
 
-import FAQ from './components/FAQ/FAQ'
+import FAQ from "./components/FAQ/FAQ";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      dispatch(setCart(JSON.parse(savedCart)));
+    }
+    if (localStorage.getItem("usuario")) {
+      let user = JSON.parse(localStorage.getItem("usuario"));
+      let token = localStorage.getItem("token");
+      console.log(user);
+      if (user) {
+        dispatch(putToken(token));
+        dispatch(llenarUsuario(user));
+      }
+    }
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
@@ -33,7 +51,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route path="/books/:id" component={Details} />
           <Route exact path="/cart" component={ShoppingCart} />
-          <Route exact path="/profile" component={userProfile} />
+          <Route exact path="/profile" component={UserProfile} />
           <Route exact path="/registerdos" component={RegisterDos} />
           <Route exact path="/preguntas" component={FAQ} />
           <Route component={DefaultPage} />

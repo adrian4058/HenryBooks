@@ -53,6 +53,7 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     
+
     //CART
     case TYPES.ADD_TO_CART: {
       let newItem = state.books.find((book) => book.id === action.payload); //por payload mando el id del libro
@@ -71,32 +72,56 @@ function rootReducer(state = initialState, action) {
     }
 
     case TYPES.REMOVE_ONE_FROM_CART: {
-      let itemToDelete = state.cart.find((item) => item.id === action.payload);
-      return itemToDelete.quantity > 1
-        ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            ),
+      const itemToDelete = state.cart.find(
+        (item) => item.id === action.payload
+      );
+      if (itemToDelete) {
+        let nuevoCarrito = JSON.parse(localStorage.getItem("cart"));
+        const index = nuevoCarrito.findIndex(
+          (item) => item.id === action.payload
+        );
+        if (index !== -1) {
+          if (itemToDelete.quantity > 1) {
+            nuevoCarrito[index].quantity -= 1;
+          } else {
+            nuevoCarrito.splice(index, 1);
           }
-        : {
-            ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
-          };
-    }
-
-    case TYPES.REMOVE_ALL_FROM_CART:
+          localStorage.setItem("cart", JSON.stringify(nuevoCarrito));
+        }
+      }
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload),
+        cart: state.cart
+          .map((item) =>
+            item.id === action.payload
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          )
+          .filter((item) => item.quantity > 0),
       };
+    }
+
+    case TYPES.REMOVE_ALL_FROM_CART: {
+      const updatedCart = state.cart.filter(
+        (item) => item.id !== action.payload
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return {
+        ...state,
+        cart: updatedCart,
+      };
+    }
 
     case TYPES.CLEAR_CART:
       return {
         ...state,
         cart: [],
+      };
+
+    case TYPES.SET_CART:
+      return {
+        ...state,
+        cart: action.payload,
       };
 
     // HOME

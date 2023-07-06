@@ -5,6 +5,20 @@
   margin: 1.5rem 0;
 }
 
+ul{
+  display: flex;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+
+  /* margin: 0 10px; */
+}
+li{
+  margin: 0 10px;
+  list-style: none;
+}
+
 .pagination-btn {
   font-size: 1em;
   font-weight: 500;
@@ -26,6 +40,17 @@
 }
 
 .active {
+  font-size: 1em;
+  font-weight: 500;
+  padding: 0.4em 0.5rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 0.5em;
+  color: #000;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  transition: 0.3s;
   background-color: #ff686b;
 }
 

@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import "./Paginate.css";
 
-export default function Paginado({ booksPerPage, allBooks, paginado }) {
+export default function Paginado({
+  booksPerPage,
+  allBooks,
+  paginado,
+  handleNext,
+  handlePrevious,
+  currentPage,
+  currentBooks,
+}) {
   const pageNumbers = [];
-  const [activePage, setActivePage] = useState(1);
 
   for (let i = 1; i <= Math.ceil(allBooks / booksPerPage); i++) {
     pageNumbers.push(i);
@@ -11,21 +18,37 @@ export default function Paginado({ booksPerPage, allBooks, paginado }) {
 
   return (
     <nav className="pagination">
-      {pageNumbers &&
-        pageNumbers.map((number) => (
+      <ul>
+        <li>
           <button
-            className={`pagination-btn ${
-              activePage === number ? "active" : ""
-            }`}
-            key={number}
-            onClick={() => {
-              paginado(number);
-              setActivePage(number);
-            }}
+            disabled={currentPage === 1}
+            className="pagination-btn"
+            onClick={handlePrevious}
           >
-            {number}
+            {"Prev"}
           </button>
-        ))}
+        </li>
+        {pageNumbers &&
+          pageNumbers.map((number) => (
+            <li key={number}>
+              <button
+                className={currentPage === number ? "active" : "pagination-btn"}
+                onClick={() => paginado(number)}
+              >
+                {number}
+              </button>
+            </li>
+          ))}
+        <li className="number">
+          <button
+            className="pagination-btn"
+            disabled={currentBooks.length < booksPerPage}
+            onClick={handleNext}
+          >
+            {"Next"}
+          </button>
+        </li>
+      </ul>
     </nav>
   );
 }

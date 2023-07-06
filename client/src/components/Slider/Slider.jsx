@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import image1 from "./img/image1.png";
+// import image1 from "./img/image1.png";
 import image2 from "./img/image2.jpg";
 import image3 from "./img/image3.png";
 import Style from "./slider.module.css";
@@ -17,14 +17,14 @@ function App() {
           navigation={false}
           modules={[Navigation, Autoplay]}
           autoplay={{
-            delay: 10000000,
+            delay: 2000,
             disableOnInteraction: false,
           }}
           className="mySwiper"
         >
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <img src={image1} alt="#" className={Style.img} />
-          </SwiperSlide>
+          </SwiperSlide> */}
           <SwiperSlide>
             <img src={image2} alt="#" className={Style.img} />
           </SwiperSlide>

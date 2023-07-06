@@ -14,9 +14,6 @@ export const RegisterDos = () => {
   function handleChange(e) {
     e.preventDefault();
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-
-    //validaciones
-
     let objError = validate({ ...input, [e.target.name]: e.target.value });
     setError(objError);
   }

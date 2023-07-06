@@ -11,20 +11,19 @@ import imageDefault from "../img/img-df.jpeg";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 
-// import Api from "../Global";
-// const url = Api.Url;
-
 export default function UserProfile() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.userProfile);
+  const profile = useSelector((state) => state.userProfile);
+  
+  
   const message = useSelector((state) => state.message);
   const { logout } = useAuth0();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getUser(profile.id));
+  // }, [dispatch]);
 
   const openEditModal = () => {
     setModalIsOpen(true);
@@ -35,13 +34,14 @@ export default function UserProfile() {
   };
 
   const [editUser, setEditUser] = useState({
-    nombre: user.nombre,
-    email: user.email,
-    password: user.password,
-    direccion: user.direccion,
-    pais: user.pais,
-    ciudad: user.ciudad,
-  });
+  nombre: profile.nombre,
+  email: profile.email,
+  password: profile.password,
+  direccion: profile.direccion || "",
+  pais: profile.pais || "",
+  ciudad: profile.ciudad || "",
+});
+
 
   const handleUpdateForm = (e) => {
     setEditUser({
@@ -67,7 +67,7 @@ export default function UserProfile() {
         timer: 1500,
       });
     }
-    dispatch(updateUser(user.id, editUser));
+    dispatch(updateUser(profile.id, editUser));
     closeEditModal();
     // window.location.reload()
   };
@@ -94,29 +94,29 @@ export default function UserProfile() {
               <img
                 className="datoimg"
                 name="image"
-                value={user.image}
-                src={user.image ? user.image : imageDefault}
+                value={profile.image}
+                src={profile.image ? profile.image : imageDefault}
                 width="120px"
                 alt="avatar"
               />
             </div>
             <div className="Profile-user__info">
               <div className="Profile-usuario__data">
-                <h5 className="Profile-info" name="name" value={user.nombre}>
+                <h5 className="Profile-info" name="name" value={profile.nombre}>
                   <span>Name:</span>
-                  <span className="Profile-data">{user.nombre}</span>
+                  <span className="Profile-data">{profile.nombre}</span>
                 </h5>
               </div>
 
               <div className="Profile-usuario__data">
-                <h5 className="Profile-info" name="email" value={user.email}>
+                <h5 className="Profile-info" name="email" value={profile.email}>
                   <span>Email:</span>
-                  <span className="Profile-data">{user.email}</span>
+                  <span className="Profile-data">{profile.email}</span>
                 </h5>
               </div>
 
               <div className="Profile-usuario__data">
-                <h5 className="Profile-info" name="password" value={user.email}>
+                <h5 className="Profile-info" name="password" value={profile.email}>
                   <span>Password:</span>
                   <span className="Profile-data">**********</span>
                 </h5>
@@ -126,24 +126,24 @@ export default function UserProfile() {
                 <h5
                   className="Profile-info"
                   name="direccion"
-                  value={user.direccion}
+                  value={profile.direccion}
                 >
                   <span>Address:</span>
-                  <span className="Profile-data">{user.direccion}</span>
+                  <span className="Profile-data">{profile.direccion}</span>
                 </h5>
               </div>
 
               <div className="Profile-usuario__data">
-                <h5 className="Profile-info" name="pais" value={user.pais}>
+                <h5 className="Profile-info" name="pais" value={profile.pais}>
                   <span>Country:</span>
-                  <span className="Profile-data">{user.pais}</span>
+                  <span className="Profile-data">{profile.pais}</span>
                 </h5>
               </div>
 
               <div className="Profile-usuario__data">
-                <h5 className="Profile-info" name="ciudad" value={user.ciudad}>
+                <h5 className="Profile-info" name="ciudad" value={profile.ciudad}>
                   <span>City/State:</span>
-                  <span className="Profile-data">{user.ciudad}</span>
+                  <span className="Profile-data">{profile.ciudad}</span>
                 </h5>
               </div>
             </div>
@@ -215,9 +215,13 @@ export default function UserProfile() {
               value={editUser.pais}
               onChange={handleUpdateForm}
             >
-              <option> </option>
+              <option key="" value="">
+                {" "}
+              </option>
               {countries.map((data) => (
-                <option value={data.id}>{data.name_es}</option>
+                <option key={data.id} value={data.id}>
+                  {data.name_es}
+                </option>
               ))}
             </select>
           </div>
