@@ -5,7 +5,7 @@ const CartItem = ({ name, image, price, quantity, id, delFromCart }) => {
     <div className="Cart-book">
       <div className="Cart-book__info">
         <h4>{name}</h4>
-        <img className="card-img" src={image} alt="ImgPRUEBA" />
+        <img className="card-img-cart" src={image} alt="ImgPRUEBA" />
       </div>
       <div className="Cart-info">
         <div className="Cart-price">

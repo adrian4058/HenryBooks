@@ -3,6 +3,10 @@
   background-color: #fae1dd;
 }
 
+.card-img-cart {
+ max-width: 140px;
+}
+
 .Shopping-Cart__content {
   /* height: 60vh; */
   min-height: 70vh;
@@ -28,7 +32,7 @@
 
 .Cart-btn {
   padding: 0.5rem;
-  width: 100%;
+  width: 120px;
   letter-spacing: 1px;
   display: flex;
   justify-content: center;
@@ -60,7 +64,7 @@
   width: 500px;
   justify-content: space-between;
   padding: 1rem 0;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
 }
 
 .Cart-book:last-child {
@@ -70,11 +74,14 @@
 .Cart-book__info {
   display: flex;
   flex-direction: column;
+  
   gap: 0.5rem;
 }
 
 .Cart-info {
   display: flex;
+  justify-content: center;
+  align-items: flex-end;
   flex-direction: column;
   gap: 1rem;
 }
