@@ -9,13 +9,13 @@
 
 .Shopping-Cart__content {
   /* height: 60vh; */
-  min-height: 70vh;
+  min-height: 85vh;
   display: flex;
   justify-content: space-around;
   align-content: center;
   align-items: center;
-  padding: 2rem;
-  margin: 1rem;
+  /* padding: 2rem; */
+  /* margin: 1rem; */
 }
 
 .Shopping-Cart-box > h1 {
@@ -40,8 +40,10 @@
   align-content: center;
   border: none;
   border-radius: 0.5em;
-  background-color: #252323;
+  background-color: #c9184a;
   color: #f5f1ed;
+  font-size: 14px;
+  font-weight: 500;
   transition: 0.3s;
   font-family: "Maven Pro", sans-serif;
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
@@ -56,7 +58,7 @@
 
 .Cart-clean {
   width: 50%;
-  margin: 0.5rem 0;
+  margin-bottom: 2.5rem;
 }
 
 .Cart-book {
@@ -65,6 +67,7 @@
   justify-content: space-between;
   padding: 1rem 0;
   border-bottom: 2px solid black;
+  border-top: 2px solid black;
 }
 
 .Cart-book:last-child {
@@ -106,7 +109,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 75vh;
+  min-height: 85vh;
 }
 
 .No-products__content {

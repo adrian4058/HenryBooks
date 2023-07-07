@@ -4,16 +4,14 @@
   top: 0;
   z-index: 2;
   width: 100vw;
-  height: 100px;
+  height: 80px;
   flex-wrap: wrap;
-  gap: 1rem;
   overflow: hidden;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
   background-color: #ffa69e;
-  padding: 0.8rem;
-  box-shadow: #ff686b 0px 1px 0px, #ff686b 0px 2px 5px, #ff686b 0px 10px 30px;
+  box-shadow: #ff686b 0px 1px 10px, #ff686b 0px 2px 5px, #ff686b 0px 10px 30px;
 }
 
 
@@ -92,7 +90,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin: 0 15px;
+  margin: 0 40px;
 }
 
 .avatar {
@@ -132,7 +130,7 @@
 
 /*navbar responsive*/
 
-@media screen and (max-width: 1050px) {
+/* @media screen and (max-width: 1050px) {
   .navbar {
     top: 0;
     right: 0;
@@ -197,4 +195,4 @@
   .navbar {
     display: none;
   }
-}
+} */

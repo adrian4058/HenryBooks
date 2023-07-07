@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useEffect } from "react-redux";
 import { TYPES } from "../../actions";
 import axios from "axios";
 import Footer from "../Footer/Footer";
@@ -54,6 +54,7 @@ const ShoppingCart = () => {
     console.log(body);
     try {
       let respuesta;
+
       await axios
         .post(Api.Url + "/payment", body, payerEmail)
         .then((res) => {
@@ -62,13 +63,14 @@ const ShoppingCart = () => {
           return res.data[0];
         })
         .catch((error) => console.log(error));
+
       Swal.fire({
         title: "¡Link de compra generado correctamente!",
         icon: "success",
       });
       setTimeout(function() {
         window.location.href = respuesta;
-      }, 5000); // 5000 milisegundos = 5 segundos
+      }, 5000);
       localStorage.removeItem("cart");
       return respuesta;
     } catch (error) {
@@ -80,6 +82,7 @@ const ShoppingCart = () => {
 
   return cart.length > 0 ? (
     <div className="Shopping-Cart">
+      {window.scrollTo(0, 0)}
       <NavBar />
       <div className="Shopping-Cart__content">
         <div className="Shopping-Cart-box">

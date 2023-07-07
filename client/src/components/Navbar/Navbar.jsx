@@ -23,6 +23,7 @@ function NavBar() {
     setToken(token2);
     setUsuario(usuario2);
   }, [usuario2, token2]);
+  console.log(usuario);
 
   function cerrrarSesion(e) {
     e.preventDefault();
@@ -34,7 +35,6 @@ function NavBar() {
   return (
     <div className="navbar">
       <div className="about-hb">
-        <div className="back_navbar"></div>
         <Link to="/home">
           <img className="hb" src={hb} alt="HenryBooks" />
         </Link>
@@ -103,7 +103,7 @@ function NavBar() {
               <div className="avatar">
                 <img
                   className="user-img"
-                  src={usuario.img ? imageDefault : usuario.img}
+                  src={usuario.img}
                   alt="img"
                 />
                 <Link to="/profile">

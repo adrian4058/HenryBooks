@@ -94,8 +94,8 @@ export default function UserProfile() {
               <img
                 className="datoimg"
                 name="image"
-                value={profile.image}
-                src={profile.image ? profile.image : imageDefault}
+                value={profile.img}
+                src={profile.img}
                 width="120px"
                 alt="avatar"
               />

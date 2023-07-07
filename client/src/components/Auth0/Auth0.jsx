@@ -11,6 +11,7 @@ import Swap from "sweetalert2";
 
 function Auth0() {
   const dispatch = useDispatch();
+  const [userPicture, setUserPicture] = useState("");
   let [variable, setVariable] = useState("");
   let token = useSelector((state) => state.token);
   let [home, setHome] = useState(false);
@@ -21,13 +22,18 @@ function Auth0() {
       setHome(true);
     }
   });
+
   useEffect(() => {
     if (user) {
       setVariable(user);
+      const picture = user.picture;
+      setUserPicture(picture);
       let datos = {
         email: user.email,
         password: "Auth0pass",
         nombre: user.nickname,
+        img: picture,
+
       };
       let url = Api.Url + "/auth/signup";
       let status;
@@ -61,7 +67,7 @@ function Auth0() {
             .then((res) => {
               status = res.status;
               return res.json();
-            })
+            }) 
             .then((respuesta) => {
               console.log(respuesta, status);
               if (status === 200) {

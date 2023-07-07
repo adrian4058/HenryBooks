@@ -6,7 +6,7 @@ const filepath = path.join(__dirname, "../public/registerMail.html");
 const { Email } = process.env;
 
 async function signUp(req, res) {
-  let { nombre, email, password, rol, estado } = req.body;
+  let { nombre, email, password, rol, estado, img } = req.body;
   console.log(req.body);
   let existe = await Usuario.findOne({ where: { nombre } });
   if (existe) {
@@ -19,7 +19,7 @@ async function signUp(req, res) {
     return res.status(400).send({ msj: `E-mail: ${email} already registered` });
   }
   try {
-    let nuevoU = await Usuario.create({ nombre, email, password, rol, estado });
+    let nuevoU = await Usuario.create({ nombre, email, password, rol, estado, img });
     const token = jwt.sign({ id: nuevoU.id }, "henribooks", {
       expiresIn: 86400, // 24 horas
     });

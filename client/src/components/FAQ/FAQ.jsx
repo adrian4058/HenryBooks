@@ -9,6 +9,7 @@ function FAQ() {
 
   return (
     <>
+    {window.scrollTo(0, 0)}
       <NavBar />
       <div className={Style.container}>
         <div className={Style.content}>

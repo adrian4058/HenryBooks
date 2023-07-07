@@ -7,6 +7,7 @@ const Team = () => {
   return (
     <div className="team">
       <Navbar />
+      {window.scrollTo(0, 0)}
       <div className="team-content">
         <div className="team-title">
           <h1>Team Members</h1>
@@ -20,10 +21,10 @@ const Team = () => {
                   <div>{data.lastname}</div>
                 </div>
                 <div className="member-contact">
-                  <a href={data.github} target="_blank">
+                  <a className="icon-color-github" href={data.github} target="_blank">
                     <i className="fa-brands fa-github fa-2x contact"></i>
                   </a>
-                  <a href={data.linkedin} target="_blank">
+                  <a className="icon-color-linkedin" href={data.linkedin} target="_blank">
                     <i className="fa-brands fa-linkedin fa-2x contact"></i>
                   </a>
                 </div>

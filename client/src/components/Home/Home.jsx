@@ -155,6 +155,7 @@ function Home(props) {
 
   return (
     <div className="home">
+      {window.scrollTo(0, 0)}
       <div className="home-icons__sm">
         <a
           className="icon-color-fb"
