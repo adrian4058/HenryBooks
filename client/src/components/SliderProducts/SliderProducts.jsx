@@ -21,7 +21,7 @@ function SliderProducts() {
   return (
     <>
       <div className={Style.container}>
-        <h2>Featured Books</h2>
+        <h2 className={Style.h2}>Featured Books</h2>
         <Swiper
           slidesPerView={3}
           spaceBetween={30}

@@ -9,9 +9,9 @@ function FAQ() {
 
   return (
     <>
-    {window.scrollTo(0, 0)}
+    {/* {window.scrollTo(0, 0)} */}
       <NavBar />
-      <div className={Style.container}>
+      <div className="container Container">
         <div className={Style.content}>
           <h2 className={Style.title_2}>¿Cómo comprar?</h2>
           <p>

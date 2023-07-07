@@ -155,7 +155,7 @@ function Home(props) {
 
   return (
     <div className="home">
-      {window.scrollTo(0, 0)}
+      {/* {window.scrollTo(0, 0)} */}
       <div className="home-icons__sm">
         <a
           className="icon-color-fb"
@@ -183,7 +183,7 @@ function Home(props) {
         </a>
       </div>
       <Navbar />
-      <div className="home-content">
+      <div className="home-content Container">
         <div className="home-welcome">
           <h1 className="home-welcome__h1">Welcome to BooksStore!</h1>
           <h3 className="home-welcome__h3">

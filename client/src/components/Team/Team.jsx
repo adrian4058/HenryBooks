@@ -8,7 +8,7 @@ const Team = () => {
     <div className="team">
       <Navbar />
       {window.scrollTo(0, 0)}
-      <div className="team-content">
+      <div className="team-content Container">
         <div className="team-title">
           <h1>Team Members</h1>
         </div>

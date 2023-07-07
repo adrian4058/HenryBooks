@@ -1,6 +1,5 @@
 .Shopping-Cart {
-  margin-top: 100px;
-  background-color: #fae1dd;
+  background-color: #FDF0D5;
 }
 
 .card-img-cart {
@@ -40,9 +39,9 @@
   align-content: center;
   border: none;
   border-radius: 0.5em;
-  background-color: #c9184a;
+  background-color: #669BBC;
   color: #f5f1ed;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   transition: 0.3s;
   font-family: "Maven Pro", sans-serif;

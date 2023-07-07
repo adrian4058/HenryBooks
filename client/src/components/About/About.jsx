@@ -4,7 +4,7 @@ import "./About.css";
 
 function About() {
   return (
-    <div className="about">
+    <div className="about Container">
     {window.scrollTo(0, 0)}
       <Navbar />
       <div className="content-container">

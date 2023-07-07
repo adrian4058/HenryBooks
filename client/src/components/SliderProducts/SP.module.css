@@ -1,7 +1,12 @@
 .container {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: #fae1dd;
+    background-color: #669BBC;
+}
+
+.h2{
+    font-weight: 600;
+    color: #FDF0D5;
 }
 
 .container>h2 {

@@ -111,10 +111,10 @@ function NavBar() {
                 </Link>
               </div>
               <button
-                className="navbar-btn__option"
+                className="navbar-btn__logout"
                 onClick={(e) => cerrrarSesion(e)}
               >
-                Logout
+                <ion-icon name="log-out-outline"/>
               </button>
             </div>
           </>

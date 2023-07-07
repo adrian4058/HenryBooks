@@ -1,6 +1,8 @@
 /* HOME */
+
+
 .home {
-  background-color: #fae1dd;
+  background-color: #FDF0D5;
 }
 
 .home p,
@@ -19,7 +21,7 @@ select {
   flex: 1;
   padding: 0 1em;
   color: #000000;
-  background-color: #ffd7ba;
+  background-color: #FDF0D5;
   background-image: none;
   cursor: pointer;
 }
@@ -97,25 +99,22 @@ select::-ms-expand {
 
 .home-icons__sm > a {
   padding: 1rem;
-  background-color: #fec89a;
+  background-color: #cce6f4;
   opacity: 0.95;
 }
 
-.icon-color-fb{
-  color: #3B5998;
+.icon-color-fb {
+  color: #3b5998;
 }
-.icon-color-tw{
-  color: #1DA1F2 ;
+.icon-color-tw {
+  color: #1da1f2;
 }
 
 .icon-color-ig {
-  color: #E1306C; /* Este es el color original del logo de Instagram */
-  }
+  color: #e1306c; /* Este es el color original del logo de Instagram */
+}
 /* HOME WELCOME */
 
-.home-content {
-  margin-top: 100px;
-}
 
 .home-welcome {
   display: flex;
@@ -123,34 +122,34 @@ select::-ms-expand {
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
-  border-bottom: 5px dotted black;
+  border-bottom: 1px dashed #003049;
 }
 
 .home-welcome__h1 {
   text-align: center;
   font-size: 30pt;
   font-weight: 300;
-  color: #000000;
-  text-shadow: 0.3px 0.3px 2px Sienna;
+  color: #003049;
+  text-shadow: 0.3px 0.3px 2px #003049;
 }
 
 .home-welcome__h3 {
   text-align: center;
-  text-decoration: 1px dashed underline #888;
+  text-decoration: 1px underline #888;
   letter-spacing: 2px;
   font-size: 20pt;
   font-weight: 300;
   font-style: italic;
-  color: #35312b;
+  color: #669BBC;
   margin-bottom: 20px;
-  text-shadow: 0.6px 0.6px 1px Sienna;
+  text-shadow: 0.6px 0.6px 1px #669BBC;
 }
 
 .home-products-slider {
   margin: 1rem 0;
-  background-color: #ffa69e;
-  box-shadow: #ff686b 0px 0px 0px 2px, #ff686b 0px 4px 6px -1px,
-    #ff686b 0px 1px 0px inset;
+  background-color: #669BBC;
+  box-shadow: #003049 0px 0px 0px 2px, #003049 0px 4px 6px -1px,
+    #003049 0px 1px 0px inset;
 }
 
 /* FILTERS & BOOKS */
@@ -163,7 +162,7 @@ select::-ms-expand {
 .Home-books-title {
   text-align: center;
   padding-top: 1rem;
-  border-top: 5px dotted black;
+  border-top: 1px dashed #003049;
 }
 
 .home-books-problems {
@@ -185,15 +184,15 @@ select::-ms-expand {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #ffa69e;
+  background-color: #780000;
   justify-content: left;
   padding: 1.55rem 1rem;
   margin-bottom: 2rem;
   gap: 1rem;
   height: max-content;
   border-radius: 1rem;
-  box-shadow: #ff686b 0px 0px 0px 2px, #ff686b 0px 4px 6px -1px,
-    #ff686b 0px 1px 0px inset;
+  box-shadow: #003049 0px 0px 0px 2px, #003049 0px 4px 6px -1px,
+    #003049 0px 1px 0px inset;
 }
 
 .home-filter__content {
@@ -202,7 +201,7 @@ select::-ms-expand {
 
 .filter-title {
   width: max-content;
-  background-color: #ffd7ba;
+  background-color: #FDF0D5;
   color: #000000;
   padding: 0 0.2rem;
   margin-top: 1rem;
@@ -225,14 +224,15 @@ select::-ms-expand {
   top: 0;
   right: 0;
   padding: 1em;
-  background-color: #ff686b;
+  color: #dad2bc;
+  background-color: #003049;
   transition: 0.25s all ease;
   pointer-events: none;
 }
 
 /* Transition */
 .home-filter:hover::after {
-  color: #dad2bc;
+  color: #669BBC;
 }
 
 /* BUTTON RESET */
@@ -242,7 +242,7 @@ select::-ms-expand {
   position: relative;
   font-size: 1em;
   padding: 0.5rem 1.2rem;
-  background-color: #ff686b;
+  background-color: #003049;
   text-decoration: none;
   border: none;
   border-radius: 0.5em;
@@ -265,10 +265,10 @@ select::-ms-expand {
   left: 0;
   background: linear-gradient(
     135deg,
-    #ffa69e 0%,
-    #ffa69e 50%,
+    #003049 0%,
+    #003049 50%,
     rgba(112, 121, 140, 1) 50%,
-    #a5ffd6 60%
+    #669BBC  60%
   );
   border-radius: 0 0 0.5em 0;
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);

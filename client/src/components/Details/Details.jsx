@@ -48,7 +48,7 @@ function Details() {
   };
 
   return (
-    <div key={id} className="Details">
+    <div key={id} className="Details Container">
       <Navbar />
       <div className="book-container">
         {details.image ? (

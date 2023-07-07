@@ -10,6 +10,7 @@ import { useState } from "react";
 function Reviews({ LibroId, commentsReview }) {
   const dispatch = useDispatch();
   const reviews = useSelector(state => state.reviews)
+  const user = useSelector(state => state.userProfile)
   const formik = useFormik({
     initialValues: {
       titulo: "",
@@ -31,7 +32,7 @@ function Reviews({ LibroId, commentsReview }) {
         .integer(),
     }),
     onSubmit: (values) => {
-      dispatch(addReview({ ...values, UsuarioId: 1, LibroId: LibroId }));
+      dispatch(addReview({ ...values, UsuarioId: user.id, LibroId: LibroId }));
     },
   });
 

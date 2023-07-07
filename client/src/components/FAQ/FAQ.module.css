@@ -1,8 +1,6 @@
 .container {
-  margin-top: 100px;
   padding-bottom: 10rem;
   background-color: #ffd7ba;
-
   height: 100%;
 }
 
@@ -73,6 +71,7 @@
 .faqs {
   display: flex;
   flex-direction: column;
+  margin-bottom: 100px;
 }
 
 .title {

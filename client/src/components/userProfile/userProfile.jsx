@@ -81,7 +81,7 @@ export default function UserProfile() {
   };
 
   return (
-    <div className="Profile">
+    <div className="Profile Container">
       <NavBar />
       <div className="Profile-user-total">
         <div className="Profile-user__content">

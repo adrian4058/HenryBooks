@@ -1,5 +1,4 @@
 .team {
-  margin-top: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,17 +65,42 @@
   transform: scale(1.3);
 }
 
-.icon-color-github{
+.icon-color-github {
   color: #24292e;
 }
-.icon-color-linkedin{
-  color: #0077B5;
+.icon-color-linkedin {
+  color: #0077b5;
+}
+
+@media screen and (max-width: 1100px) {
+  .member-card {
+    width: 170px;
+    margin: 0.5rem 0.5rem;
+  }
 }
 
 @media screen and (max-width: 720px) {
   .member-card {
-    width: 170px;
+    width: 120px;
+    height: 160px;
     margin: 0.5rem 0.5rem;
+  }
+}
+@media screen and (max-width: 520px) {
+  .team-content {
+    height: 120vh;
+  }
+  .team-cards {
+    width: 90vw;
+    height: 900px;
+  }
+  .member-contact {
+    gap: 1rem;
+  }
+  .member-card {
+    width: 120px;
+    height: 160px;
+    /* margin: 0.5rem 0.5rem; */
   }
 }
 

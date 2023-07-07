@@ -81,10 +81,10 @@ const ShoppingCart = () => {
   const total = cart.reduce((acc, el) => acc + el.price * el.quantity, 0);
 
   return cart.length > 0 ? (
-    <div className="Shopping-Cart">
+    <div className="Shopping-Cart Container">
       {window.scrollTo(0, 0)}
       <NavBar />
-      <div className="Shopping-Cart__content">
+      <div className="Shopping-Cart__content ">
         <div className="Shopping-Cart-box">
           <h1>Your Books in Cart</h1>
           <button className="Cart-btn Cart-clean" onClick={clearCart}>

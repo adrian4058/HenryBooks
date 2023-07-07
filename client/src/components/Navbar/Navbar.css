@@ -10,10 +10,9 @@
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  background-color: #ffa69e;
-  box-shadow: #ff686b 0px 1px 10px, #ff686b 0px 2px 5px, #ff686b 0px 10px 30px;
+  background-color: #003049;
+  box-shadow: #669BBC 0px 1px 10px, #669BBC 0px 2px 5px, #669BBC 0px 10px 30px;
 }
-
 
 .about-hb {
   display: flex;
@@ -43,7 +42,7 @@
   position: relative;
   font-size: 1em;
   padding: 0.5rem 1.2rem;
-  background-color: #ff686b;
+  background-color: #669BBC;
   text-decoration: none;
   border: none;
   border-radius: 0.2em;
@@ -52,6 +51,8 @@
     rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
     rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
+
+
 
 .navbar-btn__option:hover {
   cursor: pointer;
@@ -66,10 +67,10 @@
   left: 0;
   background: linear-gradient(
     135deg,
-    #ffa69e 0%,
-    #ffa69e 50%,
+    #669BBC 0%,
+    #669BBC 50%,
     rgba(112, 121, 140, 1) 50%,
-    #a5ffd6 60%
+    #003049 60%
   );
   border-radius: 0 0 0.5em 0;
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
@@ -93,6 +94,22 @@
   margin: 0 40px;
 }
 
+
+.navbar-btn__logout{
+  padding: 0.2rem 0.3rem;
+  border-radius: 10px;
+  background-color: #FDF0D5;
+}
+
+.navbar-btn__logout ion-icon {
+  font-size: 22px; /* Ajusta el tamaño según tus necesidades */
+  font-weight: bold; /* Hace que el ícono parezca más grueso cambiando el grosor de la fuente */
+  transform: scale(1.2); /* Escala el ícono para que parezca más grande */
+  color: black;
+}
+
+
+
 .avatar {
   display: flex;
   flex-direction: row;
@@ -102,8 +119,10 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.7rem;
-  border: 1px solid black;
+  padding: 0.4rem;
+  /* border-radius: 30%; */
+  border-top: 2px solid #FDF0D5;
+  border-bottom: 2px solid #FDF0D5;
 }
 
 .user-img {
@@ -114,6 +133,7 @@
 .user-name {
   cursor: pointer;
   margin-left: 8px;
+  color: #FDF0D5;
 }
 
 .user-btns {
