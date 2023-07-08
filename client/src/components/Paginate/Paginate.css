@@ -23,7 +23,7 @@ li{
   font-size: 1em;
   font-weight: 500;
   padding: 0.4em 0.5rem;
-  background-color: #C1121F;
+  background-color: #003049;
   text-decoration: none;
   border: none;
   border-radius: 0.5em;
@@ -36,8 +36,8 @@ li{
 
 .pagination-btn:hover {
   cursor: pointer;
-  background-color: #FDF0D5;
-  color: #000;
+  background-color: #669BBC;
+  color: #FDF0D5;
 }
 
 .active {

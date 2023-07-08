@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useAuth0 } from "@auth0/auth0-react";
-import imageDefault from "../img/user.png";
 import hb from "../img/HenryBooks_Logo.png";
 import "./Navbar.css";
 import { useState } from "react";
@@ -64,9 +63,6 @@ function NavBar() {
             </button>
             {cookies.get("email") ? (
               <a href="/profile/edit">
-                {/* <label className="user-name">
-                    {"User: " + cookies.get("email")}
-                  </label> */}
               </a>
             ) : null}
           </Link>

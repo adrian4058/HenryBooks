@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
 import "../Card/Card.css";
 
 function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
@@ -32,9 +31,7 @@ function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
       {!inSlider ? (
         <button className="card-add" onClick={() => addToCart(id)}>
           <div>
-            <span>Add</span>
-            <span>to</span>
-            <span>Cart</span>
+            <span>Add to Cart</span>
             <i className="fa-solid fa-cart-shopping"></i>
           </div>
         </button>

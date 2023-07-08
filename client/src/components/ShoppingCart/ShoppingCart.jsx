@@ -86,10 +86,12 @@ const ShoppingCart = () => {
       <NavBar />
       <div className="Shopping-Cart__content ">
         <div className="Shopping-Cart-box">
-          <h1>Your Books in Cart</h1>
-          <button className="Cart-btn Cart-clean" onClick={clearCart}>
-            Limpiar Carrito
-          </button>
+          <div className="Shopping-Cart-clean">
+            <h1 className="Shopping-Cart-title">Your Books in Cart</h1>
+            <button className="Cart-btn Cart-clean" onClick={clearCart}>
+              Limpiar Carrito
+            </button>
+          </div>
           {cart.map((item, index) => (
             <CartItem
               key={index}
@@ -115,7 +117,7 @@ const ShoppingCart = () => {
       <Footer />
     </div>
   ) : (
-    <div className="Shopping-Cart">
+    <div className="Shopping-Cart Container">
       <NavBar />
       <div className="No-products">
         <div className="No-products__content">

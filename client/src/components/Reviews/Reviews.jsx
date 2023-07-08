@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addReview } from "../../actions/index";
 import "./Reviews.css";
 import Comments from "./Review Components/Comments";
-import { useState } from "react";
 
 function Reviews({ LibroId, commentsReview }) {
   const dispatch = useDispatch();

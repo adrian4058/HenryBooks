@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, updateUser, deletToken, vaciarUsuario } from "../../actions";
+import {  updateUser, deletToken, vaciarUsuario } from "../../actions";
 import NavBar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./userProfile.css";
 import Modal from "react-modal";
 import { countries } from "../../utils/countries";
-import imageDefault from "../img/img-df.jpeg";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 
