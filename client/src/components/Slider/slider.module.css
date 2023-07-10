@@ -1,11 +1,11 @@
 .container {
-  padding: 1rem 0;
+  padding: 0.2rem 0;
   margin-bottom: 1rem 0;
-  border-bottom: 5px dotted black;
+  /* border-bottom: 1px dashed #003049; */
 }
 
 .img {
-  height: 21rem;
+  height: 20vh;
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;

@@ -27,8 +27,7 @@ function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
             </p>
           </div>
         </div>
-      </Link>
-      {!inSlider ? (
+        {!inSlider ? (
         <button className="card-add" onClick={() => addToCart(id)}>
           <div>
             <span>Add to Cart</span>
@@ -36,6 +35,8 @@ function Card({ name, image, price, author, genre, id, inSlider, addToCart }) {
           </div>
         </button>
       ) : null}
+      </Link>
+      
     </div>
   );
 }

@@ -114,6 +114,9 @@ select::-ms-expand {
   color: #e1306c; /* Este es el color original del logo de Instagram */
 }
 /* HOME WELCOME */
+.home-welcome__content{
+  height: 85vh;
+}
 
 
 .home-welcome {
@@ -121,7 +124,7 @@ select::-ms-expand {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
+  padding-top: 25px;
   border-bottom: 1px dashed #003049;
 }
 
@@ -155,7 +158,7 @@ select::-ms-expand {
 /* FILTERS & BOOKS */
 
 .home-books-title {
-  padding: 1.5rem 0;
+  padding-top: 4.5rem ;
   text-align: center;
 }
 
@@ -172,6 +175,7 @@ select::-ms-expand {
 
 .home-books {
   display: flex;
+  /* height: 85vh; */
   justify-content: center;
   align-items: flex-start;
   gap: 2rem;
@@ -189,7 +193,7 @@ select::-ms-expand {
   padding: 1.55rem 1rem;
   margin-bottom: 2rem;
   gap: 1rem;
-  height: max-content;
+  height: 70vh;
   border-radius: 1rem;
   box-shadow: #003049 0px 0px 0px 2px, #003049 0px 4px 6px -1px,
     #003049 0px 1px 0px inset;
@@ -209,10 +213,14 @@ select::-ms-expand {
 }
 
 /* Custom Select wrapper */
+.home-all-filter{
+  height: 70vh;
+  width: 15vw;
+}
 .home-filter {
   position: relative;
   display: flex;
-  height: 3em;
+  height: 2.7em;
   border-radius: 0 0.25em 0.25em 0.25em;
   overflow: hidden;
 }
@@ -289,7 +297,9 @@ select::-ms-expand {
 
 .book-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 60vw;
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
