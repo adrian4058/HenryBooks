@@ -10,22 +10,11 @@ import Swap from "sweetalert2";
 function Auth0() {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const [userPicture, setUserPicture] = useState("");
-  // let [variable, setVariable] = useState("");
-  // let token = useSelector((state) => state.token);
-  // let [home, setHome] = useState(false);
   const { loginWithPopup, user, logout, isAuthenticated } = useAuth0();
-  // useEffect(() => {
-  //   if (token) {
-  //     console.log("estoy aqui");
-  //   }
-  // });
-
+  
   useEffect(() => {
     if (user) {
-      // setVariable(user);
       const picture = user.picture;
-      // setUserPicture(picture);
       let datos = {
         email: user.email,
         password: "Auth0pass",
@@ -79,7 +68,7 @@ function Auth0() {
                 // setHome(true);
                 Swap.fire({
                   icon: "success",
-                  title: `User login! Welcome, ${respuesta.usuario.nombre}`,
+                  title: `Bienvenido, ${respuesta.usuario.nombre}`,
                   timer: 2000,
                 });
 
@@ -101,12 +90,12 @@ function Auth0() {
       {isAuthenticated ? (
         <button className="Login-google__btn" onClick={() => logout()}>
           <FcGoogle />
-          <span>Logout</span>
+          <span>Cerrar Sesión</span>
         </button>
       ) : (
         <button className="Login-google__btn" onClick={login}>
           <FcGoogle />
-          <span>Continue With Google</span>
+          <span>Continuar con Google</span>
         </button>
       )}
     </div>

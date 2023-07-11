@@ -140,12 +140,12 @@ function Home(props) {
       Swal.fire({
         position: "top",
         icon: "success",
-        title: "Product Added To Cart",
+        title: "Añadido al Carrito",
         showConfirmButton: false,
         timer: 900,
       });
     } else {
-      Swal.fire("Login or register to buy to buy", {
+      Swal.fire("Inicia sesión o regístrate para comprar", {
         icon: "warning",
         timer: 900,
       });
@@ -186,9 +186,9 @@ function Home(props) {
       <div className="home-content Container">
         <div className="home-welcome__content">
           <div className="home-welcome">
-            <h1 className="home-welcome__h1">Welcome to BooksStore!</h1>
+            <h1 className="home-welcome__h1">¡Bienvenido a Librería!</h1>
             <h3 className="home-welcome__h3">
-              Here you can find your favorite books
+              Aquí puedes encontrar tus libros favoritos
             </h3>
           </div>
 
@@ -198,7 +198,6 @@ function Home(props) {
           </div>
         </div>
 
-        <h1 className="home-books-title">Our Books</h1>
         {!books?.length ? (
           <div className="home-books">
             <div className="home-filters">
@@ -207,7 +206,7 @@ function Home(props) {
                   className="filter-reset__btn"
                   onClick={() => handleReset()}
                 >
-                  Reset Filter
+                  Reiniciar Filtros
                 </button>
               </div>
 
@@ -216,7 +215,7 @@ function Home(props) {
               </div>
 
               <div className="home-filter__content">
-                <div className="filter-title">Order by Gender</div>
+                <div className="filter-title">Género</div>
                 <div className="home-filter">
                   <select
                     ref={categorySelect}
@@ -242,7 +241,7 @@ function Home(props) {
               </div>
 
               <div className="home-filter__content">
-                <div className="filter-title">Order by Author</div>
+                <div className="filter-title">Autor</div>
                 <div className="home-filter">
                   <select
                     ref={authorsSelect}
@@ -268,7 +267,7 @@ function Home(props) {
               </div>
 
               <div className="home-filter__content">
-                <div className="filter-title">Order by Editorial</div>
+                <div className="filter-title">Editorial</div>
                 <div className="home-filter">
                   <select
                     ref={editorialSelect}
@@ -294,13 +293,13 @@ function Home(props) {
               </div>
 
               <div className="home-filter__content">
-                <div className="filter-title">Order by Alphabet</div>
+                <div className="filter-title">Alfabético</div>
                 <div className="home-filter">
                   <select
                     ref={alphabetSelect}
                     onChange={(e) => handlerOrderAlphabet(e)}
                   >
-                    <option value="All">All</option>
+                    <option value="All">Todos</option>
                     <option value="ASC">A-Z</option>
                     <option value="DESC">Z-A</option>
                   </select>
@@ -308,21 +307,21 @@ function Home(props) {
               </div>
 
               <div className="home-filter__content">
-                <div className="filter-title">Order by Price</div>
+                <div className="filter-title">Precio</div>
                 <div className="home-filter">
                   <select
                     ref={priceSelect}
                     onChange={(e) => handlerOrderPrice(e)}
                   >
-                    <option value="All">All</option>
-                    <option value="ASC_PRICE">Price (smaller-higher)</option>
-                    <option value="DESC_PRICE">Price (higher-smaller)</option>
+                    <option value="All">Todos</option>
+                    <option value="ASC_PRICE">Precio (menor-mayor)</option>
+                    <option value="DESC_PRICE">Precio (mayor-menor)</option>
                   </select>
                 </div>
               </div>
             </div>
 
-            <h1>There are not books with these filters</h1>
+            <h1>No hay libros con estos filtros</h1>
           </div>
         ) : (
           <div className="home-books">
@@ -332,7 +331,7 @@ function Home(props) {
                   className="filter-reset__btn"
                   onClick={() => handleReset()}
                 >
-                  Reset Filter
+                  Reiniciar Filtros
                 </button>
               </div>
 
@@ -342,7 +341,7 @@ function Home(props) {
 
               <div className="home-all-filter">
                 <div className="home-filter__content">
-                  <div className="filter-title">Order by Gender</div>
+                  <div className="filter-title">Género</div>
                   <div className="home-filter">
                     <select
                       ref={categorySelect}
@@ -356,7 +355,7 @@ function Home(props) {
                       }
                     >
                       <option defaultValue="All" value="All">
-                        All
+                        Todos
                       </option>
                       {uniqueGender?.map((book) => (
                         <option key={book} value={book}>
@@ -368,7 +367,7 @@ function Home(props) {
                 </div>
 
                 <div className="home-filter__content">
-                  <div className="filter-title">Order by Author</div>
+                  <div className="filter-title">Autor</div>
                   <div className="home-filter">
                     <select
                       ref={authorsSelect}
@@ -382,7 +381,7 @@ function Home(props) {
                       }
                     >
                       <option defaultValue="All" value="All">
-                        All
+                        Todos
                       </option>
                       {uniqueAuthor?.map((book) => (
                         <option key={book} value={book}>
@@ -394,7 +393,7 @@ function Home(props) {
                 </div>
 
                 <div className="home-filter__content">
-                  <div className="filter-title">Order by Editorial</div>
+                  <div className="filter-title">Editorial</div>
                   <div className="home-filter">
                     <select
                       ref={editorialSelect}
@@ -408,7 +407,7 @@ function Home(props) {
                       }
                     >
                       <option defaultValue="All" value="All">
-                        All
+                        Todos
                       </option>
                       {uniqueEditorial?.map((book) => (
                         <option key={book} value={book}>
@@ -420,13 +419,13 @@ function Home(props) {
                 </div>
 
                 <div className="home-filter__content">
-                  <div className="filter-title">Order by Alphabet</div>
+                  <div className="filter-title">Alfabético</div>
                   <div className="home-filter">
                     <select
                       ref={alphabetSelect}
                       onChange={(e) => handlerOrderAlphabet(e)}
                     >
-                      <option value="All">All</option>
+                      <option value="All">Todos</option>
                       <option value="ASC">A-Z</option>
                       <option value="DESC">Z-A</option>
                     </select>
@@ -434,15 +433,15 @@ function Home(props) {
                 </div>
 
                 <div className="home-filter__content">
-                  <div className="filter-title">Order by Price</div>
+                  <div className="filter-title">Precio</div>
                   <div className="home-filter">
                     <select
                       ref={priceSelect}
                       onChange={(e) => handlerOrderPrice(e)}
                     >
-                      <option value="All">All</option>
-                      <option value="ASC_PRICE">Price (smaller-higher)</option>
-                      <option value="DESC_PRICE">Price (higher-smaller)</option>
+                      <option value="All">Todos</option>
+                      <option value="ASC_PRICE">Precio (menor-mayor)</option>
+                      <option value="DESC_PRICE">Precio (mayor-menor)</option>
                     </select>
                   </div>
                 </div>

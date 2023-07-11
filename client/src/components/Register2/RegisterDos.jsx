@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
-import Auth0 from "../Auth0/Auth0";
+import { AiFillHome } from "react-icons/ai";
+
 import Swal from "sweetalert2";
 import Api from "../../Global";
 import "./Register.css";
@@ -44,12 +44,12 @@ export const RegisterDos = () => {
           setHome(true);
           Swal.fire({
             icon: "success",
-            title: "User registered",
+            title: "Usuario Registrado",
           });
         } else {
           Swal.fire({
             icon: "error",
-            title: "Name or Email already exist",
+            title: "Nombre o Email existentes",
             showClass: {
               popup: "animate__animated animate__fadeInDown",
             },
@@ -98,11 +98,11 @@ export const RegisterDos = () => {
             <Link to="/home">
               <button className="Login-home__btn">
                 <AiFillHome />
-                <span>Home</span>
+                <span>Inicio</span>
               </button>
             </Link>
           </div>
-          <h1>Register</h1>
+          <h1>Registro</h1>
           <div className="Register-form">
             <div
               className={
@@ -110,14 +110,14 @@ export const RegisterDos = () => {
               }
             >
               {error.name ? (
-                <label htmlFor="name">*Name:</label>
+                <label htmlFor="name">*Nombre:</label>
               ) : (
-                <label htmlFor="name">Name:</label>
+                <label htmlFor="name">Nombre:</label>
               )}
 
               <input
                 type="text"
-                placeholder="Name"
+                placeholder="Nombre"
                 name="name"
                 value={input.name}
                 className="Login-Register__input"
@@ -130,13 +130,13 @@ export const RegisterDos = () => {
               }
             >
               {error.email ? (
-                <label htmlFor="name">*Email:</label>
+                <label htmlFor="name">*E-Mail:</label>
               ) : (
-                <label htmlFor="name">Email:</label>
+                <label htmlFor="name">E-Mail:</label>
               )}
               <input
                 type="email"
-                placeholder="email"
+                placeholder="E-Mail"
                 name="email"
                 value={input.email}
                 className="Login-Register__input"
@@ -149,13 +149,13 @@ export const RegisterDos = () => {
               }
             >
               {error.password ? (
-                <label htmlFor="name">*Password:</label>
+                <label htmlFor="name">*Contraseña:</label>
               ) : (
-                <label htmlFor="name">Password:</label>
+                <label htmlFor="name">Contraseña:</label>
               )}
               <input
                 type="password"
-                placeholder="Password"
+                placeholder="Contraseña"
                 name="password"
                 value={input.password}
                 className="Login-Register__input"
@@ -170,7 +170,7 @@ export const RegisterDos = () => {
                     className="Register-create__btn"
                     onClick={(e) => crearUsuario(e)}
                   >
-                    <Link to="/home"></Link>Create User
+                    <Link to="/home"></Link>Crear Usuario
                   </button>
                 </>
               ) : (
@@ -180,11 +180,6 @@ export const RegisterDos = () => {
               )}
             </div>
           </div>
-
-          {/* <div className="Register-google">
-            <p>or</p>
-            <Auth0 />
-          </div> */}
         </div>
       </form>
     </>

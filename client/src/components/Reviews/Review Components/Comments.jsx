@@ -15,7 +15,7 @@ React.useEffect(() =>{
 
     return (
         <div className="comments">
-            {commentsReview?.length ? <h2>Comments:</h2> : <h2>No comments</h2>}
+            {commentsReview?.length ? <h2>Comentarios:</h2> : <h2>No hay Comentarios</h2>}
             {!!commentsReview &&
                 commentsReview.map(elem =>
                     <div className="Comments-flex" key={elem.id}>
@@ -29,7 +29,7 @@ React.useEffect(() =>{
                     </div>
                 )
             }
-            {commentsReview?.length === 0 ? <h2 className="No-comments">Be the first to comment</h2> : null}
+            {commentsReview?.length === 0 ? <h2 className="No-comments">Sé el primer Comentario</h2> : null}
             {reviews.msj && <h3>{reviews.msj}</h3>}
         </div>)
 }

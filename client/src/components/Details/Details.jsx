@@ -64,7 +64,7 @@ function Details() {
               {details.name && <h2>{details.name}</h2>}
             </div>
             <div className="book-info__info">
-              <h4>Author:</h4>
+              <h4>Autor:</h4>
               {<p>{details.Autor?.nombre}</p>}
             </div>
             <div className="book-info__info">
@@ -72,7 +72,7 @@ function Details() {
               {details.editorial && <p>{details.editorial}</p>}
             </div>
             <div className="book-info__info">
-              <h4>Genre: </h4>
+              <h4>Género: </h4>
               {details.genero && <p>{details.genero}</p>}
             </div>
             <div className="book-info__info">
@@ -86,7 +86,7 @@ function Details() {
             </div>
             {details.stock !== 0 ? (
               <button className="btn-pay" onClick={() => addToCart(addID)}>
-                <span>Add To Cart</span>
+                <span>Añadir al Carrito</span>
                 <i className="fa-solid fa-cart-shopping"></i>
               </button>
             ) : (

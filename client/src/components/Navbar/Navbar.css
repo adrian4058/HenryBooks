@@ -4,14 +4,14 @@
   top: 0;
   z-index: 2;
   width: 100vw;
-  height: 80px;
+  height: 70px;
   flex-wrap: wrap;
   overflow: hidden;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
   background-color: #003049;
-  box-shadow: #669bbc 0px 1px 10px, #669bbc 0px 2px 5px, #669bbc 0px 10px 30px;
+  /* box-shadow: #669bbc 0px 1px 10px, #669bbc 0px 2px 5px, #669bbc 0px 10px 30px; */
 }
 
 .about-hb {
@@ -37,48 +37,37 @@
   gap: 1rem;
 }
 
-.navbar-btn__option {
-  font-weight: bold;
+.content-btn__option {
+  display: inline-block;
   position: relative;
-  font-size: 1em;
-  padding: 0.5rem 1.2rem;
-  background-color: #669bbc;
+}
+.content-btn__option::before {
+  content: "";
+  height: 3px;
+  width: 0%;
+  background-color: #669BBC;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s ease-out;
+}
+.content-btn__option:hover::before {
+  width: 100%;
+}
+
+.navbar-btn__option {
+  font-weight: 550;
   text-decoration: none;
+  font-size: 18px;
+  color: #fdf0d5;
+  background: none;
   border: none;
-  border-radius: 0.2em;
-  color: #ffffff;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
-    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
-    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
 .navbar-btn__option:hover {
   cursor: pointer;
 }
 
-.navbar-btn__option::before {
-  position: absolute;
-  content: "";
-  height: 0;
-  width: 0;
-  top: 0;
-  left: 0;
-  background: linear-gradient(
-    135deg,
-    #669bbc 0%,
-    #669bbc 50%,
-    rgba(112, 121, 140, 1) 50%,
-    #003049 60%
-  );
-  border-radius: 0 0 0.5em 0;
-  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
-  transition: 0.3s;
-}
-
-.navbar-btn__option:hover::before {
-  width: 1.6em;
-  height: 1.6em;
-}
 
 .login {
   display: flex;
@@ -93,7 +82,7 @@
   background-color: #fdf0d5;
   cursor: pointer;
 }
-.navbar-btn__logout:hover{
+.navbar-btn__logout:hover {
   transition: 0.3s;
   background-color: #669bbc;
 }
@@ -141,12 +130,27 @@
   gap: 1rem;
 }
 
+.login__content{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
 .cart-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.3rem;
+  padding: 0px 10px;
+  margin: 0 5px;
 }
+
+.cart_price{
+  margin-left: 10px;
+}
+
 
 /*navbar responsive*/
 

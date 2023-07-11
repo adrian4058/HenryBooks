@@ -48,7 +48,8 @@
 }
 
 .member-name {
-  font-weight: bold;
+  /* color: #FDF0D5; */
+  font-weight: 700;
 }
 
 .member-contact {

@@ -19,7 +19,7 @@ function SliderProducts() {
   return (
     <>
       <div className={Style.container}>
-        <h2 className={Style.h2}>Featured Books</h2>
+        <h2 className={Style.h2}>Libros Destacados</h2>
         <Swiper
           slidesPerView={5}
           spaceBetween={20}
@@ -28,7 +28,7 @@ function SliderProducts() {
           }}
           modules={[Pagination, Autoplay]}
           autoplay={{
-            delay: 7000,
+            delay: 3000,
             disableOnInteraction: true,
           }}
           className="mySwiper"

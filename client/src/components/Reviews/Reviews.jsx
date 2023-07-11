@@ -8,8 +8,8 @@ import Comments from "./Review Components/Comments";
 
 function Reviews({ LibroId, commentsReview }) {
   const dispatch = useDispatch();
-  const reviews = useSelector(state => state.reviews)
-  const user = useSelector(state => state.userProfile)
+  const reviews = useSelector((state) => state.reviews);
+  const user = useSelector((state) => state.userProfile);
   const formik = useFormik({
     initialValues: {
       titulo: "",
@@ -40,17 +40,18 @@ function Reviews({ LibroId, commentsReview }) {
       <form onSubmit={formik.handleSubmit} className="Reviews-form">
         <div className="Review-container">
           <h3>
-            <span>Did you read it?</span>
-            <span>You can qualify it!</span>
+            <span>¿Lo leíste?</span>
+            <span>¡Puedes calificarlo!</span>
           </h3>
 
           <div className="div-review">
-            <label htmlFor="titulo">Title of review</label>
+            <label htmlFor="titulo">Título de la reseña</label>
             <input
               id="titulo"
               type="text"
               className="Review__input"
-              {...formik.getFieldProps("titulo")} />
+              {...formik.getFieldProps("titulo")}
+            />
 
             {formik.touched.titulo && formik.errors.titulo ? (
               <div className="error-message">{formik.errors.titulo}</div>
@@ -58,7 +59,7 @@ function Reviews({ LibroId, commentsReview }) {
           </div>
 
           <div className="div-review">
-            <label htmlFor="descripcion">Description</label>
+            <label htmlFor="descripcion">Descripción</label>
             <input
               id="descripcion"
               type="text"
@@ -71,7 +72,7 @@ function Reviews({ LibroId, commentsReview }) {
           </div>
 
           <div className="div-review">
-            <label htmlFor="calificacion">Qualification</label>
+            <label htmlFor="calificacion">Calificación</label>
             <input
               className="Review-input__range"
               id="calificacion"
@@ -81,19 +82,20 @@ function Reviews({ LibroId, commentsReview }) {
               step="1"
               {...formik.getFieldProps("calificacion")}
             />
-            <div className="Range-value">Rating: {formik.values.calificacion}</div>
+            <div className="Range-value">
+              Puntaje: {formik.values.calificacion}
+            </div>
             {formik.touched.calificacion && formik.errors.calificacion ? (
               <div className="error-message">{formik.errors.calificacion}</div>
             ) : null}
           </div>
 
           <button className="Review-send__btn" type="submit">
-            Send
+            Enviar
           </button>
-
         </div>
       </form>
-      {reviews.success ? <h3>{reviews.success}</h3>: null}
+      {reviews.success ? <h3>{reviews.success}</h3> : null}
       <Comments commentsReview={commentsReview} />
     </div>
   );

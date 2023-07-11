@@ -86,18 +86,18 @@ const Login = () => {
           <Link to="/home">
             <button className="Login-home__btn">
               <AiFillHome />
-              <span>Home</span>
+              <span>Inicio</span>
             </button>
           </Link>
         </div>
-        <h1>Login</h1>
+        <h1>Acceso</h1>
 
         <div className="Login-form">
           <div className="Login-input">
-            <label htmlFor="email">E-mail:</label>
+            <label htmlFor="email">E-Mail:</label>
             <input
               type="email"
-              placeholder="E-mail"
+              placeholder="E-Mail"
               {...getFieldProps("email")}
               className={`Login-Register__input ${touched.email &&
                 errors.email &&
@@ -112,10 +112,10 @@ const Login = () => {
           </div>
 
           <div className="Login-input">
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Contraseña:</label>
             <input
               type={view ? "text" : "password"}
-              placeholder="Password"
+              placeholder="Contraseña"
               {...getFieldProps("password")}
               className={`Login-Register__input ${touched.password &&
                 errors.password &&
@@ -139,17 +139,17 @@ const Login = () => {
 
           <button type="submit" className="Login-login__btn">
             <AiOutlineLogin />
-            Log In
+            Inicio de sesión
           </button>
         </div>
 
         <p className="Login-noaccount">
-          Don't have any account?
+          ¿No tienes ninguna cuenta?
           <Link to="/registerdos">
-            <span className="Login-register__link">Register here!</span>
+            <span className="Login-register__link">¡Regístrate aquí!</span>
           </Link>
         </p>
-        <p>Or</p>
+        <p>O</p>
         <Auth0 />
       </div>
     </form>

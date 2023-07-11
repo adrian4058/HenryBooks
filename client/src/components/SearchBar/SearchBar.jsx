@@ -30,7 +30,7 @@ function SearchBar() {
           </svg>
           <input
             onChange={handleInput}
-            placeholder="Search"
+            placeholder="Buscar..."
             type="text"
             className="input-searchbar"
             value={searchBook}

@@ -5,17 +5,17 @@
 }
 
 .Container{
-  margin-top: 80px;
+  margin-top: 70px;
 }
 
 @media screen and (max-width: 1050px) {
   .Container{
-    margin-top: 80px;
+    margin-top: 70px;
   }  
 }
 
 @media screen and (max-width: 720px) {
   .Container{
-    margin-top: 80px;
+    margin-top: 70px;
   }  
 }
