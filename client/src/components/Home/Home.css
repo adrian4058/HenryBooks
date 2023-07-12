@@ -89,7 +89,8 @@ select::-ms-expand {
 .home-icons__sm {
   z-index: 99;
   position: fixed;
-  top: 40%;
+  top: 45%;
+  right: 0;
   background-color: none;
   display: flex;
   flex-direction: column;
@@ -98,8 +99,8 @@ select::-ms-expand {
 
 .home-icons__sm > a {
   padding: 1rem;
-  background-color: #cce6f4;
-  opacity: 0.95;
+  background-color: #edf2f4;
+  opacity: 1;
 }
 
 .icon-color-fb {
