@@ -29,7 +29,6 @@ function App() {
     if (localStorage.getItem("usuario")) {
       let user = JSON.parse(localStorage.getItem("usuario"));
       let token = localStorage.getItem("token");
-      console.log(user);
       if (user) {
         dispatch(putToken(token));
         dispatch(llenarUsuario(user));
@@ -40,7 +39,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={Home} />

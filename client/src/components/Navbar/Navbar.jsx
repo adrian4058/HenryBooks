@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Cookies from "universal-cookie";
 import { useAuth0 } from "@auth0/auth0-react";
 import hb from "../img/HenryBooks_Logo.png";
 import "./Navbar.css";
@@ -22,7 +21,6 @@ function NavBar() {
     setToken(token2);
     setUsuario(usuario2);
   }, [usuario2, token2]);
-  console.log(usuario);
 
   function cerrrarSesion(e) {
     e.preventDefault();
@@ -78,15 +76,11 @@ function NavBar() {
             ) : null}
 
             <Link to="/registerdos" className="content-btn__option">
-              <button className="navbar-btn__option">
-                Registro
-              </button>
+              <button className="navbar-btn__option">Registro</button>
             </Link>
 
             <Link to="/login" className="content-btn__option">
-              <button className="navbar-btn__option">
-                Acceso
-              </button>
+              <button className="navbar-btn__option">Acceso</button>
             </Link>
           </div>
         )}
