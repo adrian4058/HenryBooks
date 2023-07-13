@@ -8,7 +8,6 @@ import Comments from "./Review Components/Comments";
 
 function Reviews({ LibroId, commentsReview }) {
   const dispatch = useDispatch();
-  const reviews = useSelector((state) => state.reviews);
   const user = useSelector((state) => state.userProfile);
   const formik = useFormik({
     initialValues: {
@@ -18,16 +17,16 @@ function Reviews({ LibroId, commentsReview }) {
     },
     validationSchema: Yup.object({
       titulo: Yup.string()
-        .max(28, "Must be 28 characters or less")
-        .min(10, "Must be bigger than 10 characters")
-        .required("Required"),
+        .max(28, "Debe tener 28 caracteres o menos")
+        .min(10, "Debe tener más de 10 caracteres")
+        .required("Requerido"),
       descripcion: Yup.string()
-        .max(90, "Must be 90 characters or less")
-        .min(15, "Must be bigger than 15 characters")
-        .required("Required"),
-      calificacion: Yup.number("must be a number")
-        .required("Number between 1 and 5")
-        .positive("Must be qualified")
+        .max(90, "Debe tener 90 caracteres o menos")
+        .min(15, "Debe tener más de 15 caracteres")
+        .required("Requerido"),
+      calificacion: Yup.number("Tiene que ser un número")
+        .required("Número entre 1 y 5")
+        .positive("Debe estar calificado")
         .integer(),
     }),
     onSubmit: (values) => {
@@ -95,8 +94,9 @@ function Reviews({ LibroId, commentsReview }) {
           </button>
         </div>
       </form>
-      {reviews.success ? <h3>{reviews.success}</h3> : null}
+      
       <Comments commentsReview={commentsReview} />
+      
     </div>
   );
 }

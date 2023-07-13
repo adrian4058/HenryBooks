@@ -382,18 +382,6 @@ export const asyncRegisterAuth0 = (body) => async (dispatch) => {
     console.log(registro);
   }
 
-  // const registro = await axios
-  //   .post(url + "/auth/signup", body)
-  //   .then(async (registro) => {
-  //     if (!registro.data) {
-  //       const respuesta = await axios.post(url + "/auth/signin", body);
-  //       localStorage.setItem("token", respuesta.data.token);
-  //       dispatch({ type: ASYNC_REGISTER_AUTH0, payload: respuesta.data.token });
-  //       console.log(respuesta.data.token);
-  //     } else {
-  //       localStorage.setItem("token", registro.data.token);
-  //       dispatch({ type: ASYNC_REGISTER_AUTH0, payload: registro.data.token });
-  //     }
-  //   });
+  
 };
 

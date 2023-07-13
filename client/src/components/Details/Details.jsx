@@ -118,7 +118,7 @@ function Details() {
           </svg>
         )}
       </div>
-      <Reviews LibroId={id} commentsReview={details.Resenas} />
+      <Reviews LibroId={details.id} commentsReview={details.Resenas} />
       <SliderProducts />
       <Footer />
     </div>

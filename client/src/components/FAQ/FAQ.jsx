@@ -8,10 +8,10 @@ function FAQ() {
   const [showAnswer2, setShowAnswer2] = useState(false);
 
   return (
-    <>
-    {/* {window.scrollTo(0, 0)} */}
+    <div className={Style.faq_content}>
+      {/* {window.scrollTo(0, 0)} */}
       <NavBar />
-      <div className="container Container">
+      <div className={Style.faq_total}>
         <div className={Style.content}>
           <h2 className={Style.title_2}>¿Cómo comprar?</h2>
           <p>
@@ -86,10 +86,8 @@ function FAQ() {
 
             {showAnswer2 && (
               <p className={Style.res}>
-                Podrás ver en la página del producto si se puede pagar en cuotas
-                y con qué medios. Si decidís comprarlo,
-                <br /> antes de pagar podrás elegir la cantidad de cuotas y te
-                informaremos el valor de cada una.
+                Añade la cantidad de productos que quieras a tu carrito. <br />{" "}
+                Si decidís comprarlo, una vez que le das a pagar podrás ver las promociones.
               </p>
             )}
           </div>
@@ -98,7 +96,7 @@ function FAQ() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

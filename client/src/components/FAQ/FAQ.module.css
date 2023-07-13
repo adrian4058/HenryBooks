@@ -1,7 +1,10 @@
-.container {
-  padding-bottom: 10rem;
-  background-color: #ffd7ba;
-  height: 100%;
+.faq_content{
+  background-color: #FDF0D5;
+  margin-top: 70px;
+}
+
+.faq_total {
+  padding-bottom: 1rem;
 }
 
 .buy {
@@ -75,11 +78,12 @@
 }
 
 .title {
+  text-decoration: underline;
   text-align: center;
   font-size: 1.9rem;
   font-weight: 500;
-  margin-bottom: 5rem;
-  margin-top: 3rem;
+  /* margin-bottom: 5rem; */
+  margin-top: 7rem;
 }
 
 .q1 {
