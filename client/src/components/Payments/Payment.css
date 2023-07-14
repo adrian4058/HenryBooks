@@ -1,0 +1,14 @@
+.Payment-content{
+  background-color: #fdf0d5;
+}
+
+.Products__Pdf {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  gap: 3rem;
+}

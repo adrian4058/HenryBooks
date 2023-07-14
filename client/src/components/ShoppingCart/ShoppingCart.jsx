@@ -30,7 +30,6 @@ const ShoppingCart = () => {
   };
 
   const payerEmail = usuario.email;
-  console.log(payerEmail);
   const sendMp = async (e) => {
     // e.preventDefault();
 
@@ -50,7 +49,7 @@ const ShoppingCart = () => {
         email: payerEmail,
       },
     };
-    console.log(body);
+  
     try {
       let respuesta;
 
@@ -70,7 +69,6 @@ const ShoppingCart = () => {
       setTimeout(function() {
         window.location.href = respuesta;
       }, 5000);
-      localStorage.removeItem("cart");
       return respuesta;
     } catch (error) {
       console.log(error);
