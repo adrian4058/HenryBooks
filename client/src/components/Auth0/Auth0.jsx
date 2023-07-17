@@ -11,10 +11,11 @@ function Auth0() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { loginWithPopup, user, logout, isAuthenticated } = useAuth0();
-  
+
   useEffect(() => {
     if (user) {
       const picture = user.picture;
+      console.log(user);
       let datos = {
         email: user.email,
         password: "Auth0pass",

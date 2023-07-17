@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const myPDF = ({ orderNumber, cart }) => (
+const myPDF = ({ orderNumber, cart, total_Price }) => (
   <Document>
     <Page style={styles.page}>
       <View style={styles.section}>
@@ -32,10 +32,11 @@ const myPDF = ({ orderNumber, cart }) => (
           ))}
         </View>
         <Text style={styles.subtitle}>
-          Gracias por tu compra, su total es:{} $
+          Gracias por tu compra, su total es: 
+          {total_Price} $
         </Text>
         <Text>
-          {/* {cart.map(((e) => e.unit_price * e.quantity).reduce((a, b) => a + b))} */}
+        
         </Text>
       </View>
     </Page>

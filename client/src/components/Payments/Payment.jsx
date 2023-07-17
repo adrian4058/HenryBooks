@@ -18,6 +18,14 @@ const Payment = () => {
   const [orderNumber, setOrder] = useState(113);
   const usuario = useSelector((state) => state.userProfile);
   const cart = useSelector((state) => state.cart);
+  let total_Price = 0;
+  for (let i = 0; i < cart.length; i++) {
+    total_Price += cart[i].price * cart[i].quantity;
+  }
+
+  // const total_Price = cart
+  // .map((e) => e.price * e.quantity)
+  // .reduce((a, b) => a + b);
 
   const payerEmail = usuario.email;
   const history = useHistory();
@@ -55,7 +63,7 @@ const Payment = () => {
     }
   };
 
-  // console.log(total_Price);
+  
   
 
   return (
@@ -68,7 +76,7 @@ const Payment = () => {
             <MyPDF
               orderNumber={orderNumber}
               cart={cart}
-              // total_Price={total_Price}
+              total_Price={total_Price}
             />
           }
           fileName="documento.pdf"

@@ -7,6 +7,7 @@ import NavBar from "../Navbar/Navbar";
 import CartItem from "./CartItem";
 import Api from "../../Global";
 import { Link } from "react-router-dom";
+import { MdDeleteForever } from "react-icons/md";
 import "./ShoppingCart.css";
 import Swal from "sweetalert2";
 
@@ -31,8 +32,6 @@ const ShoppingCart = () => {
 
   const payerEmail = usuario.email;
   const sendMp = async (e) => {
-    // e.preventDefault();
-
     const compra = cart.map((item) => {
       return {
         title: item.name,
@@ -49,7 +48,7 @@ const ShoppingCart = () => {
         email: payerEmail,
       },
     };
-  
+
     try {
       let respuesta;
 
@@ -79,15 +78,21 @@ const ShoppingCart = () => {
 
   return cart.length > 0 ? (
     <div className="Shopping-Cart Container">
-      {window.scrollTo(0, 0)}
+      {/* {window.scrollTo(0, 0)} */}
       <NavBar />
       <div className="Shopping-Cart__content ">
         <div className="Shopping-Cart-box">
           <div className="Shopping-Cart-clean">
-            <h1 className="Shopping-Cart-title">TUS LIBROS EN EL CARRITO</h1>
-            <button className="Cart-btn Cart-clean" onClick={clearCart}>
+            <h1 className="Shopping-Cart-title">TU CARRITO</h1>
+            <button className="Cart-btn__clean" onClick={clearCart}>
+              <MdDeleteForever className="Cart-icon" />
               Limpiar Carrito
             </button>
+          </div>
+          <div className="Cart__info">
+            <h2>Producto</h2>
+            <h2>Cantidad</h2>
+            <h2>Precio</h2>
           </div>
           {cart.map((item, index) => (
             <CartItem
@@ -102,13 +107,24 @@ const ShoppingCart = () => {
               totalCart={total}
             />
           ))}
-        </div>
-        <div className="Shopping-Cart__pay">
-          <h3>Total a Pagar:  ${total}</h3>
-          <button className="btn-pay" onClick={(e) => sendMp(e)}>
-            <span>Pagar Carrito</span>
-            <i className="fa-solid fa-cart-shopping"></i>
-          </button>
+          <div className="Shopping-Cart__pay">
+            <span>
+              <p>Subtotal</p>
+              <p>${total}</p>
+            </span>
+            <span>
+              <p>Descuento</p>
+              <p>-$0</p>
+            </span>
+            <span>
+              <h3>Total a Pagar</h3>
+              <p>${total}.00</p>
+            </span>
+            <button className="btn-pay__cart" onClick={(e) => sendMp(e)}>
+              <span>Continuar con el Pago</span>
+              <i className="fa-solid fa-cart-shopping"></i>
+            </button>
+          </div>
         </div>
       </div>
       <Footer />

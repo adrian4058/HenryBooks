@@ -22,6 +22,8 @@ function NavBar() {
     setUsuario(usuario2);
   }, [usuario2, token2]);
 
+  console.log(usuario.img);
+
   function cerrrarSesion(e) {
     e.preventDefault();
     dispatch(actions.vaciarUsuario());
@@ -88,7 +90,7 @@ function NavBar() {
           <>
             <div className="user">
               <div className="avatar">
-                <img className="user-img" src={usuario.img} alt="img" />
+                <img className="user-img" src={usuario2.img} alt="img" />
                 <Link to="/profile">
                   <h4 className="user-name">{usuario.nombre}</h4>
                 </Link>

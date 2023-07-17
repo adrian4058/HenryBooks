@@ -39,13 +39,14 @@
 }
 
 .Register-input {
+  color: #000;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: 0.5rem 0;
 }
 
 .Register-input label{
-  color: #FDF0D5;
+  /* color: #FDF0D5; */
   font-weight: 500;
 }
 
