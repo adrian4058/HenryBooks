@@ -14,7 +14,7 @@ function SliderProducts() {
     addCartAlert(true);
   }, []);
 
-  const books = allBooks.filter((e) => e.stock < 60);
+  const books = allBooks.filter((e) => e.stock > 40);
 
   return (
     <>

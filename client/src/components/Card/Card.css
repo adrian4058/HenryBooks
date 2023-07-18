@@ -118,6 +118,7 @@
 .slider__card-info__title {
   text-decoration: underline;
   text-transform: uppercase;
+  text-align: center;
   color: #fdf0d5;
   font-size: 1.2em;
   margin-bottom: 10px;
