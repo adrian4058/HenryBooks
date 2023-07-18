@@ -22,7 +22,7 @@ function NavBar() {
     setUsuario(usuario2);
   }, [usuario2, token2]);
 
-  console.log(usuario.img);
+  console.log(usuario.rol);
 
   function cerrrarSesion(e) {
     e.preventDefault();
@@ -51,6 +51,15 @@ function NavBar() {
       <div className="login">
         {Object.keys(usuario).length > 0 ? (
           <div className="login__content">
+            {usuario.rol === "admin" ? (
+              <div className="navbar-options__link">
+                <Link to="/dashboard" className="content-btn__option">
+                  <button className="navbar-btn__option">
+                    <b>Dashboard</b>
+                  </button>
+                </Link>
+              </div>
+            ) : null}
             <Link to="/cart">
               <button className="navbar-btn__option cart-btn">
                 <HiShoppingCart />
@@ -66,17 +75,7 @@ function NavBar() {
             </Link>
           </div>
         ) : (
-          <div className="login">
-            {usuario.rol === "admin" ? (
-              <div className="navbar-options__link">
-                <Link to="/dashboard">
-                  <button className="navbar-btn__option">
-                    <b>Dashboard</b>
-                  </button>
-                </Link>
-              </div>
-            ) : null}
-
+          <div className="login__content">
             <Link to="/registerdos" className="content-btn__option">
               <button className="navbar-btn__option">Registro</button>
             </Link>

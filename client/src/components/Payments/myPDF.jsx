@@ -13,13 +13,28 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     border: "1px solid black",
   },
+  order: {
+    margin: "10px 0",
+    fontSize: "30px",
+  },
+  title: {
+    margin: "10px 0",
+    fontSize: "24px",
+    textDecoration: "underline",
+  },
+  subtitle: {
+    marginBottom: "25px",
+  },
+  subtitle_total: {
+    margin: "20px 0",
+  },
 });
 
 const myPDF = ({ orderNumber, cart, total_Price }) => (
   <Document>
     <Page style={styles.page}>
       <View style={styles.section}>
-        <Text style={styles.title}>Nro Orden: {orderNumber}</Text>
+        <Text style={styles.order}>Nro Orden: {orderNumber}</Text>
         <Text style={styles.title}>COMPRA REALIZADA CON ÉXITO</Text>
         <Text style={styles.subtitle}>
           Su compra fue realizada con éxito, su pedido detallado es:
@@ -31,13 +46,8 @@ const myPDF = ({ orderNumber, cart, total_Price }) => (
             >{`Producto: ${item.name} - Cantidad: ${item.quantity} x $${item.price}u`}</Text>
           ))}
         </View>
-        <Text style={styles.subtitle}>
-          Gracias por tu compra, su total es: 
-          {total_Price} $
-        </Text>
-        <Text>
-        
-        </Text>
+        <Text style={styles.subtitle_total}>Su total es: {total_Price}$</Text>
+        <Text></Text>
       </View>
     </Page>
   </Document>

@@ -7,7 +7,7 @@ import NavBar from "../Navbar/Navbar";
 import CartItem from "./CartItem";
 import Api from "../../Global";
 import { Link } from "react-router-dom";
-import { MdDeleteForever } from "react-icons/md";
+import { MdOutlineDeleteForever } from "react-icons/md";
 import "./ShoppingCart.css";
 import Swal from "sweetalert2";
 
@@ -17,7 +17,7 @@ const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);
 
   const delFromCart = (id, all = false) => {
-    console.log(id, all);
+    
     if (all) {
       dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
     } else {
@@ -78,14 +78,14 @@ const ShoppingCart = () => {
 
   return cart.length > 0 ? (
     <div className="Shopping-Cart Container">
-      {/* {window.scrollTo(0, 0)} */}
+      {window.scrollTo(0, 0)}
       <NavBar />
       <div className="Shopping-Cart__content ">
         <div className="Shopping-Cart-box">
           <div className="Shopping-Cart-clean">
             <h1 className="Shopping-Cart-title">TU CARRITO</h1>
             <button className="Cart-btn__clean" onClick={clearCart}>
-              <MdDeleteForever className="Cart-icon" />
+              <MdOutlineDeleteForever className="Cart-icon" />
               Limpiar Carrito
             </button>
           </div>
@@ -104,19 +104,19 @@ const ShoppingCart = () => {
               price={item.price}
               quantity={item.quantity}
               delFromCart={delFromCart}
-              totalCart={total}
+              // totalCart={total}
             />
           ))}
           <div className="Shopping-Cart__pay">
-            <span>
+            <span className="Shopping-Cart__pay-items">
               <p>Subtotal</p>
               <p>${total}</p>
             </span>
-            <span>
+            <span className="Shopping-Cart__pay-items">
               <p>Descuento</p>
               <p>-$0</p>
             </span>
-            <span>
+            <span className="Shopping-Cart__pay-items_total">
               <h3>Total a Pagar</h3>
               <p>${total}.00</p>
             </span>

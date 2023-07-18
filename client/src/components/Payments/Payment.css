@@ -1,4 +1,4 @@
-.Payment-content{
+.Payment-content {
   background-color: #fdf0d5;
 }
 
@@ -11,4 +11,28 @@
   justify-content: center;
   align-content: center;
   gap: 3rem;
+}
+
+.card-img-payment {
+  max-width: 60px;
+}
+
+.Payment-Cart__pay-items_total {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Payment__detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.PDF_Generator{
+  margin-top: 10px;
+  width: 100%;
 }

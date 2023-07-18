@@ -120,16 +120,17 @@ export const filterAll = (category, editorial, author) => {
 export const getAllBooksDashboard = () => {
   return async function(dispatch) {
     try {
-      axios.get(url+ "/book")
-        .then((data) => data.json())
-        .then((data) =>
-          dispatch({ type: GET_ALL_BOOKS_DASHBOARD, payload: data.book })
-        );
+      axios.get(Api.Url + "/book")
+        .then((response) => {
+          const data = response.data;  // Acceder a los datos de respuesta directamente
+          dispatch({ type: GET_ALL_BOOKS_DASHBOARD, payload: data.book });
+        });
     } catch {
       console.log("error");
     }
   };
 };
+
 
 // Crear nuevo libro
 export const addNewBook = (payload) => {

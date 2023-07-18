@@ -31,7 +31,7 @@ function App() {
       let user = JSON.parse(localStorage.getItem("usuario"));
       let token = localStorage.getItem("token");
       if (user) {
-        console.log(user);
+       
         dispatch(putToken(token));
         dispatch(llenarUsuario(user));
       }
