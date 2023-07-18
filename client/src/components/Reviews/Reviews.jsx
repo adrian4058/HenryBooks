@@ -5,11 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addReview } from "../../actions/index";
 import "./Reviews.css";
 import Comments from "./Review Components/Comments";
-import { useState } from "react";
 
 function Reviews({ LibroId, commentsReview }) {
   const dispatch = useDispatch();
-  const reviews = useSelector(state => state.reviews)
+  const user = useSelector((state) => state.userProfile);
   const formik = useFormik({
     initialValues: {
       titulo: "",
@@ -18,20 +17,20 @@ function Reviews({ LibroId, commentsReview }) {
     },
     validationSchema: Yup.object({
       titulo: Yup.string()
-        .max(28, "Must be 28 characters or less")
-        .min(10, "Must be bigger than 10 characters")
-        .required("Required"),
+        .max(28, "Debe tener 28 caracteres o menos")
+        .min(10, "Debe tener más de 10 caracteres")
+        .required("Requerido"),
       descripcion: Yup.string()
-        .max(90, "Must be 90 characters or less")
-        .min(15, "Must be bigger than 15 characters")
-        .required("Required"),
-      calificacion: Yup.number("must be a number")
-        .required("Number between 1 and 5")
-        .positive("Must be qualified")
+        .max(90, "Debe tener 90 caracteres o menos")
+        .min(15, "Debe tener más de 15 caracteres")
+        .required("Requerido"),
+      calificacion: Yup.number("Tiene que ser un número")
+        .required("Número entre 1 y 5")
+        .positive("Debe estar calificado")
         .integer(),
     }),
     onSubmit: (values) => {
-      dispatch(addReview({ ...values, UsuarioId: 1, LibroId: LibroId }));
+      dispatch(addReview({ ...values, UsuarioId: user.id, LibroId: LibroId }));
     },
   });
 
@@ -40,17 +39,18 @@ function Reviews({ LibroId, commentsReview }) {
       <form onSubmit={formik.handleSubmit} className="Reviews-form">
         <div className="Review-container">
           <h3>
-            <span>Did you read it?</span>
-            <span>You can qualify it!</span>
+            <span>¿Lo leíste?</span>
+            <span>¡Puedes calificarlo!</span>
           </h3>
 
           <div className="div-review">
-            <label htmlFor="titulo">Title of review</label>
+            <label htmlFor="titulo">Título de la reseña</label>
             <input
               id="titulo"
               type="text"
               className="Review__input"
-              {...formik.getFieldProps("titulo")} />
+              {...formik.getFieldProps("titulo")}
+            />
 
             {formik.touched.titulo && formik.errors.titulo ? (
               <div className="error-message">{formik.errors.titulo}</div>
@@ -58,7 +58,7 @@ function Reviews({ LibroId, commentsReview }) {
           </div>
 
           <div className="div-review">
-            <label htmlFor="descripcion">Description</label>
+            <label htmlFor="descripcion">Descripción</label>
             <input
               id="descripcion"
               type="text"
@@ -71,7 +71,7 @@ function Reviews({ LibroId, commentsReview }) {
           </div>
 
           <div className="div-review">
-            <label htmlFor="calificacion">Qualification</label>
+            <label htmlFor="calificacion">Calificación</label>
             <input
               className="Review-input__range"
               id="calificacion"
@@ -81,20 +81,22 @@ function Reviews({ LibroId, commentsReview }) {
               step="1"
               {...formik.getFieldProps("calificacion")}
             />
-            <div className="Range-value">Rating: {formik.values.calificacion}</div>
+            <div className="Range-value">
+              Puntaje: {formik.values.calificacion}
+            </div>
             {formik.touched.calificacion && formik.errors.calificacion ? (
               <div className="error-message">{formik.errors.calificacion}</div>
             ) : null}
           </div>
 
           <button className="Review-send__btn" type="submit">
-            Send
+            Enviar
           </button>
-
         </div>
       </form>
-      {reviews.success ? <h3>{reviews.success}</h3>: null}
+      
       <Comments commentsReview={commentsReview} />
+      
     </div>
   );
 }

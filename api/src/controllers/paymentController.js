@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { transporter } = require("../middleware/mail");
-const { Email, TO } = process.env;
+const { Email } = process.env;
 
 const createPayment = async (item, payer) => {
   try {
@@ -11,7 +11,7 @@ const createPayment = async (item, payer) => {
       back_urls: {
         failure: "http://localhost:3000/home",
         pending: "http://localhost:3000/home",
-        success: "http://localhost:3000/home",
+        success: "http://localhost:3000/profile",
       },
     };
 
@@ -23,7 +23,6 @@ const createPayment = async (item, payer) => {
     });
     console.log("PAYMENT____DATA", payment.data);
     const result = [payment.data.init_point];
-    console.log("result", result);
     return result;
   } catch (error) {
     error;
@@ -41,30 +40,45 @@ const linkPayment = async (req, res, next) => {
       return `<li>Producto: ${item.title} - Cantidad: ${item.quantity} x $${item.unit_price}u</li>`;
     });
 
-    contentHTML = `
-      <h1>COMPRA REALIZADA CON ÉXITO</h1>
-      <h2>Su compra fue realizada con éxito, su pedido detallado es:</h2>
-      <ul>
-        ${items.join("")}
-      </ul>
-      <h2>Gracias por tu compra, su total es: $${total_Price}</h2>
+    if (resultado[0]) {
+      contentHTML = `
+        <h1>COMPRA REALIZADA CON ÉXITO</h1>
+        <h2>Su compra fue realizada con éxito, su pedido detallado es:</h2>
+        <ul>
+          ${items.join("")}
+        </ul>
+        <h2>Gracias por tu compra, su total es: $${total_Price}</h2>
       `;
 
-    const send = await transporter.sendMail({
-      from: `${Email}`, // sender address
-      to: sendPayerMail, // list of receivers
-      subject: "Compra Exitosa", // Subject line
-      html: contentHTML,
-    });
+      const send = await transporter.sendMail({
+        from: `${Email}`, // sender address
+        to: sendPayerMail, // list of receivers
+        subject: "Compra Exitosa", // Subject line
+        html: contentHTML,
+      });
 
-    res.send(resultado).json(send);
+      res.send(resultado).json(send);
+    } else {
+      res.json({ resultado });
+    }
     // res.send(resultado);
   } catch (error) {
     error;
   }
 };
 
+const getPayment = async (req, res) => {
+  try {
+    const data = req.params.data;
+    res.json(data).send("Exitosa");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error en el servidor");
+  }
+};
+
 module.exports = {
+  getPayment,
   linkPayment,
   createPayment,
 };

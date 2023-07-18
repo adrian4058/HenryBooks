@@ -7,17 +7,17 @@ import NavBar from "../Navbar/Navbar";
 import CartItem from "./CartItem";
 import Api from "../../Global";
 import { Link } from "react-router-dom";
+import { MdOutlineDeleteForever } from "react-icons/md";
 import "./ShoppingCart.css";
 import Swal from "sweetalert2";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
-
   const usuario = useSelector((state) => state.userProfile);
   const cart = useSelector((state) => state.cart);
 
   const delFromCart = (id, all = false) => {
-    console.log(id, all);
+    
     if (all) {
       dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
     } else {
@@ -31,10 +31,7 @@ const ShoppingCart = () => {
   };
 
   const payerEmail = usuario.email;
-  console.log(payerEmail);
   const sendMp = async (e) => {
-    // e.preventDefault();
-
     const compra = cart.map((item) => {
       return {
         title: item.name,
@@ -51,9 +48,10 @@ const ShoppingCart = () => {
         email: payerEmail,
       },
     };
-    console.log(body);
+
     try {
       let respuesta;
+
       await axios
         .post(Api.Url + "/payment", body, payerEmail)
         .then((res) => {
@@ -62,14 +60,14 @@ const ShoppingCart = () => {
           return res.data[0];
         })
         .catch((error) => console.log(error));
+
       Swal.fire({
         title: "¡Link de compra generado correctamente!",
         icon: "success",
       });
       setTimeout(function() {
         window.location.href = respuesta;
-      }, 5000); // 5000 milisegundos = 5 segundos
-      localStorage.removeItem("cart");
+      }, 5000);
       return respuesta;
     } catch (error) {
       console.log(error);
@@ -79,14 +77,23 @@ const ShoppingCart = () => {
   const total = cart.reduce((acc, el) => acc + el.price * el.quantity, 0);
 
   return cart.length > 0 ? (
-    <div className="Shopping-Cart">
+    <div className="Shopping-Cart Container">
+      {window.scrollTo(0, 0)}
       <NavBar />
-      <div className="Shopping-Cart__content">
+      <div className="Shopping-Cart__content ">
         <div className="Shopping-Cart-box">
-          <h1>Your Books in Cart</h1>
-          <button className="Cart-btn Cart-clean" onClick={clearCart}>
-            Limpiar Carrito
-          </button>
+          <div className="Shopping-Cart-clean">
+            <h1 className="Shopping-Cart-title">TU CARRITO</h1>
+            <button className="Cart-btn__clean" onClick={clearCart}>
+              <MdOutlineDeleteForever className="Cart-icon" />
+              Limpiar Carrito
+            </button>
+          </div>
+          <div className="Cart__info">
+            <h2>Producto</h2>
+            <h2>Cantidad</h2>
+            <h2>Precio</h2>
+          </div>
           {cart.map((item, index) => (
             <CartItem
               key={index}
@@ -97,31 +104,42 @@ const ShoppingCart = () => {
               price={item.price}
               quantity={item.quantity}
               delFromCart={delFromCart}
-              totalCart={total}
+              // totalCart={total}
             />
           ))}
-        </div>
-        <div className="Shopping-Cart__pay">
-          <h3>Total a pagar: ${total}</h3>
-          <button className="btn-pay" onClick={(e) => sendMp(e)}>
-            <span>Pay Cart</span>
-            <i className="fa-solid fa-cart-shopping"></i>
-          </button>
+          <div className="Shopping-Cart__pay">
+            <span className="Shopping-Cart__pay-items">
+              <p>Subtotal</p>
+              <p>${total}</p>
+            </span>
+            <span className="Shopping-Cart__pay-items">
+              <p>Descuento</p>
+              <p>-$0</p>
+            </span>
+            <span className="Shopping-Cart__pay-items_total">
+              <h3>Total a Pagar</h3>
+              <p>${total}.00</p>
+            </span>
+            <button className="btn-pay__cart" onClick={(e) => sendMp(e)}>
+              <span>Continuar con el Pago</span>
+              <i className="fa-solid fa-cart-shopping"></i>
+            </button>
+          </div>
         </div>
       </div>
       <Footer />
     </div>
   ) : (
-    <div className="Shopping-Cart">
+    <div className="Shopping-Cart Container">
       <NavBar />
       <div className="No-products">
         <div className="No-products__content">
-          <h1>You have no products added to the cart</h1>
+          <h1>No tienes productos añadidos al carrito</h1>
           <h1>:(</h1>
           <div>
             <Link to={"/home"}>
               <button className="btn-pay no-products__btn">
-                <i className="fa-solid fa-cart-shopping"></i>Add products
+                <i className="fa-solid fa-cart-shopping"></i>Añade productos
               </button>
             </Link>
           </div>
@@ -133,20 +151,3 @@ const ShoppingCart = () => {
 };
 
 export default ShoppingCart;
-
-//   const total_Price = req.body.item
-//   .map((e) => e.unit_price * e.quantity)
-//   .reduce((a, b) => a + b);
-
-// const items = req.body.item.map((e) => e.title, e.quantity, e.unit_price);
-// contentHTML = `
-
-// <h1>Sus items adquiridos fueron ${items} </h1>
-//     <h2>Gracias por tu compra, su total es: ${total_Price}</h2>
-// `;
-// const send = await transporter.sendMail({
-//   from: `${Email}`, // sender address
-//   to: "adrian_2016_@outlook.es", // list of receivers
-//   subject: "Compra Exitosa", // Subject line
-//   html: contentHTML,
-// });

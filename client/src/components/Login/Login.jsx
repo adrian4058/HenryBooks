@@ -1,23 +1,20 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import * as actions from "../../actions/index";
 import { AiOutlineLogin, AiFillHome } from "react-icons/ai";
-// import HB_logo from "../img/HenryBooks_Logo.png";
 import Auth0 from "../Auth0/Auth0";
 import Swal from "sweetalert2";
 import Api from "../../Global";
 
 const Login = () => {
   let dispatch = useDispatch();
- 
-  let [home, setHome] = useState(false);
+  const history = useHistory();
   let [view, setView] = useState(false);
 
-  
   const { handleSubmit, getFieldProps, errors, touched } = useFormik({
     initialValues: {
       email: "",
@@ -60,13 +57,13 @@ const Login = () => {
             localStorage.setItem("token", respuesta.token);
             localStorage.setItem("usuario", JSON.stringify(respuesta.usuario));
             console.log("usuarios", localStorage.getItem("usuario"));
-            setHome(true);
             Swal.fire({
               icon: "success",
               title: `Welcome to Henry Books, ${respuesta.usuario.nombre}!`,
               showConfirmButton: false,
               timer: 2000,
             });
+            history.push("/home");
           } else {
             Swal.fire({
               icon: "error",
@@ -76,10 +73,6 @@ const Login = () => {
         });
     },
   });
-
-  if (home === true) {
-    return <Redirect to="/home" />;
-  }
 
   const handleView = (e) => {
     e.preventDefault();
@@ -93,18 +86,18 @@ const Login = () => {
           <Link to="/home">
             <button className="Login-home__btn">
               <AiFillHome />
-              <span>Home</span>
+              <span>Inicio</span>
             </button>
           </Link>
         </div>
-        <h1>Login</h1>
+        <h1>Acceso</h1>
 
         <div className="Login-form">
           <div className="Login-input">
-            <label htmlFor="email">E-mail:</label>
+            <label htmlFor="email">E-Mail:</label>
             <input
               type="email"
-              placeholder="E-mail"
+              placeholder="E-Mail"
               {...getFieldProps("email")}
               className={`Login-Register__input ${touched.email &&
                 errors.email &&
@@ -119,10 +112,10 @@ const Login = () => {
           </div>
 
           <div className="Login-input">
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Contraseña:</label>
             <input
               type={view ? "text" : "password"}
-              placeholder="Password"
+              placeholder="Contraseña"
               {...getFieldProps("password")}
               className={`Login-Register__input ${touched.password &&
                 errors.password &&
@@ -146,17 +139,17 @@ const Login = () => {
 
           <button type="submit" className="Login-login__btn">
             <AiOutlineLogin />
-            Log In
+            Inicio de sesión
           </button>
         </div>
 
         <p className="Login-noaccount">
-          Don't have any account?
+          ¿No tienes ninguna cuenta?
           <Link to="/registerdos">
-            <span className="Login-register__link">Register here!</span>
+            <span className="Login-register__link">¡Regístrate aquí!</span>
           </Link>
         </p>
-        <p>Or</p>
+        <p>O</p>
         <Auth0 />
       </div>
     </form>

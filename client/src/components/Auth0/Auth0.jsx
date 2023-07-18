@@ -1,33 +1,26 @@
 import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch, useSelector } from "react-redux";
-import { asyncRegisterAuth0 } from "../../actions/index";
+import { useDispatch } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 import * as actions from "../../actions/index";
-import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Api from "../../Global";
 import Swap from "sweetalert2";
 
 function Auth0() {
   const dispatch = useDispatch();
-  let [variable, setVariable] = useState("");
-  let token = useSelector((state) => state.token);
-  let [home, setHome] = useState(false);
+  const history = useHistory();
   const { loginWithPopup, user, logout, isAuthenticated } = useAuth0();
-  useEffect(() => {
-    if (token) {
-      console.log("estoy aqui");
-      setHome(true);
-    }
-  });
+
   useEffect(() => {
     if (user) {
-      setVariable(user);
+      const picture = user.picture;
+      console.log(user);
       let datos = {
         email: user.email,
         password: "Auth0pass",
         nombre: user.nickname,
+        img: picture,
       };
       let url = Api.Url + "/auth/signup";
       let status;
@@ -73,12 +66,14 @@ function Auth0() {
                   JSON.stringify(respuesta.usuario)
                 );
                 console.log("usuarios", localStorage.getItem("usuario"));
-                setHome(true);
+                // setHome(true);
                 Swap.fire({
                   icon: "success",
-                  title: `User created! Welcome, ${respuesta.usuario.nombre}`,
+                  title: `Bienvenido, ${respuesta.usuario.nombre}`,
                   timer: 2000,
                 });
+
+                history.push("/home");
               } else {
                 alert(respuesta.message);
               }
@@ -90,20 +85,18 @@ function Auth0() {
   function login() {
     loginWithPopup();
   }
-  if (home == true) {
-    return <Redirect to="/Login" />;
-  }
+
   return (
     <div className="Login-google">
       {isAuthenticated ? (
         <button className="Login-google__btn" onClick={() => logout()}>
           <FcGoogle />
-          <span>Logout</span>
+          <span>Cerrar Sesión</span>
         </button>
       ) : (
         <button className="Login-google__btn" onClick={login}>
           <FcGoogle />
-          <span>Continue With Google</span>
+          <span>Continuar con Google</span>
         </button>
       )}
     </div>

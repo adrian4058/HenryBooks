@@ -1,7 +1,12 @@
 .container {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    background-color: #fae1dd;
+    padding-top: 0.2rem;
+    background-color: #669BBC;
+}
+
+.h2{
+    text-decoration: underline;
+    font-weight: 700;
+    color: #FDF0D5;
 }
 
 .container>h2 {

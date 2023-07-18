@@ -12,8 +12,8 @@
 
 .Register-content {
   border-radius: 0.5em;
-  background-color: #ffd7ba;
-  opacity: 0.95;
+  opacity: 1;
+  background-color: #003049;
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
     rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
     rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
@@ -28,6 +28,7 @@
 .Register-content > h1 {
   text-align: center;
   padding: 1rem;
+  color: #FDF0D5;
 }
 
 .Register-form {
@@ -38,12 +39,20 @@
 }
 
 .Register-input {
+  color: #000;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: 0.5rem 0;
 }
 
+.Register-input label{
+  /* color: #FDF0D5; */
+  font-weight: 500;
+}
+
 .danger {
+  
+  font-weight: 600;
   color: red;
 }
 
@@ -54,8 +63,9 @@
   border-radius: 0.5em;
 }
 .errores {
-  color: red;
-  font-size: smaller;
+  font-size: 14px;
+  color: #C1121F;
+  font-weight: 500;
   text-align: center;
 }
 
@@ -65,8 +75,8 @@
 }
 
 .Register-create__btn {
-  background-color: #a99985;
-  color: #252323;
+  background-color: #669BBC;
+  color: #ffff;
   width: 100%;
   padding: 0.5em;
   border-radius: 0.5em;
@@ -86,8 +96,8 @@
 
 .Register-create__btn:hover {
   cursor: pointer;
-  background-color: rgba(37, 35, 35);
-  color: #f5f1ed;
+  background-color: #FDF0D5;
+  color: #003049;
 }
 
 .Register-google {

@@ -14,6 +14,7 @@ import { putToken, llenarUsuario, setCart } from "./actions";
 import UserProfile from "./components/userProfile/userProfile";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import DefaultPage from "./components/DefaultPage/DefaultPage";
+import Payment from "./components/Payments/Payment";
 import { RegisterDos } from "./components/Register2/RegisterDos";
 
 import FAQ from "./components/FAQ/FAQ";
@@ -29,8 +30,8 @@ function App() {
     if (localStorage.getItem("usuario")) {
       let user = JSON.parse(localStorage.getItem("usuario"));
       let token = localStorage.getItem("token");
-      console.log(user);
       if (user) {
+       
         dispatch(putToken(token));
         dispatch(llenarUsuario(user));
       }
@@ -54,6 +55,7 @@ function App() {
           <Route exact path="/profile" component={UserProfile} />
           <Route exact path="/registerdos" component={RegisterDos} />
           <Route exact path="/preguntas" component={FAQ} />
+          <Route exact path="/payments" component={Payment} />
           <Route component={DefaultPage} />
         </Switch>
       </div>

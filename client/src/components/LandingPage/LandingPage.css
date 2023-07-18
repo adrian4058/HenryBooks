@@ -8,137 +8,160 @@ p {
 
 .landing {
   height: 100vh;
-  background-image: url(../img/wallpaper.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-color: #b0d0d3;
+  background-size: 100% 100%;
   display: flex;
+  flex-direction: column;
+  align-content: center;
   align-items: center;
   justify-content: center;
   font-family: "Maven Pro", sans-serif;
 }
 
-.landing-container {
+.landing-text {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  height: 65vh;
+  padding-bottom: 10%;
+}
+
+.landing-img {
+  position: fixed;
+  left: 41%;
+  bottom: 28%;
+  border-bottom: 5px solid black;
+  width: 20%;
+}
+
+.landing-btn {
+  display: flex;
   align-items: center;
+  justify-content: center;
+  width: 230px;
+  font-size: 20px;
+  margin-top: 20px;
+  background: none;
+  background-color: blanchedalmond;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  padding: 10px 10px;
+}
+
+.landing-btn__span:hover {
+  margin-right: 10px;
+  transition: 0.4s;
+}
+
+.landing-btn i {
+  margin-left: 10px;
+  padding: 2px;
+  font-size: 20px;
+}
+
+.landing-btn:hover i:hover {
+  margin-left: 15px;
+  transition: 0.4s;
+}
+
+.book-img__landing {
+  height: 500px;
+  width: 900px;
 }
 
 .landing-title {
-  text-decoration: underline;
-  background-color: #ff686b;
-  border-radius: 50%;
-  padding: 1.5rem 3rem;
-  color: #ffffff;
+  margin-bottom: 10px;
+  font-size: 64px;
+  text-align: justify;
 }
 
 .landing-content {
-  /* background-color: rgb(255, 243, 221, 80%); */
-  background-color: #fae1dd;
-  border-radius: 1.5rem;
-  margin-top: 2rem;
-  padding: 1rem 0;
-  position: relative;
+  z-index: 1;
+  width: 60%;
+  border-width: 10%;
+  margin-left: 4%;
+  padding: 2rem 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .paragram {
   text-align: center;
-  font-style: italic;
+
   font-size: 1.2rem;
-  padding: 1rem 1rem;
+  padding-right: 0rem rem;
+}
+.paragram h2 {
+  font-size: 28px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-align: justify;
 }
 
-.landing-btn {
-  background: #ffa69e;
-  color: #ffffff;
-  border: none;
-  padding: 0.5rem 1rem;
+.paragram p {
+  margin-bottom: 20px;
+  font-style: oblique;
+  text-align: justify;
+}
+
+.landing-foot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+.landing-sentence {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 15px;
-  font-weight: 600;
-  width: max-content;
-  text-transform: uppercase;
-  cursor: pointer;
-  transform: skew(-21deg);
-  font-family: "Maven Pro", sans-serif;
+  margin-left: 4%;
 }
 
-.landing-btn__span {
-  display: inline-block;
-  transform: skew(21deg);
+.landing-sentence__text {
+  display: flex;
+  flex-direction: column;
 }
 
-.landing-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 100%;
-  left: 0;
-  background: #ff686b;
-  opacity: 0;
-  z-index: -1;
-  transition: all 0.5s;
+.landing-benefit {
+  display: flex;
+  width: 955px;
 }
 
-.landing-btn:hover {
-  color: #000;
+.landing-benefit__item {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  margin: 0 10px;
 }
 
-.landing-btn:hover::before {
-  left: 0;
-  right: 0;
-  opacity: 1;
+.img__benefit {
+  width: 85px;
+  height: 85px;
+}
+
+.landing-benefit__description {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.landing-benefit__description h4 {
+  font-size: 16px;
+  /* text-decoration: underline; */
+}
+
+.landing-benefit__description p {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 1.5px;
+  font-style: italic;
 }
 
 /* tablet pequeña */
 @media screen and (max-width: 720px) {
-  .landing-container {
-    justify-content: space-evenly;
-    height: 80vh;
-    padding: 10px;
-  }
-  .landing-title {
-    display: flex;
-    font-size: 2.5rem;
-  }
-  .landing-content {
-    height: 60%;
-  }
-  .paragram {
-    font-size: 1.4rem;
-  }
-  .paragram p {
-    font-size: 1.3rem;
-  }
 }
 
 /* movil pequeño */
 @media screen and (max-width: 376px) {
-  .landing-container {
-    justify-content: space-evenly;
-    height: 80vh;
-    padding: 10px;
-  }
-  .landing-title {
-    display: flex;
-    font-size: 2.2rem;
-  }
-  .landing-content {
-    margin-top: 10px;
-    height: 50vh;
-  }
-  .paragram {
-    font-size: 1.3rem;
-  }
-  .paragram p {
-    font-size: 1.2rem;
-  }
 }

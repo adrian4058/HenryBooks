@@ -120,16 +120,17 @@ export const filterAll = (category, editorial, author) => {
 export const getAllBooksDashboard = () => {
   return async function(dispatch) {
     try {
-      axios.get(url+ "/book")
-        .then((data) => data.json())
-        .then((data) =>
-          dispatch({ type: GET_ALL_BOOKS_DASHBOARD, payload: data.book })
-        );
+      axios.get(Api.Url + "/book")
+        .then((response) => {
+          const data = response.data;  // Acceder a los datos de respuesta directamente
+          dispatch({ type: GET_ALL_BOOKS_DASHBOARD, payload: data.book });
+        });
     } catch {
       console.log("error");
     }
   };
 };
+
 
 // Crear nuevo libro
 export const addNewBook = (payload) => {
@@ -382,18 +383,6 @@ export const asyncRegisterAuth0 = (body) => async (dispatch) => {
     console.log(registro);
   }
 
-  // const registro = await axios
-  //   .post(url + "/auth/signup", body)
-  //   .then(async (registro) => {
-  //     if (!registro.data) {
-  //       const respuesta = await axios.post(url + "/auth/signin", body);
-  //       localStorage.setItem("token", respuesta.data.token);
-  //       dispatch({ type: ASYNC_REGISTER_AUTH0, payload: respuesta.data.token });
-  //       console.log(respuesta.data.token);
-  //     } else {
-  //       localStorage.setItem("token", registro.data.token);
-  //       dispatch({ type: ASYNC_REGISTER_AUTH0, payload: registro.data.token });
-  //     }
-  //   });
+  
 };
 

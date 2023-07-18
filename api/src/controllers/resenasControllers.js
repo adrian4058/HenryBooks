@@ -10,8 +10,8 @@ async function crearResena(req, res, next) {
       .send("hace falta info para poder postear una reseña");
   }
   try {
-    let nuevaReseña = await Resena.create(req.body);
-    res.send({success: "We have received your review. Your comment will appear soon"});
+    let nuevaResena = await Resena.create(req.body);
+    res.send({success: "Hemos recibido tu reseña."});
   } catch (e) {
     res.status(404).send(e);
   }
