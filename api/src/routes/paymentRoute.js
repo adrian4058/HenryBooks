@@ -1,5 +1,5 @@
 const express = require("express");
-const { linkPayment, getPayment } = require("../controllers/paymentController");
+const { linkPayment } = require("../controllers/paymentController");
 const router = express.Router();
 
 router.post("/", linkPayment);
