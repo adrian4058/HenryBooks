@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {  updateUser, deletToken, vaciarUsuario } from "../../actions";
+import { updateUser, deletToken, vaciarUsuario } from "../../actions";
 import NavBar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./userProfile.css";
@@ -13,8 +13,7 @@ import Swal from "sweetalert2";
 export default function UserProfile() {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.userProfile);
-  
-  
+
   const message = useSelector((state) => state.message);
   const { logout } = useAuth0();
 
@@ -33,14 +32,13 @@ export default function UserProfile() {
   };
 
   const [editUser, setEditUser] = useState({
-  nombre: profile.nombre,
-  email: profile.email,
-  password: profile.password,
-  direccion: profile.direccion || "",
-  pais: profile.pais || "",
-  ciudad: profile.ciudad || "",
-});
-
+    nombre: profile.nombre,
+    email: profile.email,
+    password: profile.password,
+    direccion: profile.direccion || "",
+    pais: profile.pais || "",
+    ciudad: profile.ciudad || "",
+  });
 
   const handleUpdateForm = (e) => {
     setEditUser({
@@ -102,21 +100,25 @@ export default function UserProfile() {
             <div className="Profile-user__info">
               <div className="Profile-usuario__data">
                 <h5 className="Profile-info" name="name" value={profile.nombre}>
-                  <span>Name:</span>
+                  <span className="Profile-data__text">Nombre:</span>
                   <span className="Profile-data">{profile.nombre}</span>
                 </h5>
               </div>
 
               <div className="Profile-usuario__data">
                 <h5 className="Profile-info" name="email" value={profile.email}>
-                  <span>Email:</span>
+                  <span className="Profile-data__text">Email:</span>
                   <span className="Profile-data">{profile.email}</span>
                 </h5>
               </div>
 
               <div className="Profile-usuario__data">
-                <h5 className="Profile-info" name="password" value={profile.email}>
-                  <span>Password:</span>
+                <h5
+                  className="Profile-info"
+                  name="password"
+                  value={profile.email}
+                >
+                  <span className="Profile-data__text">Contraseña:</span>
                   <span className="Profile-data">**********</span>
                 </h5>
               </div>
@@ -127,21 +129,25 @@ export default function UserProfile() {
                   name="direccion"
                   value={profile.direccion}
                 >
-                  <span>Address:</span>
+                  <span className="Profile-data__text">Direccion:</span>
                   <span className="Profile-data">{profile.direccion}</span>
                 </h5>
               </div>
 
               <div className="Profile-usuario__data">
                 <h5 className="Profile-info" name="pais" value={profile.pais}>
-                  <span>Country:</span>
+                  <span className="Profile-data__text">País:</span>
                   <span className="Profile-data">{profile.pais}</span>
                 </h5>
               </div>
 
               <div className="Profile-usuario__data">
-                <h5 className="Profile-info" name="ciudad" value={profile.ciudad}>
-                  <span>City/State:</span>
+                <h5
+                  className="Profile-info"
+                  name="ciudad"
+                  value={profile.ciudad}
+                >
+                  <span className="Profile-data__text">Ciudad:</span>
                   <span className="Profile-data">{profile.ciudad}</span>
                 </h5>
               </div>
@@ -149,7 +155,7 @@ export default function UserProfile() {
           </div>
           <div className="Profile-btns">
             <button className="Profile-btn" onClick={openEditModal}>
-              Edit profile
+              Editar Información
             </button>
             <button className="Profile-btn" onClick={(e) => logOut(e)}>
               Logout

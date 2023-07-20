@@ -15,6 +15,8 @@ module.exports = (sequelize) => {
     image: {
       type: DataTypes.STRING,
       allownull: false,
+      defaultValue:
+        "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books_23-2149334862.jpg?w=740&t=st=1689692784~exp=1689693384~hmac=ada0b00f4a3f6b3a95f6837fd806596c31b9c690ed83d71d74d87093775009ac",
     },
     genero: {
       type: DataTypes.STRING,

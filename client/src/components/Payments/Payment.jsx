@@ -6,12 +6,10 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyPDF from "../Payments/myPDF";
 import Swal from "sweetalert2";
 import "./Payment.css";
-
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { TYPES } from "../../actions";
-
 import axios from "axios";
 import PaymentItem from "./PaymentItem";
 
@@ -62,7 +60,7 @@ const Payment = () => {
       dispatch({ type: TYPES.CLEAR_CART });
       setTimeout(() => {
         history.push("/home");
-      }, 5000);
+      }, 3000);
 
       return response;
     } catch (error) {
@@ -102,12 +100,10 @@ const Payment = () => {
                 <p>${total_Price}.00</p>
               </span>
               <span>
-                <p>
-                  Comprobante de pago
-                </p>
+                <p>Comprobante de pago</p>
               </span>
               <PDFDownloadLink
-              className="PDF_Generator"
+                className="PDF_Generator"
                 document={
                   <MyPDF
                     orderNumber={orderNumber}

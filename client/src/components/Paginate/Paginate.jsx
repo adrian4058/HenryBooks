@@ -12,10 +12,15 @@ export default function Paginado({
 }) {
   const pageNumbers = [];
 
+  const totalPages = Math.ceil(allBooks/ booksPerPage);
+  console.log(currentBooks.length)
+  console.log(currentPage);
+  console.log(totalPages);
+
   for (let i = 1; i <= Math.ceil(allBooks / booksPerPage); i++) {
     pageNumbers.push(i);
   }
-
+  console.log(pageNumbers);
   return (
     <nav className="pagination">
       <ul>
@@ -42,7 +47,7 @@ export default function Paginado({
         <li className="number">
           <button
             className="pagination-btn"
-            disabled={currentBooks.length < booksPerPage}
+            disabled={currentPage === totalPages}
             onClick={handleNext}
           >
             {"Next"}

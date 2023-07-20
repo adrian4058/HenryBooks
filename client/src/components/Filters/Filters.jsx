@@ -34,6 +34,8 @@ const Filters = ({ allBooks, addToCart }) => {
   const paginated = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+ 
   const handleNext = () => {
     setCurrentPage(currentPage + 1);
   };
